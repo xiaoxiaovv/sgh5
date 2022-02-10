@@ -1,0 +1,39 @@
+<ion-view class="background" view-title="设计师列表" hide-nav-bar="true" hide-back-button="true">
+        <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+            <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+            <div style="height:24px;width:24px;">
+                <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+            </div>
+            </div>
+            <div style="height:44px;font-size: 18px;letter-spacing: -0.41px;text-align:center;line-height:44px;">列表</div>
+            <div style="width:60px;height:44px;padding-right:16px;" flex="main:center cross:center">
+                
+            </div>
+        </div>
+    <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+      
+      <div class="smart-life">
+            <div class="life-content">
+                    <ul>
+                        <li ng-repeat="item in list" ng-click="toNoteDetails(item.id)">
+                            <div>
+                               <img src="{{item.imageUrl}}"/> 
+                            </div>
+                            <h3>{{item.storyName}}</h3>
+                            <p>
+                                <span class="span1"><img class="autor" src="{{item.avatar?item.avatar:imgBaseURL+'img/quanzi/user.jpg'}}" err-src="{{imgBaseURL}}img/quanzi/user.jpg"/><i>{{item.author}}</i></span>
+                                <span><img src="{{imgBaseURL}}img/newvision/zan.png"/><i>{{item.praise}}</i></span>
+                            </p>
+                        </li>
+                        <ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMore()"
+                                 distance="1%"></ion-infinite-scroll>
+                    </ul>
+                    <div ng-if="bottomIF" style='text-align: center;padding: 10px 0;'>已经到底了～只能帮你到这里了</div>
+
+            </div>
+      </div>
+
+  
+    </ion-content>
+  </ion-view>
+  

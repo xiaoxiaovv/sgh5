@@ -1,0 +1,40 @@
+<!--身份认证-->
+<ion-view class="background" view-title="身份认证" hide-nav-bar="true" hide-back-button="true">
+    <!--判断是否是ios设备-->
+    <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+    <header flex="main:center cross:center box:first" class="header-top-height">
+        <div><img ng-click="$ionicGoBack();" class="goback-img" ng-src="{{GoBackImgUrl}}"></div>
+        <div class="text-c title-text">身份认证</div>
+    </header>
+
+    <ion-content class="content-head-top" scrollbar-y="false">
+        <!--判断是否是ios设备-->
+        <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+        <div class="Prompt-msg-1">请输入已认证或新手机号机主身份信息，该信息将作为顺逛账号的绑定身份信息</div>
+        <ul class="background-fff text-input-list">
+            <li class="cl" flex="cross:center;">
+                <label class="fl">证件类型</label>
+                <span class="fr text-r">身份证</span>
+            </li>
+            <li class="cl" flex="cross:center;" ng-if="isIdCardAuthen">
+                <label class="fl">姓名</label>
+                <span class="fr text-r">{{ data.identity.realName | FilterRealName}}</span>
+            </li>
+            <li class="cl" flex="cross:center;" ng-if="!isIdCardAuthen">
+                <label class="fl">姓名</label>
+                <input class="fr text-r" placeholder="填写你的真实姓名"  ng-model="IdCard.realName">
+            </li>
+            <li class="cl" flex="cross:center;">
+                <label class="fl">证件号</label>
+                <input class="fr text-r"  ng-model="IdCard.identityNo" placeholder="填写对应身份证号" ng-maxlength="18" type="text" ng-keyup="IdCardKeyup()">
+            </li>
+        </ul>
+        <p class="frompt-r-msg" ng-bind="ToMessage"></p>
+        <div class="text-c">
+            <div>
+                <button class="btn-send-Phone mt-50" ng-if="!isSubMint">下一步</button>
+                <button class="btn-send-Phone mt-50 active-send-phone" ng-if="isSubMint" ng-click="goToPhoneBind()">下一步</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

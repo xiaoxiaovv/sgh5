@@ -1,0 +1,26 @@
+<!--模板-->
+<ion-modal-view class="background" view-title="{{title}}" hide-nav-bar="true" style="position: fixed;top: 262px;left: 0;background:transparent" >
+  <div align-title="center" style="height: 50px;background: #FFFFFF;padding: 10px;text-align: center;border-bottom: 1px solid #eee;border-top-left-radius: 14px;border-top-right-radius: 14px;">
+    <h1 class="title" style="font-size: 18px;padding-top: 4px;">规格参数</h1>
+    <span class="ion-ios-close-empty" ng-click="closeStoreModal()" style="font-size: 32px;position: absolute;top: 6px;right: 5px;padding: 0 10px;"></span>
+  </div>
+  <ion-content  scrollbar-y="false" ng-style="data.length>0?contentHeight:storeContentHeight"  style="top: 50px;background: #fff;border-top: 1px solid #eee;" delegate-handle="mainScroll">
+     <div style="background: #fff; width: 100%;" >
+         <div ng-if="data.length>0" style="margin-top: 12px;margin-left: 16px;" ng-repeat="item in data  track by $index">
+           <span style="letter-spacing:-0.48px;color: #666;font-size: 14px;">{{item.attrName}} : </span>
+           <span style="color: #333;font-size: 14px;margin-left: 16px;">{{item.attrValue}}</span>
+         </div>
+
+       <!--没有信息-->
+       <div ng-if="data.length==0" style="width: 100%;" >
+         <div style="width: 100%;text-align: center;margin-top: 50px;">sorry 没有查询到相应规格参数</div>
+       </div>
+     </div>
+    <div  style="width: 100%;height: 60px;"></div>
+  </ion-content>
+
+  <div ng-if="data.length>0"  ng-style="storeMsgTop" style="width:100%;height: 58px;line-height: 58px;color: #fff;font-size: 14px;background: #2979FF;text-align: center;position: fixed;" ng-click="closeStoreModal()">
+    确定
+  </div>
+
+</ion-modal-view>

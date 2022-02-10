@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/dev/!svn/ver/192162/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address
+END
+AddAddress.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/dev/!svn/ver/166439/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address/AddAddress.html
+END
+Address.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/dev/!svn/ver/192162/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address/Address.html
+END
+AddPrizeAddress.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/dev/!svn/ver/175046/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address/AddPrizeAddress.html
+END
+BatchDeleteAddress.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/dev/!svn/ver/183513/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address/BatchDeleteAddress.html
+END
+ChangeAddress.html
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/dev/!svn/ver/145439/haier-store/shunguang-v3/H5/trunk/www/templates/mine/Address/ChangeAddress.html
+END

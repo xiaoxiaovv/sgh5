@@ -1,0 +1,76 @@
+<ion-view view-title="选择标签" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <div class="button font-bold" ng-click="backApply()">确定</div>
+    </ion-nav-buttons>
+
+    <ion-content delegate-handle="mainScroll" id="aaa" overflow-scroll="true">
+        <div class="position-r padding-left-10" style="height: 30px;line-height: 30px">
+            <span>自定义标签</span>
+            <span class="position-a" style="right: 10px;color: #999">(不超过5个)</span>
+        </div>
+        <div class="bg-background padding-10">
+            <!--自定义标签-->
+            <div style="" class="padding-top-5">
+                <div style="width: 100%;display: inline-block;" class="font-size-12">
+                    <div class="inline-block position-r" ng-repeat="item in addedTags track by $index" >
+                        <div ng-bind="item.name"
+                             style="margin:5px 0;border-radius: 16px;padding: 1px 12px;color: #787878;"
+                             class="border inline-block margin-right-10 bg-blue">
+                        </div>
+                    </div>
+
+                    <div style="margin:5px 0;border-radius: 16px;padding: 3px 12px;color: #787878;width: 50px"
+                         class="border inline-block bg-white margin-right-10 text-center font-size-18" ng-click="showInput()">
+                        <i class="icon ion-ios-plus-empty"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-r padding-left-10" style="height: 30px;line-height: 30px;">
+            <span>常用标签</span>
+            <span class="position-a" style="right: 10px;color: #999">(不超过10个)</span>
+        </div>
+
+        <div class="bg-background" style="margin-bottom: 50px">
+            <!--常用标签-->
+            <div style="background-color: #f6f6f6;" class="padding-top-5 margin-left-5 font-size-13">
+                <div style="width: 100%;display: inline-block;">
+                    <div ng-repeat="item in frequentTags track by $index" ng-bind="item.name"
+                         style="margin:5px 0;border-radius: 16px;padding: 1px 10px;color: #787878;background: white"
+                         class="border inline-block margin-right-5" ng-class="{true:'bg-blue',false:''}[item.isChecked]" ng-click="ifClicked($index,item.id,item.isChecked,item.name)">
+                    </div>
+                </div>
+                <!--<div style="display:inline-block;">-->
+               <!--<span style="color: #029aff;font-size: 20px;" class="icon ion-ios-arrow-up"-->
+                     <!--ng-click="isMoreTag()"></span>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+    </ion-content>
+    <!--回到顶部按钮-->
+    <div style="position: fixed;right: 15px;bottom: 40px;" ng-click="scrollToTop()" ng-if="showTopBtn">
+        <img ng-src="{{imgBaseURL}}img/circleIcon/scrollTop.png" style="width:35px">
+    </div>
+    <!--提交-->
+    <div class="bg-background width-100 padding-10" style="position: fixed;bottom: 0;height: 50px" ng-show="isShow" ng-style="keyboardHeight">
+        <div class="inline-block position-a border bg-white border-radius" style="height: 30px;left: 10px;right: 80px;padding: 1px">
+            <div class="inline-block" style="z-index: 999">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/editTag.png" class="position-a" style="width: 18px;top: 5px;left:5px" alt="">
+            </div>
+            <div class="inline-block">
+                <input type="search" ng-model="namedTags" id="inputId" class="padding-0 padding-left-25 inline-block width-100" placeholder="标签名不超过8个字符" maxlength="8" style="height: 26px;">
+            </div>
+        </div>
+
+        <div class="inline-block float-r">
+            <div style="width: 60px;height: 30px;color: white;background:#0277fd;line-height: 30px" class="text-center border-radius" ng-click="submitNamedTags(namedTags)">
+                提交
+            </div>
+        </div>
+    </div>
+</ion-view>

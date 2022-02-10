@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/dev/!svn/ver/160216/haier-store/shunguang-v3/H5/trunk/www/templates/seckill
+END
+orderConfirmSeckill.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/seckill/orderConfirmSeckill.html
+END
+seckillList.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/dev/!svn/ver/160016/haier-store/shunguang-v3/H5/trunk/www/templates/seckill/seckillList.html
+END
+seckillTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/seckill/seckillTemplate.html
+END
+seckillDetail.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/dev/!svn/ver/160216/haier-store/shunguang-v3/H5/trunk/www/templates/seckill/seckillDetail.html
+END

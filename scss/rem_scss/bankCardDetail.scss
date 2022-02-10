@@ -1,0 +1,45 @@
+// 这个页面的列表用的scss是列表页的
+.bankCardthird {
+  .bankCardDetail{
+    margin-top:6px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 44px;
+    padding:0 16px;
+    color: #000;
+    div:nth-child(1){
+      height:44px;
+      div:nth-child(1){
+        width:98px;
+        margin-right:12px;
+      }
+      div:nth-child(2){
+        color: #666;
+      }
+    }
+    div:nth-child(2){
+      height:44px;
+      div:nth-child(1){
+        width:98px;
+        margin-right:12px;
+      }
+      div:nth-child(2){
+        color: #666;
+      }
+    }
+  }
+  .bankCardDetailTwo{
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    line-height: 16px;
+    margin:0 auto;
+    margin-top:20px;
+    width:343px;
+    height:44px;
+    line-height: 44px;
+    background: #2979FF;
+    box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);
+    border-radius: 100px;
+  }
+}

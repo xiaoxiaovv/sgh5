@@ -1,0 +1,44 @@
+<!--我的->店铺信息-->
+<ion-view class="background" view-title="店铺信息">
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom">
+      店主ID
+      <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+      <span class="float-r margin-right-10" ng-bind="shopMessageID"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom"
+         ui-sref="shopName({'default':shopMessageName})">
+      店铺名称
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" ng-bind="shopMessageName"></span>
+    </div>
+    <!--<div class="padding padding-left-15 padding-right-15 bg-white border-bottom"-->
+    <!--ui-sref="shopAddress({'default':shopMessageAddress,'defaultDetail':shopMessageDetailAddress})">-->
+    <!--地址-->
+    <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+    <!--<span class="float-r margin-right-20 color-text-s" ng-bind="shopMessageDetailAddress"></span>-->
+    <!--<p class="float-r margin-right-20 color-text-s" ng-bind="shopMessageAddress"></p>-->
+    <!--</div>-->
+    <div class="row padding padding-left-15 padding-right-15 bg-white border-bottom">
+      <div class="col col-30 padding-0">地址</div>
+      <div class="col col-70 text-align-r padding-0">
+        <!--<span class="float-r color-text-s" ng-bind="shopMessageAddress+' '+shopMessageDetailAddress"></span>-->
+        <!-- <span class="float-r color-text-s" style="width: 100%" ng-bind="shopMessageAddress"></span> -->
+        <span class="float-r color-text-s margin-right-10" ng-bind="shopMessageAddress"></span>
+        <span class="float-r color-text-s margin-right-10" ng-bind="shopMessageDetailAddress"></span>
+        <!-- <span class="float-r color-text-s" ng-bind="shopMessageDetailAddress"></span> -->
+      </div>
+    </div>
+    <!--<div ng-if="!isHaierCloud" class="padding padding-left-15 padding-right-15 bg-white"  ui-sref="shopLegend({'default':shopMessageLegend,'provinceId':provinceId,'cityId':cityId,'regionId':regionId,'hrCode':hrCode})">-->
+      <!--联盟-->
+      <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+      <!--<span class="float-r margin-right-10 color-text-s" ng-bind="shopMessageLegend"></span>-->
+    <!--</div>-->
+    <div ng-if="true" class="padding padding-left-15 padding-right-15 bg-white">
+      联盟
+      <span class="float-r margin-right-10 color-text-s" ng-bind="shopMessageLegend"></span>
+    </div>
+  </ion-content>
+</ion-view>

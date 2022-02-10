@@ -1,0 +1,18 @@
+<ion-view class="background" view-title="图文详情">
+  <ion-content scrollbar-y="false" class="image-and-word-content">
+    <div ng-if="flag" style="text-align:center;">
+    <div style="float:left;height:195px;width:100%;">
+      <img style="display:block;height:50%;margin:0 auto;margin-top:62px;" ng-src="{{imgBaseURL}}img/emptySearch.png" alt="海尔兄弟" />
+    </div>
+    <i style="font-size:15px;">还没有相关商品详情</i>
+   </div>
+
+   <div ng-if = "flagMp4">
+      <video width="100%" ng-src="{{Mp42}}" poster="{{Png42}}" preload="Metadata" controls="controls"></video>
+   </div>
+
+   <div class="image-and-word" ng-if="!flag" id="image-and-word" ng-bind-html="imagesUrl">
+   </div>
+  </ion-content>
+  <img ng-src="{{imgBaseURL}}img/icon_toTop.png" style="width: 44px;position: fixed;bottom: 45px;right: 9px;" ng-click="scrollToTop();"/>
+</ion-view>

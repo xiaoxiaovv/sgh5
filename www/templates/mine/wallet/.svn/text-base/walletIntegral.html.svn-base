@@ -1,0 +1,39 @@
+ <ion-view class='background' view-title="积分明细" hide-back-button="true">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<div class='cui-one'>
+		<div><img ng-src='{{imgBaseURL}}img/haibeijifen.png'/></div>
+		<div>当前积分</div>
+		<div><span>{{seashellPoint}}</span><span>分</span></div>
+		<div>
+			可抵现金<span>{{seashellPointAmt}}</span>元
+		</div>
+		<div class='cui-big'></div>
+		<div class='cui-big cui-big2'></div>
+		<div>
+			<p ng-click='changelist(null)' ng-class="index==null?'cui-fontlight':'cui-fontold'">全部</p>
+			<p ng-click='changelist("1")' ng-class="index=='1'?'cui-fontlight':'cui-fontold'">收入</p>
+			<p ng-click='changelist("0")' ng-class="index=='0'?'cui-fontlight':'cui-fontold'">支出</p>
+		</div>
+	</div>
+	<ul class='cui-two'>
+		<li ng-repeat="i in integetlist" ng-if='integetlist.length!=0'>
+			<div>{{i.payTime | chinaDate}}</div>
+			<div>{{i.transType | totext}}</div>
+			<div>
+				<p>
+				<span ng-if='i.transType=="0"'>-</span>
+				<span ng-if='i.transType=="1"'>+</span>
+				{{i.changeCount}}</p>
+				<p>{{i.remark}}</p><!-- 说明 -->
+			</div>
+		</li>
+	</ul>
+	<div class='cui-null' ng-if='integetlist.length==0'>
+		<div>暂无积分明细~</div>
+	</div>
+	<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

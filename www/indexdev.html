@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>顺逛微店</title>
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.rem.main.min.css">
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/flexible.js"></script>
+  <script src="lib/flexible_css.js"></script>
+  <script src="lib/artEditor/jquery-1.11.2.js"></script>
+  <script src="lib/jquery-3.1.1.min.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+  <script src="lib/ionic/js/angular/angular-cookies.min.js"></script>
+  <script src="lib/ionic/js/angular/angular-sanitize.min.js"></script>
+  <script src="lib/ionic/js/angular-ui/angular-ui-router.min.js"></script>
+  <script src="lib/fileUpload/ng-file-upload-shim.js"></script>
+  <script src="lib/fileUpload/ng-file-upload.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <script src="lib/elastic.js"></script>
+  <script src="lib/jquery_easing.js"></script>
+  <!--angular 图片懒加载-->
+  <script src="lib/me-lazyload.js"></script>
+  <script src="js/framework/play-sound.bundle.min.js"></script>
+
+  <script src="lib/waverecode/WavAudioEncoder.min.js"></script>
+  <!--高德地图-->
+  <script type="text/javascript">
+    (function() {
+      setTimeout(function(){
+        var sc = document.createElement('script');
+        sc.type = 'text/javascript';
+        sc.async = true;
+        sc.src ='http://webapi.amap.com/maps?v=1.3&key=2c32eb44ce0ecd452ce7c7b9fd020e83';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(sc, s);
+      },0);
+    })();
+  </script>
+  <!--create qrcode js add by jiangfeng-->
+  <script src='lib/dist/arale-qrcode/3.0.5/index.js'></script>
+  <script src="lib/echarts/echarts.min.js"></script>
+
+  <!--图表echarts-->
+  <script src="lib/echarts/echarts.min.js"></script>
+  <script src="lib/artEditor/index.js"></script>
+
+  <!--业务逻辑-->
+
+  <!--日期选择-->
+  <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+
+  <script src="lib/stomp.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/appdev.js"></script>
+  <script src="js/framework/ConfigCommon.js"></script>
+  <script src="js/framework/ConfigRoute.js"></script>
+  <script src="js/framework/ConfigInterceptors.js"></script>
+  <script src="js/framework/UserService.js"></script>
+  <script src="js/framework/IMService.js"></script>
+  <script src="js/framework/InputClearDirective.js"></script>
+  <script src="js/framework/InAppBrowserService.js"></script>
+  <script src="js/framework/$localstorage.js"></script>
+  <script src="js/framework/UrlService.js"></script>
+  <script src="js/framework/AppConfig.js"></script>
+  <script src="js/framework/AppRun.js"></script>
+  <script src="js/framework/CacheService.js"></script>
+  <script src="js/framework/PopupService.js"></script>
+  <script src="js/framework/Filter.js"></script>
+  <script src="js/framework/AreaService.js"></script>
+  <script src="js/framework/PlatformService.js"></script>
+  <script src="js/framework/AddressService.js"></script>
+  <script src="js/framework/CreditService.js"></script>
+  <script src="js/framework/CommonFactory.js"></script>
+
+  <!--公共组件-->
+  <script src="js/common/CommonPageView.js"></script>
+  <script src="js/common/CommonLocation.js"></script>
+  <script src="js/common/CommonSelect.js"></script>
+  <script src="js/common/CommonTemplateDirective.js"></script>
+  <script src="js/common/CommonUnion.js"></script>
+  <script src="js/common/sockjs.js"></script>
+  <script src="js/common/GetStatisticInfo.js"></script>
+
+
+  <!------我的模块------>
+  <!-- 我的主页-->
+  <script src="js/mine/Mine.js"></script>
+  <!-- 账户信息-->
+  <script src="js/mine/account/AccountMessage.js"></script>
+  <!-- 修改邮箱-->
+  <script src="js/mine/account/ChangeEmail.js"></script>
+  <!-- 修改昵称-->
+  <script src="js/mine/account/ChangeName.js"></script>
+  <!-- 修改密码-->
+  <script src="js/mine/account/ChangePassWord.js"></script>
+  <!-- 性别选择-->
+  <script src="js/mine/account/SelectSex.js"></script>
+  <!-- 提现设置-->
+  <script src="js/mine/getCash/EasyConnect.js"></script>
+  <!-- 绑定设置-->
+  <script src="js/mine/getCash/EasyConnectIframe.js"></script>
+  <!-- 绑定结果-->
+  <script src="js/mine/getCash/BindResult.js"></script>
+  <!-- 绑定人-->
+  <script src="js/mine/getCash/BindAccount.js"></script>
+  <!-- 店铺信息-->
+  <script src="js/mine/shop/ShopMessage.js"></script>
+  <!-- 店铺名称-->
+  <script src="js/mine/shop/ShopName.js"></script>
+  <!-- 店铺地址-->
+  <script src="js/mine/shop/ShopAddress.js"></script>
+  <script src="js/mine/shop/ShopLegend.js"></script>
+  <!-- 关于我们-->
+  <script src="js/mine/AboutUs.js"></script>
+  <!-- 收获地址-->
+  <script src="js/mine/Address/Address.js"></script>
+  <!-- 修改收获地址-->
+  <script src="js/mine/Address/ChangeAddress.js"></script>
+  <!-- 新增收获地址-->
+  <script src="js/mine/Address/AddAddress.js"></script>
+  <!-- 奖品收获地址-->
+  <script src="js/mine/Address/AddPrizeAddress.js"></script>
+  <!-- 批量删除收获地址-->
+  <script src="js/mine/Address/BatchDeleteAddress.js"></script>
+  <!-- 购物车-->
+  <script src="js/mine/ShoppingCar.js"></script>
+  <!-- 我的收藏-->
+  <script src="js/mine/Collection.js"></script>
+  <!-- 消息中心-->
+  <script src="js/mine/messageCenter/MessageCenter.js"></script>
+  <!--消息分类-->
+  <script src="js/mine/messageCenter/ClassifyMessageCenter.js"></script>
+  <!-- 详细消息-->
+  <script src="js/mine/messageCenter/DetailMessageCenter.js"></script>
+  <!-- 买家中心-->
+  <script src="js/mine/buyerCenter/BuyerCenter.js"></script>
+  <!-- 新功能反馈-->
+  <script src="js/mine/FeedbackPlus.js"></script>
+<!-- 我的钱包-->
+  <script src="js/mine/wallet/MyWallet.js"></script>
+  <script src="js/mine/wallet/walletIntegral.js"></script>
+  <script src="js/mine/wallet/walletDiamonds.js"></script>
+  <!--访客浏览记录 @zyr-->
+  <script src="js/mine/VisitorBrowHistory/VisitorBrowHistory.js"></script>
+
+  <!--合伙人 @zyr-->
+  <script src="js/mine/Partner/Partner.js"></script>
+  <!--团队 @zyr-->
+  <script src="js/mine/teamData/team.js"></script>
+  <!--店铺*团队*个人***数据  @zyr-->
+  <script src="js/mine/storeTeamOwner/storeTeamOwner.js"></script>
+  <!------end------>
+  <!------ 小店模块------>
+  <!-- 小店首页-->
+  <script src="js/shop/Shop.js"></script>
+  <!-- 微学堂-->
+  <script src="js/shop/MicroSchool.js"></script>
+  <!-- 微学堂详情-->
+  <script src="js/shop/MicroSchoolDetail.js"></script>
+  <!-- 小店营收-->
+  <script src="js/shop/ShopRevenue.js"></script>
+  <!-- 小店营收－收入提现-->
+  <script src="js/shop/WithdrawCash.js"></script>
+  <!-- 小店营收－提现成功-->
+  <script src="js/shop/WithdrawSuccess.js"></script>
+  <!-- 小店营收－表单详细内容-->
+  <script src="js/shop/RevenueDetail.js"></script>
+  <!-- 店铺装修-->
+  <script src="js/shop/ShopRenovate.js"></script>
+  <!-- 店铺装修-设置店铺封面-->
+  <script src="js/shop/SetShopCover.js"></script>
+  <!-- 店铺装修-选择店铺模板-->
+  <script src="js/shop/ChooseShopTemplate.js"></script>
+  <!-- 商品管理-->
+  <script src="js/shop/GoodsManage.js"></script>
+  <!-- 订单管理-->
+  <script src="js/shop/OrderManage.js"></script>
+  <script src="js/order/orderSearch.js"></script>
+  <!-- 订单管理－订单详细-->
+  <script src="js/shop/OrderDetail.js"></script>
+  <!-- 数据统计-->
+  <script src="js/shop/Statistics.js"></script>
+  <!-- 人脉关系-->
+  <script src="js/shop/Connection.js"></script>
+  <!-- 合伙人详细信息-->
+  <script src="js/shop/PartnerDetail.js"></script>
+  <!-- 展开人脉-->
+  <script src="js/shop/SpreadConnection.js"></script>
+  <!-- 人脉详细信息-->
+  <script src="js/shop/ConnectionDetail.js"></script>
+  <!-- 合伙人人脉 搜索页面-->
+  <script src="js/shop/ConnectionSearch.js"></script>
+  <!-- 订单追踪-->
+  <script src="js/shop/OrderTracking.js"></script>
+  <!-- 车辆轨迹-->
+  <script src="js/order/CarTracking.js"></script>
+  <!-- 订单评价-->
+  <script src="js/shop/Assess.js"></script>
+  <!-- 发表评价-->
+  <script src="js/shop/publicationEvaluation.js"></script>
+  <!-- 追加评价-->
+  <script src="js/shop/chaseEvaluate.js"></script>
+  <!-- 评价成功 -->
+  <script src="js/shop/criticalSuccess.js"></script>
+  <!-- 评价成功 -->
+  <script src="js/shop/evaluationSuccess.js"></script>
+  <!-- 产品使用心得 -->
+  <script src="js/shop/useExperience.js"></script>
+  <!-- 查看评价-->
+  <script src="js/shop/LookAssess.js"></script>
+  <!-- 退款详情-->
+  <script src="js/shop/RefundDetail.js"></script>
+  <!-- 新手必看和顺逛帮助-->
+  <script src="js/shop/NewHand.js"></script>
+  <!-- 帮助详情-->
+  <script src="js/shop/HelpDetail.js"></script>
+  <!--问题反馈-->
+  <script src="js/shop/Feedback.js"></script>
+  <!--店铺预览/我的店铺-->
+  <script src="js/shop/MyStore.js"></script>
+  <!--申请退款-->
+  <script src="js/shop/ApplyRefund.js"></script>
+  <!--VR展示-->
+  <script src="js/shop/VR.js"></script>
+  <!--理财-->
+  <script src="js/shop/ManageMoney.js"></script>
+  <script src="js/shop/financialMoney.js"></script>
+  <!------ 小店模块 end ------>
+
+  <!----购买流程---->
+  <!--商品详情-->
+  <script src="js/product/productDetail.js"></script>
+  <!--商品评价-->
+  <script src="js/product/productRated.js"></script>
+  <!--首页-->
+  <script src="js/product/homePage.js"></script>
+   <!--家居家装-->
+  <script src="js/product/furnish.js"></script>
+   <!--百货超市-->
+  <script src="js/product/superMarket.js"></script>
+  <!--选品搜索-->
+  <script src="js/product/GoodsSearch.js"></script>
+  <!--商品列表-->
+  <script src="js/product/CommodityList.js"></script>
+  <!--图文详情-->
+  <script src="js/product/imageAndWord.js"></script>
+  <!--3D体验-->
+  <script src="js/product/productEffect.js"></script>
+  <!--规格参数-->
+  <script src="js/product/Specifications.js"></script>
+  <!--分类-->
+  <script src="js/product/branchType.js"></script>
+  <!--分类详情-->
+  <script src="js/product/branchTypeDetail.js"></script>
+  <!--加入购物车-->
+  <script src="js/cart/Cart.js"></script>
+  <!--确认订单-->
+  <script src="js/order/orderConfirm.js"></script>
+  <!--订单提交成功-->
+  <script src="js/order/afterOrderSubmit.js"></script>
+  <!--支付页面-->
+  <script src="js/order/payment.js"></script>
+  <!--订单确认收货-->
+  <script src="js/order/ConfirmReceive.js"></script>
+  <script src="js/order/SendGoodsTime.js"></script>
+  <!--发票设置-->
+  <script src="js/invoice/InvoiceSetup.js"></script>
+  <!------ 领券模块------>
+  <script src="js/coupons/GetCouponsList.js"></script>
+  <script src="js/coupons/CouponsDetail.js"></script>
+  <script src="js/coupons/CouponsDetailTwo.js"></script>
+  <script src="js/coupons/UseCouponsList.js"></script>
+  <!-- xyz添加尾款支付优惠卷 -->
+  <script src="js/coupons/Retainage.js"></script>
+  <script src="js/coupons/MyCouponsList.js"></script>
+  <!------ 领券模块------>
+
+  <!------ 登录注册模块------>
+  <!-- 引导页-->
+  <script src="js/login/GuidePage.js"></script>
+  <!-- 广告页-->
+  <script src="js/login/Advertisement.js"></script>
+  <!-- 注册-->
+  <script src="js/login/Register.js"></script>
+  <script src="js/login/RegisterForStore.js"></script>
+  <!-- 登录-->
+  <script src="js/login/Login.js"></script>
+  <!-- 直接购买-->
+  <script src="js/login/DirectPurchase.js"></script>
+  <!-- 找回密码-->
+  <script src="js/login/RequestPassword.js"></script>
+  <!-- 店铺申请-->
+  <script src="js/login/ShopApply.js"></script>
+  <!-- 店铺申请成功-->
+  <script src="js/login/ShopApplySuccess.js"></script>
+  <!-- 第三方登陆微信新账号绑定 -->
+  <script src="js/login/thirdLogin/newUserLogin.js"></script>
+  <!-- 绑定成功 -->
+  <script src="js/login/thirdLogin/relactOK.js"></script>
+  <!--  -->
+  <script src="js/order/payResultSuccess.js"></script>
+  <!------ 登录注册模块 END------>
+  <!-- 订单批量删除 -->
+  <script src="js/shop/batchDeleteOrder.js"></script>
+  <script src="js/game/Game.js"></script>
+  <script src="js/common/ImgError.js"></script>
+  <script src="js/seckill/seckillList.js"></script>
+  <script src="js/seckill/seckillDetail.js"></script>
+  <script src="js/seckill/orderConfirmSeckill.js"></script>
+  <script src="js/shop/BannerTheme.js"></script>
+  <script src="js/shop/BannerDaily.js"></script>
+  <script src="js/framework/VersionService.js"></script>
+
+  <!--<script src="release/framework.js" ></script>-->
+  <!--建行支付-->
+  <script src="js/order/ccbfenqi.js"></script>
+  <script src="js/order/paymentxyz.js"></script>
+  <script src="js/order/ccbPay.js"></script>
+  <!-- jquery 和 图片缩放插件 -->
+
+  <script src="lib/pinchzoom.js"></script>
+  <!-- 顺逛会员 -->
+  <script src="js/mine/vip.js"></script>
+  <!-- 顺逛会员 金币记录 -->
+  <script src="js/mine/goldRecord.js"></script>
+  <!-- 顺逛会员页面转盘游戏 -->
+  <script src="js/game/vipGame.js"></script>
+  <!-- 定制页面 -->
+  <script src="js/mine/custom-made.js"></script>
+  <script src="js/mine/custom-made.js"></script>
+  <!-- 设置页面 -->
+  <script src="js/mine/Setup.js"></script>
+  <!-- 任务详情页面 -->
+  <script src="js/mine/Mission/missionDetail.js"></script>
+  <!-- xyz任务分享 -->
+  <script src="js/mine/Mission/taskShare.js"></script>
+  <!-- xyz历史任务 -->
+  <script src="js/mine/Mission/historyTask.js"></script>
+  <!-- daba 圆形进度条插件 -->
+  <script src="lib/radialIndicator.min.js"></script>
+  <!-----------------------------------------圈子相关js文件---------------------------------------->
+  <script src="js/quanzi/Topic.js"></script>
+  <script src="js/quanzi/qwschool.js"></script>
+  <script src="js/quanzi/qmine.js"></script>
+  <script src="js/quanzi/qhot.js"></script>
+  <script src="js/quanzi/qzMessageCenter.js"></script>
+  <script src="js/quanzi/AllCircle.js"></script>
+  <script src="js/quanzi/ApplyCircle.js"></script>
+  <script src="js/quanzi/AllMembers.js"></script>
+  <script src="js/quanzi/ClassesDetails.js"></script>
+  <script src="js/quanzi/personalHomepageMe.js"></script>
+  <script src="js/quanzi/personalHomepageHe.js"></script>
+  <script src="js/quanzi/myFollow.js"></script>
+  <script src="js/quanzi/myFans.js"></script>
+  <script src="js/quanzi/mySettings.js"></script>
+  <script src="js/quanzi/quanziRecommend.js"></script>
+  <script src="js/quanzi/moreInterresting.js"></script>
+  <script src="js/quanzi/exam.js"></script>
+  <script src="js/quanzi/qDatabase.js"></script>
+  <script src="js/quanzi/Topicdetails.js"></script>
+  <script src="js/quanzi/CirclePage.js"></script>
+  <script src="js/quanzi/PublishEdit.js"></script>
+  <script src="js/quanzi/SelectTags.js"></script>
+  <script src="js/quanzi/MessageDetails.js"></script>
+  <script src="js/quanzi/PublishCircle.js"></script>
+  <script src="js/quanzi/SelectGoods.js"></script>
+  <script src="js/quanzi/NoteDetails.js"></script>
+  <script src="js/quanzi/ClassNoteDetails.js"></script>
+  <script src="js/quanzi/qSearch.js"></script>
+  <script src="js/quanzi/qSearchBiao.js"></script>
+  <script src="js/quanzi/qSearchTie.js"></script>
+  <script src="js/quanzi/qSearchUser.js"></script>
+  <script src="js/quanzi/qSearchThree.js"></script>
+  <script src="js/quanzi/qSearchTwo.js"></script>
+  <script src="js/quanzi/ionic-datepicker.bundle.js"></script>
+  <script src="js/quanzi/ionic-timepicker.bundle.js"></script>
+  <script src="js/quanzi/MyCirclePages.js"></script>
+  <script src="js/quanzi/MyLessones.js"></script>
+  <script src="js/quanzi/QuestionDetails.js"></script>
+  <!--话题打赏列表-->
+  <!--<script src="js/quanzi/topicRewardList.js"></script>-->
+  <!--关联圈子-->
+  <!--<script src="js/quanzi/topicPublish.js"></script>-->
+
+
+  <!--微学堂相关-->
+  <script src="js/quanzi/TestPage.js"></script>
+  <script src="js/quanzi/TestDetails.js"></script>
+  <!--谈论组设置-->
+  <script src="js/quanzi/DiscussionGroup.js"></script>
+  <script src="js/quanzi/CustomerConversation.js"></script>
+  <script src="js/quanzi/ServiceConversation.js"></script>
+  <script src="js/framework/MediaService.js"></script>
+  <script src="js/framework/FileUploadService.js"></script>
+
+  <script src="js/quanzi/SchoolGroupDiscuss.js"></script>
+  <script src="js/quanzi/audioPanelDirective.js"></script>
+
+  <!--<script src="release/framework.js" ></script>-->
+  <!--建行支付-->
+  <script src="js/order/ccbfenqi.js"></script>
+  <script src="js/order/paymentxyz.js"></script>
+  <script src="js/order/ccbPay.js"></script>
+  <!-- 顺逛会员 -->
+  <script src="js/mine/vip.js"></script>
+  <!-- 顺逛会员 金币记录 -->
+  <script src="js/mine/goldRecord.js"></script>
+  <!-- 顺逛会员页面转盘游戏 -->
+  <script src="js/game/vipGame.js"></script>
+  <!-- 定制页面 -->
+  <script src="js/mine/custom-made.js"></script>
+  <!-- 会员竞争力 -->
+  <script src="js/mine/competition.js"></script>
+  <!-- 个人中心 -->
+  <script src="js/mine/PersonalCenter.js"></script>
+  <!-- 提现管理 -->
+  <script src="js/mine/Bank/bankCard.js"></script>
+  <script src="js/mine/Bank/bankCardDetail.js"></script>
+  <script src="js/mine/Bank/chooseTheBank.js"></script>
+  <script src="js/mine/Bank/bankSupport.js"></script>
+  <!-- 微店主数据分析 -->
+  <script src="js/statistics/dataAnalysis.js"></script>
+  <script src="js/mine/Bank/mentionCenter.js"></script>
+  <!--    顺逛众筹 start-->
+  <script src="js/crowdfunding/crowdfundingHomeController.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_new_control.js"></script>
+  <!--实名认证-->
+  <script src="js/newAuthentication/trueAuthenticationList.js"></script>
+  <script src="js/newAuthentication/haierStaff.js"></script>
+  <script src="js/newAuthentication/newAuthenticationHome.js"></script>
+  <script src="js/newAuthentication/trueAuthentication.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_end_control.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_soon_control.js"></script>
+  <script src="js/crowdfunding/crowd_funding_details_control.js"></script>
+  <script src="js/crowdfunding/crowd_funding_hot_redound_control.js"></script>
+  <script src="js/crowdfunding/orderWrite.js"></script>
+  <script src="js/crowdfunding/OrderDetails.js"></script>
+  <script src="js/crowdfunding/MyRaiseNo.js"></script>
+  <script src="js/crowdfunding/submitSuccess.js"></script>
+  <script src="js/crowdfunding/RiskDescription.js"></script>
+  <!--绑定银行卡-->
+  <script src="js/bindingBank/bindingBank.js"></script>
+  <!--输入验证码-->
+  <script src="js/bindingBank/verificationCode.js"></script>
+  <!--团队管理-->
+  <script src="js/teamSupervise/teamSupervise.js"></script>
+  <!--用户具体信息-->
+  <script src="js/teamSupervise/userMessage.js"></script>
+  <!--团队成员 具体信息-->
+  <script src="js/teamSupervise/teamMessage.js"></script>
+  <script src="js/mine/storeTeamOwner/teamProductMsg.js"></script>
+  <!--搜索-->
+  <script src="js/teamSupervise/userSearch.js"></script>
+  <script src="js/crowdfunding/SupportersAgreement.js"></script>
+  <!--    顺逛众筹 end-->
+  <!-- 限时抢购-->
+  <script src="js/flashsale/flashsale.js"></script>
+  <!-- 新品首发-->
+  <script src="js/newsend/newsend.js"></script>
+  <!-- 新品预约 -->
+  <script src="js/newsend/newres.js"></script>
+  <!--    顺逛众筹 start-->
+  <script src="js/crowdfunding/crowdfundingHomeController.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_new_control.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_end_control.js"></script>
+  <script src="js/crowdfunding/crowdfunding_child_soon_control.js"></script>
+  <script src="js/crowdfunding/crowd_funding_details_control.js"></script>
+  <script src="js/crowdfunding/crowd_funding_hot_redound_control.js"></script>
+  <script src="js/crowdfunding/orderWrite.js"></script>
+  <script src="js/crowdfunding/OrderDetails.js"></script>
+  <script src="js/crowdfunding/MyRaiseNo.js"></script>
+  <script src="js/crowdfunding/submitSuccess.js"></script>
+  <script src="js/crowdfunding/RiskDescription.js"></script>
+  <script src="js/crowdfunding/SupportersAgreement.js"></script>
+  <!--    顺逛众筹 end-->
+  <!--我的预约-->
+  <script src="js/mine/myAppointment.js"></script>
+  <!--更多-->
+  <script src="js/product/seeMore.js"></script>
+  <script src="js/product/familytry.js"></script>
+  <script src="js/product/familydetial.js"></script>
+  <!--家电商场-->
+  <script src="js/product/electricalMall.js"></script>
+  <!-- 品质预售 -->
+  <script src='js/newsend/presell.js'></script>
+  <!-- 账户设置 -->
+  <script src='js/mine/accsetting.js'></script>
+  <!-- 账户安全 -->
+  <script src='js/mine/accsafe.js'></script>
+  <!--店铺管理-->
+  <script src="js/mine/myStore/myStoreManage.js"></script>
+  <!--售后-->
+  <script src="js/shop/CustomerService.js"></script>
+  <!--手机号管理-->
+  <script src="js/mine/phone/myPhoneManage.js"></script>
+  <!--绑定手机成功-->
+  <script src="js/mine/phone/myPhoneBindSuccess.js"></script>
+  <!--输入短信验证码-->
+  <script src="js/mine/phone/myPhoneCode.js"></script>
+  <!--绑定手机号-->
+  <script src="js/mine/phone/myPhoneBind.js"></script>
+  <!--绑定新手机号-验证码-->
+  <script src="js/mine/phone/myPhoneBindNewCode.js"></script>
+  <!--身份证认证-->
+  <script src="js/mine/phone/myIdCardAuthen.js"></script>
+  <!--登陆判断有没有绑定手机号-->
+  <script src="js/login/RegisterForStoreLogin.js"></script>
+  <!-- 开门红 -->
+  <script src='js/goodStart/anAuspiciousStart.js'></script>
+  <!-- 改版 -->
+  <script src="js/product/newVision/newHome.js"></script>
+  <script src="js/product/newVision/newHomeMake.js"></script>
+  <script src="js/product/newVision/newHomeLife.js"></script>
+  <script src="js/product/newVision/newHomeOrder.js"></script>
+  <script src="js/product/newVision/newSend.js"></script>
+  <script src="js/product/newVision/superMarket.js"></script>
+  <script src='js/product/newVision/fullHouseSolution.js'></script>
+  <script src='js/product/newVision/houseSolutionDetail.js'></script>
+  <script src='js/product/newVision/exportDetail.js'></script>
+  <script src='js/product/newVision/exStoreDetail.js'></script>
+  <script src="js/product/newVision/itSoluteDetail.js"></script>
+  <script src='js/product/newVision/homeDetail.js'></script>
+  <script src='js/product/newVision/homeDesignsth.js'></script>
+  <script src='js/product/newVision/designDetail.js'></script>
+  <script src='js/product/newVision/zhihuichangjing.js'></script>
+   <!-- 居家定制首页 -->
+   <script src="js/product/newVision/homeMakeList.js"></script>
+   <script src="js/product/newVision/homeMakeActList.js"></script>
+</head>
+<body ng-app="starter">
+<!--
+  The nav bar that will be updated as we navigate between views.
+-->
+<ion-nav-bar class="bar-stable">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+-->
+<ion-nav-view>
+  <!--在微信中分享链接默认取此图片，不在页面中显示-->
+  <img ng-src="{{imgBaseURL}}img/share_default.png" style="width: 0 !important;height: 0 !important;"/>
+</ion-nav-view>
+
+</body>
+<script>
+  //可提现金额增加 语音函数
+  function Cash(){
+    this.audioUrl = 'voice/CashVoice.mp3';
+    this._createAudio();
+  }
+
+  Cash.prototype = {
+    constructor:Cash,
+    _createAudio:function(){
+      this.audioCashUp=document.createElement('audio');
+      this.audioCashUp.setAttribute("preload","load");
+      this.audioCashUp.setAttribute("id","cashAudio");
+      var CashSource=document.createElement('source');
+      CashSource.setAttribute("src",this.audioUrl);
+      CashSource.setAttribute("type","audio/mp3");
+      this.audioCashUp.appendChild(CashSource);
+      var myBody=document.getElementsByTagName('body')[0];
+      myBody.appendChild(this.audioCashUp);
+
+    },
+    _destroyAudio:function(){
+      var myBody=document.getElementsByTagName('body')[0];
+      var myCashAudio = document.getElementById('cashAudio');
+      myBody.removeChild(myCashAudio);
+    },
+    _playAudio:function(){
+      this.audioCashUp.play();
+    }
+  }
+</script>
+<script>
+  function Coin(opts){
+    //默认参数
+    this.defaults={
+      coinSrc:"img/gold1@3x.png",     //金币图片地址
+      audioSrc:"http://download.taobaocdn.com/freedom/26370/media/shake.mp3", //金币音频地址
+      coinWidth:25,           //金币宽度
+      coinHeight:25,          //金币高度
+      density:30
+    };
+    this.settings=this._extendDeep(this.defaults,opts);   //深拷贝
+    this.density=this.settings.density;                   //密度，即金币个数
+    this.timeLag=1000;                                    //金币散落的事件间隔，数字越大表示间隔越大
+    this.coinWidth=this.settings.coinWidth;               //金币宽度
+    this.coinHeight=this.settings.coinHeight;             //金币高度
+    this.wrapWidth=0;
+    this.wrapHeight=0;
+    this._init();
+  }
+  Coin.prototype={
+    constructor:Coin,
+    /**
+     * 动画初始化方法
+     * @method _init
+     **/
+    _init:function(){
+      //初始化包括尺寸大小
+      this.wrapWidth=document.documentElement.clientWidth;
+      this.wrapHeight=document.documentElement.clientHeight;
+      this._requestAnimationFrame();
+      this._createCanvas();
+      this._createAudio();
+    },
+    /**
+     * 对象深拷贝方法
+     * @method _extendDeep
+     * @param  {object} parent 父对象
+     {object} child  子对象
+     @return {object} child  父对象继承给子对象
+     **/
+    _extendDeep:function(child,parent){
+      var i,
+        toStr = Object.prototype.toString,
+        astr = "[object Array]";
+      child = child || {};
+      for (i in parent) {
+        if (parent.hasOwnProperty(i)) {
+          if (typeof parent[i] === "object") {
+            child[i] = (toStr.call(parent[i]) === astr) ? [] : {};
+            extendDeep(parent[i], child[i]);
+          } else {
+            child[i] = parent[i];
+          }
+        }
+      }
+      return child;
+    },
+    /**
+     * requestAnimationFrame做兼容
+     * @method _requestAnimationFrame
+     **/
+    _requestAnimationFrame:function(){
+      var lastTime = 0;
+      var vendors = ['webkit', 'moz'];
+      for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+          window[vendors[x] + 'CancelRequestAnimationFrame'];
+      }
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+          var currTime = new Date().getTime();
+          var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+          var id = window.setTimeout(function() {
+            callback(currTime + timeToCall);
+          }, timeToCall);
+          lastTime = currTime + timeToCall;
+          return id;
+        };
+      }
+      if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+          clearTimeout(id);
+        };
+      }
+    },
+    /**
+     * 创建canvas画布
+     * @method _createCanvas
+     **/
+    _createCanvas:function(){
+      var _self=this;
+      this.canvas=document.createElement('canvas');
+      this.canvas.setAttribute("data-id",Date.now());
+      if(!this.canvas.getContext){
+        alert("您的浏览器不支持canvas");
+        return;
+      }
+      this.context=this.canvas.getContext('2d');
+      this.canvas.width=this.wrapWidth;
+      this.canvas.height=this.wrapHeight;
+      var oBody=document.getElementsByTagName('body')[0];
+      oBody.appendChild(this.canvas);
+      this._createCacheCanvas();
+    },
+    _createCacheCanvas:function(){
+      var _self=this;
+      this.cacheCanvas=document.createElement('canvas');
+      this.cacheContext=this.cacheCanvas.getContext('2d');
+      this.cacheCanvas.width=this.wrapWidth;
+      this.cacheCanvas.height=this.wrapHeight;
+      this.coinImg=new Image();
+      this.coinImg.src=this.settings.coinSrc;
+      this.coinImg.onload=function(){
+        _self._startCacheCanvasAnim();
+      }
+    },
+    /**
+     * 执行金币绘制动画
+     * @method _startCanvasAnim
+     **/
+    _startCacheCanvasAnim:function(){
+      var _self=this;
+      var availWidth=this.cacheCanvas.width-this.coinWidth;
+      var availHeight=this.cacheCanvas.height-this.coinHeight;
+      //var disX=availWidth/this.density;  //每个硬币X轴的间距
+      var coinRange=availWidth*this.density/(this.density+15);
+      var rangeStart=(availWidth-coinRange)/2;
+      var g=9.8*280;   //重力加速度
+      var bPlayAudio=false;
+      var coinAttrArr=[];  //存储金币下落过程中的一些属性参数
+      for(var i=0;i<_self.density;i++){
+        var randomCoinWidthAndHeight = i/3==0?25:(i/3==1?30:35);  //金币大小分为三种
+        coinAttrArr[i]={
+          rndX:Math.random(),                                    //存储金币开始降落x轴随机值
+          rndOrder:Math.round(Math.random()*_self.timeLag/17),   //存储金币撒落顺序的一个数组
+          time:0,                                //存储金币绘制的具体时间
+          top:0,                                                 //存储金币绘制距离顶部的距离
+          left:0,                                                //存储金币弹起后距离左边的距离
+          endSpeed:0,                                            //存储金币第一次接触地面的速度
+          bEnd:false,                              //存储金币是否触碰到地面
+          reDownSpeed:0,                                         //存储金币弹起后重新降落的速度
+          reDownHDelta:Math.random()*100+580,                    //存储金币弹起的高度参数，随机值250~350之间
+          rndOffsetX:Math.random()*0.06+0.97,                    //存储金币x轴的偏移量，随机值0.97~1.03之间
+          coinWidth:randomCoinWidthAndHeight,
+          coinHeight:randomCoinWidthAndHeight
+        }
+      }
+      var startTime =  Date.now();  //开始绘制前的时间
+      function draw(){
+        var drawStart = Date.now();  //记录重绘的结束事件
+        //计算每次重绘所需要的事件，单位为秒
+        var diff = (drawStart - startTime)/1000;
+        startTime = drawStart;   //结束事件传给开始事件
+        _self.context.clearRect(0,0,_self.canvas.width,_self.canvas.height);  //清除画布，方便重绘
+        _self.cacheContext.clearRect(0,0,_self.cacheCanvas.width,_self.cacheCanvas.height);  //清除画布，方便重绘
+        _self.cacheContext.save();
+        //根据金币个数循环绘制金币
+        for(var i=0;i<_self.density;i++){
+          if((coinAttrArr[i].rndOrder==0&&coinAttrArr[i].time==0)){   //如果顺序为0，表示开始下落，同时下落的初始时间为0时，赋值初始时间
+            coinAttrArr[i].time=diff;
+          }
+          if(coinAttrArr[i].time>0){     //如果初始事件大于0，表示已经在下落过程中,则每次的初始时间递增
+            coinAttrArr[i].time=coinAttrArr[i].time+diff;
+          }
+          if(coinAttrArr[i].rndOrder==0){  //如果顺序为0，开始下落，则开始绘制金币
+            if(!coinAttrArr[i].bEnd){   //金币下落（过程一），自由落体运动
+              coinAttrArr[i].top=g*Math.pow(coinAttrArr[i].time,2)/2-_self.coinHeight;   //自由落体加速度运动，求下落的高度
+              //coinAttrArr[i].left=disX*coinAttrArr[i].rndX+i*disX;
+              coinAttrArr[i].left=coinRange*coinAttrArr[i].rndX+rangeStart;
+            }
+            else if(coinAttrArr[i].endSpeed==0){   //金币弹起后在空中重新下落（过程三）
+              coinAttrArr[i].reDownSpeed=coinAttrArr[i].reDownSpeed*1.1;
+              coinAttrArr[i].top=coinAttrArr[i].top+coinAttrArr[i].reDownSpeed;
+              coinAttrArr[i].left=coinAttrArr[i].left*coinAttrArr[i].rndOffsetX;
+            }
+            else{   //金币弹起（过程二）
+              coinAttrArr[i].endSpeed=-Math.abs(coinAttrArr[i].endSpeed*0.96);
+              if(Math.abs(coinAttrArr[i].endSpeed)<1) coinAttrArr[i].endSpeed=0;
+              coinAttrArr[i].top=coinAttrArr[i].top+coinAttrArr[i].endSpeed;
+              coinAttrArr[i].left=coinAttrArr[i].left*coinAttrArr[i].rndOffsetX;
+            }
+            //金币第一次降落超过地面时，将其高度设置和地面齐平
+            if(coinAttrArr[i].top>_self.cacheCanvas.height-_self.coinHeight&&!coinAttrArr[i].bEnd){
+              coinAttrArr[i].top=_self.cacheCanvas.height-_self.coinHeight;
+            }
+            //金币落地时，计算落地的速度
+            if(coinAttrArr[i].top==_self.cacheCanvas.height-_self.coinHeight){
+              coinAttrArr[i].endSpeed=g*coinAttrArr[i].time/coinAttrArr[i].reDownHDelta;
+              coinAttrArr[i].reDownSpeed=coinAttrArr[i].endSpeed/10;
+              coinAttrArr[i].bEnd=true;
+            }
+            //绘制金币
+            _self.cacheContext.drawImage(_self.coinImg,coinAttrArr[i].left,coinAttrArr[i].top,coinAttrArr[i].coinWidth,coinAttrArr[i].coinHeight);
+          }
+          coinAttrArr[i].rndOrder=coinAttrArr[i].rndOrder==0?0:coinAttrArr[i].rndOrder-1;//顺序每一次重绘则递减一次，直到为0时，代表开始下落
+        }
+        _self.cacheContext.restore();
+        _self.context.drawImage(_self.cacheCanvas,0,0,_self.canvas.width,_self.canvas.height);
+        var firstH=_self._maxNum(coinAttrArr,"top");//求降落过程中高度最大的金币高度
+        if(firstH>=_self.cacheCanvas.height-_self.coinHeight&&!bPlayAudio){
+          _self._playAudio();
+          bPlayAudio=true;
+        }
+        var lastH=_self._minNum(coinAttrArr,"top");//求降落过程中高度最小的金币高度
+        if(lastH<=_self.cacheCanvas.height+_self.coinHeight){ //最后一个金币高度超出canvas的高度停止重绘
+          window.requestAnimationFrame(draw);  //重绘，递回调用绘制方法
+        }else{
+          console.log("金币都撒完了");
+          _self._destory();
+          if(goldRainCallback){
+            goldRainCallback();
+            goldRainCallback = null;
+          }
+        }
+      }
+      window.requestAnimationFrame(draw);  //第一次绘制
+    },
+    /**
+     * 求最小值
+     * @method _minNum
+     * @param   {arr}    arr  属性数组
+     {string} attr 数组下的属性名称
+     * @return  {number}      返回数组下属性值最小的值
+     **/
+    _minNum:function(arr,attr){
+      var tempArr=[];
+      for(var i=0;i<arr.length;i++){
+        tempArr.push(arr[i][attr]);
+      }
+      return tempArr.sort(function(a,b){return a-b})[0];
+    },
+    /**
+     * 求最大值
+     * @method _minNum
+     * @param   {arr}    arr  属性数组
+     {string} attr 数组下的属性名称
+     * @return  {number}      返回数组下属性值最大的值
+     **/
+    _maxNum:function(arr,attr){
+      var tempArr=[];
+      for(var i=0;i<arr.length;i++){
+        tempArr.push(arr[i][attr]);
+      }
+      return tempArr.sort(function(a,b){return b-a})[0];
+    },
+    /**
+     * 创建音频对象
+     * @method _createAudio
+     **/
+    _createAudio:function(){
+      this.audio=document.createElement('audio');
+      this.audio.setAttribute("preload","load");
+      var oSource=document.createElement('source');
+      oSource.setAttribute("src",this.settings.audioSrc);
+      oSource.setAttribute("type","audio/mp3");
+      this.audio.appendChild(oSource);
+      var oBody=document.getElementsByTagName('body')[0];
+      oBody.appendChild(this.audio);
+    },
+    /**
+     * 播放音频
+     * @method _playAudio
+     **/
+    _playAudio:function(){
+      this.audio.play();
+    },
+    /**
+     * 销毁canvas和audio
+     * @method _destory
+     **/
+    _destory:function(){
+      var oBody=document.getElementsByTagName('body')[0];
+      oBody.removeChild(this.canvas);
+      oBody.removeChild(this.audio);
+
+    }
+  }
+</script>
+<script>
+  init();
+  var goldRainCallback = null;
+  function goldFall(cb){
+    var coin=new Coin();
+    goldRainCallback = cb;
+  }
+  var SHAKE_THRESHOLD = 400;
+  var last_update = 0;
+  var index=0;
+  var x = y = z = last_x = last_y = last_z = 0;
+  var w_curTime=0;
+  function init() {
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+      alert('not support mobile event');
+    }
+  }
+  function deviceMotionHandler(eventData) {
+    var acceleration = eventData.accelerationIncludingGravity;
+    var curTime = new Date().getTime();
+    if ((curTime - last_update) > 100) {
+      var diffTime = curTime - last_update;
+      last_update = curTime;
+      x = acceleration.x;
+      y = acceleration.y;
+      z = acceleration.z;
+      var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+      var delta=Math.abs(x + y + z - last_x - last_y - last_z);
+      if (speed > SHAKE_THRESHOLD) {
+        if((curTime-w_curTime)>2000){
+          //掉金币掉的实在受不了了 注释
+          //w_curTime!=0 && new Coin({density:Math.round(delta)});
+          w_curTime=curTime;
+        }
+      }
+      last_x = x;
+      last_y = y;
+      last_z = z;
+    }
+  }
+</script>
+<!--rem布局兼容性 勿动-->
+<script>
+  function modifileRootRem() {
+    var root = window.document.documentElement;
+    var fontSize = parseFloat(root.style.fontSize);
+    var finalFontSize = parseFloat(window.getComputedStyle(root).getPropertyValue("font-size"));
+    if (finalFontSize === fontSize)
+      return;
+    root.style.fontSize = fontSize + (fontSize - finalFontSize) + "px";
+  }
+  if (typeof window.onload === 'function') {
+    var oldFun = window.onload;
+    window.onload = function () {
+      oldFun();
+      modifileRootRem();
+    }
+  } else {
+    window.onload = modifileRootRem;
+  }
+</script>
+<!--<script>
+  //添加 haier sg analytics (暂时废弃)
+  (function() {
+    setTimeout(function () {
+      var sc = document.createElement('script');
+      sc.type = 'text/javascript';
+      sc.async = true;
+      var domain = 'm';
+      if(domain !=null && domain == 'm'){
+        sc.src ='http://211.151.171.120/wap_analytics.js';
+      }else{
+        sc.src ='http://211.151.171.120/wap_analytics_test.js';
+      }
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(sc, s);
+    }, 0);
+  })();
+</script>-->
+</html>

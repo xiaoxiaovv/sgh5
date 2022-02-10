@@ -1,0 +1,92 @@
+<ion-view class="background" view-title="填写订单">
+<ion-content scrollbar-y="false">
+	<div class="orderTop"></div>
+    <div class="bg-white border-bottom " ui-sref="address({'comeFromOrder':'YES'})">
+      <div class="row">
+        <div class="col col-90">
+          <div class="row">
+
+            <div class="col col-50">
+              <span class="font-size-15">收货人：</span>
+              <span class="font-size-15" ng-bind="list.memberAddress.consignee"></span>
+            </div>
+
+            <div class="col col-50 text-align-r">
+              <span class="font-size-15" ng-bind="list.memberAddress.mobile"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="margin-top-10">
+              <i class="icon ion-ios-location-outline"></i>
+              <span class="font-size-12">收货地址：</span>
+              <span class="font-size-12" ng-bind="list.memberAddress.regionName"></span>
+              <span class="font-size-12" ng-bind="list.memberAddress.address"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-10 position-r text-align-c">
+          <i class="icon ion-chevron-right position-a" style="top: 40%;"></i>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="shopInfoList">
+    	<p class="info-p1">支持单价： &nbsp<span class="info-sp1" ng-bind="list.zStallsAmount | currency :'￥'"></span></p>
+    	<p class="info-p2">项目名称：&nbsp<span class="info-sp2" ng-bind="list.activityName"></span></p>
+    	<p class="info-p2">商品数量：<span class="info-sp2">{{list.purchaseNum*list.zStallsNum}}</span></p>
+    	<p class="info-p3" ng-bind="list.returnContent"></p>
+    	<div class="infoMoney">
+    	<p class="info-p3">配送费用：&nbsp<span>{{list.freight==0?'免运费':list.freight}}</span></p>
+    	<p class="info-p4">预计回报发放时间：&nbsp <span>项目众筹成功后<i ng-bind="list.returnTime"></i>天内</span></p>
+    	</div>
+    </div>
+    
+    <!--发票信息-->
+    
+    <div ng-if="!list.isLottery" class="bg-white padding-5 border-bottom fapiaoInfo"
+         ng-click="toInvoice(list.invoiceType);">
+      <div class="row">
+        <span class="col col-30 font-size-13">发票信息</span>
+
+        <div class="col col-60 font-size-13 text-align-r"
+             style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"
+             ng-bind="list.invoiceType==2?'普通发票'+' '+list.billCompany:'增值税专用发票'+' '+list.billCompany">
+        </div>
+        <div class="col col-10">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="detailInfo" >
+    	<p class="detailInfoP1">支持数量<span ng-bind="list.purchaseNum">2份</span></p>
+    	<p class="detailInfoP1">支持单价<span ng-bind="list.zStallsAmount | currency :'￥'">¥&nbsp</span></p>
+    	<p class="detailInfoP1">配送费用<span ng-bind="list.freight | currency :'￥'"></span></p>
+    	<p class="detailInfoP1">支持总金额<span class="detailInfoSp" ng-bind="list.orderAmount | currency :'￥'">¥&nbsp509</span></p>
+    	
+    </div>
+    <div class="row fxsm" ui-sref="RiskDescription">
+        <span class="detailInfoP2" >风险说明</span>
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      </div>
+      <div class="supportDeal">
+           <input style="width: 18px;height: 18px;" type="checkbox" class="input-check" checked="checkStatus" ng-click="checkInfo()"/>
+        	 <p style="font-size: 14px !important;padding-top: 3px;" class="supportDeal-p">同意并阅读<span class="supportDeal-span" ui-sref="SupportersAgreement">《支持者协议》</span></p>
+      </div>
+      
+      <div class="footSubmitAll">
+    <div class="allMoney">
+      <div class="allMoney1">总计金额:</div>
+      <div class="allMoney2" style=" font-size: 17px;color:#FF4400;" ng-bind="list.orderAmount | currency :'￥'"
+           ></div>
+      <!--<div ng-if="allPrice!=newPrice" class="allMoney2"
+           ng-bind="newPrice | currency :'￥'"></div>-->
+    </div>
+    <button class="subBtn" ng-click="toSubmit()">
+      提交订单
+    </button>
+  </div>
+</ion-content>
+</ion-view>

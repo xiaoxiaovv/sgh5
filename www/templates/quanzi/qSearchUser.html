@@ -1,0 +1,74 @@
+<ion-view  hide-nav-bar="true"  >
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom" >
+        <!--<div class="jd-padding-3" ng-click="goBack()" >-->
+            <!--<i class="ion-ios-arrow-left  jd-font-size-32  text-align-c jd-color-blue"  > </i>-->
+        <!--</div>-->
+        <!--<div class="jd-bg-hui-e margin-left-right-5 padding-top-5" style="width: 76%;height: 28px;border-radius: 15px;color: #999;margin-top: 2px">-->
+            <!--<i class=" ion-ios-search font-size-20 jd-color-hui-a margin-left-15" ></i>-->
+            <!--<form class="no-border jd-bg-hui-e inline-block margin-left-10">-->
+                <!--<input class="no-border jd-bg-hui-e " style="width: 95%;"-->
+                       <!--placeholder="搜索账号、圈子、话题" ng-model="input.isinput" ng-keypress="($event.which === 13)?search($event):0">-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--<div class="jd-search-qu font-size-14 font-bold" style="color: #777;" ng-click="goBack()">-->
+            <!--<i class=" ">取消</i>-->
+        <!--</div>-->
+
+
+        <div class="jd-padding-3" ng-click="goBack()">
+            <i class="ion-ios-arrow-left  jd-font-size-32  text-align-c jd-color-blue"> </i>
+        </div>
+
+        <div ng-class="{'ios-margin-top-22':isIOS}">
+            <form>
+                <input type="text" class="position-a bg-background left-50" placeholder="搜索账号、圈子、话题"
+                       ng-model="input.isinput" id="qSearch" ng-class="{'ios-padding-top-8':isIOS}"
+                       ng-keypress="($event.which === 13)?search($event):0"
+                       style="width: 74%;margin-left: -37%;height: 28px;border-radius: 15px;padding-left: 8%">
+            </form>
+            <i class="icon ion-ios-search position-a font-size-16" style="top: 10px;left: 16%;color: #6a6a6a;" ng-class="{'ios-top-30':isIOS}"></i>
+        </div>
+
+        <div class="jd-search-qu font-size-14 font-bold" style="color: #777;">
+            <i class=" " ng-click="goBack()">取消</i>
+        </div>
+    </ion-header-bar>
+ <ion-content class="hui-back" scrollbar-y="false" >
+     <div class="margin-top-10" style="width: 100%;" >
+         <div   style="width: 100%;" >
+             <!-- 用户-->
+             <div style="width: 100%;" ng-if="userlist.length!=0">
+                 <div class="  font-size-12 jd-color-hui-a no-border margin-top-5  "
+                      style="background-color: #fafafa;height:30px;color: #777;margin-bottom:-4px;">
+                     <div class="float-l" style="width: 5px;height:30px;background-color: #e652f1;"></div>
+                     <div class="padding-top-5">
+                         <i class="margin-left-10">账号</i>
+                     </div>
+                 </div>
+                 <div class="padding-10 bg-white margin-top-1" ng-repeat="item in userlist" ng-click="gotoothers(item)">
+                     <div class="float-l">
+                         <img ng-src="{{item.img|ImageUserFilter}}" class="width-height-35" style="border-radius:3px;">
+                     </div>
+                     <div style="margin-left: 50px">
+                         <div ng-bind-html="item.userName|bluetext:input.isinput" style="line-height: 18px">微店主培训圈</div>
+                         <div class="color-white font-size-10 text-align-c" style="background-color:#f55363;width: 56px;padding: 0 2px;border-radius: 4px" ng-if="item.isNewStord==1">新开店铺</div>
+                     </div>
+                     <div style="clear: both"></div>
+                 </div>
+                 <div class="text-align-c padding-top-10 bg-white font-bold jd-input-more margin-top-1" style="" ng-if="ismoreshow">
+                     <button class="text-align-c bg-white jd-input-more1"
+                             ng-click="loadData()" >
+                         <i class="font-size-14">加载更多</i>
+                     </button>
+                 </div>
+             </div>
+         <!-- 空显示-->
+         <div class="text-align-c font-size-18" style="padding: 34px 20px;" ng-if="userlist.length==0&&showmore">
+             <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-input-null.png" style="height: 100px;">
+             <div class=" text-align-c " style="color: #777"><p>亲,你的脑容量已超越</p></div>
+             <p  style="color: #777">我们的搜索能力,换个词试试吧~</p>
+         </div>
+     </div>
+   </div>
+ </ion-content>
+</ion-view>

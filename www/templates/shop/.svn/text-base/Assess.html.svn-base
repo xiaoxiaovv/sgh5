@@ -1,0 +1,129 @@
+<!--评价-->
+<ion-view view-title="评价" class="bg-background">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l"
+                         ng-click="goBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="list" ng-if="!isAssessed">
+      <div class="item border-none padding-bottom-10 padding-0 margin-bottom-35 bg-white"
+           ng-repeat="item in assessData track by $index">
+        <div class="padding-10 row">
+          <div class="col col-25">
+            <img class="width-100" ng-src="{{item.mainImgUrl}}"/>
+          </div>
+          <div class="col">
+            <textarea class="width-100 border padding-5" rows="5" maxlength="300" style="resize: none;" ng-model="value[$index].comment"
+                      placeholder="您可以写下5～300字之内的购物体验供其他小伙伴参考哦"></textarea>
+          </div>
+        </div>
+        <div class="row border-bottom padding-0 padding-top-10">
+          <div class="col text-align-c padding-0" ng-click="assessType(0,$index);">
+            <div class="row">
+              <div class="col">
+                <img class="width-60"
+                     ng-src="{{click[$index].isClickGood?imgBaseURL+'img/ic_ass_good.png':imgBaseURL+imgBaseURL+'img/ic_unass_good.png'}}"/>
+              </div>
+              <div class="col font-size-15 color-text-s">好评</div>
+            </div>
+          </div>
+          <div class="col text-align-c padding-0" ng-click="assessType(1,$index);">
+            <div class="row">
+              <div class="col">
+                <img class="width-60"
+                     ng-src="{{click[$index].isClickMiddle?'imgBaseURL+img/ic_ass_middle.png':imgBaseURL+'img/ic_unass_middle.png'}}"/>
+              </div>
+              <div class="font-size-15 col color-text-s">中评</div>
+            </div>
+          </div>
+          <div class="col text-align-c padding-0" ng-click="assessType(2,$index);">
+            <div class="row">
+              <div class="col">
+                <img class="width-60"
+                     ng-src="{{click[$index].isClickBad ? imgBaseURL+'img/ic_ass_bad.png':imgBaseURL+'img/ic_unass_bad.png'}}"/>
+              </div>
+              <div class="font-size-15 col color-text-s">差评</div>
+            </div>
+          </div>
+        </div>
+        <div class="padding-10 font-bold font-size-16">综合评价</div>
+        <div class="row padding-top-bottom-0 padding-left-right-15">
+          <div class="col col-25">商品评分</div>
+          <div class="col padding-left-20 padding-top-bottom-0">
+            <comment-bar comment-value="value[$index].value1" comment-change="change(0);"></comment-bar>
+          </div>
+        </div>
+        <div class="row padding-15">
+          <div class="col col-25">物流配送</div>
+          <div class="col padding-left-20 padding-top-bottom-0">
+            <comment-bar comment-value="value[$index].value2" comment-change="change(1);"></comment-bar>
+          </div>
+        </div>
+        <div class="row padding-left-right-15">
+          <div class="col col-25">服务态度</div>
+          <div class="col padding-left-20 padding-top-bottom-0">
+            <comment-bar comment-value="value[$index].value3" comment-change="change(2);"></comment-bar>
+          </div>
+        </div>
+        <div class="padding-left-10">
+          <div class="row text-align-c">
+            <div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl1)"
+                 ng-if="iconImageData[$index].imgUrl1">
+              <img class="width-100" style="height: 50px" ng-src="{{iconImageData[$index].imgUrl1}}"
+                   err-src=""/>
+            </div>
+            <!--<div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl1)">-->
+              <!--<img class="width-100" style="height: 50px" ng-src="img/select.png"-->
+                   <!--err-src=""/>-->
+            <!--</div>-->
+            <div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl2)"
+                 ng-if="iconImageData[$index].imgUrl2">
+              <img class="width-100" style="height: 50px" ng-src="{{iconImageData[$index].imgUrl2}}"
+                   err-src=""/>
+            </div>
+            <div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl3)"
+                 ng-if="iconImageData[$index].imgUrl3">
+              <img class="width-100" style="height: 50px" ng-src="{{iconImageData[$index].imgUrl3}}"
+                   err-src=""/>
+            </div>
+            <div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl4)"
+                 ng-if="iconImageData[$index].imgUrl4">
+              <img class="width-100" style="height: 50px" ng-src="{{iconImageData[$index].imgUrl4}}"
+                   err-src=""/>
+            </div>
+            <div class="col col-20 padding-5 border" ng-click="showLarge(iconImageData[$index].imgUrl5)"
+                 ng-if="iconImageData[$index].imgUrl5">
+              <img class="width-100" style="height: 50px" ng-src="{{iconImageData[$index].imgUrl5}}"
+                   err-src=""/>
+            </div>
+          </div>
+          <button ng-click="uploadImg($index);" class="sg-feedback-submit bg-orange color-text-white margin-left-5">
+            上传照片
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="padding-top-bottom-10 text-align-c" ng-if="!isAssessed">
+      <button ng-click="submitAssess();"
+              class="text-align-c sg-feedback-submit bg-orange padding-left-right-20 font-size-17 padding-top-bottom-5 color-text-white">
+        发表评论
+      </button>
+    </div>
+    <div style="font-size: large;color: #f00;text-align: center;padding: 15px 0;" ng-if="isAssessed">没有可评价订单!</div>
+  </ion-content>
+
+  <div ng-if="show"
+       style="width:100%;height: 100%;background: black;z-index:10;position: absolute;opacity: 0.6">
+    <img style="position: absolute;padding: 5px;left: 10px;width: 40px;top:20px" ng-click="deleteImg()" ng-src="{{imgBaseURL}}img/trash9.png"/>
+    <img style="position: absolute;padding: 5px;right: 10px;width: 40px;top:20px" ng-click="closeImg()" ng-src="{{imgBaseURL}}img/ic_erweima_close.png"/>
+  </div>
+  <div
+    style="width:90%;display:table-cell;height:80%;text-align:center; vertical-align:middle;background: transparent;position: fixed;top: 10%;left: 5%;z-index:10;"
+    ng-if="show">
+    <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+    <img style="width: 90%;vertical-align: middle;" ng-src="{{largeImg}}" err-src=""/>
+  </div>
+
+</ion-view>
+

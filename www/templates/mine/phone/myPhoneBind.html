@@ -1,0 +1,30 @@
+<!--身份认证-->
+<ion-view class="background" view-title="身份认证" hide-nav-bar="true" hide-back-button="true">
+    <!--判断是否是ios设备-->
+    <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+    <header flex="main:center cross:center box:first" class="header-top-height">
+        <div><img ng-click="$ionicGoBack();" class="goback-img" ng-src="{{GoBackImgUrl}}"></div>
+        <div class="text-c title-text">身份认证</div>
+    </header>
+
+    <ion-content class="content-head-top" scrollbar-y="false">
+        <!--判断是否是ios设备-->
+        <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+        <div class="Prompt-msg-1">请输入与认证身份信息一致的新手机号</div>
+        <ul class="background-fff text-input-list">
+            <li class="list-top-border" flex="cross:center;">
+                <label>手机号码</label>
+                <input class="text-r" ng-model="phone.phone" placeholder="请输入新手机号">
+            </li>
+        </ul>
+        <p class="frompt-r-msg" ng-bind="ToMessage"></p>
+        <div class="text-c">
+            <div>
+                <button class="btn-send-Phone mt-50" ng-show="phone.phone.length != 11">下一步</button>
+            </div>
+            <div>
+                <button class="btn-send-Phone mt-50 active-send-phone" ng-click="goToPhoneBindSuccess()" ng-show="phone.phone.length == 11">下一步</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

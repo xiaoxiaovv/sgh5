@@ -1,0 +1,96 @@
+<ion-view class="background" view-title="首页" hide-back-button="true" hide-nav-bar="true">
+        <div flex="main:center cross:center box:justify" style="background:#fff;border-bottom:1px solid #F4F4F4;" class="selection_top homePage_top" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]">
+            <div class="address" ng-click="addressTop()" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+                <img class="newadd" ng-src="{{locationImgUrl}}">
+                <div style="color:#666;">{{region}}</div>
+            </div>
+            <div class="search" flex="cross:center" style="background:#F4F4F4;" ui-sref="goodsSearch({front:1})">
+                <img src="{{imgBaseURL}}img/searchIcon@2x.png">
+                <div >{{hot_word}}</div>
+            </div>
+            <div class="message" flex="main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+                <img class="newmes" ng-src="{{messageImgUrl}}" style="margin-top:0;">
+                <!-- <div style="color:#666;">消息</div> -->
+            </div>
+        </div>
+        <div ng-include="'templates/common/scroolBar.html'"></div>
+        <ion-content  lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide homePageContent' ng-class="{true:'iosAppFixedTopCopyHome',false:'normalFixedTopCopyHome'}[isIosApp]">  
+                   
+        <div class="furnishTopPicMake">
+            <ion-slide-box  delegate-handle="furnish_slider" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="imageItem in banner track by $index">
+                <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+          <div class="makeNav">
+            <ul>
+                <li ui-sref='homeDesignsth'>
+                    <img src="{{imgBaseURL}}img/newvision/design.png"/>
+                    <span>设计案例</span>
+                </li>
+                <li ng-click="meitu(3)">
+                      <img src="{{imgBaseURL}}img/newvision/homePic.png"/>
+                      <span>晒家美图</span>
+                  </li>
+                  <li ng-click="meitu(4)">
+                      <img src="{{imgBaseURL}}img/newvision/designFun.png"/>
+                      <span>装修攻略</span>
+                  </li>
+                  <li ng-click='toApplyForWhite()'>
+                      <img src="{{imgBaseURL}}img/newvision/moneyCash.png"/>
+                      <span>金融分期</span>
+                  </li>
+                  <li ui-sref='furnish'>
+                      <img src="{{imgBaseURL}}img/newvision/shopping.png"/>
+                      <span>逛商场</span>
+                  </li>
+            </ul>
+        </div>
+        <div style="margin:4px 0 0;" ng-click="predesgin()">
+            <img style="width:100%;" src="{{imgBaseURL}}img/newvision/banner.png"/>
+        </div>
+        <div class="homeAct">
+            <div class="nav-title">家装设计师
+                    <img ng-click="gotoactList()" src="{{imgBaseURL}}img/newvision/more.png"/>
+            </div>
+            <div class="relaxhome-content">
+                  <div ng-repeat="item in recommend" ui-sref='designDetail({"soluteId":item.designerId})'>
+                      <p><img src="{{item.imageUrl}}"></p>
+                      <h3>{{item.name}}</h3>
+                      <span><img class="autor" ng-src="{{item.avatar?item.avatar:imgBaseURL+'img/quanzi/user.jpg'}}" err-src="{{imgBaseURL}}img/quanzi/user.jpg"/><i>{{item.designerName}}</i></span>
+                  </div>
+            </div>
+        </div>
+          <div class="smart-life">
+                <div class="nav-title">猜你喜欢</div>
+                <div class="life-content">
+                    <ul>
+                        <li ng-repeat="item in feelLike" ui-sref='noteDetails({"noteId":item.id})'>
+                            <div>
+                               <img src="{{item.imageUrl}}"/> 
+                            </div>
+                            <h3>{{item.storyName}}</h3>
+                            <p>
+                                <span><img class="autor" src="{{item.avatar?item.avatar:imgBaseURL+'img/quanzi/user.jpg'}}" err-src="{{imgBaseURL}}img/quanzi/user.jpg"/><i>{{item.author}}</i></span>
+                                <span><img src="{{imgBaseURL}}img/newvision/zan.png"/><i>{{item.praise}}</i></span>
+                            </p>
+                        </li>
+                        <ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMore()"
+                                 distance="1%"></ion-infinite-scroll>
+                    </ul>
+                    <div ng-if="bottomIF" style='text-align: center;padding: 10px 0;'>已经到底了～只能帮你到这里了</div>
+                </div>
+          </div>
+    
+        
+          
+        </ion-content>
+        <img style="width:44px;height:44px;z-index:999;position:fixed;right:10px;bottom:65px;" ng-click="customerServe()" src="{{imgBaseURL}}img/homepageNew/fb.png"/>
+        <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+        <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+      <ion-footer-bar>
+          <div ng-include="'templates/common/Tabs.html'"></div>
+        </ion-footer-bar>
+      </ion-view>
+      

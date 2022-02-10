@@ -1,0 +1,53 @@
+<ion-view class="background" view-title="登记收货信息">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l" ng-click="goBack()">
+    </ion-nav-back-button>
+    <ion-nav-buttons side="secondary">
+      <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 border-bottom bg-white">
+      <form>
+        <input class="width-100 input-style" ng-model="address.consignee" placeholder="收货人" value={{consignee}}>
+      </form>
+    </div>
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 border-bottom bg-white">
+      <form>
+        <input class="width-100 input-style" ng-model="address.mobile" placeholder="手机号码" value={{mobile}}>
+      </form>
+    </div>
+    <div ng-click="selectPhone()" style="border-left: 1px solid #e4e4e4;width: 80px;height: 81px;position: absolute;right: 0;top: 0;background: #fff;">
+      <div style="width: 30px;height: 30px;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;">
+        <img style="width: 100%;" src="img/icon@2x.png">
+      </div>
+    </div>
+    <!--<div class="padding-left-5 padding-top-5 padding-bottom-5 border-bottom bg-white">-->
+    <div class="padding  bg-white border-bottom" ng-click="addressTop()">
+      <span class="padding-left-5 {{textColor}}" ng-bind="addressRegionName"></span>
+      <!--address.regionName-->
+      <i class="icon ion-chevron-right float-r"></i>
+    </div>
+    <!--</div>-->
+    <!--街道-->
+    <div class="padding  bg-white border-bottom" ng-click="StreetTop()">
+      <span class="padding-left-5 {{streetTextColor}}" ng-bind="addressStreet"></span>
+      <i class="icon ion-chevron-right float-r"></i>
+    </div>
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 border-bottom bg-white">
+      <form>
+        <input class="width-100 input-style" ng-model="address.address" placeholder="详细地址" value={{address}}>
+      </form>
+    </div>
+  </ion-content>
+  <!--软键盘完成-->
+  <div class="width-100 bg-white" ng-style="keyboardBtn" style="position: fixed;z-index:10;font-size: 14px;color: #32BEFF;height: 35px;line-height: 35px;text-align: right;padding-right: 20px; bottom: 0;display: none;">完成</div>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+
+</ion-view>

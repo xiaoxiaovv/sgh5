@@ -1,0 +1,45 @@
+<!--评价-->
+<ion-view view-title="追加评价" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">追加评价</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="publicationEvaluation">
+    <div style="font-size:12px;color:#999;letter-spacing:0;height:40px;padding:0 16px;line-height:40px;">追加评价</div>
+    <div class="contentDiv">
+      <textarea class="width-100 bg-background " rows="5" maxlength="500" style="resize: none;position:relative;" ng-model="commentObj.commentTt" placeholder="说点什么吧～"></textarea>
+      <span ng-if="commentObj.commentTt.length<=0">500字</span>
+      <span ng-if="commentObj.commentTt.length>0">{{commentObj.commentTt.length}}/500</span>
+    </div>
+    <div class="picDiv" flex="dir:left cross:center" ng-if="isMyOrder">
+      <div flex="dir:top main:center cross:center" ng-repeat="imgone in imageList track by $index" ng-click="removeImage($index)">
+        <img ng-src="{{imgone}}" />
+      </div>
+      <div ng-click="addImage()" class="picDivOne" flex="dir:top main:center cross:center">
+        <img class="picDivOneimg" ng-src="{{imgBaseURL}}img/fd-camera.png" />
+        <span ng-if="imageCount<=0">添加</span>
+        <span ng-if="imageCount>0">{{imageCount}}/9</span>
+      </div>
+    </div>
+    <div class="divBottom" flex="main:center cross:center">
+      <div class="submitButton" ng-click="submitEvaluation()">发表评价</div>
+    </div>
+  </ion-content>
+
+  <!--软键盘完成-->
+  <div class="width-100 bg-white" ng-style="keyboardBtn" style="position: fixed;z-index:10;font-size: 14px;color: #32BEFF;height: 35px;line-height: 35px;text-align: right;padding-right: 20px; bottom: 0;display: none;">完成</div>
+  <div ng-if="show" style="width:100%;height: 100%;background: black;z-index:10;position: absolute;opacity: 0.6">
+    <img style="position: absolute;padding: 5px;left: 10px;width: 40px;top:20px" ng-click="deleteImg()" ng-src="{{imgBaseURL}}img/trash9.png" />
+    <img style="position: absolute;padding: 5px;right: 10px;width: 40px;top:20px" ng-click="closeImg()" ng-src="{{imgBaseURL}}img/ic_erweima_close.png" />
+  </div>
+  <div style="width:90%;display:table-cell;height:80%;text-align:center; vertical-align:middle;background: transparent;position: fixed;top: 10%;left: 5%;z-index:10;" ng-if="show">
+    <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+    <img style="width: 90%;vertical-align: middle;" ng-src="{{largeImg}}" err-src="" />
+  </div>
+
+</ion-view>

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/dev/!svn/ver/193396/haier-store/shunguang-v3/H5/trunk/www/templates/order
+END
+choiceOfGifts.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/dev/!svn/ver/189269/haier-store/shunguang-v3/H5/trunk/www/templates/order/choiceOfGifts.html
+END
+Payment.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/order/Payment.html
+END
+DebitCardPayment.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/165604/haier-store/shunguang-v3/H5/trunk/www/templates/order/DebitCardPayment.html
+END
+payResultSuccess.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/192954/haier-store/shunguang-v3/H5/trunk/www/templates/order/payResultSuccess.html
+END
+afterOrderSubmit.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/192954/haier-store/shunguang-v3/H5/trunk/www/templates/order/afterOrderSubmit.html
+END
+Paymentxyz.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/dev/!svn/ver/167598/haier-store/shunguang-v3/H5/trunk/www/templates/order/Paymentxyz.html
+END
+CarTracking.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/dev/!svn/ver/169042/haier-store/shunguang-v3/H5/trunk/www/templates/order/CarTracking.html
+END
+orderConfirm.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dev/!svn/ver/193396/haier-store/shunguang-v3/H5/trunk/www/templates/order/orderConfirm.html
+END
+bankCardPaymentList.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/dev/!svn/ver/165604/haier-store/shunguang-v3/H5/trunk/www/templates/order/bankCardPaymentList.html
+END
+spendBaiInstallment.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/dev/!svn/ver/165707/haier-store/shunguang-v3/H5/trunk/www/templates/order/spendBaiInstallment.html
+END
+payResultFailure.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/133058/haier-store/shunguang-v3/H5/trunk/www/templates/order/payResultFailure.html
+END
+ConfirmReceive.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/dev/!svn/ver/185806/haier-store/shunguang-v3/H5/trunk/www/templates/order/ConfirmReceive.html
+END
+ccbPay.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/order/ccbPay.html
+END
+OrderSearch.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/dev/!svn/ver/185897/haier-store/shunguang-v3/H5/trunk/www/templates/order/OrderSearch.html
+END
+SendGoodsTime.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/dev/!svn/ver/187192/haier-store/shunguang-v3/H5/trunk/www/templates/order/SendGoodsTime.html
+END
+ccbfenqi.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/dev/!svn/ver/165707/haier-store/shunguang-v3/H5/trunk/www/templates/order/ccbfenqi.html
+END

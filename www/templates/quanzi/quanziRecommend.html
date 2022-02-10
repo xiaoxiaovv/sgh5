@@ -1,0 +1,74 @@
+<ion-view view-title="圈子" cache-view="true">
+    <ion-nav-bar>
+        <!-- <ion-nav-back-button class="color-text-l"></ion-nav-back-button>-->
+    </ion-nav-bar>
+    <!--回退按钮-->
+    <!--<ion-nav-buttons side="left">-->
+        <!--&lt;!&ndash;略小的箭头&ndash;&gt;-->
+        <!--&lt;!&ndash;<div ng-click="$ionicGoBack()" class="icon ion-ios-arrow-left mystore-back-btn location-back-btn"></div>&ndash;&gt;-->
+        <!--&lt;!&ndash;略大的箭头&ndash;&gt;-->
+        <!--&lt;!&ndash;<button ng-click="$ionicGoBack()" class="color-text-l button-clear icon ion-ios-arrow-left"></button>&ndash;&gt;-->
+        <!--&lt;!&ndash;框架生成的箭头&ndash;&gt;-->
+        <!--<button ng-click="$ionicGoBack()" class="button back-button buttons button-clear color-text-theme header-item">-->
+            <!--<i class="icon ion-ios-arrow-left"></i>-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+    <!--完成按钮-->
+    <ion-nav-buttons side="right">
+        <div class="done" ng-click="done()">完成</div>
+    </ion-nav-buttons>
+    <!--内容区域-->
+    <ion-content scroll="false" class="wst">
+        <!--推荐圈子多于12，采用轮播图-->
+        <ion-slide-box ng-if="topics.length > 12">
+            <ion-slide ng-repeat="matrix in matrixes track by $index">
+                <!--repeat每个圈子-->
+                <div class="topic-area">
+                    <div ng-repeat="topic in matrix track by $index" ng-click="joinOrApply(topic,$index)"
+                         class="quanzis">
+                        <div class="head">
+                            <img class="image" src="{{topic.topicImg|ImageTopicFilter}}" alt="" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/quanzi.png'">
+                            <div class="my-black-layer" ng-if="topic.recommend||topic.isJoin">
+                                <span class="icon ion-checkmark-round"></span>
+                            </div>
+                            <!--使对号不透明-->
+                            <div class="my-transparent-layer" ng-if="topic.recommend||topic.isJoin">
+                                <span class="icon ion-checkmark-round"></span>
+                            </div>
+                        </div>
+                        <div ng-bind="topic.topicName" class="story-r-title dot-block"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <!--全部关注按钮-->
+                <!--<div ng-click="selectAll($index);" class="follow-all">全部关注</div>-->
+            </ion-slide>
+        </ion-slide-box>
+        <!--12个以内，不用轮播-->
+        <div ng-if="topics.length <= 12">
+            <div class="topic-area">
+                <!--repeat每个圈子-->
+                <div ng-repeat="topic in topics track by $index" ng-click="joinOrApply(topic)"
+                     class="quanzis">
+                    <div class="head">
+                        <img class="image" src="{{topic.topicImg|ImageTopicFilter}}" alt="图片" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/quanzi.png'">
+                        <div class="my-black-layer" ng-if="topic.recommend||topic.isJoin">
+                            <span class="icon ion-checkmark-round"></span>
+                        </div>
+                        <!--使对号不透明-->
+                        <div class="my-transparent-layer" ng-if="topic.recommend||topic.isJoin">
+                            <span class="icon ion-checkmark-round"></span>
+                        </div>
+                    </div>
+                    <div ng-bind="topic.topicName" class="story-r-title dot-block"></div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <!--全部关注按钮-->
+            <!--<div ng-click="selectAll()" class="follow-all">全部关注</div>-->
+        </div>
+    </ion-content>
+    <!--全部关注按钮-->
+    <div ng-click="selectAll()" class="select-all-st">全部关注</div>
+    <div ng-include="'templates/common/CommonLoginPopup3.html'"></div>
+</ion-view>

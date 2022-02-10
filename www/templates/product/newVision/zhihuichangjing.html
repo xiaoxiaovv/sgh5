@@ -1,0 +1,85 @@
+<ion-view class="background" hide-nav-bar='true'>
+  <div id="print" ng-style='printstyle'>
+    <img ng-src='{{zhimgUrl}}' width=100% height=100%/>
+    <div>
+      <div ng-class='$index==index?"opticynone":"opticycxw"' ng-repeat='item in soluDetail' ng-click='chooseTab($index,item)'>{{item.name}}</div>
+    </div>
+    <img src='{{imgBaseURL}}img/linshi/xxxw@2x.png' ng-click='goBack()'/>
+	<div style='width: 0.64rem;height: 0.64rem;position: absolute;right: 0.267rem;top: 0.267rem;background: rgba(0,0,0,0.3);border-radius: 50%;'></div>
+    <img src='{{imgBaseURL}}img/linshi/qdh@2x.png' ng-click="openFilterModal()" />
+    <img src='{{imgBaseURL}}img/linshi/cjjs@2x.png' ng-click="openjieshaoModal()" />
+    <div class="zhjttabdabiao" ng-repeat='i in tablabels' ng-style='i.direction==1?{"left":i.x*100-(5/clientWidth*100)+"%","top":i.y*100-(35/clientHeight*100)+"%"}:{"left":i.x*100+(5/clientWidth*100)+"%","top":i.y*100-(35/clientHeight*100)+"%","transform": "rotateY(180deg)","transform-origin":"left"}'><img src='{{imgBaseURL}}img/linshi/l@2x.png' /><span style='display: inline-block;' ng-style='i.direction==1?{}:{"transform":"rotateY(-180deg)"}' ng-click='openpromodel(i.productId)'>{{i.name}}</span><img src='{{imgBaseURL}}img/linshi/r@2x.png' ng-click='openpromodel(i.productId)'/></div>
+    <!-- 商品model -->
+    <div class="productmodel" ng-show='showfiltermodel'>
+      <div class="housproductlist">
+        <div class='row' style='position: relative;'>
+          <label class="checkbox col col-10" ng-model='allchecked'>
+            <input type="checkbox" id='smallthis' ng-model='all.isAllChecked' ng-click='selectall()'>
+          </label>
+          <div class='col col-90' flex='main:justify cross:center'>
+            <div ng-if='productList.length==selectnumber'>全套</div>
+            <div ng-if='productList.length!=selectnumber'>已选（{{selectnumber}}）</div>
+            <div ng-click='closezhezhao()'><img src='{{imgBaseURL}}img/code-btn.png' width=24/></div>
+          </div>
+          <div class='housexiahuaxian'></div>
+        </div>
+        <div style='position: absolute;top: 43px;bottom: 1.173rem;width: 100%;' id='zijihuadong_{{solutionId}}'  ng-style='prostyle'> 
+            <div id='wohuadong_{{solutionId}}' style='position: relative;'>
+              <div class='row productlilist' ng-repeat='item in productList'>
+                <label class="checkbox col col-10">
+                  <input type="checkbox" id='smallthis' style='top:0.88rem;' ng-model='item.checked' ng-click='select(item)'>
+                </label>
+                <div class='col col-90 outrelativediv' ui-sref="productDetail({'productId':item.id,'storeId':storeId})">
+                  <img ng-src='{{item.imageUrl}}' />
+                  <div>{{item.name}}</div>
+                  <div>{{item.title}}</div>
+                  <div>
+                    <div>{{item.price | currency:'￥'}}</div>
+                    <div ng-if='item.commission!=null&&isLogin'>赚</div>
+                    <div ng-if='item.commission!=null&&isLogin'>{{item.commission | currency:'￥'}}</div>
+                  </div>
+                  <div>x1</div>
+                  <div ng-if='!item.stock'>无货 可预定</div>
+                </div>
+                <div class='housexiahuaxian' style='bottom: 0;width: 8.8rem;left: 1.23rem;'></div>
+              </div>
+            </div>
+        </div>
+        <div class="zjfootercrb" flex='main:center cross:center' style='border-top: 1px solid #E9E4E4;position: absolute;bottom: 0;'>
+          <div style='width: 70%;text-align: start;text-indent: 18px;'>
+            <span style='font-size: 12px;'>总计：</span><span style='color:#ff6026;'>{{selectprice | currency:'￥'}}</span>
+            <span ng-if='selectcommsion!=null&&isLogin' style='font-size: 12px;margin-left: 5px;'>佣金：</span><span ng-if='selectcommsion!=null&&isLogin' style='color:#ff6026;'>{{selectcommsion | currency:'￥'}}</span>
+          </div>
+          <div style='width:30%;background-color:#2979FF;color:#fff;opacity: 0.5;' ng-if='selectnumber==0'>一键下单</div>
+          <div style='width:30%;background-color:#2979FF;color:#fff;' ng-if='selectnumber!=0' ng-click='placeorder()'>一键下单</div>
+        </div>
+      </div>
+    </div>
+    <!-- 场景介绍model -->
+    <div class='cjjsmodel' ng-if='showcjjsmodel'>
+      <div>{{zhintroduction}}</div>
+      <img src='{{imgBaseURL}}img/linshi/xxxw@2x.png' ng-click='closezhezhao()' />
+    </div>
+    <!-- 标签商品信息model -->
+    <div class='prodetailmodel' ng-if='showprodetailmodel'>
+      <img src='{{imgBaseURL}}img/code-btn.png' width=24 ng-click='closezhezhao()'/>
+      <div class="row" ui-sref="productDetail({'productId':prointion.id,'storeId':storeId})">
+        <div class="col col-33 col-center text-align-c padding">
+          <img ng-src={{prointion.imageUrl}} alt="产品图片" class="width-80" />
+        </div>
+        <div class="text-align-l padding padding-left-0" style="overflow: hidden;">
+          <div class="sg-ms-title font-size-15 font-bold">{{prointion.name}}</div>
+          <div class="font-size-12" style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;color: #666;margin-bottom: 12px;">
+            {{prointion.title}}
+          </div>
+          <div class="sg-ms-title text-color-light-red">
+            <span style='font-size: 16px;'>{{prointion.price | currency:'￥'}}</span><span style='transform: translate(0,1px);display: inline-block;margin-left: 8px;margin-right: 8px;width: 18px;height: 18px;background: #ff6026;color: white;text-align: center;border-radius: 50%;font-size: 12px;line-height: 18px;' ng-if='prointion.commission!=null&&isLogin'>赚</span><span style='font-size: 14px;' ng-if='prointion.commission!=null&&isLogin'>{{prointion.commission | currency:'￥'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 遮罩层 -->
+    <div class='coversmodel' ng-click='closezhezhao()' ng-if='showzhezhao'>
+    </div>
+  </div> 
+</ion-view>

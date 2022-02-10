@@ -1,0 +1,23 @@
+<!--列表模板2-->
+<div class="mystore-list2">
+  <div class="goods-item" ng-repeat="product in productsList">
+    <div ng-click="toProductDetail(product.productId,product.o2oType,product.fromType,storeId,shareStoreId,product.productFirstName,product.productSecondName,product.hasStock)">
+      <div class="position-r text-align-c">
+        <div class="list2-recommend" ng-if="product.recommend">推荐</div>
+        <img ng-src="{{product.defaultImageUrl | addImgURLPostfix:450:490}}" alt="商品图片">
+      </div>
+      <div class="list2-content border-top">
+        <div ng-bind="product.productFirstName"></div>
+        <div ng-bind="product.productSecondName"></div>
+        <div class="sg-ms-title font-size-12" ng-bind="product.productTitle"></div>
+        <div class="font-size-12"><span style="color: #EF4078" ng-bind='product.finalPrice|currency:"￥"'></span></div>
+        <div class="font-size-12">
+          <span ng-if="isBuyer==1&&isCommission&&product.commission!=null&&product.commission!=undefined">赚：￥<span style="color: #EF4078;margin-right: 20px;" ng-bind="product.commission|cutTwoFilter"></span></span>
+          <span ng-if="isBuyer==1&&isCommission&&product.commission==undefined"style="color: #EF4078;margin-right: 20px;">佣金计算中</span>
+          <span class="color-text-theme" ng-bind="product.hasStock" ng-if="product.hasStock=='有货'"></span>
+          <span class="color-text-red" ng-bind="product.hasStock" ng-if="product.hasStock!='有货'"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

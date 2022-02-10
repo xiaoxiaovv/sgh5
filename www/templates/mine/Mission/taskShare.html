@@ -1,0 +1,68 @@
+<ion-view class="background" view-title="任务分享">
+  <ion-nav-bar>
+    <ion-nav-buttons side="left">
+      <div style="width:34px;height:34px;text-align:center;line-height:34px;padding-top:3px;" ng-click="goBack()">
+        <!-- <i class="icon ion-ios-arrow-left" style="font-size:26px;opacity:0.37;"></i> -->
+        <img ng-src="{{imgBaseURL}}img/missionBack@2x.png" style="width:27px;height:27px;">
+      </div>
+  </ion-nav-bar>
+  <ion-content scrollbar-y="true">
+    <div class="scroll-view">
+        <div flex="box:justify" style="margin:12px 8px 0;box-sizing:border-box;background:#fff;height:72px;" ng-repeat = 'item in share' ng-click = "goShare(item.isFinished,item.id,item.taskType)">
+          <div style="width:72px;padding:20px;">
+            <img ng-if="item.taskType==1" style="width:100%;" ng-src="{{imgBaseURL}}img/ic-am@3x.png" alt="" />
+            <img ng-if="item.taskType==2" style="width:100%;" ng-src="{{imgBaseURL}}img/ic-pm@3x.png" alt="" />
+            <img ng-if="item.taskType==3" style="width:100%;" ng-src="{{imgBaseURL}}img/ic-share@3x.png" alt="" />
+            <img ng-if="item.taskType==4" style="width:100%;" ng-src="{{imgBaseURL}}img/ic-61@3x.png" alt="" />
+            <img ng-if="item.taskType==5" style="width:100%;" ng-src="{{imgBaseURL}}img/gold-fight.png" alt="" />
+            <img ng-if="item.taskType==6" style="width:100%;" ng-src="{{imgBaseURL}}img/sharePic.png" alt="" />
+            <img ng-if="item.taskType==7" style="width:100%;" ng-src="{{imgBaseURL}}img/MilitaryExploits.png" alt="" />
+          </div>
+          <div style="overflow:hidden;">
+            <div flex="dir:top" style="width:100%;">
+              <span style="margin:15px 0 4px 0;font-size: 16px;letter-spacing: -0.39px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width:100%;" ng-style="item.taskType==5?colorStyle2:colorStyle1">{{item.name}}</span>
+              <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width:100%;font-size: 14px;color: #030303;opacity: 0.53;">{{item.content}}</span>
+            </div>
+          </div>
+
+          <div flex="" style="width:143px;">
+            <div ng-if="!item.isFinished" style="width:78px;padding:31px 11px 29px 9px;font-size:12px;color:#f56767;" flex="main:center cross:center">
+              <span>＋{{item.taskAwards[0].awardNum}}金币</span>
+            </div>
+            <div ng-if="item.isFinished" style="width:78px;padding:31px 11px 29px 9px;font-size:12px;color:#6F6F6F;" flex="main:center cross:center">
+              <span>＋{{item.taskAwards[0].awardNum}}金币</span>
+            </div>
+
+            <div  ng-if="!item.isFinished&&item.taskType!=5" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;border:1px solid #f56767;border-radius:4px;font-size:12px;color:#f56767;" flex="main:center cross:center"><span>分享</span></div>
+            </div>
+            <div ng-if="item.isFinished&&item.taskType!=5" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;border:1px solid #969696;border-radius:4px;font-size:12px;color:#6F6F6F;" flex="main:center cross:center"><span>已完成</span></div>
+            </div>
+
+            <div ng-if="!item.isFinished&&item.taskType==5&&item.userTaskStatus==null" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;border:1px solid blue;border-radius:4px;font-size:12px;color:blue;" flex="main:center cross:center"><span>接招</span></div>
+            </div>
+            <div ng-if="!item.isFinished&&item.taskType==5&&item.userTaskStatus==0" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;font-size:12px;color:blue;" flex="main:center cross:center"><span>开战</span></div>
+            </div>
+            <div ng-if="item.taskType==5&&item.userTaskStatus==20" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;font-size:12px;color:blue;" flex="main:center cross:center"><span>胜利</span></div>
+            </div>
+            <div ng-if="item.taskType==5&&item.userTaskStatus==-10" style="width:65px;padding:23px 12px 23px 0;">
+              <div style="height:100%;width:100%;border:1px solid blue;border-radius:4px;font-size:12px;color:blue;" flex="main:center cross:center"><span>失败</span></div>
+            </div>
+          </div>
+        </div>
+    </div>
+<div class="" style="height:60px;">
+
+    </div>
+  </ion-content>
+  <div style="width:100%;height:60px;position:fixed;bottom:0px;background:#f4f4f4;" ui-sref="historyTask">
+    <div style="width:93%;height:40px;background:#F8F8F8;line-height:40px;text-align:center;margin:10px auto;color:rgba(0,0,0,0.5);font-size:15px;border:1px solid #D2D2D2;border-radius:4px;"
+     >
+      我的历史任务
+    </div>
+  </div>
+</ion-view>

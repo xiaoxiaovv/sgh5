@@ -1,0 +1,504 @@
+/**
+TA的发布   @zhangyr --star2017.10.10
+**/
+.issue-nav {
+	border-bottom: 1px solid #e8e8e8;
+	position: relative;
+	z-index: 1;
+	.issue-search {
+		margin-right: 10px;
+		width: 20px;
+		height: 20px;
+		img {
+			width: 20px;
+		}
+	}
+}
+.issue-tab-box {
+	height: 40px;
+	background: #fff;
+	.itemSelected {
+		color: #FF4400;
+		font-size: 14px;
+		position: relative;
+		height: 100%;
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			left: 35%;
+			width: 30%;
+			height:2px;
+			background: #ff4400;
+		}
+	}
+	.itemUnSelected {
+		color: #2a2a2a;
+		font-size: 14px;
+		position: relative;
+		height: 100%;
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			left: 35%;
+			width: 30%;
+			height:2px;
+			background: transparent;
+		}
+	}
+}
+.shoushang-banner {
+	border-top: 1px solid #e8e8e8;
+	.bg-img {
+		padding: 10px 40px 15px 40px;
+		background:#fff url(http://cdn09.ehaier.com/shunguang/H5/www/img/homepage/banner_bg@2x.png) no-repeat;
+    background-size: cover;
+    .banner-img {
+    	position: relative;
+    	img {
+    		width: 100%;
+    	}
+    	.banner-text {
+    		position: absolute;
+    		top: 35%;
+    		width:100%;
+    		height: 50%;
+    		text-align: center;
+    		padding: 0 20px;
+    		color: #fff;
+    		.text-title {
+    			font-size: 14px;
+    		}
+    		.text-detail {
+    			font-size: 14px;
+    			span {
+    				font-size: 20px;
+    			}
+    		}
+    	}
+    }
+	}
+}
+.issue-box {
+	.item-part {
+		padding: 8px 15px;
+		background: #fff;
+		margin-top: 8px;
+		.item-issue-head {
+			.user-info {
+				.user-img {
+					width: 35px;
+					height: 35px;
+					overflow: hidden;
+					margin-right: 10px;
+					img {
+						width: 35px;
+						height: 35px;
+						border-radius: 100%;
+					}
+				}
+				.user-name {
+					.user-title {
+						font-size: 14px;
+						color: #000；
+					}
+					.user-time {
+						font-size: 10px;
+						color: #999;
+					}
+				}
+			}
+			.boutique {
+				div {
+					margin-right: 5px;
+					img {
+						width: 20px;
+					}
+				}
+			}
+		}
+		.item-issue-cont {
+			border-bottom: 1px solid #e8e8e8;
+			padding: 8px 0 15px 0;
+			.issue-left {
+				.issue-tit {
+					font-size: 13px;
+					color: #000;
+					overflow: hidden;
+    			text-overflow: ellipsis;
+			    display: -webkit-box!important;
+			    -webkit-box-orient: vertical!important;
+			    -webkit-line-clamp: 1!important;
+				}
+				.issue-com {
+					font-size: 12px;
+					color: #999;
+					overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: -webkit-box!important;
+			    -webkit-box-orient: vertical!important;
+			    -webkit-line-clamp: 2!important;
+				}
+			}
+			.issue-right {
+				margin-left: 5px;
+				img {
+					width: 130px;
+					height: 85px;
+				}
+			}
+		}
+		.item-issue-foot {
+			margin-top: 8px;
+			.issue-shang {
+				width: 40%;
+				color: #ff4400;
+				img {
+					width: 15px;
+				}
+				.shang-img {
+					.end-shang {
+						color: #999;
+					}
+				}
+			}
+			.issue-handle {
+				font-size: 10px;
+				color: #999;
+				div {
+					width: 15px;
+					img {
+						width: 15px;
+					}
+				}
+			}
+		}
+	}
+}
+/*TA的评论*/
+.comment-tab-box {
+	height: 40px;
+	background: #fff;
+	.itemSelected {
+		color: #FF4400;
+		font-size: 14px;
+		position: relative;
+		height: 100%;
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			left: 35%;
+			width: 30%;
+			height:2px;
+			background: #ff4400;
+		}
+	}
+	.itemUnSelected {
+		color: #2a2a2a;
+		font-size: 14px;
+		position: relative;
+		height: 100%;
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			left: 35%;
+			width: 30%;
+			height:2px;
+			background: transparent;
+		}
+	}
+}
+.comment-box {
+	margin-top:8px;
+	.item-part {
+		padding: 10px 15px 15px 15px;
+		background: #fff;
+		border-bottom: 1px solid #e8e8e8;
+		&:last-child {
+			border: none;
+		}
+		.item-left {
+			margin-right: 10px;
+			.user-img {
+				width: 35px;
+				height: 35px;
+				img {
+					width: 35px;
+					height:35px;
+					border-radius: 100%;
+				}
+			}
+		}
+		.item-right {
+			.item-info {
+				.info-left {
+					.user-name {
+						font-size: 14px;
+						color: #000;
+						margin-right:5px;
+					}
+					.user-grade {
+						width: 28px;
+						height: 14px;
+						line-height: 14px;
+						font-size: 11px;
+						color: #2979ff;
+						border: 1px solid #2979ff;
+						border-radius: 1px;
+						.grade-icon {
+							img {
+								width: 8px;
+							}
+						}
+					}
+				}
+				.info-right {
+					font-size: 10px;
+					color: #999;
+				}
+			}
+			.item-comment {
+				margin: 12px 0px;
+				.com-text {
+					font-size: 13px;
+					color: #000;
+					.com-info {
+				    .info-text{
+				    	overflow: hidden;
+		    			text-overflow: ellipsis;
+					    display: -webkit-box!important;
+					    -webkit-box-orient: vertical!important;
+					    -webkit-line-clamp: 2!important;
+					    padding-right:10px;
+				    }
+				    .info-img {
+				    	margin-top:5px;
+				    	img {
+				    		width:33px;
+								height: 33px;
+								margin-right: 3px;
+				    	}
+				    }
+					}
+		    	.com-accept {
+		    		.accept-btn {
+		    			background: #2979ff;
+		    			color:#fff;
+		    			border-radius: 4px;
+		    			width: 40px;
+		    			height: 24px;
+		    			line-height: 22px;
+		    			text-align:center;
+		    			float:left;
+		    			margin-right: 5px;
+		    		}
+		    	}
+				}
+				.com-money {
+					font-size: 11px;
+					color: #ff4400;
+					&.default-width {
+						width: 70px;
+						text-align:right;
+					}
+				}
+			}
+			.item-postbar {
+				background: #efefef;
+				padding: 5px;
+				.postbar-img {
+					height:33px;
+					img {
+						width:33px;
+						height: 33px;
+						margin-right: 8px;
+					}
+				}
+				.postbar-text {
+					font-size: 12px;
+					color: #000;
+					line-height: 18px;
+					width: 100%;
+					overflow: hidden;
+    			text-overflow: ellipsis;
+			    display: -webkit-box!important;
+			    -webkit-box-orient: vertical!important;
+			    -webkit-line-clamp: 2!important;
+				}
+			}
+		}
+	}
+}
+/*TA的打赏*/
+.he-dashang {
+	.shoushang-banner {
+		border-top: none;
+		.bg-img {
+			.banner-img {
+				.banner-text {
+					padding: 0 20px;
+				}
+			}
+		}
+	}
+	.comment-box {
+		.item-part {
+			.item-right {
+				.item-comment {
+					.com-text {
+						span {
+							color: #ff4400;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*TA的圈子*/
+.quanzi-tabs-box {
+	height: 50px;
+	border-bottom: 1px solid #e8e8e8;
+	background: #fff;
+	.quanzi-tabs {
+		width: 200px;
+		height: 30px;
+		border: 1px solid #2979ff;
+		border-radius: 3px;
+		.tab-item {
+			font-size: 12px;
+			&.itemSelected {
+				background: #2979ff;
+				color: #fff;
+			}
+			&.itemUnSelected {
+				background: #fff;
+				color: #2979ff;
+			}
+		}
+	}
+}
+.quanzi-box {
+	padding: 0 15px;
+	background: #fff;
+	.box-title {
+		padding: 5px 0;
+		font-size: 12px;
+		color: #666;
+	}
+	.box-list {
+		.item-part {
+			padding:10px 0 15px 0;
+			border-bottom: 1px solid #e8e8e8;
+			&:last-child {
+				border: none;
+			}
+			.item-left {
+				.item-img {
+					width: 65px;
+					height: 65px;
+					margin-right: 10px;
+					overflow: visible;
+					img {
+						width: 65px;
+						height: 65px;
+					}
+				}
+				.item-info {
+					.info-title {
+						font-size: 15px;
+						color: #333;
+						overflow: hidden;
+	    			text-overflow: ellipsis;
+				    display: -webkit-box!important;
+				    -webkit-box-orient: vertical!important;
+				    -webkit-line-clamp: 1!important;
+					}
+					.info-text {
+						font-size: 13px;
+						color: #999;
+						overflow: hidden;
+	    			text-overflow: ellipsis;
+				    display: -webkit-box!important;
+				    -webkit-box-orient: vertical!important;
+				    -webkit-line-clamp: 1!important;
+					}
+					.info-tip {
+						font-size: 11px;
+						color: #3f3f3f;
+						div{
+							margin-right: 20px;
+							span {
+								color: #ff4400;
+							}
+						}
+					}
+				}
+			}
+			.item-right {
+				.go-icon {
+					width: 15px;
+					img {
+						width: 15px;
+					}
+				}
+				.item-result {
+					.result-btn {
+						width: 58px;
+						height: 25px;
+						border: 1px solid #e8e8e8;
+						border-radius: 20px;
+						&.resuGreen {
+							color: #008F0D;
+						}
+						&.resuBule {
+							color: #2979ff;
+						}
+						&.resuRed {
+							color: #ff0000;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*TA的赞*/
+.he-zan {
+	.item-info {
+		margin-bottom: 17px;
+	}
+}
+/*内容为空的引导图*/
+.comment-empty,.dashang-empty {
+	padding:20px 0;
+	text-align: center;
+	.empty-img {
+		img {
+			width: 80px;
+		}
+	}
+	.empty-text {
+		color: rgb(119, 119, 119);
+		font-size: 15px;
+		margin:20px 0;
+	}
+}
+/*圈子标签样式*/
+.tags-on {
+	color: #2979ff;
+	margin:5px 0;
+	border-radius: 16px;
+	padding: 1px 12px;
+	border: 1px solid #2979ff;
+}
+.tags-off {
+	color: #787878;
+	margin:5px 0;
+	border-radius: 16px;
+	padding: 1px 12px;
+	border: 1px solid #eee;
+}

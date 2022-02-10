@@ -1,0 +1,18 @@
+    <ion-tabs class="tabs-striped" delegate-handle="qztab"
+              ng-class="{true:'sgqz-home-tabs-ios',false:'sgqz-home-tabs'}[isIOS]">
+        <ion-tab  title="热门" href="#/topic/qhot"  on-select="onTabSelected()">
+            <ion-nav-view name="topic-qhot" ></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="我的社区" href="#/topic/qmine"  on-select="onTabSelected()">
+            <ion-nav-view name="topic-qmine"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="商学院" href="#/topic/qwschool"  on-select="onTabSelected()">
+            <ion-nav-view name="topic-qwschool"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="创意社区" ng-click="open()"  on-select="onTabSelected()">
+            <ion-nav-view name=""></ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+    <ion-footer-bar>
+        <div ng-include="'templates/common/Tabs.html'"></div>
+    </ion-footer-bar>

@@ -1,0 +1,67 @@
+<!--绑定银行卡-->
+<ion-view view-title="提现管理" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:78px;height:44px;padding-left:16px;" flex="cross:center">
+      <div style="width:34px;height:24px;" flex="cross:center" ng-click="goBack()">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">提现管理</div>
+    <div style="margin-right:9px;height:44px;padding-right:6px;font-size:17px;color:#999;width:78px;letter-spacing: 0;" flex="main:center cross:center" ui-sref="bankSupport">
+        支持银行
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" class="bankCardSecond" ng-style="paddingtopClasscontent">
+    <div class="bankCardfirst"></div>
+    <div ng-if="hasBindYHK" flex="dir:top" class="bankCardthird">
+      <div class="bankCard" ui-sref="bankCardDetail({cardNoShow:backGroundOrImg.cardNoShow})">
+        <div flex="box:first" style="background: {{backGroundOrPic[backGroundOrImg.bankNo].background}};">
+          <div flex="main:center cross:center">
+            <div flex="main:center cross:center"><img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[backGroundOrImg.bankNo].img}}.png"></div>
+          </div>
+          <div>
+            <p>
+              <span>{{backGroundOrImg.bankName}}</span>
+              <img ng-src="{{imgBaseURL}}img/baozhang.png">
+            </p>
+            <p>{{backGroundOrImg.cardNo}}</p>
+          </div>
+          <div>
+            <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[backGroundOrImg.bankNo].img}}.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="hasBindKJT" flex="dir:top" class="bankCardthird">
+      <div class="bankCard" ui-sref="bankCardDetail({cardNoShow:backGroundOrKjt.memberKjtpayAccount,nameKjt:backGroundOrKjt.memberRealName})">
+        <div flex="box:first" style="background: {{backGroundOrPic[88888888].background}};">
+          <div flex="main:center cross:center">
+            <div flex="main:center cross:center"><img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[88888888].img}}.png"></div>
+          </div>
+          <div>
+            <p>
+              <span>快捷通</span>
+              <img ng-src="{{imgBaseURL}}img/baozhang.png">
+            </p>
+            <p>{{backGroundOrKjt.memberKjtpayAccount}}</p>
+          </div>
+          <div>
+            <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[88888888].img}}.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bankCardFour" ng-if="isBindKjt||isBindBank">
+      <div>
+        <div ng-if="isBindBank && !iso2o" class="border" flex="cross:center main:center" ui-sref="bindingBankHome">
+          <img ng-src="{{imgBaseURL}}img/join.png" alt="jiahao">
+          <span>添加银行卡</span>
+        </div>
+        <div ng-if="isBindKjt" class="border" flex="cross:center main:center" ng-click="clickBind()">
+          <img ng-src="{{imgBaseURL}}img/join.png" alt="jiahao">
+          <span>绑定快捷通</span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,32 @@
+<ion-modal-view style="background: none;height: 100%;width: 100%">
+    <div class="position-r border-radius bg-white padding-20" style="margin-top: 50%;margin-left: auto;margin-right: auto;width: 80%">
+        <div class="width-100 padding-bottom" style="height: 40px;margin-left: -6px">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">当前容量:</div>
+            <div class="float-l" style="width: 100px;color: #787878;">
+                <div class="float-r padding-5">人</div>
+                <div class="width-100 text-align-r padding-5" style="padding-right: 18px" ng-bind="minNum">100</div>
+            </div>
+        </div>
+        <div class="width-100 padding-bottom-15" style="height: 40px">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">扩容后容量:</div>
+            <div class="float-l height-100" style="width: 88px;color: #787878;margin-left: 6px">
+                <div class="float-r padding-5">人</div>
+                <div class="width-100 height-100 text-align-r" style="padding-right: 20px">
+                    <div class="width-100 height-100 border-radius margin-top-5" style="border: 1px solid #fe605c;padding-left: 2px;padding-right: 2px">
+                        <input type="number" class="padding-0 text-align-r" ng-keyup="NumberCheck(contentNum.contentNum)" style="width: 90%;height: 100%"
+                               onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                               ng-model="contentNum.contentNum">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="width-100" style="height: 40px">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">
+                <div class="padding-top-bottom-5 padding-left-right-10 text-center border-radius float-r" style="color: #fe605c;border: 1px solid #fe605c;width: 80px" ng-click="extendContent()">确认</div>
+            </div>
+            <div class="padding-5 float-r text-align-r" style="width: 50%;color: #787878">
+                <div class="padding-top-bottom-5 padding-left-right-10 text-center border border-radius" style="color: #9a9a9a;width: 80px" ng-click="hideBigerModal()">取消</div>
+            </div>
+        </div>
+    </div>
+</ion-modal-view>

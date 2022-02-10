@@ -1,0 +1,89 @@
+<ion-view  hide-nav-bar="true"  >
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom" >
+        <div class="jd-padding-3" ng-click="goBack()" >
+            <i class="ion-ios-arrow-left  jd-font-size-32  text-align-c jd-color-blue"  > </i>
+        </div>
+        <!--<div class="jd-bg-hui-e margin-left-right-5 padding-top-5"  ng-class="{'ios-margin-top-20':isIOS}" style="width: 76%;height: 28px;border-radius: 15px;color: #999;">
+            <i class=" ion-ios-search font-size-18 jd-color-hui-a margin-left-15 position-a" style=""></i>
+            <form class="no-border jd-bg-hui-e inline-block margin-left-10">
+                <input class="no-border jd-bg-hui-e " style="padding-left: 24px;width: 110%"
+                       placeholder="haier冰箱" ng-model="input.isinput" ng-keypress="($event.which === 13)?search($event):0">
+            </form>
+        </div>-->
+        <div ng-class="{'ios-margin-top-22':isIOS}">
+            <form>
+                <input type="text" class="position-a bg-background left-50" placeholder="搜索账号、圈子、话题"
+                       ng-model="input.isinput" id="qSearch" ng-class="{'ios-padding-top-8':isIOS}"
+                       ng-keypress="($event.which === 13)?search($event):0"
+                       style="width: 74%;margin-left: -37%;height: 28px;border-radius: 15px;padding-left: 8%">
+            </form>
+            <i class="icon ion-ios-search position-a font-size-16" style="top: 10px;left: 16%;color: #6a6a6a;" ng-class="{'ios-top-30':isIOS}"></i>
+        </div>
+        <div class="jd-search-qu" >
+            <!--<i class=" " ng-click="goqSearchBiao()">取消</i>-->
+            <i class=" " ng-click="goBack()">取消</i>
+        </div>
+    </ion-header-bar>
+ <ion-content scrollbar-y="false" class="hui-back">
+     <div class="border-top">
+         <!-- 空显示-->
+         <div class="text-align-c font-size-18" style="padding: 34px 20px;" ng-if="topiclist.length==0&&showmore">
+             <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-input-null.png" style="height: 100px;">
+             <div class=" text-align-c " style="color: #777"><p>亲,你的脑容量已超越</p></div>
+             <p  style="color: #777">我们的搜索能力,换个词试试吧~</p>
+         </div>
+         <!-- 推荐圈子-->
+         <div class="  font-size-12 jd-color-hui-a no-border"  ng-if="topiclist.length!=0"
+              style="background-color: #fafafa;height:30px;">
+             <div class="padding-top-5" >
+                 <i class="margin-left-10">共搜索到</i>
+                 <i class="margin-left-5 jd-color-blue" ng-bind="topicListCount"></i>
+                 <i class="margin-left-5">个结果</i>
+             </div>
+         </div>
+         <div class="list border-top font-size-10 " ng-repeat="item in topiclist">
+             <div class="item  border-top position-r no-border " style="margin-bottom: -8px;" >
+                 <div class="inline-block position-r" style="width: 20%;" ng-click="gotoquanezi(item)">
+                     <img ng-src="{{item.topicImg|ImageTopicFilter}}" class="width-height-50" style="border-radius: 25px;margin-bottom: -10px;"/>
+                 </div>
+                 <div class="inline-block position-r white-space-nowrap" style="width: 55% ;"  ng-click="gotoquanezi(item)">
+                     <p class="font-size-14 font-bold" style="color: #333" ng-bind="item.topicName"> 微店主培训圈</p>
+                     <p class="font-size-12" ng-bind="item.topicDescription"> 微店主培训圈</p>
+                 </div>
+                 <div style="width: 25%;" class="text-align-c position-a inline-block">
+                     <div  class="margin-top-20 font-size-12 margin-left-10"
+                           style="width: 60px;height: 24px;border: 1px #0076fd solid;border-radius: 5px;color:#0076fd;right:10px;position: absolute;padding-top: 1px "
+                             ng-if="item.isJoin==0" >
+                         <i ng-click="joinCircle(item)">+加入</i>
+                     </div>
+                     <div  class="margin-top-20 font-size-14 margin-left-10"
+                           style="width: 60px;height: 24px;right:10px;position: absolute;"  ng-if="item.isJoin!=0">
+                         <i class="float-r ion-ios-arrow-right font-size-22 margin-right-10"></i>
+                     </div>
+                 </div>
+                 <p class=" font-size-10  " style="color: #999;margin-left: 22%;">
+                     <span ng-bind="item.storyNum">32</span>
+                     <i >个话题</i>
+                     <span style="margin-left: 20%" ng-bind="item.joinNum">32</span>
+                     <i class=" "> 个人</i>
+                 </p>
+             </div>
+         </div>
+         <div class="text-align-c padding-top-10 bg-white  font-bold  jd-input-more" ng-if="ismoreshow">
+             <button class="text-align-c bg-white jd-input-more1"
+                     ng-click="loadData()" >
+                 <i class="font-size-14">加载更多</i>
+             </button>
+         </div>
+     </div>
+
+    </ion-content>
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="inCircle">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>恭喜加入</span>
+            <span ng-bind="itemTopicName"></span>
+            <span>圈子</span>
+        </div>
+    </div>
+</ion-view>

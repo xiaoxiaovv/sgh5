@@ -1,0 +1,92 @@
+<ion-view view-title="顺逛微店活动页" hide-nav-bar="true">
+  <!-- *********************分享标签－whiteBird start********************* -->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <!-- *********************分享标签－whiteBird end********************* -->
+  <ion-header-bar>
+    <button ng-click="goBack()" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+    <div class="title" style="font-size: 16px !important;" ng-style="">活动</div>
+    <!-- <div class="position-a top-5" ng-style="BannerTopopType" ui-sref="commonLocation({'flag':'DAILY_LOCATION','title':'选择地区'})" >
+      <span class="padding-top-7" ng-bind="districtName"
+            style="display:inline-block;width :50px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;font-size: 14px;">
+      </span>
+      <span class="button icon ion-ios-location-outline font-size-20 padding-left-right-0" style="background:transparent;"></span>
+    </div> -->
+    <div style="display:flex;justify-content:center;align-items:center;padding-top:6px;" class="position-a top-5" ng-style="BannerTopopType" ng-click="addressTop()" >
+      <span ng-bind="districtName"
+            style="display:inline-block;width :50px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;font-size: 14px;">
+      </span>
+      <span class="icon ion-ios-location-outline font-size-20 padding-left-right-0" style="background:transparent;"></span>
+    </div>
+    <div class="position-a right-5 color-text-l top-5" ng-if="isApp">
+      <img class="button" style="width: 33px;height: 28px;padding-top: 6px;padding-bottom: 3px;background:transparent;opacity:0.7"
+           ng-click="share()" ng-src="{{imgBaseURL}}img/ic-share-b.png"/>
+    </div>
+  </ion-header-bar>
+  <ion-content class="background">
+    <!--大图布局-->
+    <div class="goods-item" ng-repeat="product in activityProductList" ng-if="layout=='layout-bp'">
+      <div ui-sref="productDetail({'productId':product.productId,
+          'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId,'shareStoreId':shareStoreId})"
+           style="margin: 10px !important;background-color: white;">
+        <div class="position-r text-align-c">
+          <img ng-src="{{product.defaultImageUrl}}" width="100%" err-src="" style="padding: 40px;">
+        </div>
+        <div class="list2-content border-top">
+          <div ng-bind="product.productFirstName"></div>
+          <div ng-bind="product.productSecondName"></div>
+          <div class="color-text-s sg-ms-title font-size-12" ng-bind="product.productTitle"></div>
+          <div class="color-text-s font-size-12">微价：
+            <span ng-bind="product.finalPrice|currency:'&yen'" class="text-color-light-red"></span>
+            <span class="color-text-s margin-left-20" ng-bind="product.hasStock"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--双列布局-->
+    <div class="border-bottom border-right bg-white daily-product sg-daily-pro-list-grid"
+         ng-repeat="product in activityProductList"
+         style="width: 50%;display: inline-block;height:282px;overflow: hidden;" ng-if="layout=='layout-colum2'">
+      <div ui-sref="productDetail({'productId':product.productId,
+          'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId,'shareStoreId':shareStoreId})" style="padding: 0 5px;">
+        <div class="position-r">
+          <img ng-src="{{product.defaultImageUrl}}" width="100%" err-src="" style="padding: 30px;">
+        </div>
+        <div class="sg-ms-title" ng-bind="product.productFirstName"></div>
+        <div ng-bind="product.productSecondName"></div>
+        <div class="sg-ms-title color-text-s font-size-12" ng-bind="product.productTitle"></div>
+        <div class="color-text-s font-size-12 padding-bottom-20">微价：
+          <span class="text-color-light-red" ng-bind="product.finalPrice|currency:'&yen'"></span>
+          <span class="color-text-s" ng-bind="product.hasStock"></span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

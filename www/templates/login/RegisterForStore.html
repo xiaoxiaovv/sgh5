@@ -1,0 +1,54 @@
+<!--注册-->
+<ion-view view-title="绑定手机号" cache-view="false">
+  <ion-content scroll="true">
+    <div class="margin-top-bottom-20 padding-10 text-align-c">
+      <span> 为更好的保障店主权益,开店需要绑定手机号,绑定手机后直接手机号登录</span>
+
+    </div>
+    <div class="list border-none padding-left-right-15">
+      <label class="padding-0 item item-input border-top-none border-left-right-none">
+        <img class="sg-login-img-height" ng-src="{{imgBaseURL}}img/ic_personal.png">
+        <input type="text" maxlength="11" ng-model="userInfo.mobileNum" placeholder="请输入您的手机号">
+      </label>
+      <div class="position-r">
+        <label class="padding-0 item item-input border-left-right-none">
+          <img class="sg-login-img-height" ng-src="{{imgBaseURL}}img/ic_message.png">
+          <input type="text" ng-model="userInfo.captchaImg" class="padding-right-10" placeholder="输入验证码">
+        </label>
+        <button ng-click="setImgCatpcha();" class="sg-identify-code-img border-none button-clear">
+          <img id="imgCatpcha" ng-src="{{identifyCodeImg}}" alt="点击刷新">
+        </button>
+      </div>
+      <div class="position-r">
+        <label class="padding-0 item item-input border-left-right-none">
+          <img class="sg-login-img-height" ng-src="{{imgBaseURL}}img/ic_message.png">
+          <input type="text" ng-model="userInfo.captcha" class="padding-right-10" placeholder="输入短信验证码">
+        </label>
+        <button ng-click="getIdentifyCode();" ng-class="{'true':'paraclass','false':'unParaclass'}[captchaFlag]" ng-bind="paracont">
+          获取验证码
+        </button>
+      </div>
+      <div class="position-r">
+        <label class="padding-0 item item-input border-left-right-none">
+          <img class="sg-login-img-height" ng-src="{{imgBaseURL}}img/ic_locker.png">
+          <input ng-model="userInfo.password" type="{{isClearPassword}}" placeholder="输入密码">
+        </label>
+        <button class="front button-clear sg-register-message" ng-click="clearText();">
+          <img class="width-50" ng-src="{{imgBaseURL}}{{isClearText?'img/ic_preview_x.png':'img/ic_preview_w.png'}}">
+        </button>
+      </div>
+      <div style="padding: 0 16px;margin:10px 0 0 0;color: #333;">提示：密码为数字、字母、特殊符号中的两种组合，长度6位~20位(字母区分大小写)</div>
+    </div>
+    <div class="padding-right-10 text-align-r">
+      <button ng-click="agreeConsent();" class="button-clear text-align-r padding-0 sg-register-button" style=" width: 40px;height: 30px;">
+        <img class="width-50" ng-src="{{imgBaseURL}}{{isAgreeConsent?'img/ic_check.png':'img/ic_select.png'}}">
+      </button>
+      <span>同意</span>
+      <span ng-click="toRegisterRules(1002,'顺逛微店注册协议')" class="sg-second-text">《顺逛微店注册协议》</span><span ng-click="toRegisterRules(996,'快捷通服务协议')" class="sg-second-text">《快捷通服务协议》</span>
+    </div>
+    <div class="padding-left-right-10 padding-top-20">
+      <button ng-click="registerUserInfo();" class="sg-feedback-submit width-100 padding-top-bottom-5 color-text-white">绑定</button>
+    </div>
+  </ion-content>
+</ion-view>
+

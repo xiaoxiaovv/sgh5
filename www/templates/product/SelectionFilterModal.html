@@ -1,0 +1,67 @@
+<ion-modal-view class="filter-modal-view">
+  <ion-header-bar class="text-align-c padding-0">
+    <span class="title" style="color:#333;">筛选</span>
+    <div class="icon ion-ios-arrow-left float-l width-10" ng-click="closeModal()" style="font-size:32px;margin-top:6px;"></div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <div style="width: 100%;height: 24px;"></div>
+    <div style="margin: 0 11px;color:#333;">
+      <div>
+        <div ng-click="chooseStockState(0)" ng-class="{true:'filter-selected',false:'filter-unselected'}[filterParameterArr[0]=='all']" style="height: 30px;line-height: 30px;font-size: 13px;text-align: center;display: inline-block;width: 48%;float: left;">
+          <span style="color:#2979FF;" ng-if="filterParameterArr[0]=='all'">&#10004</span>
+          <span>显示全部商品</span>
+        </div>
+        <div ng-click="chooseStockState(1)" ng-class="{true:'filter-selected',false:'filter-unselected'}[filterParameterArr[0]=='hasStock']" style="height: 30px;line-height: 30px;font-size: 13px;text-align: center;display: inline-block;width: 48%;float: right;">
+          <span style="color:#2979FF;" ng-if="filterParameterArr[0]=='hasStock'">&#10004</span>
+          <span>仅看有货</span>
+        </div>
+        <div style="clear:both;height:0;overflow:hidden;"></div>
+      </div>
+      <div style="padding: 20px 0 14px;">
+        <div>
+          <span style="font-size: 14px;">价格</span>
+          <!--<img ng-src="img/ic_nav_down_2.png" style="float: right;width: 12px;height: 12px;">-->
+        </div>
+        <div style="margin: 14px 0 0 0;">
+          <input type="number" placeholder="最低价"  ng-model="filterPrice.min" onkeypress="return event.keyCode>=48&&event.keyCode<=57" style="background: #F5F5F5;border-radius: 4px;display: inline-block;height:30px;width: 48%;float: left;text-align: center;">
+          <span style="display: inline-block;background-color: #D9D9D9;height: 1px;width: 4%;"></span>
+          <input type="number" placeholder="最高价"  ng-model="filterPrice.max" onkeypress="return event.keyCode>=48&&event.keyCode<=57" style="background: #F5F5F5;border-radius: 4px;display: inline-block;height: 30px;width: 48%;float: right;text-align: center;">
+        </div>
+      </div>
+      <!--2-->
+      <div class="row padding-5 padding-right-10 border-top bg-background" ng-click="changeBrand()">
+        <span class="col col-90 font-bold">品牌(<span ng-bind="brandName"></span>)</span>
+      </div>
+      <div ng-if="brand">
+        <div ng-repeat="brand in brandList">
+        <div class="row padding-5 padding-left-right-10 border-top" ng-click="chooseBrand($index)">
+          <span class="col col-90" ng-bind="brand.brandName"></span>
+          <div class="col col-10 padding-0" ng-if="isBrand[$index]">
+            <img ng-src="{{imgBaseURL}}img/addressSignal1.png"/>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div ng-repeat="item in otherList" ng-init="outIndex = $index">
+        <div class="row padding-5 padding-right-10 border-top bg-background" ng-click="changeOther($index)">
+          <span class="col col-90 font-bold">{{item.attrName}}(<span ng-bind="otherName[$index]"></span>)</span>
+        </div>
+        <div ng-if="otherState[$index]">
+          <div ng-repeat="detail in item.lstAttributeOptions">
+            <div class="row padding-5 padding-left-right-10 border-top" ng-click="chooseOtherItem(outIndex,$index,item.lstAttributeOptions.length)">
+              <span class="col col-90" ng-bind="detail.optionValue"></span>
+
+              <div class="col col-10 padding-0" ng-if="isCurrent[outIndex][$index]">
+                <img ng-src="{{imgBaseURL}}img/addressSignal1.png"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar style="text-align: center;">
+    <div ng-click="resetFilter()" style="height: 44px;width: 50%;font-size: 17px;color:#333;line-height: 44px;">重置</div>
+    <div ng-click="filterEnsure()" style="height: 44px;width: 50%;background-color: #2979FF;font-size: 17px;color:#fff;line-height: 44px;">确定</div>
+  </ion-footer-bar>
+</ion-modal-view>

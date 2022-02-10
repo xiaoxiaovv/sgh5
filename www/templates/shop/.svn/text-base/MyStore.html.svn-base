@@ -1,0 +1,282 @@
+<!--店铺预览页面-->
+<ion-view class="background" view-title="{{storeTitleName}}" hide-nav-bar="true">
+  <!-- *********************分享标签－whiteBird start********************* -->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <!-- *********************分享标签－whiteBird end********************* -->
+  <div>
+    <ion-side-menus delegate-handle="store_menu">
+      <!--主展示页面-->
+      <ion-side-menu-content drag-content="false">
+        <ion-content scrollbar-y="false" class="background">
+          <!-- <div class="mystore-title" style="margin-top: 5px" ng-style="mystoreTitle">海尔官方微店-顺逛</div> -->
+          <div class="mystore-address" style="display:flex;justify-content:center;align-items:center;margin-top: 7px;" ng-style="addressDiv">
+            <div style="display:flex;justify-content:center;align-items:center;" ng-click="addressTop()">
+              <span class="address-text" ng-bind="address"></span>
+              <span class="icon ion-ios-location-outline address-icon" ng-style="addressLabel"></span>
+            </div>
+            <div style="z-index:10;margin:-0.05rem .3rem 0 .266667rem;float: right;">
+              <div class="message" style="width: 26px;height: 0.48rem;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'myStore-point',false:''}[flagNum]">
+                  <img style="width:0.48rem;height:0.48rem;" class="message_img" ng-src="{{messageImgUrl}}">
+              </div>
+            </div>
+          </div>
+          <div>
+            <img ng-src="{{coverImage|addImgURLPostfix:450:490}}" class="ms-header-img position-r" style="height: 100px;"/>
+          </div>
+          <div style="margin-top: 5px;width: 30px;margin-left: 5px;" class="icon ion-ios-arrow-left mystore-back-btn color-text-white"
+               ng-click="goBack()" ng-style="leftArrow"></div>
+          <!--<div class="mystore-address" style="top: 40px;text-align: right;padding-right: 5px;" ng-style="addressDiv"-->
+               <!--ui-sref="commonLocation({'flag':'STORE_LOCATION','title':'选择地区'})">-->
+            <!--<span ng-bind="address" style="padding: 0;color: white;font-size: 12px;"></span>-->
+            <!--<span class="icon ion-ios-location-outline address-icon" style="width: 10px;top:0;"-->
+                  <!--ng-style="addressLabel"></span>-->
+          <!--</div>-->
+          <!--<div>-->
+            <!--<img ng-src="{{coverImage}}" class="ms-header-img position-r" style="height: 120px;"/>-->
+          <!--</div>-->
+          <!--<div style="margin-top: 5px;width: 20px;" class="icon ion-ios-arrow-left mystore-back-btn color-text-white"-->
+               <!--ng-click="goBack()" ng-style="leftArrow"></div>-->
+          <!--<img ng-src="img/btn_more_white.png" alt="更多" style="width: 30px;position: absolute;top: 0;right: 5px;" ng-click="openMore()"/>-->
+          <!--&lt;!&ndash;更多打开菜单&ndash;&gt;-->
+          <!--<div class="mystore-more" ng-show="moreShow">-->
+            <!--<div class="jf-triangle"></div>-->
+            <!--<div class="more-content">-->
+              <!--<div ng-click="goMessageCenter()">-->
+                <!--<img ng-src="img/btn_message.png" alt="消息"/>-->
+                <!--<span style="position: relative;left: 5px;bottom: 4px;">消息</span>-->
+                <!--<div  ng-class="{true:'unread-point',false:''}[unreadMessage>0]"></div>-->
+              <!--</div>-->
+              <!--<div ng-if="isApp" ng-click="share()">-->
+                <!--<img ng-src="img/btn_more_share.png" alt="分享"/><span style="position: relative;left: 5px;bottom: 4px;">分享</span>-->
+              <!--</div>-->
+              <!--<div ng-click="openQrcode()">-->
+                <!--<img ng-src="img/qrCode.png" alt="二维码"/><span style="position: relative;left: 5px;bottom: 4px;">二维码</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <ng-include src="tType"></ng-include>
+          <div class="row row-no-padding middle-menu-bar">
+            <div class="col border-right" ui-sref="homePage">
+              <img ng-src="{{imgBaseURL}}img/ic_home_select.png" alt="按钮图标"/>
+
+              <div class="font-size-12" style="color: #32beff">首页</div>
+            </div>
+            <div class="col  border-right" ui-sref="getCouponsList">
+              <img ng-src="{{imgBaseURL}}img/icon_coupon2.png" alt="按钮图标"/>
+
+              <div class="font-size-12" style="color: #32beff">优惠券</div>
+            </div>
+            <div class="col">
+              <div ng-bind="allProducts"></div>
+              <div class="font-size-12">全部商品</div>
+            </div>
+
+            <div class="col" ng-click="category()">
+              <img ng-src="{{imgBaseURL}}img/btn_category.png" alt="按钮图标"/>
+
+              <div class="font-size-12">分类</div>
+            </div>
+          </div>
+          <div class="row row-no-padding middle-tab-menu background">
+            <div class="col" id="myStoreSaleNum" ng-click="saleNum()">销量优先</div>
+            <div class="col" id="myStorePopularity" ng-click="popularity()">人气优先</div>
+            <div class="col" id="myStoreFilter" ng-click="productsFilter()">筛选</div>
+          </div>
+          <div class="border-top-bottom">
+            <!--Swiper轮播1-->
+            <!-- <div class="height-min-100" style="height: 140px;overflow: hidden;">
+              <div class="swiper-container swipers-box" id="swpc-MyStore-1">
+                <ul class="swiper-wrapper" style="height:auto;">
+                  <li class="swiper-slide" class="height-min-100" ng-repeat="item in slideImage">
+                      <img style="height:140px; width:100%;" ng-src="{{item.imageUrl|addImgURLPostfix:750:320}}" alt="轮播图" ng-click="slideImageClick($index)"/>
+                  </li>
+                </ul>
+                <div class="swiper-pagination" id="swpp-MyStore-1"></div>
+              </div>
+            </div> -->
+            <!--轮播图-->
+            <ion-slide-box delegate-handle="my_store_slider" does-continue="true" auto-play="true"
+                           class="height-min-100" style="height: 140px;overflow: hidden;">
+              <ion-slide class="height-min-100" ng-repeat="item in slideImage">
+                <img class="height-min-100" height="140px" width="100%" ng-src="{{item.imageUrl|addImgURLPostfix:750:320}}" alt="轮播图"
+                     ng-click="slideImageClick($index)" data-growing-idx="{{$index+1}}"/>
+              </ion-slide>
+            </ion-slide-box>
+          </div>
+          <div class="position-r margin-top-10" ui-sref="seckillList" ng-if="false">
+            <img ng-src="{{imgBaseURL}}img/bg_pre.jpg" alt="秒杀" class="width-100"/>
+
+            <div class="position-a right-10 top-10" ng-if="myStoreInfo.seckillIsHidden">
+              <img ng-src="{{myStoreInfo.seckill.sgSeckillItemFormList[0].defaultImageUrl}}" alt="秒杀"
+                   style="width: 50px;" class="border-white"/>
+              <span class="color-text-white position-r bottom-20">更多</span>
+            </div>
+            <div class="bg-white border-radius position-a left-10 bottom-10 text-align-c" style="width: 66%"
+                 ng-bind="countDownMsg">
+
+            </div>
+          </div>
+          <ng-include src="lType"></ng-include>
+          <ion-infinite-scroll ng-if="hasMoreData" immediate-check="false" on-infinite="loadMore()">
+          </ion-infinite-scroll>
+        </ion-content>
+        <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+        <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+        <img class="myStoreButtonMain" ng-src="{{imgBaseURL}}img/ic-plus.png" ng-click="isButtonShow()"/>
+        <img class="myStoreButton1" ng-src="{{imgBaseURL}}img/ic-search.png" ng-if="!buttonShow"
+             ui-sref="goodsSearch({front:0,shareStoreId:shareStoreId})"/>
+        <img class="myStoreButton2" ng-src="{{imgBaseURL}}img/ic-cart.png" ng-if="!buttonShow" ui-sref="cart"/>
+        <!-- add by shuang2.wang2dhc.com.cn  ****增加买家中心****-->
+        <!--<img class="myStoreButton3" ng-src="{{imgBaseURL}}img/ic_buyer_user.png" ng-if="!buttonShow&&!isApp"
+             ng-click="goBuyerCenter()"/>-->
+
+      </ion-side-menu-content>
+      <!--分类菜单-->
+      <ion-side-menu side="right" width="{{screenWidth}}">
+        <ion-header-bar class="text-align-c padding-10 border-bottom">
+          <div class="icon ion-ios-arrow-left float-l width-10" menu-close style="font-size: 28px;"></div>
+          <span class="title">分类</span>
+        </ion-header-bar>
+        <ion-content scrollbar-y="false">
+          <div>
+            <div class="category-item" ng-click="changeCategory(0,0)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[0]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[0]">
+              <span>全部</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(1,2723)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[1]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[1]">
+              <span>冰箱</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(2,2725)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[2]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[2]">
+              <span>洗衣机</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(3,2729)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[3]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[3]">
+              <span>空调</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(4,2743)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[4]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[4]">
+              <span>彩电</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(5,2741)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[5]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[5]">
+              <span>热水器</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(6,2742)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[6]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[6]">
+              <span>厨房电器</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(7,2724)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[7]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[7]">
+              <span>冷柜</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(8,2973)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[8]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[8]">
+              <span>智能产品</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(9,2737)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[9]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[9]">
+              <span>生活家电</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(10,2774)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[10]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[10]">
+              <span>水家电</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(11,2862)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[11]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[11]">
+              <span>冰吧酒柜</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(12,2736)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[12]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[12]">
+              <span>家庭医疗</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(13,2811)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[13]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[13]">
+              <span>家用中央空调</span>
+            </div>
+            <!-- <div class="category-item" ng-click="changeCategory(14,3093)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[14]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[14]">
+              <span>农产品</span>
+            </div> -->
+            <div class="category-item" ng-click="changeCategory(14,3099)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[14]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[14]">
+              <span>顺逛超市</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(15,3329)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[15]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[15]">
+              <span>健康器材</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(16,2739)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[16]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[16]">
+              <span>3C数码</span>
+            </div>
+            <div class="category-item" ng-click="changeCategory(17,3315)">
+              <img ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="!categorySelected[17]">
+              <img ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="categorySelected[17]">
+              <span>生活服务</span>
+            </div>
+          </div>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+  </div>
+  <!--二维码页面-->
+  <script id="my-qrcode-modal.html" type="text/ng-template">
+    <div class="ms-qrcode">
+      <div class="position-r">
+        <img ng-src="{{imgBaseURL}}img/ic_erweima_close.png" class="btn-close" ng-click="closeModal()"/>
+      </div>
+      <div class="border-bottom padding-top-bottom-10 padding-left-10">扫描二维码，分享我的顺逛店铺</div>
+      <img ng-src="{{myStoreInfo.qrcode}}" alt="二维码图片"/>
+
+      <div class="save-btn" ng-click="saveQrCode()" ng-if="isApp">保存二维码</div>
+    </div>
+  </script>
+</ion-view>

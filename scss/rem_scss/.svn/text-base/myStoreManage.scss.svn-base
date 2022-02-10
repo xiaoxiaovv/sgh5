@@ -1,0 +1,24 @@
+.myStoreManageTop{
+  width: 100%;
+  height: 179px;
+  position: relative;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: 179px;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  &>div{
+    width: 100%;
+    height: 179px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 120;
+  }
+}

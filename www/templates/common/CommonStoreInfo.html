@@ -1,0 +1,47 @@
+<!--模板-->
+<ion-modal-view class="background" view-title="{{title}}" hide-nav-bar="true" style="position: fixed;top: 262px;left: 0;">
+  <div align-title="center" style="height: 50px;background: #FFFFFF;padding: 10px;text-align: center;border-bottom: 1px solid #ddd;">
+    <h1 class="title" style="font-size: 18px;padding-top: 4px;">门店信息</h1>
+    <span class="ion-ios-close-empty" ng-click="closeStoreModal()" style="font-size: 32px;position: absolute;top: 6px;right: 5px;padding: 0 10px;"></span>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="homeDecorationData.length>0?contentHeight:storeContentHeight" style="top: 52px;background: #fff;" delegate-handle="mainScroll">
+    <!--<ul class="list">-->
+      <!--<li ng-style="nowLevelIndex[nowLevel]==$index?{'color':'red'}:{}" class="item" ng-repeat="item in dataAdd track by $index"  style="padding: 10px;font-size: 14px;">-->
+        <!--<span ng-bind="item.text"></span>-->
+      <!--</li>-->
+    <!--</ul>-->
+    <!--有店铺信息-->
+    <div style="width: 100%;" ng-if="homeDecorationData.length>0">
+      <div style="width: 100%;" ng-repeat="item in homeDecorationData track by $index">
+        <div style="margin-left: 8px;margin-right: 8px;border-bottom: 1px solid #eee;">
+          <div style="position: relative;width: 100%;">
+            <div style="display:inline-block;width: 24px;height: 24px;position: absolute;left: 8px;top: 4px;">
+              <img ng-src="{{imgBaseURL}}img/homeDecortion.png" style="width: 100%;height: 100%;">
+            </div>
+            <div style="display:inline-block;margin:6px 0 0 32px;font-size: 14px;color: #333;">{{item.pn}}</div>
+          </div>
+          <div style="margin-left: 30px;">
+            <div style="font-size: 12px;color: #999;margin-top: 4px;">{{item.a}}</div>
+            <div style="font-size: 12px;color: #999;margin-bottom: 8px;">{{item.p}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--没有店铺信息-->
+    <div style="width: 100%;" ng-if="homeDecorationData.length <= 0">
+         <div style="width: 130px;height: 96px;margin: 26px auto 18px auto;">
+           <img ng-src="{{imgBaseURL}}img/noStoreMsg.png" style="width: 100%;height: 100%;">
+         </div>
+         <div style="width:200px;height:42px;margin: auto;color: #999;font-size: 14px;">
+             所选收货地址附近暂无门店信息 <br/>
+             <span style="margin-left: 4px;">可修改收货地址查看其他地区</span>
+         </div>
+    </div>
+  </ion-content>
+  <div  ng-if="homeDecorationData.length > 0" ng-style="storeMsgTop" style="width:100%;height: 58px;line-height: 58px;color: #fff;font-size: 14px;background: #FE4401;text-align: center;position: fixed;" >
+    您可选择附近的任意门店使用特权码
+  </div>
+  <div  ng-if="homeDecorationData.length <= 0" ng-style="storeMsgTop" style="width:100%;height: 58px;line-height: 58px;color: #fff;font-size: 14px;background: #fff;position: fixed;" >
+
+  </div>
+</ion-modal-view>

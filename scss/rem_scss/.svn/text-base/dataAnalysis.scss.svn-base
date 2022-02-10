@@ -1,0 +1,174 @@
+.dataAnalysisBackground{
+  background-color: #eee;
+}
+
+.dataAnalysisOne{
+  margin-top: 20px;
+  .dataAnalysisHead{
+    height:136px;
+    background-color: #fff;
+    padding:0 20px;
+    .dataAnalysisDT{
+      font-size: 15px;
+      color: #090909;
+      letter-spacing: 0;
+      line-height: 15px;
+      padding:20px 0 30px 0;
+    }
+    .dataAnalysisLBT{
+      font-size: 14px;
+      color: #090909;
+      letter-spacing: 0;
+      line-height: 14px;
+      margin-bottom: 14px;
+      img{
+        height:11px;
+        margin-right: 3px;
+      }
+    }
+    .dataAnalysisLBB{
+      font-size: 13px;
+      color: #666;
+      letter-spacing: 0;
+      line-height: 15px;
+    }
+  }
+  .pieChartone{
+    background-color: #fff !important;
+    width:100%;
+    // height:338px;
+    position:relative;
+    margin-top: 8px;
+    padding: 0 20px 16px;
+    #container{
+      width:100%;
+      height:320px;
+    }
+  }
+  .isHasPieChartone{
+    position:absolute;
+    top:40px;
+    left:78px;
+    img{
+      width:200px;
+    }
+    span{
+      opacity: 0.53;
+      font-size: 16px;
+      color: rgba(0,0,0,0.54);
+      line-height: 20px;
+    }
+  }
+  .pieChartone1{
+    height:auto;
+  }
+  .pieChartone11{
+    margin-top: 20px;
+    font-size: 15px;
+    color: #090909;
+    letter-spacing: 0;
+    // line-height: 15px;
+  }
+  .pieChartone13{
+    padding-top: 18px;
+    span{
+      font-size: 14px;
+      color: #666;
+      letter-spacing: 0;
+      line-height: 20px;
+    }
+    span:nth-child(1){
+      margin-right:30px;
+    }
+  }
+  .pieChartTwo{
+    width:100%;
+    margin-top: 8px;
+    background-color: #fff;
+    #activeContenter{
+      padding:0 20px;
+      width:100%;
+      height:260px;
+    }
+  }
+  .pieChartTwoPadding{
+    padding:0 20px;
+  }
+  .pieChartTwo1{
+    flex-wrap:wrap;
+    height:212px;
+    div{
+      width:50%;
+      height:42px;
+      margin-bottom: 28px;
+    }
+    .pieChartTwoImg{
+      display: block;
+      height:42px;
+      width:20px;
+      margin-right: 14px;
+      padding-top:10px;
+      img{
+        width:100%;
+      }
+    }
+    .pieChartTwoP{
+      .pieChartTwoP1{
+        font-size: 22px;
+        color: #172434;
+      }
+      .pieChartTwoP2{
+        font-size: 11px;
+        color: #8E9091;
+      }
+    }
+  }
+  .pieChartThree{
+    width:100%;
+    background-color: #fff;
+    margin-top: 8px;
+    padding:0 20px;
+    .pieChartThree1{
+      height:58px;
+    }
+    .pieChartThreeOne{
+      width:100%;
+      .pieChartThreeOne1{
+        padding-top: 20px;
+        height:78px;
+        .pieChartThreeOne11{
+          font-size: 15px;
+          color: #333333;
+          // height:15px;
+          // line-height: 15px;
+        }
+        .pieChartThreeOne12{
+          font-size: 15px;
+          color: #000;
+          line-height: 15px;
+          span:nth-child(1){
+            color: #F7A103;
+          }
+        }
+        .pieChartThreeOne13{
+          width:100%;
+          height:7px;
+          background-color: #e4e4e4;
+          margin-top: 13px;
+          border-radius: 7px;
+          position: relative;
+        }
+        .pieChartThreeOne14{
+          height:7px;
+          border-radius: 7px;
+          background-color: #FFBB41;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+.bottomToptwo{
+  height:43px;
+  width:100%;
+}

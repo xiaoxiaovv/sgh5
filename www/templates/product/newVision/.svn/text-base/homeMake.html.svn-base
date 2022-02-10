@@ -1,0 +1,97 @@
+<ion-view class="background smartAppliance" view-title="家居家装" hide-nav-bar="true">
+
+    <ion-content scrollbar-y="false">
+      
+        <div id="banner">  
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">1</div>
+                <div class="swiper-slide">2</div>
+                <div class="swiper-slide">3</div>
+                <div class="swiper-slide">4</div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        
+      </div>
+      <div class="makeNav">
+        <ul>
+            <li>
+                <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                <span>家政服务</span>
+            </li>
+            <li>
+                  <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                  <span>家政服务</span>
+              </li>
+              <li>
+                  <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                  <span>家政服务</span>
+              </li>
+              <li>
+                  <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                  <span>家政服务</span>
+              </li>
+              <li>
+                  <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                  <span>家政服务</span>
+              </li>
+        </ul>
+    </div>
+    <div class="homeAct">
+        <div class="nav-title">家装设计师</div>
+        <div class="relaxhome-content">
+              <div>
+                  <p><img src="{{imgBaseURL}}img/newvision/27.jpg"></p>
+                  <h3>在海南入住的Airbnb#客厅</h3>
+                  <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+              </div>
+              <div>
+                <p><img src="./img/newvision/27.jpg"></p>
+                <h3>在海南入住的Airbnb#客厅</h3>
+                <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+            </div>
+            <div>
+                <p><img src="./img/newvision/27.jpg"></p>
+                <h3>在海南入住的Airbnb#客厅</h3>
+                <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+            </div>
+        </div>
+    </div>
+      <div class="smart-life">
+            <div class="nav-title">猜你喜欢</div>
+            <div class="life-content">
+                <ul>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+      </div>
+
+  
+    </ion-content>
+  </ion-view>
+  

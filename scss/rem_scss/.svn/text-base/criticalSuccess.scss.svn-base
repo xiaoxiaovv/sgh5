@@ -1,0 +1,74 @@
+.criticalSuccess{
+  .topDiv{
+    height:91px;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 0;
+    text-align:center;
+    line-height:91px;
+    margin-bottom:33px;
+  }
+  .shareDiv{
+    height:42px;
+    padding:0 16px;
+    font-size: 14px;
+    color: #666;
+    text-align:center;
+    line-height:42px;
+    .shareDivLine{
+      border-top:1px #eee solid;
+      position:relative;
+      top:21px;
+    }
+    .shareDivText{
+      padding:0 16px;
+      position:relative;
+      z-index:8;
+      background:#fff;
+    }
+  }
+  .platformShare{
+    height:124px;
+    text-align:center;
+    padding:0 16px;
+    .platformShareList{
+      margin-left:54px;
+    }
+    img{
+      height:44px;
+      width:44px;
+      border-radius: 50%;
+    }
+  }
+  .productArr{
+    height:64px;
+    padding:0 16px;
+    .productSay{
+      height:20px;
+      background: #F56767;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #fff;
+      letter-spacing: -0.29px;
+      line-height:20px;
+      padding:0 14px;
+      margin-right:12px;
+    }
+    .productleft{
+      padding-right: 8px;
+      img{
+        padding:12px;
+        width:64px;
+        height:64px;
+      }
+      span{
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  .bottomDiv{
+    height:26px;
+  }
+}

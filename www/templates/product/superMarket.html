@@ -1,0 +1,94 @@
+<ion-view class="background furnish" view-title="百货超市" hide-nav-bar="true">
+    <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+      <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="goBack()">
+        <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+      </div>
+      <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">百货超市</div>
+      <div style="position:absolute;right:0;top: 0;margin: .12rem .426667rem 0 .266667rem;" flex="main:center cross:center">
+        <div style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ng-click="goToSearch()">
+            <img style="width:28px;height:28px;margin-top: -.32rem;" ng-src="{{EMSearchImgUrl}}">
+        </div>
+        <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+          <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+        </div>
+      </div>
+    </ion-header-bar>
+    <div class="furnishNav" ng-style="{true:iosAppTop,false:normalTop}[isIosApp]">
+      <ion-scroll direction="x" scrollbar-x="false" zooming="false" style="overflow: hidden;">
+        <div flex="" class="superMarket_xScroll">
+        <div ng-repeat="item in supermarketCates track by $index" flex-box="0" ng-click="chooseType($index,$event)" class="timeSale_list_item">
+            {{item.name}}
+          </div>
+        <!-- <div flex-box="0" ng-click="chooseType(0,$event)" class="timeSale_list_item">
+          食品
+        </div>
+        <div flex-box="0" ng-click="chooseType(1,$event)" class="timeSale_list_item">
+          母婴
+        </div>
+        <div flex-box="0" ng-click="chooseType(2,$event)" class="timeSale_list_item">
+          运动户外
+        </div>
+        <div flex-box="0" ng-click="chooseType(3,$event)" class="timeSale_list_item">
+          数码/电脑办公
+        </div> -->
+        <!--<div flex-box="0" ng-click="chooseType(4,$event)" class="timeSale_list_item">
+          医药保健
+        </div>
+        <div flex-box="0" ng-click="chooseType(5,$event)" class="timeSale_list_item">
+          汽配
+        </div>
+        <div flex-box="0" ng-click="chooseType(6,$event)" class="timeSale_list_item">
+          腕表
+        </div>-->
+        <div flex-box="0" ng-click="chooseType(-1,$event)" class="timeSale_list_item">
+
+        </div>
+          <div class="runningBox"></div>
+        </div>
+      </ion-scroll>
+      <div class="borderBottom"></div>
+    </div>
+  <ion-content scrollbar-y="false">
+    <div class="furnishTopPic">
+        <!--Swiper轮播1-->
+        <!-- <div class="swiper-container swipers-box" id="swpc-Market-1" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+                <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swpp-Market-1"></div>
+        </div> -->
+        <ion-slide-box  delegate-handle="superMarket_slider" auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in bannerList track by $index">
+            <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)" data-growing-idx="{{$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+      <div>
+        <img class="super_intro" ng-repeat="item in furnishTop" ng-src="{{item.imgUrl}}" ng-click="goProductDetail(item.productId)" data-growing-idx="{{$index+1}}"/>
+      </div>
+    </div>
+    <div ng-if="furnishItem.limitLength!=0" class="furnishBlock" ng-repeat="furnishItem in furnishBottom" ng-class="'super_module_' + $index">
+      <div flex="main:center cross:center">
+        <div class="onePixelHeight"></div>
+        <div>{{furnishItem.productCateName}}</div>
+        <div class="onePixelHeight"></div>
+      </div>
+      <div class="furnish_more" flex="main:center cross:center" ng-click="goBranchType(furnishItem.productCateId)" data-growing-idx="1">
+        <div>更多</div>
+        <img ng-src="{{imgBaseURL}}img/toSeeMore2@2x.png">
+      </div>
+      <div>
+        <div ng-repeat="list in furnishItem.lowRecommendProducts | limitTo:furnishItem.limitLength" ng-click="goProductDetail(list.productId)" data-growing-idx="{{$index+2}}">
+          <div><img ng-src="{{list.imgUrl|addImgURLPostfix:300:300}}"></div>
+          <div>{{list.productName}}</div>
+          <div flex="cross:center">¥{{dealPrice(list.productPrice).priceInt}}<span>.{{dealPrice(list.productPrice).priceFloat}}</span></div>
+          <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+            ¥{{list.productCommission|keepInt}}<span>{{list.productCommission|keepFloat}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

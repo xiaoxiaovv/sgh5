@@ -1,0 +1,90 @@
+<ion-view view-title="分类" class="background branchtype-box" hide-back-button="true" hide-nav-bar="true">
+    <!--头部定位-搜索-消息中心-->
+    <div flex="main:center cross:center box:justify" class="selection_top branchtype-heade branchtype-top-ios" id="BranchtypeHeade" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]" ng-style="changeOpacity">
+        <!--地理位置-->
+        <div class="address" flex="main:center cross:center" ng-click="addressTop()">
+            <div ng-style="changeColor" ng-bind="region" class="text-gps"></div>
+            <img ng-src="{{locationImgUrl}}">
+        </div>
+        <!--搜索-->
+        <div class="search" flex="cross:center" ng-style="searchBg" ui-sref="goodsSearch({front:1})">
+            <img ng-src="{{imgBaseURL}}img/searchIcon@2x.png">
+            <div>{{gsPlaceholder}}</div>
+        </div>
+        <!--消息-->
+        <div class="message" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'branchTypePoint',false:''}[flagNum]" style="position:relative;">
+            <img ng-src="{{messageImgUrl}}">
+            <div ng-style="changeColor" class="text-msg">消息</div>
+        </div>
+    </div>
+    <!--内容视图-->
+    <div class="branchtype cl scroll-content ionic-scroll has-footer" ng-class="{true:'iosContent',false:'normalContent'}[isIosApp]">
+        <!--当一级数据为空时候显示没有数据-->
+        <div style="position: absolute;left:50%; top:50%; margin-left:-39px; margin-top:-43px;" ng-if="iSDataLeftRight">
+            <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+            <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">暂无分类信息</div>
+        </div>
+        <!--滚动条左侧-菜单-->
+        <div class="branchtype-left fl" ng-if="!iSDataLeftRight">
+            <ion-scroll direction="y" scrollbar-y="false" zooming="false" class="branchtype-scroll">
+                <div ng-repeat="item in leftDataList" class="branchtype-nav" ng-class="{true: 'branchtype-default'}[leftDataListIndex == $index]" ng-click="selectTab({{item.id}},$index)">{{ item.navigationName }}</div>
+                <div style="height:30px;"></div>
+            </ion-scroll>
+        </div>
+        <!--滚动条右侧-内容-->
+        <div class="branchtype-right fr" ng-if="!iSDataLeftRight">
+            <ion-scroll direction="y" delegate-handle="branchtype-right-scroll" scrollbar-y="false" class="branchtype-scroll">
+                <!--二级内容为空时候提示-->
+                <div style="padding:20px 0 20px 0;" ng-if="isListNull">
+                    <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+                    <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">暂无分类信息</div>
+                </div>
+                <!--swiper轮播-->
+                <!-- <div ng-show="slideImage.length">
+                    <div class="swiper-container swipers-box" id="swpcontainer-branchType-1" style="height:auto;">
+                        <ul class="swiper-wrapper" style="height:auto;">
+                        <li class="swiper-slide" ng-repeat="item in slideImage" style="height:auto;" ng-click="bannerClick(item)">
+                            <img ng-src="{{item.imageUrl}}" alt="" style="height:auto;"/>
+                        </li>
+                        </ul>
+                        <div class="swiper-pagination" id="swppagination-branchType-1"></div>
+                    </div>
+                </div> -->
+                <!--轮播图-->
+
+                <!--轮播图-->
+                <div ng-show="slideImage.length">
+                    <ion-slide-box class="banner" delegate-handle="selection_slider" auto-play="true" does-continue="true">
+                        <ion-slide class="text-align-c" ng-repeat="imageItem in slideImage">
+                            <img class="" ng-click="bannerClick(imageItem)" ng-src="{{imageItem.imageUrl}}">
+                        </ion-slide>
+                    </ion-slide-box>
+                </div>
+                <!--不带边框的-->
+                <dl class="branchtype-list" ng-repeat="item in rightDataList">
+                    <dt><span></span><b>{{ item.navigationName }}</b><span></span></dt>
+                    <!--了解热水器(只有H5有这个入口)-->
+                    <!--<dt ng-click="learnRsq()" flex="main:center cross:center" class="learnRsq" ng-if="item.navigationName=='热水器'"><img class="rsqImg" ng-src="{{imgBaseURL}}img/rsq_little.png"><p class="rsqContent">了解海尔热水器</p><img class="seeMore" ng-src="{{imgBaseURL}}img/toSeeMore@2x.png"></dt>-->
+                    <dd class="cl">
+                        <div ng-repeat=" itemchildren in item.children" ui-sref="branchTypeDetail({productCateId:itemchildren.url})">
+                            <img ng-src="{{ itemchildren.imageUrl }}">
+                            <span>{{ itemchildren.navigationName }}</span>
+                        </div>
+                    </dd>
+                </dl>
+                <div style="height:30px;"></div>
+                <!--懒加载-->
+                <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
+            </ion-scroll>
+        </div>
+    </div>
+    <!--底部悬浮按钮-->
+    <!-- <img class="selectionButtonMain" ng-click="isButtonShow()" ng-if="isBuyer == '0'" ng-src="img/ic-plus.png" alt>
+    <img class="selectionButton1" ng-if="isBuyer == '0'&&buttonShow" ng-src="img/ic-search.png" alt ui-sref="goodsSearch({front:1})">
+    <img class="selectionButton2" ng-if="isBuyer == '0'&&buttonShow" ng-src="img/ic-cart.png" alt ui-sref="cart">
+    <!-- add by shuang2.wang2dhc.com.cn  ****增加买家中心****-->
+    <!--<img class="selectionButton3" ng-if="isBuyer == '0'&&buttonShow" ng-src="img/ic_buyer_user.png" ui-sref="buyerCenter"> -->
+    <ion-footer-bar>
+        <div ng-include="'templates/common/Tabs.html'"></div>
+    </ion-footer-bar>
+</ion-view>

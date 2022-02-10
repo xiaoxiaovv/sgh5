@@ -1,0 +1,296 @@
+/*create by@zyr 2017.11.19*/
+/*签到排行榜 头部*/
+.sign-head {
+	background-image: linear-gradient(-90deg, #419FFE 0%, #6D6EDE 100%);
+	height:104px;
+	.head-title {
+		height: 44px;
+		width: 100%;
+		color: #fff;
+		overflow: visible;
+		.user-img {
+			.go-back {
+				width: 30px;
+        height: 30px;
+        margin-left: 16px;
+			}
+		}
+		.title {
+			font-size:16px;
+		}
+		.head-share {
+			width:24px;
+			height:24px;
+		}
+	}
+	.head-tab {
+		margin-top:20px;
+		height: 30px;
+		font-size: 14px;
+		color:#fff;
+		.tab-item {
+			text-align:center;
+			position:relative;
+			&.active:after {
+				content:'';
+        width:30px;/*如果两边都要留空位的话就需要计算宽度*/
+        height:2px;
+        border-radius:2px;
+        background-color:#fff;
+        bottom:0;
+        left:50%;
+        margin-left:-15px;
+        position:absolute;
+			}
+		}
+	}
+}
+/*签到排行榜列表*/
+.sign-list-box {
+	background: #fff;
+	padding: 0 16px;
+	.list-title {
+		font-size: 12px;
+		color: #999;
+		position: relative;
+		padding: 12px 0;
+		&:after {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 1px;
+			background: rgba(0,0,0,.1);
+			bottom: 0;
+			left: 0;
+		}
+		span {
+			color: red;
+		}
+	}
+	.list-box {
+		.list-item {
+			position: relative;
+			padding: 15px 0;
+			overflow: visible;
+			&.padding-default {
+				padding-top: 25px;
+			}
+			&:after {
+				position: absolute;
+				bottom: 0;
+				content: '';
+				width: 100%;
+				height: 1px;
+				background: rgba(0,0,0,.1);
+			}
+			.item-left {
+				overflow: visible;
+				&.item-frist {
+					.item-num {
+						color: #FF8F21;
+					}
+					.item-user {
+						.user-info {
+							.user-name {
+								color: #FF8F21;
+							}
+						}
+					}
+				}
+				&.item-second {
+					.item-num {
+						color: #991EFF;
+					}
+					.item-user {
+						.user-info {
+							.user-name {
+								color: #991EFF;
+							}
+						}
+					}
+				}
+				&.item-third {
+					.item-num {
+						color: #FF4C4C;
+					}
+					.item-user {
+						.user-info {
+							.user-name {
+								color: #FF4C4C;
+							}
+						}
+					}
+				}
+				.item-num {
+					margin-right: 13px;
+					font-size: 18px;
+					color: #666;
+				}
+				.item-user {
+					overflow: visible;
+					position: relative;
+					i {
+						position:absolute;
+						top: -13px;
+						left: -11px;
+						width: 30px;
+						height: 30px;
+						z-index: 1;
+						img {
+							width: 30px;
+							height: 30px;
+						}
+					}
+					.user-img {
+						margin-right: 10px;
+						width: 60px;
+						height: 60px;
+						border-radius: 100%;
+						border: 2px solid #fff;
+						z-index: 2;
+						background: #fff;
+						overflow: visible!important;
+						img {
+							width: 60px;
+							height: 60px;
+							border-radius: 100%;
+						}
+					}
+					.user-info {
+						font-size: 14px;
+						color: #333;
+						.user-name {
+								overflow: hidden;
+								text-overflow: ellipsis;
+								display: -webkit-box!important;
+								-webkit-box-orient: vertical!important;
+								-webkit-line-clamp: 1!important;
+							}
+					}
+					.user-ident {
+						padding: 0 8px;
+						height: 20px;
+						line-height: 18px;
+						border-radius: 10px;
+						font-size: 12px;
+						color: #2979ff;
+						border: 1px solid #2979ff;
+					}
+				}
+			}
+			.item-right{
+				font-size: 12px;
+				color: #333;
+			}
+		}
+	}
+}
+/*签到成功的弹窗 样式*/
+.signPopup{
+	&.popup-container {
+		.popup {
+			.popup-body {
+				padding: 0;
+			}
+		}
+	}
+}
+.signPopup .popup{
+	background: transparent;
+	width:90%;
+	.sign-box {
+		background: transparent;
+		position: relative;
+		.sign-close {
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			right: 0px;
+			top: 0;
+			img {
+				width: 27px;
+				height: 27px;
+			}
+		}
+		.sign-bg {
+			width: 100%;
+		}
+		.sign-content {
+			position: absolute;
+			top: 210px;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			margin: 0 auto;
+			.sign-title {
+				color: #e7403e;
+				.sign-icon {
+					width: 30px;
+					margin-right: 10px;
+					img {width: 100%;}
+				}
+				.title-text {
+					font-size: 16px;
+					color: #E7403E;
+					span{font-size:18px;}
+				}
+			}
+			p {
+				font-size: 14px;
+				color: #666;
+				margin-top: 10px;
+				.sign-num {
+					color: #b87305;
+				}
+			}
+		}
+		.sign-foot {
+			width: 80%;
+			height: 45px;
+			line-height: 45px;
+			position: absolute;
+			bottom: 15px;
+			left: 10%;
+			color: #fff;
+			font-size: 16px;
+		}
+	}
+	
+}
+/* @media only screen and (max-width: 325px) {
+	.signPopup .popup{
+		// background: transparent;
+		width: 90% !important;
+		.sign-content {
+			bottom: 70px;
+		}
+	}
+}
+@media only screen and (min-width: 325px) {
+	.signPopup .popup{
+		// background: transparent;
+		width: 90% !important;
+		.sign-box {
+			.sign-content {
+				bottom: 96px;
+				.sign-title  {
+					margin-bottom: 15px;
+				}
+			}
+		}
+	}
+}
+@media only screen and (min-width: 400px) {
+	.signPopup .popup{
+		// background: transparent;
+		width: 90% !important;
+		.sign-box {
+			.sign-content {
+				bottom: 115px;
+				.sign-title  {
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+} */

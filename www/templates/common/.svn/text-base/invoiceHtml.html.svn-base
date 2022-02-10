@@ -1,0 +1,6 @@
+<!--模板-->
+<ion-view class="background" view-title="电子发票" cache-view="false">
+  <ion-content direction="y" scrollbar-x="false">
+    <iframe ng-src="{{invoiceSrc}}" style="width: 100%;height:{{deviceHeight}}px"></iframe>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,37 @@
+<!--我的->关于我们-->
+<<<<<<< .mine
+<ion-view class="background" view-title="关于顺逛微店">
+  <div flex="main:center cross:center" style="position: relative;padding:0 5px;width: 100%;background: #f8f8f8;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-click="$ionicGoBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;position: absolute;bottom: 10px;left:5px;"></img>
+    <div style="font-size: 20px;color: #444444;">关于顺逛微店</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-class="{true:'iosContentCss',false:'otherContentCss'}[isIOS]">
+=======
+<ion-view class="background" view-title="关于顺逛微店" hide-nav-bar="true">
+  <div flex="main:center cross:center" style="position: relative;padding:0 5px;width: 100%;background: #f8f8f8;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-click="$ionicGoBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;position: absolute;bottom: 10px;left:5px;"></img>
+    <div style="font-size: 20px;color: #444444;">关于顺逛微店</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-class="{true:'iosContentCss',false:'otherContentCss'}[isIOS]">
+>>>>>>> .r186819
+    <div class="padding padding-top-15 padding-bottom-15">
+      顺逛微店是海尔集团旗下官方社交平台，内部和所有并联节点打通，外部聚微店主和线下店，
+      旨在打造聚焦“诚信生态共享平台”下的线上店、线下店、微店“三店合一”的社群经济生态平台。
+    </div>
+    <div class="height-size"></div>
+    <div class="text-center">
+      <img class="width-30" ng-src="{{imgBaseURL}}img/about-us-logo.jpg" alt="顺逛"/>
+
+      <div>有梦就有店！您的朋友扫码即可下载APP</div>
+      <span ng-bind="versionShow" class="color-text-s">
+      </span>
+      <!--<button class="color-text-theme button-clear" ng-click="softwareUpdate()">软件更新</button>-->
+    </div>
+    <div class="height-size"></div>
+    <div style="height:26px;width:86%;background: #FCFCFC;border: 0px solid #B9B9B9;border-radius: 4px;margin:0 auto;text-align:center;line-height:26px;opacity: 0.69;font-size: 14px;color: #000000;letter-spacing: -0.39px;" ui-sref="Customer">
+联系VIP顾问</div>
+  </ion-content>
+  <div class="text-align-c font-size-12 color-text-s down-side padding-left-right-20 padding-bottom-25">
+    海尔旗下Copyright ©2000-2017海尔集团电子商务有限公司All Rights Reserved
+  </div>
+</ion-view>

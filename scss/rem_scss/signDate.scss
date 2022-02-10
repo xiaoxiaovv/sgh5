@@ -1,0 +1,371 @@
+/*create by@zyr 2017.11.20*/
+.sign-date-box {
+	width: 100%;
+	height: 100%;
+	background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/signIn/sign_date_bg.png);
+	background-size: cover;
+	//background-color: linear-gradient(-180deg, #EA490D 0%, #FF7C35 100%);
+	.date-head {
+		.head-title {
+			height: 44px;
+			width: 100%;
+			color: #fff;
+			overflow: visible;
+			.user-img {
+				.go-back {
+					width: 30px;
+	        height: 30px;
+	        margin-left: 16px;
+				}
+			}
+			.title {
+				font-size:16px;
+			}
+			.head-buqian {
+				width: 38px;
+				margin-right: 16px;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+	.date-content {
+		position: relative;
+		padding-top: 80px;
+		width: 90%;
+		margin: 0 auto;
+		.date-bg {
+			img {
+				width: 100%;
+			}
+		}
+		.sign-info {
+			position: absolute;
+			top: 100px;
+			text-align: center;
+			width: 100%;
+			overflow: visible !important;
+			.info-title {
+				font-size: 14px;
+				color: #b87305;
+			}
+			.ingo-btn {
+				position: relative;
+				width: 70%;
+				height: 42px;
+				margin-top: 10px;
+				font-size: 16px;
+				color: #fff;
+				overflow: visible !important;
+				.btn-bg {
+					width: 100%;
+					height: 100%;
+					overflow: visible !important;
+					img {
+						width: 100%;
+						overflow: visible !important;
+					}
+				}
+				.btn-text {
+					position: absolute;
+					top: 0;
+					width: 100%;
+					height: 42px;
+					line-height: 42px;
+					text-align: center;
+				}
+			}
+		}
+		.date-box {
+			position: absolute;
+			top: 250px;
+			width: 100%;
+			.date-btn {
+				padding:0 30px;
+				.date-text {
+					color: #333;
+				}
+				.prev-btn {
+					float:left;
+					height: 20px;
+					width: 75px;
+					vertical-align: middle;
+					text-align: left;
+					color: #b87305;
+					i {
+						width: 20px;
+						height: 20px;
+						display: inline-block;
+						vertical-align: middle;
+						img {
+							width: 20px;
+							vertical-align: top;
+						}
+					}
+				}
+				.next-btn {
+					float:right;
+					height: 20px;
+					width: 75px;
+					vertical-align: middle;
+					text-align: right;
+					color: #b87305;
+					i {
+						width: 20px;
+						height: 20px;
+						display: inline-block;
+						vertical-align: middle;
+						img {
+							width: 20px;
+							vertical-align: top;
+						}
+					}
+				}
+			}
+			.week-box {
+				height:25px;
+				width:100%;
+				padding:0 20px;
+				margin-bottom: 5px;
+				.week-border {
+					width: 100%;
+					height: 100%;
+					border-bottom: 1px solid #c48726;
+					.week {
+						float:left;
+						display:inline-block;
+						width:14.28%;
+						text-align:center;
+						color: #b87305;
+					}
+				}
+			}
+			.day-box {
+				overflow:hidden;
+				width:100%;
+				padding: 0 20px;
+				color: #333;
+				.day-item {
+					width: 14.28%;
+					height:31px;
+					line-height:30px;
+					font-size: 10px;
+					float:left;
+					text-align:center;
+					position: relative;
+					&.active {
+
+					}
+					&.noactive {
+						color: #999;
+					}
+					&.sign-active {
+						span {
+							border: 2px solid #ea490d;
+							border-radius: 100%;
+							line-height: 21px;
+						}
+					}
+					span {
+						width: 25px;
+						height: 25px;
+						display: inline-block;
+						text-align: center;
+						line-height: 21px;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						margin-top: -12.5px;
+						margin-left: -12.5px;
+						z-index: 10;
+					}
+					.active-img {
+						width: 28px;
+						height: 28px;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						margin-top: -14px;
+						margin-left: -14px;
+						z-index: 1;
+						img {
+							width: 100%;
+							height: 28px;
+							max-height: 28px;
+						}
+					}
+					a {
+						color: #333;
+					}
+				}
+			}
+		}
+	}
+	.sign-instruction {
+		.instruction-title {
+			img {
+				width: 100%;
+			}
+		}
+		.instruction-content {
+			background: #f66422;
+			position: relative;
+			padding-bottom: 30px;
+			.instruction-bg {
+				width: 90%;
+				margin: 0 auto;
+				img {
+					width: 100%;
+				}
+			}
+			.instruction-text {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				text-align: center;
+				padding-top: 10px;
+				p {
+					margin-top: 10px;
+					font-size: 14px;
+					color: #b87305;
+				}
+			}
+		}
+	}
+}
+.replenishPopup {
+	&.popup-container {
+		.popup {
+			width: 75%;
+			border-radius: 5px;
+			.popup-body {
+				overflow: visible;
+				padding: 0;
+				.rep-box {
+					position: relative;
+					.rep-close {
+						position: absolute;
+						top: -50px;
+						right: 0;
+						width: 30px;
+						z-index: 100;
+						img {
+							width: 100%;
+						}
+					}
+					.rep-head {
+						height: 40px;
+						line-height: 40px;
+						border-bottom: 1px solid rgba(0,0,0,.1);
+						font-size: 16px;
+						color: #333;
+					}
+					.rep-content {
+						padding: 20px 20px;
+						.con-date {
+							position: relative;
+							.input {
+								border: 2px solid rgba(0,0,0,.2);
+								padding: 0 5px;
+								height: 40px;
+								line-height: 36px;
+								text-align: left;
+								color: #333;
+							}
+							i{
+								position: absolute;
+								top: 5px;
+								right: 5px;
+								height: 30px;
+								height: 30px;
+								img {width: 30px;}
+							}
+						}
+						.con-info {
+							margin-top: 15px;
+							font-size: 14px;
+							color: #666;
+							span {
+								color: #b87305;
+							}
+						}
+					}
+					.rep-foot {
+						height: 37px;
+						line-height: 37px;
+						background: #2979ff;
+						color: #fff;
+						font-size: 16px;
+						border-bottom-left-radius: 5px;
+						border-bottom-right-radius: 5px;
+					}
+				}
+			}
+		}
+	}
+}
+/*补签成功弹窗*/
+.replenishSucPopup {
+	&.popup-container {
+		.popup {
+			background: transparent;
+			width: 90%;
+			.popup-body {
+				padding: 0;
+				.suc-box {
+					position: relative;
+					text-align: center;
+					.suc-close{
+						position: absolute;
+						top: 0;
+						right: 0;
+						width: 30px;
+						img {width: 30px;}
+					}
+					.suc-bg {
+						img {width: 100%;}
+					}
+					.suc-content {
+						position: absolute;
+						top: 210px;
+						left: 0;
+						width: 100%;
+						text-align: center;
+						margin: 0 auto;
+						.suc-title {
+							color: #e7403e;
+							.suc-icon {
+								width: 30px;
+								margin-right: 10px;
+								img {width: 100%;}
+							}
+							.title-text {
+								font-size: 16px;
+								color: #E7403E;
+							}
+						}
+						p {
+							font-size: 14px;
+							color: #666;
+							margin-top: 10px;
+							.suc-num {
+								color: #b87305;
+							}
+						}
+					}
+					.suc-foot {
+						width: 80%;
+						height: 45px;
+						line-height: 45px;
+						position: absolute;
+						bottom: 15px;
+						left: 10%;
+						color: #fff;
+						font-size: 16px;
+					}
+				}
+			}
+		}
+	}
+}

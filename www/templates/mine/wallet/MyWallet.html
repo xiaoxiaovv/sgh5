@@ -1,0 +1,96 @@
+<ion-view view-title="我的钱包" hide-nav-bar="true">
+  <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+    <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="$ionicGoBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">我的钱包</div>
+    <div ng-click="toRules(883,'钱包使用帮助')" style="position: absolute;right: 0;">
+      <div style="font-size: 17px;color: #999;margin: 6px 15px">帮助</div>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" class="background" style="padding: 16px;">
+   <div style="margin-bottom: 18px;">
+    <div style="font-size: 13px;color:#666;margin-bottom: 5px;">积分</div>
+    <div class="row row-no-padding" style="background: #FFFFFF;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;" ui-sref="walletIntegral">
+      <div class="col col-20 col-center">
+        <img ng-src="{{imgBaseURL}}img/haibeijf.png" style="width: 56px;height: 40px;">
+      </div>
+      <div class="col col-70 col-center" style="margin: 0 10px;text-align: left;padding:0 12px;">
+        <div style="font-size: 16px;color: #333;"><span ng-bind="walletInfo.seashellPoint"></span>分</div>
+        <div style="font-size: 12px;color: #666;">
+          <div>累计消费：<span ng-bind="walletInfo.consumedSeashellCount"></span></div>
+          <div>已抵现：<span ng-bind="walletInfo.consumedSeashellPoint"></span>元</div>
+        </div>
+      </div>
+      <div class="col col-10 col-center">
+        <i class="icon ion-chevron-right" style="color:#C7C7CC;float: right;"></i>
+      </div>
+    </div>
+  </div>
+    <!--<div style="margin-bottom: 18px;">-->
+      <!--<div style="font-size: 13px;color:#666;margin-bottom: 5px;">保险积分</div>-->
+      <!--<div class="row row-no-padding" style="background: #FFFFFF;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;">-->
+        <!--<div class="col col-20 col-center">-->
+          <!--<img ng-src="img/baoxianjf.png" style="width: 56px;height: 40px;">-->
+        <!--</div>-->
+        <!--<div class="col col-70 col-center" style="margin: 0 10px;text-align: left;padding:0 12px;">-->
+          <!--<div style="font-size: 16px;color: #333;"><span ng-bind="walletInfo.insurancePoint"></span>分</div>-->
+          <!--<div style="font-size: 12px;color: #666;">-->
+            <!--<div>累计消费：<span ng-bind="walletInfo.consumedInsuranceCount"></span></div>-->
+            <!--<div>已抵现：<span ng-bind="walletInfo.consumedInsurancePoint"></span>元</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col col-10 col-center">-->
+          <!--<i class="icon ion-chevron-right" style="color:#C7C7CC;float: right;"></i>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div style="margin-bottom: 18px;">
+      <div style="font-size: 13px;color:#666;margin-bottom: 5px;">钻石</div>
+      <div class="row row-no-padding" style="background: #FFFFFF;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;" ui-sref="walletDiamonds">
+        <div class="col col-20 col-center">
+          <img ng-src="{{imgBaseURL}}img/zuanshijf.png" style="width: 56px;height: 40px;">
+        </div>
+        <div class="col col-70 col-center" style="margin: 0 10px;text-align: left;padding:0 12px;">
+          <div style="font-size: 16px;color: #333;"><span ng-bind="walletInfo.usableDiamond"></span>钻</div>
+          <div style="font-size: 12px;color: #666;">
+            <div>累计消费：<span ng-bind="walletInfo.consumDiamond"></span></div>
+            <div>已抵现：<span ng-bind="walletInfo.consumDiamondPoint"></span>元</div>
+          </div>
+        </div>
+        <div class="col col-10 col-center">
+          <i class="icon ion-chevron-right" style="color:#C7C7CC;float: right;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 白条 -->
+    <div style="margin-bottom: 18px;">
+      <div style="font-size: 13px;color:#666;margin-bottom: 5px;">顺逛白条</div>
+        <div class="row row-no-padding" ng-if='whiteShowsState == 1' style="background: #FFFFFF;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;" ng-click="toApplyForWhite(0)">
+          <div class="col col-20 col-center">
+            <img ng-src="{{imgBaseURL}}img/baitiaojf.png" style="width: 56px;height: 40px;">
+          </div>
+          <div class="col col-70 col-stretch" style="margin-left:10px;text-align: left;padding:0 12px;">
+            <div style="font-size: 17px;color: #333;line-height:25px;">可用额度：{{crdComAvailAmt}}</div>
+            <div style="font-size: 13px;color: #666;">
+             
+
+              <div>总额度：{{crdComAmt}}</div>
+            </div>
+          </div>
+          <div class="col col-10 col-center">
+            <i class="icon ion-chevron-right" style="color:#C7C7CC;float: right;"></i>
+          </div>
+        </div>
+      
+      <div ng-if='whiteShowsState == 0' class="row row-no-padding" style="background:url(http://cdn09.ehaier.com/shunguang/H5/www/img/pay-Group.png) no-repeat;background-size:100% 100%;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;height:120px;position:relative" ng-click="toApplyForWhite(1)">
+          <img style="position:absolute;top:50%;left:50%;width:200px;height:50px;margin-top:-25px;margin-left:-100px;" ng-src="{{imgBaseURL}}img/baitiao-shengqingzhong.png" alt="">
+        </div>
+      <div ng-if='whiteShowsState == 2 || whiteShowsState == 3' class="row row-no-padding" style="background:url(http://cdn09.ehaier.com/shunguang/H5/www/img/pay-Group.png) no-repeat;background-size:100% 100%;box-shadow: 0 0 5px 0 rgba(0,0,0,0.07);border-radius: 3px;padding: 30px 16px;text-align: center;height:120px;position:relative" ng-click="toApplyForWhite(2)">
+          <img style="position:absolute;top:50%;left:50%;width:200px;height:50px;margin-top:-25px;margin-left:-100px;" ng-src="{{imgBaseURL}}img/pay-Group-5.png" alt="">
+      </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

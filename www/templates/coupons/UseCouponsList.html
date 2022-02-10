@@ -1,0 +1,52 @@
+<!--领券中心-->
+<ion-view class="background" view-title="可用优惠券">
+  <ion-content scrollbar-y="false">
+
+    <div ng-if="isNull" style="margin-top: 100px">
+      <div class="text-center">
+        <img class="width-30" ng-src="{{imgBaseURL}}img/ic_haier_2.png" alt="未领取"/>
+
+        <div class="padding-5">您目前没有可用的优惠券！</div>
+        <div>快去领券吧！</div>
+      </div>
+    </div>
+    <div class="list padding-10">
+      <div class="item row color-text-white margin-top-10 padding-5" style="height: 90px;overflow: hidden;"
+           ng-repeat="item in couponList track by $index" ng-style='item.canUse?"":noCanUseStyle'>
+        <div class="col-25 col coupons-text-center">
+          <ion-checkbox style="position: relative;top: 18px;padding-left: 16px !important;" ng-model="item.isChecked"
+                        ng-change="selectCoupon(item,$index,item.canUse)" class="font-size-13 border-none" >
+          </ion-checkbox>
+        </div>
+        <div class="col col-75 border-right padding-5 border-radius padding-left-10"
+             ng-class="{ 'bg-green':green[$index],'bg-theme':blue[$index],'bg-jfpink':pink[$index]}" ng-click="toDetail(item.id,item.memberCouponId)">
+          <div>
+            <span class="font-size-22">&yen</span>
+            <span class="font-size-22" ng-bind="item.amount">10000</span>
+            <span class="font-size-12"><span ng-bind="item.fullCutPriceDoc"></span></span>
+          </div>
+          <div>
+            <div>
+              <span class="font-size-10">{{item.couponType}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.amountDoc}}</span>
+            </div>
+            <div>
+              <span class="float-l font-size-10">使用时间：</span>
+              <span class="float-l font-size-10" ng-bind="item.beginTimeShow |date:'yyyy.MM.dd'">2016.03.26</span>
+              <span class="float-l font-size-10">--</span>
+              <span class="float-l font-size-10" ng-bind="item.endTimeShow |date:'yyyy.MM.dd'">2016.04.20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;margin-bottom: 30px">
+      <button ng-click="confirm()" style="width: 80%;color: #fff;" class="button button-large"
+        ng-class="{true:'bg-green',false:'bg-theme'}[type == 2]">确定</button>
+    </div>
+
+  </ion-content>
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

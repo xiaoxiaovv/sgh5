@@ -1,0 +1,26 @@
+<ion-view view-title="投资">
+   <ion-nav-buttons side="left">
+   </ion-nav-buttons>
+ 
+  <ion-content class="background" scrollbar-y="false">
+
+  <!-- 
+  海融易理财首页 
+        url: https://c1wap.hairongyi.com/shunguang/home (测试环境)
+              https://zwap.hairongyi.com/shunguang/home (准生产环境)
+              https://wap.hairongyi.com/shunguang/home (生产环境)
+ POST表单参数列表
+            ssAuth（kit token） 
+            loginUrl （未登陆时跳转页面）
+   -->
+    <form  id="hairongyi"  action="https://zwap.hairongyi.com/shunguang/home" method="POST" style='display:none'>
+      <input  name="ssAuth" ng-model='ssAuth'>
+      <input  name="loginUrl" ng-model='loginUrl'>
+      <input  name="returnUrl" ng-model='returnUrl'>
+      <input type="submit" value='tijiao' >
+    </form>
+    <p style='color:#999;text-align:center;margin-top:30%;'>
+      正在进入快捷通模块，请稍等......
+    </p>
+  </ion-content>
+</ion-view>

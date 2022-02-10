@@ -1,0 +1,258 @@
+<!--模板-->
+<ion-view style="background: #fafafa;" hide-nav-bar="true" title="领券中心">
+  <!-- 电话提醒的蒙版开始 -->
+  <div ng-if="remindme" style="background:#000;opacity:0.7;height:100%;position:fixed;width:100%;z-index:96;"></div>
+  <div ng-if="remindme||remindSuccess" style="height:100%;position:fixed;width:100%;z-index:97;" flex="main:center cross:center">
+    <!-- 电话输入开始 -->
+    <div ng-if="remindme" style="width:81%;height:180px;background:#fff;padding:29px 22px 14px;position:relative;border-radius:8px;overflow:visible;">
+     <div style="position:absolute;height:36px;width:20px;top:-36px;right:0;z-index:98;" ng-click="closeRemindMe()">
+        <div style="width:20px;height:20px;border:1px solid #fff;border-radius:50%;">
+          <img style="height:100%;width:100%;" ng-src="{{imgBaseURL}}img/x@2x.png" />
+        </div>
+        <div style="height:16px;width:1px;opacity:0.5;border:1px solid #fff;margin:0 auto;"></div>
+      </div>
+      <div style="margin-bottom:12px;opacity:0.86;font-size:15px;color:#333;line-height:22px;">开始前30分钟将通过短信提醒你</div>
+      <div style="border-bottom:1px solid #eee;height:46px;" flex="cross:center">
+        <input type="tel" name="name" value="" placeholder="请输入您的手机号" maxlength="11" onkeyup="value=this.value.replace(/\D+/g,'')" style="border:0;font-size:14px;color:#666;ime-mode:Disabled" ng-model="this.value" ng-change="telVerification(this.value)">
+      </div>
+      <div ng-if="!canSubmit" style="margin-top:14px;background:#75A8FF;box-shadow:0 3px 6px 0 rgba(41,121,255,0.25);border-radius:100px;height:44px;font-size:17px;color:#fff;text-align:center;line-height:44px;">提交</div>
+      <div ng-if="canSubmit" ng-click="submitBackstage()" style="margin-top:14px;background:#2979FF;box-shadow:0 3px 6px 0 rgba(41,121,255,0.25);border-radius:100px;height:44px;font-size:17px;color:#fff;text-align:center;line-height:44px;">提交</div>
+    </div>
+    <!-- 电话输入开始 -->
+
+    <!-- 电话提醒成功提示开始 -->
+    <div ng-if="remindSuccess" style="width:81%;height:100px;background:#000;border-radius:8px;opacity:0.7;text-align:center;padding:16px 0 19px;">
+      <div style="height:30px;width:27px;margin:0 auto 15px;">
+        <img style="width:100%;height:100%;" ng-src="{{imgBaseURL}}img/queren@2x.png" />
+      </div>
+      <div style="font-size:14px;color:#333;color:#fff;">{{message}}</div>
+    </div>
+    <!-- 电话提醒成功提示结束 -->
+  </div>
+  <!-- 电话提醒的蒙版结束 -->
+
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+  </div>
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">领券中心</div>
+    <div style="width:66px">
+      <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center" ng-click="share()">
+        <img style="width:22px;" ng-src="{{imgBaseURL}}img/share2.png" alt="" />
+      </div>
+      <div ng-style="isIOS?{'top':'16px'}:{'top':'0'}" style="position:absolute;right:0;margin: .15rem .3rem 0 .266667rem;">
+        <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+          <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+      </div>
+      </div>
+    </div>
+
+  </div>
+<!-- 类别 -->
+  <div ng-style="typeClass" style="width:100%;height:40px;background: rgba(250,250,250,0.90);position:fixed;z-index:1;padding:0 16px 0 26px;" class="border-top" flex="dir:left box:last">
+    <div style="line-height:40px;flex-wrap:wrap;" flex="dir:left">
+      <div style="height:40px;font-size:14px;letter-spacing:0;margin-right:32px;" ng-repeat="typeData in typeDataList track by $index" ng-style="typeDefault==$index?isTypeStyle:noTypeStyle" ng-click="typeButton($index,typeData.id)">{{typeData.cateName}}</div>
+    </div>
+    <div style="width:24px;height:40px;" flex="cross:center" ng-click="cotAllType(true)">
+      <img ng-src="{{imgBaseURL}}img/btnMore.png" style="width:100%;">
+    </div>
+  </div>
+  <div class="border-top" ng-style="typeClass" style="position:fixed;z-index:88;width:100%;background:#fff;" ng-if="typeAllShow">
+    <div style="font-size:14px;color:#999;letter-spacing:0;padding:10px 16px 20px;" flex="main:justify">
+      <div>请选择</div>
+      <div ng-click="cotAllType(false)">取消</div>
+    </div>
+    <div flex="dir:left" style="flex-wrap:wrap;padding: 0 20px;">
+      <div ng-repeat="typeData in typeDataList track by $index" style="height:27px;margin:0 18px 22px 0;border-radius:54px;padding:0 12px;line-height:25px;font-size:13px;letter-spacing:0;" ng-click="allTypeButton($index,typeData.id)" ng-style="$index==typeDefault?isTypeStyleAll:noTypeStyleAll">{{typeData.cateName}}</div>
+    </div>
+  </div>
+  <div ng-style="typeClass" style="position:fixed;z-index:87;width:100%;background:#000;height:100%;opacity: 0.6;" ng-if="typeAllShow"></div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" style="background:#eee;">
+    <div style="height:52px;"></div>
+    <div ng-repeat="data in dataList">
+      <div ng-if="data.displayType==1" style="height:164px;margin-bottom:8px;position:relative;padding:0 16px;">
+        <div ng-repeat="dstr in divStr" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:{{dstr}}px;top:114px;"></div>
+        <div style="height:118px;" flex="box:first" ng-style="data.couponType==1?backGroundRed:backGroundBlue" ui-sref="couponsDetail({cId:data.id,type:typeIdDefault})">
+          <div style="width:150px;padding-left:26px;color:#fff;letter-spacing:0;text-shadow:0 1px 2px rgba(213,72,0,0.50);" flex="cross:center">
+            <div style="font-size:16px;margin-top:13px;">¥</div>
+            <div style="font-size:40px;line-height:40px;" ng-bind="data.couponValue"></div>
+          </div>
+          <div style="font-size:12px;color:#fff;line-height:18px;text-shadow:0 1px 2px #D54800;" flex="main:center dir:top">
+            <span>{{data.platformCoupon}}</span>
+            <span>{{data.minAmountDoc}}</span>
+            <span>{{data.startTime}}-{{data.endTime}}</span>
+          </div>
+        </div>
+        <div style="height:46px;background:#fff;border-radius:0 0 6px 6px;font-size:12px;color:#666;" flex="cross:center box:justify">
+          <div style="width:48px;padding-left:17px;">逛券</div>
+          <div flex="main:center cross:center">
+            <div>已抢{{data.percent}}%</div>
+            <div style="height:10px;width:90px;margin-left:4px;background: #E4E4E4;border-radius:8px;position:relative;">
+              <div style="height:10px;background:#F56767;border-radius:8px;position:absolute;width:{{progress(data.percent)}}px;"></div>
+            </div>
+          </div>
+          <div style="width:80px;" ng-click="getNewCoupons({{data.id}})">
+            <div style="border:1px solid #F56767;border-radius:22px;font-size:14px;color:#F56767;text-align:center;height:26px;line-height:25px;margin-right:3px;">立即领取
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="data.displayType==2" style="height:164px;margin-bottom:8px;position:relative;padding:0 16px;">
+        <div ng-repeat="dstr in divStr" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:{{dstr}}px;top:114px;"></div>
+        <div style="overflow:hidden;position:absolute;top:0px;right:16px;width:77px;height:93px;z-index:11;">
+            <div style="position:absolute;width:93px;height:93px;top:-3px;right:-18px;z-index:10;">
+              <img style="width:100%;height:100%;" ng-src="{{imgBaseURL}}img/quan-yl2@2x.png" />
+            </div>
+          </div>
+        <div style="height:118px;overflow:hidden;" flex="box:first" ng-style="data.couponType==1?backGroundRed:backGroundBlue" ui-sref="couponsDetail({cId:data.id,type:typeIdDefault})">
+          <div style="height:100%;width:150px;padding-left:26px;color:#fff;letter-spacing:0;text-shadow:0 1px 2px rgba(213,72,0,0.50);" flex="cross:center">
+            <div style="font-size:16px;margin-top:13px;">¥</div>
+            <div style="font-size:40px;line-height:40px;" ng-bind="data.couponValue"></div>
+          </div>
+          <div style="font-size:12px;color:#fff;line-height:18px;text-shadow:0 1px 2px #D54800;" flex="main:center dir:top">
+            <span>{{data.platformCoupon}}</span>
+            <span>{{data.minAmountDoc}}</span>
+            <span>{{data.startTime}}-{{data.endTime}}</span>
+          </div>
+        </div>
+        <div style="height:46px;background:#fff;border-radius:0 0 6px 6px;font-size:12px;color:#666;" flex="cross:center box:justify">
+          <div style="width:48px;padding-left:17px;">逛券</div>
+          <div flex="main:center cross:center">
+            <div ng-show="false">已抢100%</div>
+            <div style="height:10px;width:100px;margin-left:4px;background: #E4E4E4;border-radius:8px;" ng-show="false"></div>
+          </div>
+          <div style="width:80px;" ui-sref="CommodityList({couponId:data.id})">
+            <div style="border:1px solid #F56767;border-radius:22px;font-size:14px;color:#fff;text-align:center;height:26px;line-height:25px;margin-right:3px;background:#F56767;">立即使用
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="data.displayType==3" style="height:164px;margin-bottom:8px;position:relative;padding:0 16px;">
+        <div ng-repeat="dstr in divStr" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:{{dstr}}px;top:114px;"></div>
+        <div style="height:118px;" flex="box:first" ng-style="data.couponType==1?backGroundRed:backGroundBlue" ui-sref="couponsDetail({cId:data.id,type:typeIdDefault})">
+          <div style="width:150px;padding-left:26px;color:#fff;letter-spacing:0;text-shadow:0 1px 2px rgba(213,72,0,0.50);" flex="cross:center">
+            <div style="font-size:16px;margin-top:13px;">¥</div>
+            <div style="font-size:40px;line-height:40px;" ng-bind="data.couponValue"></div>
+          </div>
+          <div style="font-size:12px;color:#fff;line-height:18px;text-shadow:0 1px 2px #D54800;" flex="dir:top main:center">
+            <span>{{data.platformCoupon}}</span>
+            <span>{{data.minAmountDoc}}</span>
+            <span>{{data.startTime}}-{{data.endTime}}</span>
+            <span>{{data.reMinderNum}}人已设置提醒</span>
+          </div>
+        </div>
+        <div style="height:46px;background:#fff;border-radius:0 0 6px 6px;font-size:12px;color:#666;" flex="cross:center box:justify">
+          <div style="width:48px;padding-left:17px;">逛券</div>
+          <div flex="main:center cross:center">
+            <div>距开抢还有:</div>
+            <div style="color: #F56767;font-size:12px;transform:scale(0.83,0.83);" flex="cross:center">
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTt[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTh[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTm[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTs[$index]}}</div>
+            </div>
+          </div>
+          <div style="width:80px;" ng-click="openRemindMe({{data.id}})">
+            <div style="border:1px solid #F56767;border-radius:22px;font-size:14px;color:#fff;text-align:center;height:26px;line-height:25px;margin-right:3px;background:#F56767;">提醒我
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="data.displayType==4" style="height:164px;margin-bottom:8px;position:relative;padding:0 16px;">
+        <div ng-repeat="dstr in divStr" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:{{dstr}}px;top:114px;"></div>
+        <div style="height:118px;" flex="box:first" ng-style="data.couponType==1?backGroundRed:backGroundBlue" ui-sref="couponsDetail({cId:data.id,type:typeIdDefault})">
+          <div style="width:150px;padding-left:26px;color:#fff;letter-spacing:0;text-shadow:0 1px 2px rgba(213,72,0,0.50);" flex="cross:center">
+            <div style="font-size:16px;margin-top:13px;">¥</div>
+            <div style="font-size:40px;line-height:40px;" ng-bind="data.couponValue"></div>
+          </div>
+          <div style="font-size:12px;color:#fff;line-height:18px;text-shadow:0 1px 2px #D54800;" flex="main:center dir:top">
+            <span>{{data.platformCoupon}}</span>
+            <span>{{data.minAmountDoc}}</span>
+            <span>{{data.startTime}}-{{data.endTime}}</span>
+            <span>{{data.reMinderNum}}人已设置提醒</span>
+          </div>
+        </div>
+        <div style="height:46px;background:#fff;border-radius:0 0 6px 6px;font-size:12px;color:#666;" flex="cross:center box:justify">
+          <div style="width:48px;padding-left:17px;">逛券</div>
+          <div flex="main:center cross:center">
+            <div>距开抢还有:</div>
+            <div style="color: #F56767;font-size:12px;transform:scale(0.83,0.83);" flex="cross:center">
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTt[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTh[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTm[$index]}}</div>
+              <span style="width:6px;text-align:center;">:</span>
+              <div style="height:18px;width:18px;line-height:18px;background:#F56767;border-radius:2px;color:#fff;text-align:center;">{{endTs[$index]}}</div>
+            </div>
+          </div>
+          <div style="width:80px;">
+            <div style="border:1px solid #F56767;border-radius:22px;font-size:14px;color:#F56767;text-align:center;height:26px;line-height:25px;margin-right:3px;">已设提醒
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="data.displayType==5" style="height:164px;margin-bottom:8px;position:relative;padding:0 16px;opacity:0.5;">
+        <div ng-repeat="dstr in divStr" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:{{dstr}}px;top:114px;"></div>
+        <div style="height:118px;" flex="box:first" ng-style="data.couponType==1?backGroundRed:backGroundBlue" ui-sref="couponsDetail({cId:data.id,type:typeIdDefault})">
+          <div style="width:150px;padding-left:26px;color:#fff;letter-spacing:0;text-shadow:0 1px 2px rgba(213,72,0,0.50);" flex="cross:center">
+            <div style="font-size:16px;margin-top:13px;">¥</div>
+            <div style="font-size:40px;line-height:40px;" ng-bind="data.couponValue"></div>
+          </div>
+          <div style="font-size:12px;color:#fff;line-height:18px;text-shadow:0 1px 2px #D54800;" flex="dir:top main:center">
+            <span>{{data.platformCoupon}}</span>
+            <span>{{data.minAmountDoc}}</span>
+            <span>{{data.startTime}}-{{data.endTime}}</span>
+          </div>
+        </div>
+        <div style="height:46px;background:#fff;border-radius:0 0 6px 6px;font-size:12px;color:#666;" flex="cross:center box:justify">
+          <div style="width:48px;padding-left:17px;">逛券</div>
+          <div flex="main:center cross:center">
+            <div style="height:10px;width:90px;margin-left:4px;background: #E4E4E4;border-radius:8px;"></div>
+          </div>
+          <div style="width:80px;">
+            <div style="border:1px solid #E4E4E4;border-radius:22px;font-size:14px;color:#fff;text-align:center;height:26px;line-height:25px;margin-right:3px;background:#E4E4E4;">已抢完
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+    <div flex="dir:top main:center cross:center" style="margin-top:68px;"  ng-if="isHasCoupons">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无可领取优惠券</span>
+    </div>
+  </ion-content>
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+</ion-view>

@@ -1,0 +1,707 @@
+body{
+	width: 100%;
+	height: 100%;
+	color:#000;
+}
+a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+}
+
+#my-div{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  display: none;
+}
+
+#overlay-blocker {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    z-index:1;
+}
+
+#lottery-details{
+  	position: absolute;
+  	width: 90%;
+  	height: 90%;
+  	left: 5%;
+	top: 5%;
+	background: white;
+	border-radius: 1em;
+	z-index: 2;
+	opacity: 0.7;
+	display: none;
+	line-height: 2em;
+}
+
+.lottery-msg{
+	position: absolute;
+	font-size: 1em;
+	width: 90%;
+	height: 95%;
+	left: 5%;
+	top:5%;	
+  	overflow: scroll;
+}
+
+#lottery-cancel{
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	width: 1.5em;
+	height:1.5em;
+	background-image: url(http://cdn09.ehaier.com/shunguang/VRshop/image/cancel.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+  	z-index: 4;
+}
+
+.lottery-msg br
+{   content: "A" !important;
+    display: block !important;
+    margin-bottom: 1em !important;
+}
+
+#hongbao-container {
+  display: none;
+}
+#one-hongbao-container{
+  display: none;
+}
+#two-hongbao-container{
+  display: none;
+}
+#three-hongbao-container{
+  display: none;
+}
+
+#hongbao-background{
+  position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 256px;
+   height: 224px;
+   margin-top: -128px; /* Half the height */
+   margin-left: -126px; /* Half the width */
+}
+#cash-ticket{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 100px;
+  margin-top: -121px;
+  margin-left: -118px;
+}
+#hongbao-accept{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 26px;
+  margin-top: 56px;
+  margin-left: 56px;
+  z-index: 6;
+}
+#hongbao-message{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 26px;
+  margin-top: -110px;
+  margin-left: -100px;
+  font-weight:bold;
+  font-size: 100%;
+  color: white;
+}
+#hongbao-instruction{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 26px;
+  margin-top: -10px;
+  margin-left: -100px;
+  font-weight: 500;
+  font-size: 90%;
+  color: white;
+}
+
+
+#hongbao-no-prize{
+  display: none;
+}
+
+#hongbao-no-prize-background{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 256px;
+  height: 100px;
+  margin-top: -50px; /* Half the height */
+  margin-left: -126px; /* Half the width */
+}
+#hongbao-no-prize-message{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 26px;
+  margin-top: -10px;
+  margin-left: -110px;
+  font-weight:bold;
+  font-size: 100%;
+  text-align: center;
+  color: white;
+}
+#hongbao-no-prize-cancel{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -45px;
+  margin-left: 91px;
+  z-index: 6;
+}
+
+#hongbao-no-prize-login{
+  display: none;
+}
+#hongbao-no-prize-login-background{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 256px;
+  height: 150px;
+  margin-top: -50px; /* Half the height */
+  margin-left: -126px; /* Half the width */
+}
+#hongbao-no-prize-login-message{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 26px;
+  margin-top: -10px;
+  margin-left: -110px;
+  font-weight:bold;
+  font-size: 100%;
+  text-align: center;
+  color: white;
+}
+#hongbao-no-prize-login-cancel{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -45px;
+  margin-left: 91px;
+  z-index: 6;
+}
+#hongbao-no-prize-login-button{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 30px;
+  margin-top: 50px;
+  margin-left: -50px;
+  z-index: 6;
+}
+
+
+#two-hongbao-background{
+  position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 256px;
+   height: 336px;
+   margin-top: -170px; /* Half the height */
+   margin-left: -126px; /* Half the width */
+}
+#two-hongbao-accept{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 26px;
+  margin-top: 125px;
+  margin-left: 56px;
+  z-index: 6;
+}
+#two-cash-ticket-one{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 100px;
+  margin-top: -160px;
+  margin-left: -118px;
+}
+#two-hongbao-message-one{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 26px;
+  margin-top: -150px;
+  margin-left: -100px;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+}
+#two-cash-ticket-two{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 100px;
+  margin-top: -60px;
+  margin-left: -118px;
+}
+#two-hongbao-message-two{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 26px;
+  margin-top: -50px;
+  margin-left: -100px;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+}
+#two-hongbao-instruction{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 26px;
+  margin-top: 40px;
+  margin-left: -100px;
+  font-weight: 500;
+  font-size: 90%;
+  color: white;
+}
+
+
+
+
+#three-hongbao-background{
+  position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 256px;
+   height: 336px;
+   margin-top: -170px; /* Half the height */
+   margin-left: -126px; /* Half the width */
+}
+#three-hongbao-accept{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 26px;
+  margin-top: 125px;
+  margin-left: 56px;
+  z-index: 6;
+}
+#three-cash-ticket-one{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 100px;
+  margin-top: -160px;
+  margin-left: -118px;
+}
+#three-hongbao-message-one{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 26px;
+  margin-top: -150px;
+  margin-left: -100px;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+}
+#three-cash-ticket-two{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 50px;
+  margin-top: -60px;
+  margin-left: -118px;
+}
+#three-hongbao-message-two{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 26px;
+  margin-top: -55px;
+  margin-left: -110px;
+  font-weight: bold;
+  font-size: 60%;
+  color: white;
+}
+#three-cash-ticket-three{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 50px;
+  margin-top: -60px;
+  margin-left: 0px;
+}
+#three-hongbao-message-three{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 26px;
+  margin-top: -55px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 60%;
+  color: white;
+}
+#three-hongbao-instruction{
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 26px;
+  margin-top: 40px;
+  margin-left: -100px;
+  font-weight: 500;
+  font-size: 90%;
+  color: white;
+}
+
+
+
+
+
+
+
+#cash-prize{
+	position: absolute;
+	top:50%;
+	width: 100%;
+  	display: none;
+  	z-index: 5;
+}
+
+#cash-prize-image{
+	width:80%;
+	height: auto;
+	margin-left:10%;
+	height: auto;
+}
+
+#coupon-prize{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 50%;
+  	display: none;
+  	z-index: 5;
+}
+
+#coupon-prize-image{
+	width:80%;
+	margin-left:10%;
+	height: auto;
+}
+
+#no-prize{
+	position: absolute;
+	top:50%;
+	width: 100%;
+  	display: none;
+  	z-index: 5;
+}
+
+#no-prize-image{
+	width:80%;
+	height:50%;
+	margin-left:10%;
+	height: auto;
+}
+
+#loading-ui-wrapper{
+  display: none;
+}
+
+#loading-ui-image {
+  position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 256px;
+   height: 224px;
+   margin-top: -128px; /* Half the height */
+   margin-left: -126px; /* Half the width */
+}
+
+#details{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 1;	
+	display: none;
+}
+
+.imageBlock{
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+}
+
+#details .rightblock{
+    width: 80%;
+    bottom: 1rem;
+    height: 90%;
+    padding: 10px;
+    position: absolute;
+    right: 7%;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 2;
+    opacity: .7;
+}
+#details .rightblock #cancel{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height:24px;
+    background-image: url(http://cdn09.ehaier.com/shunguang/VRshop/image/cancel.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.id{
+    width: 225px;
+    padding-top:5%;
+    font-size: 14px;
+    width: 100%;
+    font-weight: 200;
+}
+.featureshort{
+    font-size: 1rem;
+    padding: 0;
+    width: 100%;
+    line-height: 19px;
+}
+.tag,.type,.feature{
+    font-size: 1rem;
+    font-weight: 200;
+    overflow:hidden;
+  text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.tag{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.type{
+    padding-bottom: 2%;
+}
+
+.more{
+    font-size: 1rem;
+    padding-top: 2%;
+    width: 100%;
+  text-align: right;
+    color: #f39800;
+}
+#hongbao{
+    position: absolute;
+    bottom: 0.5rem;
+    left: 10px;
+    width: 3rem;
+    height:3rem;
+    background-image: url(http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.buy{
+    width: 58px;
+    height: 25px;
+    line-height: 25px;
+    background-color: #f39800;
+    border-radius: 10px;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 10px;
+}
+
+
+#textBlock{
+    position: absolute;
+    top:50%;
+    width: 100%;
+    height: 50%;
+}
+
+
+#product_pics{
+	width: 50%;
+	z-index: 10;
+	margin-left: 25%;
+}
+
+#product_img{
+	height: 90%;
+	width: auto;
+	display: table;
+	margin:0 auto;	
+}
+
+#hongbao-open-animation {
+  width: 138px; height: 138px;
+  position: absolute; bottom: 70px; left: 10px;
+  background: url('http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-spritesheet.png');
+}
+
+#back-to-origin {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 64px;
+    height:64px;
+    background-image: url(http://cdn09.ehaier.com/shunguang/VRshop/image/control/back-to-origin-button.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  display: block;
+}
+
+
+@media only screen and (max-device-height: 480px) and (orientation: landscape) {
+    .featureshort{
+    font-size: 15px;
+    padding: 0;
+    width: 100%;
+    line-height: 14px;
+  }
+  .tag,.type,.feature{
+    font-size: 12px;
+    font-weight: 200;
+  }
+  
+}
+
+@media only screen and (max-device-height: 480px) and (orientation: portrait) {
+  .featureshort{
+    font-size: 1rem;
+    padding: 1%;
+    width: 100%;
+    line-height: 1rem;
+  }
+  .tag,.type,.feature{
+    font-size: 0.8rem;
+    font-weight: 200;
+    padding: 0%;
+  }
+  
+}
+
+@media only screen and (max-device-width: 768px) and (orientation : portrait){
+	.info_text{
+		font-size: 1rem;
+		font-weight: 200;
+		margin-bottom: 0.2em;
+	}
+  
+}
+
+
+@media only screen and (max-device-width: 768px) and (orientation : landscape){
+  #details .rightblock{
+    height: 80%;
+}
+  
+	 #textBlock{
+        position: absolute;
+        left:50%;
+        top:0;
+        width: 50%;
+        height: 100%;
+    }
+
+	.imageBlock{
+		width: 50%;
+		height: 90%;
+		position: absolute;
+		left: 0;
+		padding-top: 2em;
+	}
+
+	.textBlock{
+		width: 50%;
+		height: 100%;
+		position: absolute;
+		right: 0;
+	}
+
+	#cash-prize{
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 50%;
+		height: 100%;
+	  	display: none;
+	  	z-index: 5;
+	}
+
+	#coupon-prize{
+		position: absolute;
+		top:0;
+		left: 0;
+		width: 50%;
+		height: 100%;
+	  	display: none;
+	  	z-index: 5;
+	}
+
+	.more{
+		margin-top: 1em;
+	}
+
+	.tag{
+	    padding-top: 6%;
+	    padding-bottom: 4%;
+	}
+	.type{
+	    padding-bottom: 6%;
+	}
+  
+  #hongbao-open-animation {
+    width: 138px; height: 138px;
+    position: absolute; bottom: 75px; left: 370px;
+    background: url( 'http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-spritesheet.png');
+  }
+
+}

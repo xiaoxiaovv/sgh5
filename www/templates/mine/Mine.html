@@ -1,0 +1,110 @@
+<!--我的-->
+<ion-view class="background" view-title="我的" hide-back-button="true">
+
+  <ion-nav-buttons side="right">
+    <div style='height:24px;width:24px;margin-top:5px;margin-right:3px;' ui-sref="ClassifyMessageCenter">
+    <img style="height:24px;width:24px;width:100%;height:100%;" ng-src="{{imgBaseURL}}img/Message@2x.png" alt="消息中心" />
+    <span ng-class="{true:'tab-red-point',false:''}[flagNum]"></span>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content scrollbar-y="true">
+    <div class="scroll-view">
+      <div class="margin-bottom-20">
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class=" bg-white border-bottom" ui-sref="accountMessage">
+        <img ng-src="{{imgBaseURL}}img/Account@2x.png" style="height:20px;position:absolute;" alt="账号信息" />
+        <span style="margin-left:30px;">账号信息</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span  class="float-r margin-right-10 color-text-s" ng-bind="account" style="color:#2196F3 !important;"></span>
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="shopMessage">
+        <img ng-src="{{imgBaseURL}}img/store@2x.png" style="height:20px;position:absolute;" alt="店铺信息" />
+        <span style="margin-left:30px;">店铺信息</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10 text-align-c color-text-white "
+              ng-bind="accreditation" style="color:#2196F3 !important;"></span>
+      </div>
+
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ng-click="goMemberCenter()">
+        <img ng-src="{{imgBaseURL}}img/Member@2x.png" style="height:20px;position:absolute;" alt="店铺装修" />
+        <span style="margin-left:30px;">会员中心</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+
+
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="shopRenovate">
+        <img ng-src="{{imgBaseURL}}img/Fitment@2x.png" style="height:20px;position:absolute;" alt="店铺装修" />
+        <span style="margin-left:30px;">店铺装修</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+
+      <div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white" ui-sref="bankCard">
+
+        <img ng-src="{{imgBaseURL}}img/Card@2x.png" style="height:20px;position:absolute;" alt="提现管理" />
+        <span style="margin-left:30px;">提现管理</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      <div class="margin-bottom-20">
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="address">
+
+        <img ng-src="{{imgBaseURL}}img/Address@2x.png" style="height:20px;position:absolute;" alt="收货地址" />
+        <span style="margin-left:30px;">收货地址</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      <div class="margin-bottom-20">
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="orderManage">
+
+        <img ng-src="{{imgBaseURL}}img/padnote@2x.png" style="height:20px;position:absolute;" alt="我的订单" />
+        <span style="margin-left:30px;">我的订单</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Order}}</span>
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="collection">
+
+        <img ng-src="{{imgBaseURL}}img/star@2x.png" style="height:20px;position:absolute;" alt="商品收藏" />
+        <span style="margin-left:30px;">商品收藏</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Collection}}</span>
+      </div>
+      <div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white" ui-sref="myCouponsList">
+
+        <img ng-src="{{imgBaseURL}}img/Discount@2x.png" style="height:20px;position:absolute;" alt="我的优惠券" />
+        <span style="margin-left:30px;">我的优惠券</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Coupon}}</span>
+      </div>
+      <div class="margin-bottom-20">
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class=" bg-white border-bottom"  ui-sref="myWallet">
+        <img ng-src="{{imgBaseURL}}img/icon_wallet.png" style="height:20px;position:absolute;"/>
+        <span style="margin-left:30px;">我的钱包</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class=" bg-white border-bottom"  ui-sref="Setup">
+        <img ng-src="{{imgBaseURL}}img/set@2x.png" style="height:20px;position:absolute;" alt="账号信息" />
+        <span style="margin-left:30px;">设置</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      </div>
+      <div style="margin-bottom:5px;">
+      </div>
+      <!--<div class="padding padding-left-15 padding-right-15 bg-white" ui-sref="testShow">-->
+        <!--测试-->
+        <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+        <!--<span class="float-r margin-right-20"></span>-->
+      <!--</div>-->
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

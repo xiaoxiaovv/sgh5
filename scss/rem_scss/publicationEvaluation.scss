@@ -1,0 +1,136 @@
+.publicationEvaluation{
+  width: 100%;
+  .topDiv{
+    background-color: #fff;
+    padding:0 16px;
+    height: 140px;
+    .topDivl{
+      width:76px;
+      img{
+        width:100%;
+      }
+    }
+    .topDivr{
+      padding: 41px 0 41px 16px;
+      .topDivT{
+        font-size: 16px;
+        color: #000;
+        letter-spacing: 0;
+        line-height: 18px;
+      }
+      .topDivB{
+        margin-right:25px;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #666;
+        letter-spacing: 0;
+        img{
+          height: 16px;
+          width: 16px;
+        }
+        span{
+          margin-left:8px;
+        }
+      }
+    }
+  }
+  .contentDiv{
+    padding: 10px 16px 0;
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0;
+    background-color: #f4f4f4;
+  }
+  .picDiv{
+    padding: 14px 0 0 16px;
+    background-color: #fff;
+    flex-wrap: wrap;
+    img{
+      width:56px;
+      height:56px;
+    }
+    div{
+      margin: 0 12px 14px 0;
+    }
+    .picDivOne{
+      border:1px dashed #eee;
+      width:56px;
+      height:56px;
+      span{
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0;
+      }
+      .picDivOneimg{
+        width:24px;
+        height:24px;
+      }
+    }
+  }
+  .shopScore{
+    height:160px;
+    background:#fff;
+    .shopScoreOne{
+      margin: 0 16px;
+      height:40px;
+      border-top:1px solid #eee;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height:40px;
+    }
+    .shopScoreAll{
+      padding:0 16px;
+      height:40px;
+      span{
+        font-size: 14px;
+        letter-spacing: 0;
+        margin-right:4px;
+      }
+      img{
+        width:18px;
+        height:18px;
+        margin-left:16px;
+      }
+    }
+  }
+  .buyerImpression{
+    margin-top:8px;
+    padding:0 16px;
+    background-color:#fff;
+    .impressionText{
+      height:40px;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height:40px;
+    }
+    .impressionList{
+      flex-wrap: wrap;
+      div{
+        border: 1px solid #eee;
+        border-radius: 4px;
+        height:32px;
+        line-height:32px;
+        font-size: 12px;
+        color: #999;
+        letter-spacing: 0;
+        margin: 0 8px 16px 0;
+        padding:0 22px;
+      }
+    }
+  }
+  .divBottom{
+    height:102px;
+    .submitButton{
+      height:44px;
+      width:343px;
+      background: #2979FF;
+      box-shadow: 0 1px 2px 0; background:rgba(41,121,255,1);
+      border-radius: 100px;
+      font-size: 17px;
+      color: #fff;
+      text-align:center;
+      line-height:44px;
+    }
+  }
+}

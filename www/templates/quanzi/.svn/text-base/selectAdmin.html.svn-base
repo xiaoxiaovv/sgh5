@@ -1,0 +1,57 @@
+<ion-view view-title="设置管理员"hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack();" class="button-clear icon" style="color:#999999;font-size:14px;">取消</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-click="yes();" class="button-clear" style="color:#777;font-size:14px;">完成</button>
+  </ion-nav-buttons>
+  <div class="jd-bg-hui-e margin-left-right-5 padding-top-5"
+      ng-class="{true:'iosTopMargin',false:'androidTopMargin'}[isIOS]"
+         style="width: 96%;height: 32px;color: #999">
+      <i class=" ion-ios-search font-size-18 jd-color-hui-a margin-left-15 position-a" style="margin-top: 1px"></i>
+      <form class="no-border jd-bg-hui-e inline-block margin-left-10"style="width: 95%;">
+        <input class="no-border jd-bg-hui-e " style="padding-left: 24px;width:100%;"
+               placeholder="搜索" ng-model="input.isinput" ng-keypress="($event.which === 13)?search($event):0">
+      </form>
+  </div>
+  <ion-content delegate-handle="mainScroll" style="margin-top:40px;"overflow-scroll="true" >
+    <!--成员-->
+    <div class="  font-size-12  border-bottom  "
+         style="background-color: #fafafa;height:30px;color: #777;">
+      <div class="float-l" style="width: 5px;height:30px;background-color: #0076ff;"></div>
+      <div class="padding-top-5">
+        <i class="margin-left-10">圈子成员</i>
+        <span class="margin-left-10">(</span>
+        <span ng-bind="datalist.totalCount">/</span>
+        <span>)</span>
+      </div>
+    </div>
+    <!-- 成员遍历内容-->
+    <div ng-repeat="item in userlist">
+      <!--<div class="border-bottom" style="height:24px;line-height:24px;background:#fafafa;padding-left:15px;" ng-bind="{true:'#',false:param.categoryName}[param.categoryName=='toOther']" id="{{param.categoryName}}"></div>-->
+      <!--<div style="width: 100%;" ng-repeat="item in param.childList">-->
+        <div class="padding-15 border-bottom">
+          <div ng-click="selectUser(item)" class="inline-block" style="padding-right:15px;">
+            <img style="height:16px;width:16px;" ng-src="{{item.ischeck}}" alt="" />
+          </div>
+          <div class="inline-block">
+            <img ng-src="{{item.userImg | ImageUserFilter}}" class="vertical-middle"
+                onerror="this.src='img/quanzi/user.jpg'" ng-click="inPersonalPage(item.id)"
+                style="width: 40px;height: 40px;border-radius: 4px;">
+          </div>
+          <span class="inline-block margin-left-10"ng-click="inPersonalPage(item.id)"
+                style="line-height: 35px;height: 35px" ng-bind="item.userName">
+                      烟花易冷
+                  </span>
+        </div>
+      <!--</div>-->
+    </div>
+    <!--上拉加载-->
+    <ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMoreMember()"
+                         distance="1%"></ion-infinite-scroll>
+  </ion-content>
+  <!--<div style="position:fixed;width:20px;height:432px;right:5px;bottom:10%;">
+      <a ng-repeat="item in aList" ng-bind="item" href="" ng-click="toAnchor(item)" style="display:block;color:#000;height:16px;font-size:12px;line-height:12px;text-align:center;"></a>
+  </div>-->
+  
+</ion-view>

@@ -1,0 +1,56 @@
+<ion-view class="background trueAuthenticationView" hide-nav-bar="true" view-title="海尔员工认证">
+
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">海尔员工认证</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"  ng-click="toRules(915,'实名认证服务协议')">说明</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" >
+    <div class="scroll-view">
+      <div ng-if="!isStaff">
+        <!--2.填写信息-->
+        <div class="trueAuthenticationInfoMsg" style="background: #fff;">
+
+          <!--编号-->
+          <div flex="main:left"  style="margin-left: 14px;line-height: 48px; height: 48px;border-bottom: 1px solid #e4e4e4;" >
+            <input style="height: 100%;width: 68%;background: #fff;" ng-model="obj.staffId"  maxlength="20"  type="text" placeholder="请输入8位员工编号" >
+          </div>
+          <!--验证码-->
+          <div  flex="main:left"  style="margin-left: 14px;line-height: 48px; height: 48px;">
+            <input style="height: 100%;width: 68%;background: #fff;"  ng-model="obj.verification"  type="text"  placeholder="输入验证码" >
+            <span style="width:100px;height:30px;vertical-align: middle;float: right;text-align: center;border: 1px solid #2979FF;border-radius: 100px;line-height: 29px;color: #2979FF;margin: 9px 16px;font-size: 12px;" ng-click="getIdentifyCode();" ng-bind="paracont"></span>
+          </div>
+        </div>
+        <div>
+          <p style="color: #666;font-size: 12px;padding: 10px 0 0 16px;">提示:  每日有三次认证机会!</p>
+        </div>
+        <div ng-if="!isBtnShow" class="new_authentication_home_btn" style="background: #75A8FF;">提交</div>
+        <div ng-if="isBtnShow" class="new_authentication_home_btn" style="background: #2979FF;" ng-click="submitStaffMsg()">提交</div>
+      </div>
+
+      <!--已经认证-->
+      <div ng-if="isStaff">
+        <!--1.信息提示-->
+        <div class="true_authentication_massage">
+          <div>
+            员工认证已完成!
+          </div>
+        </div>
+        <!--2.已完成认证信息-->
+        <div class="new_authentication_info" >
+          <div flex="box:mean">
+            <span  style="font-size: 12px;color: #999;">员工编号</span>
+            <p  style="font-size: 12px;padding-left: 10px;" class="new_authentication_input">{{staffId}}</p>
+          </div>
+        </div>
+        <!--开门红-->
+        <div ng-if="isActiveTimer" class="new_authentication_home_btn" style="background: #FF4400;" ng-click="goNewYearActive()">开门红抽奖入口</div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

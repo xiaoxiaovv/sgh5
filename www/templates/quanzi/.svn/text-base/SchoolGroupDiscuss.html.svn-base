@@ -1,0 +1,124 @@
+<ion-view view-title="微学堂讨论组" hide-nav-bar="true">
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom">
+        <button class="color-text-l button-clear" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h3 class="title">微学堂学习组</h3>
+        <!--右上角圆点-->
+        <div ng-class="{false:'sg-top-right-btn-hide',true:'sg-top-right-btn'}[isDisplay]" ng-click="isClick()">
+            <i class="icon ion-android-more-horizontal sg-trb-more" ng-style="iosTopRightStyle"></i>
+        </div>
+        <div class="com-quanzi-dian"></div>
+    </ion-header-bar>
+
+    <div class="" ng-if="a==1">
+        <ion-content scrollbar-y="false" on-scroll-complete="" delegate-handle="ccScroll" on-release="" style="background: #eee;">
+            <ion-refresher class="margin-top-10" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>
+            <div class="" style="text-align: right;position: absolute;right: 0px; width: 100px;z-index: 9999;height: 185px;">
+                <button ng-click="toStudy(2)">讨论区</button>
+                <div class="sg-customer-cvsation-mr-inside">第一条信息</div>
+                <div class="sg-customer-cvsation-mr-inside">第二条信息</div>
+                <div class="sg-customer-cvsation-mr-inside">第三条信息</div>
+                <div class="sg-customer-cvsation-mr-inside">第四条信息</div>
+            </div>
+
+            <div class="margin-top-10" collection-repeat="item in messages" item-height="150" item-width="100%">
+                <div class="sg-customer-cvsation-lr" style="text-align: center;"><img ng-if="item.fr != cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/></div>
+                <div class="sg-customer-cvsation-mr position-r" >
+                    <span class="sg-customer-cvsation-leftArrow" ng-if="item.fr != cId">◄</span><span  ng-if="item.fr==cId" class="sg-customer-cvsation-rightArrow">►</span>
+                    <div class="sg-customer-cvsation-mr-inside">{{item.msg}}</div></div>
+                <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                    <img ng-if="item.fr == cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+
+    <div class="" ng-if="a==2">
+        <ion-content scrollbar-y="false" on-scroll-complete="" delegate-handle="ccScroll" on-release="" style="background: #eee;">
+            <ion-refresher class="margin-top-10" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>
+            <div class="" style="text-align: center">
+                <button ng-click="toStudy(0)">查看所有</button>
+                <button ng-click="toStudy(1)">返回学习组</button>
+            </div>
+            <div class="margin-top-10" collection-repeat="item in messages" item-height="150" item-width="100%">
+                <div class="sg-customer-cvsation-lr" style="text-align: center;"><img ng-if="item.fr != cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/></div>
+                <div class="sg-customer-cvsation-mr position-r" >
+                    <span class="sg-customer-cvsation-leftArrow" ng-if="item.fr != cId">◄</span><span  ng-if="item.fr==cId" class="sg-customer-cvsation-rightArrow">►</span>
+                    <div class="sg-customer-cvsation-mr-inside">{{item.msg}}</div></div>
+                <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                    <img ng-if="item.fr == cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+
+    <div class="" ng-if="a==0">
+        <ion-content scrollbar-y="false" on-scroll-complete="" delegate-handle="ccScroll" on-release="" style="background: #eee;">
+            <ion-refresher class="margin-top-10" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>
+            <div class="margin-top-10" collection-repeat="item in messages" item-height="150" item-width="100%">
+                <div class="sg-customer-cvsation-lr" style="text-align: center;"><img ng-if="item.fr != cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/></div>
+                <div class="sg-customer-cvsation-mr position-r" >
+                    <span class="sg-customer-cvsation-leftArrow" ng-if="item.fr != cId">◄</span><span  ng-if="item.fr==cId" class="sg-customer-cvsation-rightArrow">►</span>
+                    <div class="sg-customer-cvsation-mr-inside">{{item.msg}}</div></div>
+                <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                    <img ng-if="item.fr == cId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/>
+                </div>
+            </div>
+        </ion-content>
+        <div calss="" style="position: absolute;bottom: 40px;left:10px;">
+            <button class="button" ng-click="toStudy(1)">返回学习组</button>
+        </div>
+    </div>
+    <div class="bar" style="position:absolute;bottom:0px">
+        <input class="input"  style="width: 80%;" ng-model="groupParam.msg"/>
+        <button ng-click = "sendMsg();"> 发送</button>
+    </div>
+    <!--消息弹窗-->
+    <div ng-if="isDisplay" class="pop-news" ng-class="{true:'iOStop'}[isIOS]" style="height: 200px;">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div ng-click="getMsg()" class="float-l pop-news-text">接收消息</div>
+            <!--消息数量-->
+            <div class="float-r pop-news-amount">
+                <!--假数据99+-->
+                <span>99+</span>
+                <!--单向绑定数据messageNum，使用过滤器-->
+                <!--<span ng-bind="messageNum|Num2Filter"></span>-->
+            </div>
+        </div>
+        <!--分享-->
+        <div class="pop-news-item" ng-click = "sendMsg();">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">发送消息</div>
+        </div>
+        <!--删除贴子-->
+        <div class="pop-news-item" ng-click="loginCs()">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-trash-outline"></i></div>
+            <div class="float-l pop-news-text">登录</div>
+        </div>
+        <!--贴子置顶-->
+        <div class="pop-news-item" ng-click="logoutCs()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">注销</div>
+        </div>
+
+        <div class="pop-news-item" ng-click="delGroup()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">关闭群组</div>
+        </div>
+
+    </div>
+
+</ion-view>

@@ -1,0 +1,123 @@
+<ion-view class="background" view-title="商品详情">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l" ng-click="goBack()">
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+    <img class="button" style="width: 35px;height: 30px;padding-top: 5px;padding-bottom: 3px;background:transparent;" ng-click="share()" ng-src="{{imgBaseURL}}img/ic-share-b.png" ng-if="isApp"/>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content scrollbar-y="false">
+    <div class="text-center" ng-if="isEnd">
+      <img style="margin-top: 124px;max-width: 30%;" ng-src="{{imgBaseURL}}img/ic_haier_2.png">
+
+      <div>您来晚了，该商品秒杀已经结束！</div>
+      <button class="button button-calm botton-full margin-top-10" style="width: 205px !important;"
+              ui-sref="seckillList">看看其他活动
+      </button>
+    </div>
+    <div class="text-center" ng-if="unSale">
+      <img style="margin-top: 124px;max-width: 30%" ng-src="{{imgBaseURL}}img/ic_haier_2.png">
+
+      <div>该商品已经下架啦！</div>
+      <button class="button button-calm botton-full margin-top-10" style="width: 205px !important;"
+              ui-sref="seckillList">看看其他活动
+      </button>
+    </div>
+    <div ng-if="iscompleteLoad&&!isEnd">
+      <!--商品轮播图-->
+      <div>
+        <ion-slide-box class="bg-white">
+          <ion-slide ng-repeat="imgUrl in swiperImgs" class="text-align-c">
+            <img ng-src={{imgUrl|ImageFilter|addImgURLPostfix:750:320}} class="height-min-100" height="140px"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <!--商品名称-->
+      <div class="bg-white">
+        <div class="text-align-l color-text-l padding-top-10 padding-left-10 font-size-18 font-bold">
+          <span ng-bind="productModel.productFullName"></span>
+        </div>
+      </div>
+      <!--商品描述-->
+      <div class="text-align-l color-text-l padding-top-5 padding-left-right-15 font-size-13 bg-white">
+        <span ng-bind="productModel.productTitle"></span>
+      </div>
+      <!--微价-->
+      <div class="text-align-l color-text-l padding-left-15 padding-top-10 padding-bottom-0 font-size-14 bg-white">
+        <div>微价：<span ng-bind="actualPrice" class="color-text-red margin-right-20"></span>
+          <span ng-if="actualPrice<pcPrice">价格：<span ng-bind="pcPrice" class="color-text-red"></span></span>
+        </div>
+        <div>秒杀价：<span ng-bind="seckillPrice|number:2" class="color-text-red"></span></div>
+        <div class="row">
+          <div class="col col-10"></div>
+          <div class="col col-90 padding-top-0 padding-right-15" style="text-align: right;color:#f00;">秒杀商品不能使用购物车结算
+          </div>
+        </div>
+        <!--活动描述-->
+        <div class="text-align-l color-text-l padding-right-15 font-size-13 color-text-theme"
+             ng-if="productModel.productActivityInfo" ng-bind="productModel.productActivityInfo">
+        </div>
+      </div>
+      <!--O2O店铺名称-->
+      <div class="row bg-white padding-left-15 color-text-s" ng-bind="O2OStoreName" ng-if="O2OStoreName"></div>
+      <!--分割线-->
+      <div class="padding-0 bg-white">
+        <li class="margin-left-right-10 border-top li-no-style"></li>
+      </div>
+      <!--数量编辑区-->
+      <div class="text-align-l color-text-l padding-left-10 padding-top-5 font-size-13 bg-white">
+        <div class="row">
+          <div class="col col-20 text-align-l ">
+            <span class="">数量：</span>
+          </div>
+          <div class="col col-10 bg-white" style="text-align: center; " ng-bind="productCount">
+          </div>
+        </div>
+      </div>
+      <!--送至地区-->
+      <div class="text-align-l color-text-l padding-left-10 padding-top-5 font-size-13 bg-white">
+        <div class="row">
+          <div class="col col-20 padding-top-10">
+            <span class="">送至：</span>
+          </div>
+          <div class="col col-60 bg-white border border-radius padding-0" style="height: 40px" ng-click="changeArea();">
+            <div class="row text-align-c">
+              <div class="col col-80 padding-top-3 width-100 text-align-l" ng-bind="productModel.pcrName" style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"></div>
+              <i class="col col-20 ion-chevron-down font-size-16 padding-5"></i>
+            </div>
+          </div>
+          <span class="color-text-red margin-left-10 padding-top-10 col" ng-if="hasStock">有货</span>
+        </div>
+        <div class="text-color-light-red padding-10" ng-bind="message" ng-if="!hasStock">
+        </div>
+      </div>
+      <!--图文详情-->
+      <div class="padding padding-15 bg-white border-bottom border-top margin-top-10"
+           ui-sref="imageAndWord({'productId':productModel.productId})">
+        图文详情
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+      <!--规格参数-->
+      <div class="padding padding-15 bg-white"
+           ui-sref="specifications({'productId':productModel.productId})">
+        规格参数
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+    </div>
+    <div style="width: 100%;height: 50px;"></div>
+  </ion-content>
+  <div class="padding-0 margin-0" style="position: absolute;bottom: 0;width: 100%;">
+    <!--未开始的秒杀商品，显示距开始时间倒计时-->
+    <button class=" button button-full margin-0" style="color:#fff;font-size: 15px;text-align: center;"
+            ng-class="isButton?'bg-pink':'bg-line-coupon'" ng-if="status==1&&countDownMsg!='秒杀'" ng-bind="countDownMsg">
+    </button>
+    <!--开始的秒杀商品，显示秒杀-->
+    <button class=" button button-full margin-0" style="color:#fff;font-size: 15px;text-align: center;"
+            ng-click="isButton?seckillBuy():''" ng-class="isButton?'bg-pink':'bg-line-coupon'"
+            ng-if="(status==2||countDownMsg=='秒杀')&&!isEnd&&!unSale">
+      秒杀
+    </button>
+  </div>
+</ion-view>

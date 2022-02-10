@@ -1,0 +1,24 @@
+<ion-view view-title="支持银行" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:40px;height:44px;padding-left:16px;" flex="cross:center" ng-click="goBack()">
+      <div style="width:34px;height:24px;" flex="cross:center">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">支持银行</div>
+    <div style="margin-right:9px;height:44px;padding-right:6px;font-size:17px;color:#999;width:40px;letter-spacing: 0;" flex="main:center cross:center">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" class="chooseTheBankOne" ng-style="paddingtopClasscontent">
+    <div class="chooseTheBankTwo">
+      <div class="chooseTheBank" ng-repeat="logoImg in logoImgs">
+        <div flex="cross:center" class="border-bottom">
+          <div>
+            <img ng-src="{{imgBaseURL}}img/{{logoImg.img}}.png">
+          </div>
+          <div>{{logoImg.name}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

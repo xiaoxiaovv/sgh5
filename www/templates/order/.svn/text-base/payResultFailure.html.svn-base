@@ -1,0 +1,17 @@
+<!--模板-->
+<ion-view class="background" view-title="付款失败" hide-back-button="true">
+  <ion-content scrollbar-y="false">
+
+	 <!--支付失败  -->
+  <div>
+		<div style="text-align:center;padding-top:70px;">
+			<img style="width:104px;" src="http://www.ehaier.com/mstatic//wd/img/pages/msg/pay.png" alt="">
+		</div>
+		<div style="font-size:20px;color:#000;text-align:center;margin-top:10px;">支付失败</div>
+
+	</div>
+  </ion-content>
+  <button class="button button-energized button-block" style="width:80%;position:absolute;bottom:0;left:10%;" ui-sref="orderManage">
+    查看订单
+  </button>
+</ion-view>

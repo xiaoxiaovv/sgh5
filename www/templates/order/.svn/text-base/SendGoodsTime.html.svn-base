@@ -1,0 +1,35 @@
+<!--模板-->
+<ion-view class="background" view-title="选择支付及配送时间" cache-view="false">
+  <ion-content scrollbar-y="false">
+    <!-- 配送时间 -->
+    <div class="item border-none">
+      <div class="font-size-10 h1">配送时间</div>
+      <div class="row item-body">
+        <div class="col border border-radius padding-5" ng-click="chooseDate()">
+          <div ng-if="!dateChoose" name="yuyueDay" id="reserveDateSel" class="float-l">
+            选择日期
+          </div>
+          <div ng-if="dateChoose" name="yuyueDay" class="float-l font-size-10" ng-bind="dateChoose">
+            选择日期
+          </div>
+          <i class="float-r ion-chevron-down font-size-10"></i>
+        </div>
+        <!-- <div class="col-50 border border-radius padding-5 margin-left-5" ng-click="chooseTime()">
+          <div ng-if="!timeChoose" name="yuyueTime" id="reserveTimePeriodSel" class="float-l">
+            选择时段
+          </div>
+          <div ng-if="timeChoose" name="yuyueTime" class="float-l " ng-bind="timeChoose">
+            选择时段
+          </div>
+          <i class="float-r ion-chevron-down font-size-10"></i>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="button-full bg-theme color-text-white text-align-c margin-10 padding-5 border-radius"
+      ng-click="confirm()">
+      确定
+    </div>
+
+  </ion-content>
+</ion-view>

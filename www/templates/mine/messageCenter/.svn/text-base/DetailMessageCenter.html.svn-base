@@ -1,0 +1,6 @@
+<!--我的->消息详情-->
+<ion-view class="background" view-title="{{title}}">
+  <ion-content scrollbar-y="false">
+    <div ng-bind-html="htmlContent" class="padding"></div>
+  </ion-content>
+</ion-view>

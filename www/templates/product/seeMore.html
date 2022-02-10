@@ -1,0 +1,92 @@
+<!--更多服务-->
+<ion-view class="background" view-title="更多服务">
+  <ion-content scrollbar-y="false">
+    <div class="moreTop">
+      <div>智能物联</div>
+      <div flex="" class='wulian_bewen'>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ui-sref="familytry">
+          <img ng-src="{{imgBaseURL}}img/homepage/hometry.png">
+          <div>智慧家庭</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(1)">
+          <img ng-src="{{imgBaseURL}}img/szd@2x.png">
+          <div>水之道</div>
+        </div>
+        <!--只有H5才有这个入口-->
+        <!--<div flex="dir:top main:right cross:center" class="type_entry" ng-click="openCC(5)">-->
+          <!--<img ng-src="{{imgBaseURL}}img/rsq.png">-->
+          <!--<div>海尔热水器</div>-->
+        <!--</div>-->
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(6)">
+          <img ng-src="{{imgBaseURL}}img/hkq@2x.png">
+          <div>好空气</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(2,'http://m.shenyou.tv/index.php')">
+          <img ng-src="{{imgBaseURL}}img/yxtt@2x.png">
+          <div>游戏头条</div>
+        </div>
+        <!--<div flex="dir:top main:right cross:center" class="type_entry" ng-click="openCC(4)">
+          <img src="{{imgBaseURL}}img/hexy@2x.png">
+          <div>海尔洗衣</div>
+        </div>-->
+      </div>
+      <div flex="">
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(7)">
+          <img ng-src="{{imgBaseURL}}img/icon_xinxiaochu.png">
+          <div>馨小厨</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(8)">
+          <img ng-src="{{imgBaseURL}}img/icon_jiuzhidao.png">
+          <div>酒知道</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(10)">
+          <img ng-src="{{imgBaseURL}}img/icon_shequxi.png">
+          <div>社区洗</div>
+        </div>
+      </div>
+    </div>
+    <div class="moreBottom">
+      <div>特色频道</div>
+      <div flex="">
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(9)">
+          <img ng-src="{{imgBaseURL}}img/homepage/qiyegou.png">
+          <div>企业购</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="goToEmc()">
+          <img ng-src="{{imgBaseURL}}img/ic_shfw.png">
+          <div>生活服务</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="openCC(3)">
+          <img ng-src="{{imgBaseURL}}img/dz@2x.png">
+          <div>定制</div>
+        </div>
+
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="goToApplyForCard()">
+          <img ng-src="{{imgBaseURL}}img/lmk_sq.png">
+          <div>联名卡申请</div>
+        </div>
+
+        <!--<div flex="dir:top main:right cross:center" class="type_entry">
+          <img src="{{imgBaseURL}}img/sd@2x.png">
+          <div>顺贷</div>
+        </div>-->
+        <!--<div flex="dir:top main:right cross:center" class="type_entry">
+          <img ng-src="{{imgBaseURL}}img/bt@2x.png">
+          <div>白条</div>
+        </div>-->
+        <!--好糠之家-->
+      </div>
+      <div flex="">
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="toHomeking()">
+          <img src="{{imgBaseURL}}img/HaoKang.png">
+          <div>好慷在家</div>
+        </div>
+        <!--投资-->
+        <div flex="dir:top main:right cross:center" class="type_entry entry_detail" ng-click="goToManageMoney()">
+        <img ng-src="{{imgBaseURL}}img/homepageNew/jr.png">
+          <div>投资</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

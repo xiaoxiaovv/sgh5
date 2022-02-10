@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/dev/!svn/ver/188261/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication
+END
+haierStaff.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/dev/!svn/ver/176315/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/haierStaff.html
+END
+trueAuthentication.html
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/dev/!svn/ver/175046/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/trueAuthentication.html
+END
+newAuthenticationHome.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/dev/!svn/ver/175263/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/newAuthenticationHome.html
+END
+MechanismDescription.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/dev/!svn/ver/157330/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/MechanismDescription.html
+END
+newAuthenticationHomeV2.html
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/dev/!svn/ver/188261/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/newAuthenticationHomeV2.html
+END
+trueAuthenticationList.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/dev/!svn/ver/175046/haier-store/shunguang-v3/H5/trunk/www/templates/newAuthentication/trueAuthenticationList.html
+END

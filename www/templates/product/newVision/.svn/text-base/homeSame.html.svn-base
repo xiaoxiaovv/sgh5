@@ -1,0 +1,61 @@
+
+  <ion-header-bar align-title="center" style="top:0;" class="">
+        <div class="address" flex="main:center cross:center" ng-click="addressTop()">
+            <img src="./img/newvision/location@2x.png" style="width:24px;height:24px;">
+            <div ng-style="changeColor">beijing</div>
+        </div>
+        <div class="jd-bg-hui-e padding-top-5 position-a" ng-class="{'ios-margin-top-20':isIOS}"
+             style="width: 60%;height: 28px;border-radius: 15px;color: #999;padding-left: 28px;
+                left: 65%;
+                margin-left: -38%;
+                top: 7px;"
+             ng-click="gotoqSearch()">
+          <i class=" ion-ios-search font-size-18 jd-color-hui-a margin-left-15 position-a margin-top-1"
+             style="left: 1%;"></i>
+          <i class="no-border jd-bg-hui-e" style="margin-left: 3%">你好</i>
+        </div>
+        <img src="img/message_gray@2x.png" style=""
+             class="width-height-20 topic-top" ng-click="gotoxiaoxi()">
+        <div class="com-quanzi-dian" ng-if="flagNum"></div>
+      </ion-header-bar>
+<div class="homeNav" ng-style="{true:iosAppTop,false:normalTop}[isIosApp]">
+  <ion-scroll direction="x" scrollbar-x="false" zooming="false" style="overflow: hidden;position: relative;">
+    <div flex="" class="furnish_xScroll">
+      <div flex-box="0" ng-click="chooseType(0,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/smartAppliance">成套家电</a>
+      </div>
+      <div flex-box="0" ng-click="chooseType(1,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/homeMake">居家定制</a>
+      </div>
+      <div flex-box="0" ng-click="chooseType(2,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/smartAppliance">众创定制</a>
+      </div>
+      <div flex-box="0" ng-click="chooseType(3,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/newSend">新品众筹</a>
+      </div>
+      <div flex-box="0" ng-click="chooseType(4,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/superMarket">百货超市</a>
+      </div>
+      <div flex-box="0" ng-click="chooseType(5,$event)" class="timeSale_list_item">
+        <a href="#/homeSame/lifeService">生活服务</a>
+      </div>
+      
+      <div flex-box="0" ng-click="chooseType(-1,$event)" class="timeSale_list_item">
+
+      </div>
+      <div class="runningBox"></div>
+    </div>
+
+  </ion-scroll>
+    <!-- <div class="borderBottom"></div> -->
+</div>
+<ion-nav-view name="homeSame-smartAppliance" ></ion-nav-view>
+<ion-nav-view name="homeSame-homeMake" ></ion-nav-view>
+<ion-nav-view name="homeSame-lifeService" ></ion-nav-view>
+<ion-nav-view name="homeSame-newSend" ></ion-nav-view>
+<ion-nav-view name="homeSame-superMarket" ></ion-nav-view>
+<ion-nav-view name="homeSame-lifeService" ></ion-nav-view>
+<!-- <ion-nav-view nav-view="{true:active,false:cached}[ifIndex==2]" name="homeSame-lifeService" ></ion-nav-view> -->
+<ion-footer-bar>
+<div ng-include="'templates/common/Tabs.html'"></div>
+</ion-footer-bar>

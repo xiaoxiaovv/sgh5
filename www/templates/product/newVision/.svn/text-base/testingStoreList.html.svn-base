@@ -1,0 +1,50 @@
+<ion-view class="background" view-title="设计师列表" hide-nav-bar="true" hide-back-button="true">
+    <div style="height:44px;background: #fff;" flex="box:justify" ng-style="paddingtopClass">
+        <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+        <div style="height:24px;width:24px;">
+            <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+        </div>
+        </div>
+        <div style="height:44px;font-size: 18px;letter-spacing: -0.41px;text-align:center;line-height:44px;">体验店</div>
+        <div style="width:60px;height:44px;padding-right:16px;" flex="main:center cross:center">
+            
+        </div>
+    </div>
+    <div flex='main:center cross:center' style="height: 44px;text-align: center;background: #fff;margin-top: 1px;">
+          <div ng-repeat="i in types" style="flex: 1;height: 44px;line-height: 44px;" ng-click="storetype(i.id)">
+              <span style="display: inline-block;height: 43px;font-size: 14px;" ng-style="i.id==nearbyType?{'color':'#2979FF','border-bottom':'2px solid #2979FF'}:{'color': '#666'}">{{i.name}}</span>
+          </div>
+      </div>
+    <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+        
+            <img ng-src="{{recently.imageUrl}}" style='width: 100%;display: block;' ng-if='recently' ui-sref='exStoreDetail({nearbyId:recently.id})'/>
+              <div class="bestnearby" ng-if='recently&&recently.length!=0' ui-sref='exStoreDetail({nearbyId:recently.id})'>
+                <div>{{recently.name}}</div>
+                <div>{{recently.address}}<i>{{recently.typeValue}}</i></div>
+                <div><img ng-src='{{imgBaseURL}}img/newvision/location.png'/>{{recently.distance}}</div>
+              </div>
+              <div class='housetitle' style="background: #fff;margin-top: 10px;">
+              <div></div>
+              <div>附近体验店</div>
+            </div>
+            <div ng-if='!recently' style="background: #fff;padding-top: 60px;text-align: center;color: #999;padding-bottom: 54px;font-size: 14px;">
+                <img ng-src="{{imgBaseURL}}img/noStoreMsg.png" style='display: block;margin: 0 auto;width: 134px;'/>
+                <div style="margin-top: 10px;">
+                  您所在城市暂时没有此类型的体验店，
+                </div>
+                <div>
+                  您可以试试其他类型的体验店
+                </div>
+              </div>
+              <div style="background: #fff">
+                <div class="bestnearby" ng-repeat='i in lists' ng-if='$index!=0' ui-sref='exStoreDetail({nearbyId:i.id})'>
+                <div>{{i.name}}</div>
+                <div>{{i.address}}<i>{{i.typeValue}}</i><img ng-src='{{imgBaseURL}}img/newvision/more.png'/></div>
+                <div><img ng-src='{{imgBaseURL}}img/newvision/location.png'/>{{i.distance}}</div>
+              </div>
+              </div>
+              <div ng-if="!hasmore&&recently" style='text-align: center;font-size: 14px;height: 40px;line-height: 40px;color: #666' ng-style="nolist?{'margin-top':'127px','margin-bottom':'127px'}:{'margin-top':'0px','margin-bottom':'0px'}"><span style="text-decoration: line-through;color: #979797;">&emsp;&emsp;&emsp;&emsp;&emsp;</span>&emsp;没有更多&emsp;<span style="text-decoration: line-through;color: #979797;">&emsp;&emsp;&emsp;&emsp;&emsp;</span></div>
+              <ion-infinite-scroll ng-if="hasmore" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+  </ion-view>
+  

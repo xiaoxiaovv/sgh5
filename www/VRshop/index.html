@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>海尔618</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
+
+    <script type="text/javascript" src="js/plugin/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script src="js/plugin/jquery.md5.js"></script>
+    <script src="js/plugin/jquery.cookie.js"></script>
+    
+    
+    
+    <!-- 改这里,shunguang.js or wap.js -->
+    <!-- 改这里,shunguang.js or wap.js -->
+    <!-- 改这里,shunguang.js or wap.js -->
+    <script src="js/shunguang.js"></script>
+    <!-- <script src="js/wap.js"></script> -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+
+    
+    
+    
+    <!-- <script src="js/set-image.js"></script> -->
+    <script src="js/open-detail.js"></script>
+    <!-- <script src="js/start-lottery.js"></script> -->
+    <script src="js/plugin/jquery.motio.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/product_ui.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+</head>
+<body>
+
+<script src="js/tour.js"></script>
+
+<div id="pano" style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+	<script>
+		embedpano({swf:"tour.swf", xml:"tour.xml", target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+	</script>
+</div>
+<!-- <div id="back-to-origin" onclick="backButtonClick()"></div> -->
+<div id="my-div">
+    <div id="details">
+      <div id="imageBlock" class="imageBlock"></div>
+
+      <div id="textBlock">
+        <div class="rightblock">
+          <div id="cancel" onclick="cancelClick()"></div>
+          <div id="item_id" class="id">&nbsp;&nbsp;&nbsp;&nbsp;<span>ID:111090888</span></div>
+          <div id="featureshort" class="featureshort">test<br>test</div>
+          <div id="tag" class="tag">3匹</div>
+          <div id="type" class="type">型号：<br><span>KFR-72SHJU</span></div>
+          <div id="feature" class="feature"><span>haha<br>hahah<br>hahah</span></div>
+          <a id="more" class="more" href="">了解更多</a>
+          <div id="hongbao" onclick="hongbaoClick()"></div>
+          <div class="buy"><a id="buy" href="">购买</a></div>
+        </div>
+      </div>
+    </div>
+    <div id="hongbao-open-animation"></div>
+    
+    <div id="cash-prize" onclick="showLotteryRules()"><img id="cash-prize-image" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cash_prize.png"></div>    
+        
+    <div id="coupon-prize" onclick="showLotteryRules()"><img id="coupon-prize-image" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/coupon_prize.png"></div>
+    
+    <div id="no-prize" onclick="noPrizeClick()"><img id="no-prize-image" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/no_prize.png"></div>
+    
+    <div id="hongbao-container">
+      <div id="one-hongbao-container">
+      <img id="hongbao-background" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-background.png">
+      <img id="cash-ticket" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cash_ticket.png">
+      <img id="hongbao-accept" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/accept_button.png" onclick="showLotteryRules()">
+      <div id="hongbao-message">返回奖品信息</div>
+      <div id="hongbao-instruction">优惠券：请到我的优惠券查看领取，请在有效期内使用；</div>
+      </div>
+      
+      <div id="two-hongbao-container">
+      <img id="two-hongbao-background" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-background.png">
+      <img id="two-cash-ticket-one" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao_ticket.png">
+      <div id="two-hongbao-message-one">返回奖品信息1</div>
+      <img id="two-cash-ticket-two" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cash_ticket.png">
+      <div id="two-hongbao-message-two">返回奖品信息2</div>
+      <div id="two-hongbao-instruction">现金红包请点领取按钮并按步骤到公众号领取；优惠券请到“我的优惠券”查看领取并在有效期内使用。</div>
+      <img id="two-hongbao-accept" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/accept_button.png" onclick="showLotteryRules()">
+      </div>
+      
+      <div id="three-hongbao-container">
+      <img id="three-hongbao-background" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-background.png">
+      <img id="three-cash-ticket-one" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao_ticket.png">
+      <div id="three-hongbao-message-one">返回奖品信息1</div>
+      <img id="three-cash-ticket-two" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cash_ticket.png">
+      <div id="three-hongbao-message-two">返回奖品信息2222222222</div>
+      <img id="three-cash-ticket-three" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cash_ticket.png">
+      <div id="three-hongbao-message-three">返回奖品信息33333333</div>
+      <div id="three-hongbao-instruction">现金红包请点领取按钮并按步骤到公众号领取；优惠券请到“我的优惠券”查看领取并在有效期内使用。</div>
+      <img id="three-hongbao-accept" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/accept_button.png" onclick="showLotteryRules()">
+      </div>
+      
+      <div id="hongbao-no-prize">
+      <img id="hongbao-no-prize-background" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-background.png">
+      <img id="hongbao-no-prize-cancel" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cancel_button_red.png" onclick="noPrizeCancelClick()">
+      <div id="hongbao-no-prize-message">返回奖品信息</div>
+      </div>
+      
+            
+      <div id="hongbao-no-prize-login">
+      <img id="hongbao-no-prize-login-background" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-background.png">
+      <img id="hongbao-no-prize-login-cancel" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/cancel_button_red.png" onclick="noPrizeLoginCancelClick()">
+      <div id="hongbao-no-prize-login-message">返回奖品信息</div>
+      <img id="hongbao-no-prize-login-button" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/login.PNG" onclick="noPrizeLoginButtonClick()">
+      </div>
+    </div>
+    
+    <div id="lottery-details">
+      <div id="lottery-cancel" onclick="lotteryCancelClick()"></div>
+      <div id="lottery-msg" class="lottery-msg"></div>
+    </div>
+    
+    
+    
+    <div id="loading-ui-wrapper">
+      <img id="loading-ui-image" src="http://cdn09.ehaier.com/shunguang/VRshop/image/control/hongbao-loading.png" alt="" />
+    </div>
+</div>
+
+</body>
+</html>

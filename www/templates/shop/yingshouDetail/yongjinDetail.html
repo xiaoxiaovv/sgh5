@@ -1,0 +1,26 @@
+ <ion-view class='background' view-title="佣金" hide-back-button="true" style="background-color: $color-theme;color:#000;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false" class='xvv-'>
+		<!--佣金-->
+    <div ng-repeat="item in revenueList">
+      <div class="row padding-0 border-bottom position-r margin-top-10">
+        <div class="col padding-top-bottom-10 bg-white">
+          <div class="rd-img-box" style="position: absolute">
+            <img ng-src="{{item.productImageUrl}}" alt="商品图片" style="width: 80px;height: 80px;"/>
+          </div>
+          <div style="margin-left: 90px;">
+            <div class="goods-introduces font-size-15" ng-bind="item.productName"></div>
+            <div class='font-size-13' style='color:#666666'>单 号：<span ng-bind="item.netSn"></span></div>
+            <div class='font-size-13' style='color:#666666'>下单人：<span ng-bind="item.mobile"></span></div>
+            <div class="font-size-15" style='color:#FF4400'>佣金：<span ng-bind="item.brokerageDeductAmount|currency:'&yen'"></span></div>
+          </div>
+        </div>
+        <div style='position: absolute;right: 10px;bottom: 10px;color:#7A87A3' ng-click="lookDetail(item);">查看详情</div>
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="hasMoreData" immediate-check="false" on-infinite="loadMore()">
+    </ion-infinite-scroll>
+	</ion-content>
+</ion-view>

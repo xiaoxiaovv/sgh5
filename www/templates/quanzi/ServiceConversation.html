@@ -1,0 +1,169 @@
+<ion-view view-title="客服对话" hide-nav-bar="true">
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom">
+        <button class="color-text-l button-clear" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h3 class="title">为您服务</h3>
+        <!--右上角圆点-->
+        <div ng-class="{false:'sg-top-right-btn-hide',true:'sg-top-right-btn'}[isDisplay]" ng-click="isClick()">
+            <i class="icon ion-android-more-horizontal sg-trb-more" ng-style="iosTopRightStyle"></i>
+        </div>
+        <div class="com-quanzi-dian"></div>
+    </ion-header-bar>
+
+    <ion-content scrollbar-y="false" on-scroll-complete="" delegate-handle="scScroll" on-release="" style="background: #eee;" id="message-detail-content-s" >
+        <ion-refresher class="margin-top-10" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>
+        <div class="margin-top-10" ng-repeat="item in messages" item-height="120px" ng-if="item.msg"><!-- 去除空消息的msg -->
+
+            <div class="sg-customer-cvsation-lr" style="text-align: center;">
+                <img ng-if="item.fr" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/>
+            </div>
+            <div  class="sg-customer-cvsation-mr position-r" >
+                <div ng-if="!item.fileType">
+                    <span class="sg-customer-cvsation-leftArrow" ng-if="item.fr">◄</span>
+                    <span  ng-if="!item.fr" class="sg-customer-cvsation-rightArrow">►</span>
+                    <div class="sg-customer-cvsation-mr-inside" ng-bind-html="item.msg" ng-class="{true:'sg-margin-left-6',false:'sg-margin-right-6'}[!!(item.fr)]" ></div>
+                </div>
+                <div ng-if="item.fileType=='.wav'"><!--  音频 从本地上传后再从服务端取得-->
+                    <play-sound url="{{item.imageUrl}}" side="right"></play-sound>
+                </div>
+                <div ng-if="item.fileType=='.jpg'" style="text-align: center;"><!--  图片音频 从本地上传后再从服务端取得- -->
+                    <img style="width: 50%" src="{{item.imageUrl}}" />
+                </div>
+                <div ng-if="item.fileType=='prodLink'" style="text-align: center;"><!-- 商品链接 -->
+                  <div class="sg-kefu-product-link width-100 " style="background-color: #fff;" >
+                    <div style="display: inline-block;padding: 10px;width: 30% ; text-align: center;float:left;" >
+                      <img style="width: 100%" src="http://cdn22.ehaier.com/file/58c0fc43b70224a552b64822.png">
+                    </div>
+                    <div style="display: inline-block;padding: 10px;width: 68%;padding-left: 0px;" ng-click=""><!-- todo 跳转到商品页 -->
+                      <div style=" width: 100%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;color: #333333;margin-bottom: 0.375rem;line-height: 18px;white-space: normal;">{{item.prodObj.productFullName}}&nbsp;:&nbsp; {{item.prodObj.productTitle}}</div>
+                      <div style="margin-top: 5px;font-size: 12px">￥：{{item.prodObj.actualPrice}}</div>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                <img ng-if="!item.fr" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-customer-cvsation-img"/>
+            </div>
+        </div>
+
+
+    </ion-content>
+    <!--  底部输入框 区域-->
+    <ion-footer-bar ng-style="footerStyle" align-title="left" class="bar-light" resize-foot-bars>
+        <!-- <div class="buttons rj-footer-buttons-left">
+        <button class="button button-icon icon ion-ios-mic-outline">
+        </button>
+    </div> -->
+        <div style="width:10%;display: inline-block;position:relative; " ng-click="showMoreInput();isShowRecord = true;isShowEmo= false;isShowPicture=false;">
+            <img style="width: 80%;position: absolute;bottom: 6px;left:14%;" ng-src="{{imgBaseURL}}img/microSchool/sgshequnmic.png"  >
+        </div>
+        <label class="item item-input" style="margin:0; display: inline-block;width: 69%;padding-left: 4px;border-bottom: none !important;top:2px;">
+            <textarea msd-elastic placeholder="说点什么" ng-model="CustumerParam.msg" id="content" style="background-color: #ddd;padding: 10px;border-radius: 4px;height:30px;"></textarea>
+            <!--<div class="buttons">-->
+            <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
+            <!--</div>-->
+        </label>
+
+        <div ng-click="showMoreInput();isShowEmo = true;isShowPicture= false;isShowRecord=false;"  style="width:10%;display: inline-block;padding: 0;position: relative;">
+            <img ng-src="{{imgBaseURL}}img/microSchool/sgshequnface.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" >
+        </div>
+        <div  style="width:10%;display: inline-block;padding: 0;position: relative;">
+            <img ng-src="{{imgBaseURL}}img/quanzi/sgshequnadd.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" ng-if="!CustumerParam.msg"  ng-click="showPic();">
+            <img ng-src="{{imgBaseURL}}img/quanzi/sgshequnsend.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" ng-if="CustumerParam.msg" ng-click="sendMsg()">
+        </div>
+
+    </ion-footer-bar>
+    <div class="bar sg-chat-emo-div" ng-if="isShowMoreInput" ng-style="emoDivStyle" >
+        <div ng-if="isShowEmo">
+            <div class="row">
+                <div class="col col-10" ng-click="insertEmo(1)"><img class="width-100" ng-src="{{imgBaseURL}}img/sgemo/01.png"></div>
+                <div class="col col-10" ng-click="insertEmo(2)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/02.png"></div>
+                <div class="col col-10" ng-click="insertEmo(3)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/03.png"></div>
+                <div class="col col-10" ng-click="insertEmo(4)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/04.png"></div>
+                <div class="col col-10" ng-click="insertEmo(5)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/05.png"></div>
+                <div class="col col-10" ng-click="insertEmo(6)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/06.png"></div>
+                <div class="col col-10" ng-click="insertEmo(7)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/07.png"></div>
+                <div class="col col-10" ng-click="insertEmo(8)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/08.png"></div>
+                <div class="col col-10" ng-click="insertEmo(9)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/09.png"></div>
+                <div class="col col-10" ng-click="insertEmo(10)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/10.png"></div>
+            </div>
+            <div class="row">
+                <div class="col col-10" ng-click="insertEmo(11)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/10.png"></div>
+                <div class="col col-10" ng-click="insertEmo(12)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/11.png"></div>
+                <div class="col col-10" ng-click="insertEmo(13)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/12.png"></div>
+                <div class="col col-10" ng-click="insertEmo(14)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/13.png"></div>
+                <div class="col col-10" ng-click="insertEmo(15)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/14.png"></div>
+            </div>
+            <div style="text-align: center;margin-top: 20px;">
+                <button class="button" style="width: 60px;background-color:#0079ff;color: white;" ng-click="hideMoreInput();"> 取消</button>
+            </div>
+
+        </div>
+        <div ng-if="isShowPicture" style="padding: 15px;">
+            <div style=" display: inline-block;width: 64px;height: 64px;" ng-click="getImg(1)"><img class="width-100" ng-src="{{imgBaseURL}}img/microSchool/sgsequnpicture.png"></div>
+            <div style=" display: inline-block;width: 64px;height: 64px;" ng-click="getImg(0)"><img class="width-100" ng-src="{{imgBaseURL}}img/microSchool/sgshequnpaizhao.png"></div>
+        </div>
+        <div ng-if="isShowRecord" class="width-100" >
+            <!--<button class="button" ng-click="startRecord();">录音</button>-->
+            <!--<button class="button">结束录音</button>-->
+            <!--<button class="button" ng-click="play()">播放 </button>-->
+            <!--<button class="button" ng-click="transfer();">发送 </button>-->
+            <audio-panel hold-func = "hold" release-func="release">
+
+            </audio-panel>
+        </div>
+        <audio controls id="audioInSC"  style="display:none">
+            <source id="sourceInSC" type="audio/wav">
+            您的浏览器不支持 audio 元素。
+        </audio>
+    </div>
+    <!--消息弹窗-->
+    <div ng-if="isDisplay" class="pop-news" style="height: 178px !important;" ng-class="{true:'iOStop'}[isIOS]">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div ng-click="getMsg()" class="float-l pop-news-text">接收消息</div>
+            <!--消息数量-->
+            <div class="float-r pop-news-amount">
+                <!--假数据99+-->
+                <span>99+</span>
+                <!--单向绑定数据messageNum，使用过滤器-->
+                <!--<span ng-bind="messageNum|Num2Filter"></span>-->
+            </div>
+        </div>
+        <!--分享-->
+        <div class="pop-news-item" ng-click = "sendMsg();">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">发送消息</div>
+        </div>
+        <!--删除贴子-->
+        <div class="pop-news-item" ng-click="loginCs()">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-trash-outline"></i></div>
+            <div class="float-l pop-news-text">登录</div>
+        </div>
+        <!--贴子置顶-->
+        <div class="pop-news-item" ng-click="loopGetMsg()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">开始循环</div>
+        </div>
+        <div class="pop-news-item" ng-click="killTimer()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">结束循环</div>
+        </div>
+    </div>
+
+</ion-view>

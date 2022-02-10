@@ -1,0 +1,40 @@
+ <ion-view class='background' view-title="钻石明细" hide-back-button="true" style="background-color: $color-theme;color:#000;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<div class='cui-first'>
+		<div><img ng-src='{{imgBaseURL}}img/cuizuan.png'/></div>
+		<div>当前钻石</div>
+		<div><span>{{usableDiamond}}</span><span>个</span></div>
+		<div class='cui-xiao'></div>
+		<div class='cui-xiao cui-xiao2'></div>
+		<div>
+			<p ng-click='changelist(null)' ng-class="index==null?'cui-fontlight':'cui-fontold'">全部</p>
+			<p ng-click='changelist("1")' ng-class="index=='1'?'cui-fontlight':'cui-fontold'">收入</p>
+			<p ng-click='changelist("0")' ng-class="index=='0'?'cui-fontlight':'cui-fontold'">支出</p>
+		</div>
+	</div>
+	<ul class='cui-second' ng-if='diamgetlist.length!=0'>
+		<li ng-repeat="i in diamgetlist">
+			<div>{{i.payTime  | chinaDate}}</div>
+			<div>{{i.transType | totext}}</div>
+			<div>
+				<p>
+				<span ng-if='i.transType=="0"'>-</span>
+				<span ng-if='i.transType=="1"'>+</span>
+				{{i.changeCount}}</p>
+				<p>{{i.remark}}</p><!-- 说明 -->
+				<!-- <p ng-if='i.flowType=="10"'>订单抵扣-{{i.pgOrderId}}</p>扣减
+				<p ng-if='i.flowType=="11"'>回退</p>
+				<p ng-if='i.flowType=="12"'>超时免单充值</p>
+				<p ng-if='i.flowType=="13"'>机制奖励充值</p> -->
+			</div>
+		</li>
+	</ul>
+	<div class='cui-null' ng-if='diamgetlist.length==0'>
+		<div>暂无钻石明细~</div>
+	</div>
+	<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

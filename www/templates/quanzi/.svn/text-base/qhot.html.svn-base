@@ -1,0 +1,141 @@
+<ion-view view-title="圈子" hide-nav-bar="true">
+  <ion-header-bar align-title="center" style="top:0;" class="border-bottom">
+    <div class=" padding-5 text-align-c" ng-click="gotomyzhu()">
+      <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-user.png" style="width: 25px;height: 25px;">
+    </div>
+    <div class="jd-bg-hui-e padding-top-5 position-a topic-top-search" ng-class="{'ios-margin-top-20':isIOS}"
+         style=""
+         ng-click="gotoqSearch()">
+      <i class=" ion-ios-search font-size-18 jd-color-hui-a margin-left-15 position-a margin-top-1"
+         style="left: 1%;"></i>
+      <i class="no-border jd-bg-hui-e" style="margin-left: 3%">搜索账号、圈子、话题</i>
+    </div>
+
+
+    <img ng-src="{{imgBaseURL}}img/message_gray@2x.png" style=""
+         class="width-height-20 topic-top" ng-click="gotoxiaoxi()">
+    <div class="com-quanzi-dian" ng-if="flagNum"></div>
+  </ion-header-bar>
+  <ion-content class="padding-top-7 hui-back bottom-0 margin-bottom-44" delegate-handle="qhotHandle" overflow-scroll="true" on-swipe="getScrollHeight()">
+    <!--  由于 用了ionic的tab样式 所以加bottom scrollbar-y="false"-->
+    <!--下拉加载刷新的样式 pulling-icon="ion-loading-a" refreshing-icon=" ion-android-sync"-->
+    <ion-refresher class="margin-top-10" pulling-text="下拉刷新" refreshing-text="正在刷新"
+                   on-refresh="init()"></ion-refresher>
+    <div class="hui-back" id="bbb">
+      <!--轮播图-->
+      <div class="position-r  jf" style="top: 25px;">
+        <ion-slide-box delegate-handle="qhot_slider" auto-play="true" show-pager="true" does-continue="true"
+                       class="height-min-100"
+                       style="height: 140px;overflow: hidden;">
+          <ion-slide class="text-align-c height-min-100" ng-repeat="imageItem in bannerlist">
+            <a ng-if="imageItem.imgurlType==0" href="{{imageItem.imgUrl}}">
+            <img class="topic_-min-100" ng-src="{{imageItem.img | addImgURLPostfix:750:320}}"
+                 height="140px" width="100%" alt="轮播图"/>
+            </a>
+            <a ng-if="imageItem.imgurlType==1">
+            <img class="topic_-min-100" ng-src="{{imageItem.img | addImgURLPostfix:750:320}}"
+                 ng-click="jumpBannerUrl(imageItem.imgurlType,imageItem.imgUrl)"
+                 height="140px" width="100%" alt="轮播图"/>
+            </a>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+
+      <div class="position-r " style="top: 29px;">
+        <div class="margin-bottom-5 margin-left-10 font-size-14 jd-color-hui-a" ng-click="gotohotquanezi()">
+          <i style="color: #555;font-weight: bold">热门圈子</i>
+          <i class="float-r ion-ios-arrow-right font-size-20 margin-right-10" style="color: #777"></i>
+        </div>
+        <!--滚动条-->
+        <ion-scroll direction="x" scrollbar-x="false" class="bg-white padding-top-15" style="height:95px;"
+                    delegate-handle="pinglun" on-drag-left="">
+          <div id="hotdiv" class="photo text-align-c" collection-repeat="item in quanlist"
+               item-width="22%"
+               item-height="80px"
+               ng-click="gotoquanezi(item)">
+            <img class="width-height-50"
+                 ng-src="{{item.topicImg| scoleFilter}}" style="border-radius: 25px;">
+            <div ng-bind="item.topicName" class="font-size-11" style="color: #777;overflow: hidden;height: 20px;"></div>
+          </div>
+        </ion-scroll>
+        <!-- 内容-->
+        <div class="margin-top-10">
+          <div class=" margin-top-5" ng-repeat="item in tielist track by $index">
+            <div class="story-st">
+              <div class="story-head">
+                              <span ng-click="gotoothers(item)">
+                                <img alt="头像" class="user-head" ng-src="{{item.userHead|ImageUserFilter}}">
+                                <span class="user-name" ng-bind="item.userName">昵称</span>
+                              </span>
+                <!--<img src="{{imgBaseURL}}img/quanzi/qunzi-hot.png" class="inline width-height-15" ng-click="gotoothers(item)"
+                     style="margin-bottom: -3px;" ng-if="item.isTop==1"/>-->
+                <span class="" ng-bind="item.createDate1" ng-click="gototiezi(item)" style="font-size: 10px;color: #999;">1小时前</span>
+                <img ng-if="item.isTop==1" ng-src="{{imgBaseURL}}img/quanzi/ding.png" style="float:right;padding:10px 0px 0 10px;width:30px;"/>
+                <img ng-if="item.isChoice==2||item.isChoice==3" src="{{imgBaseURL}}img/quanzi/jing.png" style="float:right;padding:10px 0px 0 10px;width:30px;"/>
+                <!--<img src="{{imgBaseURL}}img/quanzi/jing.png" style="float:right;padding:10px 0px 0 0px;"/>-->
+
+              </div>
+              <!--长文贴-->
+              <div class="story-content" ng-if="item.isShortStory!=0" ng-click="gototiezi(item)">
+                <!--<img ng-if="item.mainImg" alt="" class="main-img" ng-src="{{item.mainImg}}">-->
+                <div ng-if="item.mainImg" style="position:relative;width:125px;height:90px;float:right;overflow:hidden;background:url({{item.mainImg}}) center center no-repeat;background-size:cover;">
+                  <img ng-if="item.type==6" src="{{imgBaseURL}}img/quanzi/bofang.png" style="position:absolute;width:40px;height:40px;top:25px;left:40px;"/>
+                  <!--<img ng-if="item.mainImg" ng-src="{{item.mainImg}}" alt="" style="margin-left:5px;float:right;width:125px;">-->
+                </div>
+                <div class="font" style="height:auto;">
+                  <div class="story-title dot-block" style="height:23px;" ng-bind="item.storyName">标题</div>
+                  <div class="dot-block cont" ng-bind="item.storyContentText">内容</div>
+                </div>
+                <div style="clear:both;"></div>
+              </div>
+              <!--短文贴-->
+              <div class="short-story" ng-if="item.isShortStory==0" ng-click="gototiezi(item)">
+                <div class="dot-line short-cont" style="height:23px;" ng-bind="item.storyContent">标题</div>
+                <img ng-if="!!img" ng-repeat="img in item.mainImgArray|limitTo:3" ng-src="{{img}}"
+                     ng-style="screenListThreeWidth"
+                     alt="" style="object-fit: cover"
+                     class="shortImg">
+                <div style="clear: both;"></div>
+              </div>
+              <div class="row story-foot" style="width:100%;">
+                <div ng-if="item.isReward==1" style="width:30%;text-align:left;padding-left:15px;line-height: 22px;">
+                  <img src="{{imgBaseURL}}img/quanzi/groupShan.png" style="position:relative;top:3px;width:15px;" ng-if="item.rewardStatus==0"/>
+                  <img src="{{imgBaseURL}}img/quanzi/topicShan.png" style="position:relative;top:3px;width:15px;" ng-if="item.rewardStatus==1"/>
+                  <span ng-if="item.rewardStatus==0" style="font-size:12px;padding-left:5px;color:#FF4400">{{item.rewardAmount}}</span>
+                  <span ng-if="item.rewardStatus==1" style="font-size:12px;padding-left:5px;">{{item.rewardAmount}}</span>
+                </div>
+                <div ng-if="item.isReward!=1" style="width:30%;text-align:left;padding-left:15px;"></div>
+                <div class="col">
+                    <img class="story-nums" ng-src="{{imgBaseURL}}img/quanzi/nolook.png"/>
+
+                  <span ng-bind="item.browserNum">789</span>
+                </div>
+                <div class="col" ng-click="gototiezi(item)">
+                  <img class="story-nums" ng-src="{{imgBaseURL}}img/quanzi/quanzi-pinglun.png"/>
+                  <!--<span>评论</span>-->
+                  <span ng-bind="item.commentNumber">789</span>
+                </div>
+                <div class="col" ng-click="dianzan(item.id,$index)">
+                  <img class="story-nums" ng-src="{{imgBaseURL}}img/quanzi/dianzan_no.png" ng-if="!item.praiseFlag"/>
+                  <img class="story-nums" ng-src="{{imgBaseURL}}img/quanzi/dianzan.png" ng-if="item.praiseFlag"/>
+                  <!--<span>点赞</span>-->
+                  <span ng-bind="item.praiseNumber">789</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-infinite-scroll on-infinite="loadData()" distance="1%" immediate-check="false"
+                           ng-if="hasMore">
+      </ion-infinite-scroll>
+    </div>
+  </ion-content>
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+  <!--回到顶部按钮-->
+  <div style="position: fixed;right: 15px;bottom: 45px;" ng-click="scrollToTop()" ng-if="showTopBtn">
+    <img ng-src="{{imgBaseURL}}img/icon_toTop.png" style="width:44px">
+  </div>
+</ion-view>

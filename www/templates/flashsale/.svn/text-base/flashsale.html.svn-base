@@ -1,0 +1,110 @@
+<ion-view class='background' view-title="限时抢购" hide-back-button="true" hide-nav-bar="true">
+	<div class='flashsaletopbar'>
+		<div>
+			<div ng-click='goback()' style='margin-left: 0.373rem;'><img src="{{imgBaseURL}}img/newfanhui.png" style='vertical-align: middle;width:20px'/></div>
+			<div>限时抢购</div>
+		</div>
+		<div class="flashsale-qiang">
+		<ion-scroll direction="x" scrollbar-x="false" zooming="false" style="overflow:hidden;white-space: nowrap;margin-top: -0.373rem">
+		<div class="row text-align-c padding-0">
+			<div class="flashsale-float col-25"  style="width:2.27rem;opacity: 1">
+				<img ng-src="{{imgBaseURL}}img/576497.png" alt="">
+			</div>
+			<div class="flashsale-float col-20" ng-repeat="(key,i) in flashInfoTwototal.dates" ng-click="changecolor($index)" ng-class="$index==index?'thissay':''" style='margin-left: 10px;margin-right: 5px;'>
+				<p class="flashsalep1">{{i.date | delLing}}</p>
+				<p class="flashsalep2" ng-if="key==0">抢购中
+				<span></span></p>
+				<p class="flashsalep2" ng-if="key!=0">即将开抢
+				<span></span>
+				</p>
+			</div>
+		</div>
+		</ion-scroll>
+		</div>	
+	</div>
+	<div>
+		<ion-scroll direction="x" scrollbar-x="false" zooming="false" style="overflow:hidden;white-space: nowrap;margin-top: -10px" delegate-handle="hxScroll">
+		<div class="text-align-c" style='padding: 5px;padding-left: 17px;' ng-style="flashInfoTwo.length<5?{'display':'flex','display': '-webkit-box',
+  'display': '-webkit-flex','-webkit-box-pack': 'center',
+  '-webkit-justify-content': 'center',
+  '-ms-flex-pack': 'center',
+  'justify-content': 'center'}:{}">
+			<div ng-repeat="(key,value) in flashInfoTwo" class='flashsaletoptime' ng-click='changetime($index)' ng-style='$index==index1?{"color":"#FF6026"}:""'>
+				<p style="font-size: 15px;">{{value.timeStr}}</p>
+				<p ng-if='systemTime>=flashInfoTwo[$index].startTime&&systemTime<=flashInfoTwo[$index].endTime'>正在疯抢</p>
+				<p ng-if='systemTime<flashInfoTwo[$index].startTime'>即将开抢</p>
+				<p ng-if='systemTime>flashInfoTwo[$index].endTime'>已结束</p>
+			</div>
+			
+		</div>
+		</ion-scroll>
+	</div>
+	<div class="newsendcontent" style='margin-top: 4px;'>
+			<ion-slide-box  delegate-handle="flashsale_slide" auto-play="true">
+			      <ion-slide ng-repeat="imageItem in bannerList track by $index">
+			        <div class="box"><img ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"  class="selection_banner"/></div>
+			      </ion-slide>
+		    </ion-slide-box>
+		</div>
+		<div class="flashsale-total">
+			<p ng-if='systemTime>=flashInfoTwo[index1].startTime&&systemTime<=flashInfoTwo[index1].endTime'>疯抢中，好价总在犹豫中错过</p>
+			<p ng-if='systemTime>flashInfoTwo[index1].endTime'>已经结束啦，下次记得早点来～</p>
+			<p ng-if='systemTime<flashInfoTwo[index1].startTime'>即将开始，先下单先得</p>
+			<div ng-if='systemTime>=flashInfoTwo[index1].startTime&&systemTime<=flashInfoTwo[index1].endTime'>
+				<span>距结束</span>
+				<span>{{endTh}}</span><i>:</i>
+				<span>{{endTm}}</span><i>:</i>
+				<span>{{endTs}}</span>
+			</div>
+			<div ng-if='systemTime<flashInfoTwo[index1].startTime'>
+				<span>距开始</span>
+				<span>{{endTt}}</span><i style="font-size: 12px;">天</i>
+				<span>{{endTh}}</span><i>:</i>
+				<span>{{endTm}}</span><i>:</i>
+				<span>{{endTs}}</span>
+			</div>
+		</div>
+	<ion-content scrollbar-y="false" lazy-container ng-style='(bannerList&&bannerList.length!=0)?{"margin-top":"9.23rem"}:{"margin-top":"5.05rem"}'>
+	<div>	
+		<ul class="yushoutotal" style="background-color: white;margin-bottom:0.2133rem;">
+			<li class="yushoushuju" ng-repeat="i in flashInfoTwo[index1].products" style="margin-bottom: 0; border-bottom:1px solid #E4E4E4;height:3.467rem;" ui-sref="productDetail({'productId':i.productId,'storeId':storeId})">
+				<div class="yushoushujuleft" style="margin-top: -0.267rem;">
+					<img ng-src="{{i.imageUrl}}" alt="">
+				</div>
+				<div class="yushoushujuright">
+					<p style="font-size: 16px;width:5.6rem;overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2;margin-bottom: 0;height: 42px;">
+					{{i.productName}}
+					</p>
+					<p class="yssjpri" style='margin-bottom: 0' ng-if='!(systemTime>i.endTime)'>
+						<span style="font-size: 12px;/*no*/color:#666;">抢购价</span>
+						<span style="color:#FF4400;font-size: 16px;/*no*/font-weight: 700;">¥{{i.flashsalePrice|keepInt}}</span><span style="color:#FF4400;font-size: 12px;/*no*/font-weight: 700;">{{i.flashsalePrice|keepFloat}}</span>
+					</p>
+					<p class="yssjpri" style='margin-bottom: 0' ng-if='systemTime>i.endTime'>
+						<span style="font-size: 12px;/*no*/color:#666;">商品价</span>
+						<span style="color:#FF4400;font-size: 16px;/*no*/font-weight: 700;">¥{{i.miniPrice|keepInt}}</span><span style="color:#FF4400;font-size: 12px;/*no*/font-weight: 700;">{{i.miniPrice|keepFloat}}</span>
+					</p>
+					<p style="color:#FF4400;margin-bottom: 0">
+					<img ng-src="{{imgBaseURL}}img/zhuan2.png" alt="" style="width:0.4rem;height:0.4rem" ng-if='isWd&&isCommission'>
+					<span style="font-size: 16px;/*no*/" ng-if='isWd&&isCommission'>¥{{i.commission|keepInt}}</span><span style="color:#FF4400;font-size: 12px;/*no*/" ng-if='isWd&&isCommission'>{{i.commission|keepFloat}}</span>
+					</p>
+					<div style='color:#666' ng-if='!(systemTime>i.endTime)'>原价&nbsp;<span style='text-decoration:line-through'>&thinsp;¥&thinsp;{{i.miniPrice|keepInt}}{{i.miniPrice|keepFloat}}&thinsp;</span></div>
+					<div class="yushoushujuding" style="bottom:0.9rem;background-color: #FF6026" ng-if="systemTime>=i.startTime && systemTime<=i.endTime">
+						立即抢购
+					</div>
+					<div class="yushoushujuding" style="background-color:#FFA27F;bottom:0.31rem;" ng-if="systemTime<i.startTime" ng-style='(isWd&&isCommission)?{}:{"bottom":"0.8rem"}'>
+						即将开始
+					</div>
+					<div class="yushoushujuding" style="bottom:0.9rem;background-color: #D0D0D0" ng-if="systemTime>i.endTime">
+						已结束
+					</div>
+					<div class='flashjdt' ng-if='systemTime>=i.startTime && systemTime<=i.endTime'>
+						<div ng-style='{"width":i.sale+"%","border-radius":"100px"}'></div>
+						<i ng-if='i.sale!="98"'>已售{{i.sale+"%"}}</i>
+						<img ng-src='{{imgBaseURL}}img/huohuoo.png' ng-if='i.sale=="98"'/><i style="display: inline-block;transform: translate(0px,-3px);" ng-if='i.sale=="98"'>即将售空</i>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	</ion-content>
+</ion-view>

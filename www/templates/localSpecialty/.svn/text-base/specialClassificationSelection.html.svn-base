@@ -1,0 +1,107 @@
+
+
+<ion-modal-view class="filter-modal-view background branchtype-box pane" style="margin-left:0;width:100%;">
+  <ion-header-bar class="text-align-c padding-0 search-header">
+    <span class="title">全部分类</span>
+    <div class="icon ion-ios-arrow-left float-l width-10" ng-click="closeListModal()"></div>
+  </ion-header-bar>
+
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" style="background: #eee;"class="branchtype" ng-class="{true:'iosContent',false:'normalContent'}[isIosApp]">
+
+
+    <div class="branchtype cl scroll-content ionic-scroll" ng-class="{true:'iosContent',false:'normalContent'}[isIosApp]">
+      <!--当一级数据为空时候显示没有数据-->
+      <div style="position: absolute;left:50%; top:50%; margin-left:-39px; margin-top:-43px;" ng-if="iSDataLeftRight">
+        <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+        <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">暂无分类信息</div>
+      </div>
+      <!--滚动条左侧-菜单-->
+      <div class="branchtype-left fl" ng-if="!iSDataLeftRight">
+        <ion-scroll direction="y" scrollbar-y="false" zooming="false" class="branchtype-scroll">
+          <div ng-repeat="item in leftDataList" class="branchtype-nav" ng-class="{true: 'branchtype-default'}[leftDataListIndex == $index]" ng-click="selectTab(item.id,$index)">{{ item.navigationName }}</div>
+          <div style="height:30px;"></div>
+        </ion-scroll>
+      </div>
+    </div>
+      <!--滚动条右侧-内容-->
+      <!--<div class="branchtype-right fr" ng-if="!iSDataLeftRight">-->
+      <!--<ion-scroll direction="y" delegate-handle="branchtype-right-scroll" scrollbar-y="false" lazy-container class="branchtype-scroll">-->
+      <!--&lt;!&ndash;二级内容为空时候提示&ndash;&gt;-->
+      <!--<div style="padding:20px 0 20px 0;" ng-if="isListNull">-->
+      <!--<img ng-src="img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">-->
+      <!--<div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">暂无分类信息</div>-->
+      <!--</div>-->
+
+      <!--&lt;!&ndash;不带边框的&ndash;&gt;-->
+      <!--<dl class="branchtype-list">-->
+
+      <!--<dd class="cl">-->
+      <!--<div ng-repeat=" itemchildren in rightDataList" ui-sref="branchTypeDetail({productCateId:itemchildren.url})">-->
+      <!--<img lazy-src="{{ itemchildren.imageUrl }}">-->
+      <!--<span>{{ itemchildren.navigationName }}</span>-->
+      <!--</div>-->
+      <!--</dd>-->
+      <!--</dl>-->
+      <!--<div style="height:30px;"></div>-->
+      <!--&lt;!&ndash;懒加载&ndash;&gt;-->
+      <!--&lt;!&ndash; <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> &ndash;&gt;-->
+      <!--</ion-scroll>-->
+      <!--</div>-->
+      <div class="branchtype-right fr" ng-if="!iSDataLeftRight">
+        <ion-scroll direction="y" delegate-handle="branchtype-right-scroll" scrollbar-y="false" lazy-container class="branchtype-scroll">
+          <!--二级内容为空时候提示-->
+          <div style="padding:20px 0 20px 0;" ng-if="isListNull">
+            <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+            <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">暂无分类信息</div>
+          </div>
+          <!--swiper轮播-->
+          <!--<div ng-show="slideImage.length">-->
+          <!--<div class="swiper-container swipers-box" id="swpcontainer-branchType-1" style="height:auto;">-->
+          <!--<ul class="swiper-wrapper" style="height:auto;">-->
+          <!--<li class="swiper-slide" ng-repeat="item in slideImage" style="height:auto;" ng-click="bannerClick(item)">-->
+          <!--<img ng-src="{{item.imageUrl}}" alt="" style="height:auto;"/>-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--<div class="swiper-pagination" id="swppagination-branchType-1"></div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--轮播图-->
+          <div ng-show="slideImage.length">
+            <ion-slide-box class="banner" delegate-handle="selection_slider" auto-play="true" does-continue="true">
+              <ion-slide class="text-align-c" ng-repeat="imageItem in slideImage">
+                <img class="" ng-click="bannerClick(imageItem)" lazy-src="{{imageItem.imageUrl}}">
+              </ion-slide>
+            </ion-slide-box>
+          </div>
+          <!--轮播图-->
+          <!-- <div ng-show="slideImage.length">
+              <ion-slide-box class="banner" delegate-handle="selection_slider" auto-play="true" does-continue="true">
+                  <ion-slide class="text-align-c" ng-repeat="imageItem in slideImage">
+                      <img class="" ng-click="bannerClick(imageItem)" lazy-src="{{imageItem.imageUrl}}">
+                  </ion-slide>
+              </ion-slide-box>
+          </div> -->
+          <!--不带边框的-->
+          <dl class="branchtype-list" ng-repeat="item in rightDataList">
+            <dt><span></span><b>{{ item.navigationName }}</b><span></span></dt>
+            <dd class="cl">
+              <div ng-repeat=" itemchildren in item.children" ng-click="backToList(itemchildren)">
+                <img lazy-src="{{ itemchildren.imageUrl }}">
+                <span>{{ itemchildren.navigationName }}</span>
+              </div>
+            </dd>
+          </dl>
+          <div style="height:30px;"></div>
+          <!--懒加载-->
+          <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
+        </ion-scroll>
+      </div>
+
+
+  </ion-content>
+
+
+
+
+
+</ion-modal-view>

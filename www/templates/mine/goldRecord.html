@@ -1,0 +1,99 @@
+<!--模板-->
+<div style="position:fixed;background:#000;height:100%;width:100%;z-index:66;opacity:0.2;" ng-click="showfalse()" ng-if='flag'></div>
+
+<div style="position:absolute;top:44px;right:7px;width:118px;height:137px;background:transparent;z-index:99;" ng-if='flag'>
+  <div style="float:right;margin-right:7px;width:0px;height:0px;border-left:5px solid transparent;border-top:7px solid #ffffff;border-right:5px solid transparent;transform:rotate(180deg);"></div>
+  <div style="width:118px;height:100px;background:#ffffff;">
+    <div flex="main:center cross:center" style="width:70%;height:50%;border-bottom:1px solid #e4e4e4;margin:7px auto 0;" ui-sref='myStore({storeId:storeId})'>
+      <img ng-src="{{imgBaseURL}}img/Store2x.png" style="width:24px;height:24px;">
+      <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">小店</p>
+    </div>
+    <div flex="main:center cross:center" style="width:70%;height:50%;border-bottom:1px solid #e4e4e4;margin:0 auto; " ui-sref='ClassifyMessageCenter'>
+      <img ng-src="{{imgBaseURL}}img/Message2x.png" style="width:24px;height:24px;">
+      <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">消息</p>
+    </div>
+    <!--
+    <div style="width:70%;height:33.3333333%;display:flex;justify-content:center;align-items:center;margin:0 auto;" ui-sref='mine'>
+      <img ng-src="img/SQ2x.png" style="width:24px;height:24px;">
+      <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">社区</p>
+    </div>
+    -->
+  </div>
+</div>
+
+<ion-view class="background" view-title="金币记录">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l" ng-click="goBack()" id='backgrow'>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <div style="width:24px;" ng-click="show()">
+        <img style="position:absolute;height:24px;width:4px;line-height:100%;top:5px;right:5px;" ng-src="{{imgBaseURL}}img/Point@2x.png" alt="pic" />
+      </div>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content style="background:#EFEFF4;" scrollbar-y="false">
+    <div style="position:absolute;top:0;right:7px;width:118px;height:137px;background:transparent;z-index:99;" ng-if='flag'>
+    <div style="float:right;margin-right:7px;width:0px;height:0px;border-left:5px solid transparent;border-top:7px solid #ffffff;border-right:5px solid transparent;transform:rotate(180deg);"></div>
+    <div style="width:118px;height:100px;background:#ffffff;">
+      <div flex="main:center cross:center" style="width:70%;height:50%;border-bottom:1px solid #e4e4e4;margin:7px auto 0;" ui-sref = 'shop'>
+        <img ng-src="{{imgBaseURL}}img/Store2x.png" style="width:24px;height:24px;">
+        <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">小店</p>
+      </div>
+      <div flex="main:center cross:center" style="width:70%;height:50%;border-bottom:1px solid #e4e4e4;margin:0 auto; " ui-sref = 'messageCenter'>
+        <img ng-src="{{imgBaseURL}}img/Message2x.png" style="width:24px;height:24px;">
+        <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">消息</p>
+      </div>
+      <!--
+      <div style="width:70%;height:33.3333333%;display:flex;justify-content:center;align-items:center;margin:0 auto;" ui-sref = 'mine'>
+        <img ng-src="img/SQ2x.png" style="width:24px;height:24px;">
+        <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">社区</p>
+      </div>
+      -->
+    </div>
+
+  </div>
+
+    <div flex="" style="padding:8px 0;height:45px;color:#2196F3;font-size:13px;">
+      <div style="text-align:center;line-height:27px;height:29px;width:30.4%;border-radius:5px 0 0 5px;margin-left:4.27%;border:1px solid #2196F3;" ng-click="showFlag1()" ng-style="myObj1">全部</div>
+      <div style="text-align:center;line-height:27px;height:29px;width:30.4%;border:1px solid #2196F3;border-left:0px;border-right:0px;" ng-click="showFlag2()" ng-style="myObj2">来源</div>
+      <div style="text-align:center;line-height:27px;height:29px;width:30.4%;border-radius:0 5px 5px 0;border:1px solid #2196F3;" ng-click="showFlag3()" ng-style="myObj3">使用</div>
+    </div>
+
+    <div ng-if="flag1" style="background:#fff;">
+      <div flex="main:justify" style="background:#fff;height:66px;border-bottom:0.5px solid #ccc;padding:0 5%;" ng-repeat="x in name1 track by $index">
+        <div flex="dir:top">
+          <span style="font-size:16px;margin:13px 0 8px 0;line-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:230px;">{{x.desc}}</span>
+          <span style="font-size:13px;opacity:0.38;line-height:13px;line-height:13px;">{{x.operTimeStr}}</span>
+        </div>
+        <div style="font-size:16px;line-height:16px;margin-top:13px;line-height:16px;">{{x.creditNumWithSign}}</div>
+      </div>
+
+      <ion-infinite-scroll ng-if="hasmore1" on-infinite="loadMore1()" distance="5%">
+      </ion-infinite-scroll>
+    </div>
+    <div ng-if="flag2" style="background:#fff;">
+      <div flex="main:justify" style="background:#fff;height:66px;border-bottom:0.5px solid #ccc;padding:0 5%;" ng-repeat="x in name2">
+        <div flex="dir:top">
+          <span style="font-size:16px;margin:13px 0 8px 0;line-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:230px;">{{x.desc}}</span>
+          <span style="font-size:13px;opacity:0.38;line-height:13px;line-height:13px;">{{x.operTimeStr}}</span>
+        </div>
+        <div style="font-size:16px;line-height:16px;margin-top:13px;line-height:16px;">{{x.creditNumWithSign}}</div>
+      </div>
+
+      <ion-infinite-scroll ng-if="hasmore2" on-infinite="loadMore2()" distance="5%">
+      </ion-infinite-scroll>
+    </div>
+    <div ng-if="flag3" style="background:#fff;">
+      <div flex="main:justify" style="background:#fff;height:66px;border-bottom:0.5px solid #ccc;padding:0 5%;" ng-repeat="x in name3">
+        <div flex="dir:top">
+          <span style="font-size:16px;margin:13px 0 8px 0;line-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:230px;">{{x.desc}}</span>
+          <span style="font-size:13px;opacity:0.38;line-height:13px;line-height:13px;">{{x.operTimeStr}}</span>
+        </div>
+        <div style="font-size:16px;line-height:16px;margin-top:13px;line-height:16px;">{{x.creditNumWithSign}}</div>
+      </div>
+
+      <ion-infinite-scroll ng-if="hasmore3" on-infinite="loadMore3()" distance="5%">
+      </ion-infinite-scroll>
+    </div>
+  </ion-content>
+</ion-view>

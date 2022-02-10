@@ -1,0 +1,350 @@
+<!--<ion-view view-title="话题详情" hide-nav-bar="true">-->
+<!--<ion-header-bar style="top:0;border: 3px;" class="border-bottom">-->
+<!--<button class="color-text-l button-clear  " ng-click="goBack()">-->
+<!--<i class="icon ion-ios-arrow-left" ng-click="goBack()"></i>-->
+<!--</button>-->
+<!--<i class="title">话题详情</i>-->
+
+<!--<div ng-class="{false:'sg-top-right-btn-hide',true:'sg-top-right-btn'}[xiaoxis]" ng-click="xiaoxishow()">-->
+<!--<i class="icon ion-android-more-horizontal sg-trb-more" ng-style="iosTopRightStyle"></i>-->
+<!--</div>-->
+<!--<div class="com-quanzi-dian" ng-if="msgCount && topshow"></div>-->
+<!--</ion-header-bar>-->
+
+<!--&lt;!&ndash;消息弹窗&ndash;&gt;-->
+<!--<div ng-if="isshow" class="pop-news" ng-class="{true:'iOStop'}[isIOS]">-->
+<!--&lt;!&ndash;<div class="triangle"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;小箭头&ndash;&gt;-->
+<!--<div class="top-arrow"></div>-->
+<!--&lt;!&ndash;栏目&ndash;&gt;-->
+<!--<div class="pop-news-item">-->
+<!--<div class="float-l text-align-c pop-news-icon">-->
+<!--<i class="icon ion-ios-email-outline"></i></div>-->
+<!--<div ng-click="toMsgCenter()" class="float-l pop-news-text">消息</div>-->
+<!--&lt;!&ndash;消息数量&ndash;&gt;-->
+<!--<div class="float-r pop-news-amount">-->
+<!--&lt;!&ndash;假数据99+&ndash;&gt;-->
+<!--&lt;!&ndash;<span>99+</span>&ndash;&gt;-->
+<!--&lt;!&ndash;单向绑定数据messageNum，使用过滤器&ndash;&gt;-->
+<!--<span ng-bind="msgCount|Num2Filter"></span>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;栏目&ndash;&gt;-->
+<!--<div class="pop-news-item">-->
+<!--<div class="float-l text-align-c pop-news-icon">-->
+<!--<i class="icon ion-share position-r" style="left:1px;"></i></div>-->
+<!--<div class="float-l pop-news-text">分享</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;栏目&ndash;&gt;-->
+<!--<div class="pop-news-item">-->
+<!--<div class="float-l text-align-c pop-news-icon">-->
+<!--<i class="icon ion-ios-trash-outline"></i></div>-->
+<!--<div class="float-l pop-news-text">删除贴子</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;栏目&ndash;&gt;-->
+<!--<div class="pop-news-item">-->
+<!--<div class="float-l text-align-c pop-news-icon">-->
+<!--<img src="img/circleIcon/top.png"/>-->
+<!--</div>-->
+<!--<div class="float-l pop-news-text">贴子置顶</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<ion-content scrollbar-y="false" class="hui-back " on-scroll-complete="pinglunshow()"-->
+<!--delegate-handle="pinglun" on-release="pinglunshow()">-->
+<!--<div style="padding-bottom: 44px;">-->
+<!--<div id="topicxiang">-->
+<!--<div class="item  no-border bg-white"  style="box-shadow:0 5px 15px #f1f1f1">-->
+<!--<div class="  position-r no-border">-->
+<!--<div class="inline-block position-r" style="width: 20%;">-->
+<!--<img ng-src="{{tielist.userHead}}" class=" width-height-50"/>-->
+<!--</div>-->
+<!--<div class="inline-block position-r " style="width: 80% ;">-->
+<!--<i class="font-size-10" ng-bind="tielist.userName">名字很长的都比</i>-->
+<!--<span class="float-r font-size-10" ng-bind="tielist.createDate" style="color: #999">10-11</span>-->
+
+<!--<div class="margin-top-10 font-size-14">-->
+<!--<a class="white-space-normal"  style="color: #666;" ng-bind="tielist.storyName">-->
+<!--帖子标题帖子标题帖子标题帖子标题帖子标题帖子标题帖子标题</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="text-align-c">-->
+<!--<div class="button button-outline button-assertive  red-border-button font-size-20 margin-top-15"-->
+<!--style="width:100px;min-height: 25px;height: 25px;line-height: 23px;" ng-click="dianzan()">-->
+<!--<i class="ion-android-favorite-outline "></i>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="text-align-c margin-top-10 font-size-10" style="color: #b62639 ;">-->
+<!--<i ng-bind="count.praise">2442</i>-->
+<!--<span>+ 已赞</span>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 话题内容&ndash;&gt;-->
+<!--<div class="margin-top-15 font-size-10 bg-green padding-5 color-text-white">-->
+<!--<i class="margin-right-5">帖子来自:</i>-->
+<!--<span style="text-decoration:underline">海尔官方微店主培训圈</span>-->
+<!--<span class="float-r font-size-16 margin-right-5">进入圈子-->
+<!--<i class="ion-ios-plus-outline font-size-18"></i></span>-->
+<!--</div>-->
+<!--<div  class="bg-white padding-15 font-size-14">-->
+<!--&lt;!&ndash; 內容&ndash;&gt;-->
+<!--<div ng-bind-html="tielist.storyContent">-->
+<!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 关联产品&ndash;&gt;-->
+<!--<div class="margin-top-10 " ng-if="false">-->
+<!--<div>-->
+<!--<p>关联产品</p>-->
+<!--</div>-->
+<!--<div class="border-top">-->
+<!--<div class="list" style="" ng-repeat="item in tielist">-->
+<!--<div class="item no-border position-r padding-10 ">-->
+<!--<div class="inline-block position-r" style="width: 25%;">-->
+<!--<img ng-src="{{item.productImg}}" class="width-height-60"/>-->
+<!--</div>-->
+<!--<div class="inline-block position-r" style="width: 75% ;">-->
+<!--<i ng-bind="item.productName"> 海尔官方微店主培训圈</i>-->
+
+<!--<div>-->
+<!--<i class="font-size-14">BCD-258WLDPN</i>-->
+<!--</div>-->
+<!--<div>-->
+<!--<i class="font-size-14">海尔冰箱啊啊啊啊海尔冰箱</i>-->
+<!--</div>-->
+<!--<div class="margin-top-10 font-size-10" style="color: red;">-->
+<!--<i>微价:￥</i>-->
+<!--<span ng-bind="item.productMoney">1999</span>-->
+<!--<i class="  margin-left-10 ">佣金:￥</i>-->
+<!--<span ng-bind="item.productMoney">1999</span>-->
+<!--<span style="color:#5C92FE;right: 0; ">有货</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; 评论&ndash;&gt;-->
+<!--<div class="margin-top-10  bg-white">-->
+<!--<div class="padding-left-right-15  margin-top-10 padding-top-10" style="color: #999;">-->
+<!--<span>评论</span>-->
+<!--<span class="float-r" ng-bind="count.commentNumber">999</span>-->
+<!--</div>-->
+<!--&lt;!&ndash; 评论详情&ndash;&gt;-->
+<!--<div class="  list  border-top " ng-repeat="item in pinglunlist">-->
+<!--<div class="item no-border">-->
+<!--<div class="inline-block position-r float-l" style="width: 20%;">-->
+<!--<img ng-src="{{item.userImg}}" class="width-height-50 inline"/>-->
+<!--</div>-->
+<!--<div class="inline-block position-r  " style="width: 80%;">-->
+<!--<i class="text-align-l position-r font-size-10" ng-bind="item.userName">名字很长的都比</i>-->
+<!--<span class="float-r font-size-10" ng-bind="item.commentTime">10-11</span>-->
+<!--&lt;!&ndash; 遍历内容&ndash;&gt;-->
+<!--<div>-->
+<!--<a class="white-space-normal font-size-12" style="color: black;"-->
+<!--ng-bind-html="item.storyName">帖子标</a>-->
+<!--</div>-->
+<!--<i class="float-r" style="color: red;">删除</i>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</ion-content>-->
+<!--&lt;!&ndash; 评论框&ndash;&gt;-->
+<!--<div ng-if="pinglunis" style="position:fixed;z-index: 10;bottom: 0;background-color: #eee;width: 100%;">-->
+<!--<img ng-src="img/circleIcon/camera.png" style="width: 9%;position: relative;top: 3px;" class="padding-left-5"-->
+<!--ng-click="addImage()">-->
+<!--<input class="margin-left-5 pinglun-inputs border-bottom-1 padding-top-10 margin-top-5"-->
+<!--style="width: 65%;height: 30px;"-->
+<!--placeholder="评论也是一种激励" ng-click="inputisshow()"/>-->
+
+<!--<div class="button button-small button-outline button-light margin-left-right-5"-->
+<!--style="top: 5px;min-height: 30px;height: 30px;color: #999;width: 20%;float: right;">回复-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<ion-footer-bar ng-if="pinglunis">&ndash;&gt;-->
+<!--&lt;!&ndash;<input class="  margin-left-15 pinglun-inputs border-bottom-1 padding-top-10 margin-top-5"&ndash;&gt;-->
+<!--&lt;!&ndash;style="width: 72%;height: 30px;"&ndash;&gt;-->
+<!--&lt;!&ndash;placeholder="评论也是一种激励" ng-click="inputisshow()" />&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="button button-small button-outline button-light margin-left-5"&ndash;&gt;-->
+<!--&lt;!&ndash;style="top: 7px;min-height: 30px;height: 30px;color: #999;width: 60px;">回复</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</ion-footer-bar>&ndash;&gt;-->
+<!--</ion-view>-->
+
+
+<ion-view view-title="话题详情">
+    <ion-content class="bg-background" style="margin-bottom: 50px">
+        <div class="width-100 padding-left" style="height: 30px;font-size: 12px;line-height: 30px">
+            <span>话题来自:</span>
+            <span style="color: #0178fa">海尔官方旗舰店</span>
+            <span style="color: #999" class="float-r margin-right-10">2016-12-01</span>
+        </div>
+        <div class="width-100">
+            <div class="padding float-l" style="width: 45px;">
+                <img ng-src="{{imgBaseURL}}img/ic_aboutUS_3.png" style="width: 25px;height: 25px" class="block" alt="">
+            </div>
+            <div style="width: 70px;height: 20px;line-height:20px;color: white;font-size: 12px;background: #7ebaff; margin-top: 12px"
+                 class="text-align-c border-radius float-r margin-right-10">+&nbsp关注
+            </div>
+            <div class="width-100 bg-white border-bottom"
+                 style="padding-right: 80px;padding-left: 45px;height: 45px;line-height: 45px; font-size: 14px">
+                <div class="width-100  white-space-nowrap overflow-hidden font-bold"
+                     style="text-overflow: ellipsis;font-size: 14px;color: #555">
+                    潮妈妈爱干净
+                </div>
+            </div>
+        </div>
+        <div class="bg-white width-100" style="color: #666;font-size: 12px">
+            <div class="width-100 sg-text-indent padding-left-right-20 padding-top-bottom-10">
+                号爱迪生凤凰科技看 华东数控回复快点撒看风景爱的时刻家乐福哈大家时刻浩丰科技爱的色放看见了大叔控金凤凰肯定是分开客服打开了后方可山东矿机
+            </div>
+            <div class="width-100 sg-text-indent padding-left-right-20 padding-top-bottom-10">
+                号爱迪生凤凰科技看 华东数控回复快点撒看风景爱的时刻家乐福哈大家时刻浩丰科技爱的色放看见了大叔控金凤凰肯定是分开客服打开了后方可山东矿机
+            </div>
+            <div class="width-100 padding-left-right-20">
+                <div class="width-100 padding-bottom-20">
+                    <img class="width-100 block" ng-src="{{imgBaseURL}}img/bg_shop_1.png" alt="">
+                </div>
+                <div class="width-100 padding-bottom-20">
+                    <img class="width-100 block" ng-src="{{imgBaseURL}}img/bg_shop_4.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="width-100 margin-top-10 bg-white padding" style="font-size: 12px;color: #777">
+            <span>评论(</span>
+            <span>23</span>
+            <span>)</span>
+        </div>
+
+        <div class="width-100 bg-white border-bottom padding-bottom-20" style="margin-top: 1px">
+            <div class="padding float-l" style="width: 45px;">
+                <img ng-src="{{imgBaseURL}}img/ic_aboutUS_3.png" style="width: 25px;height: 25px" class="block" alt="">
+            </div>
+            <div class="text-align-c border-radius float-r margin-right-20 margin-top-10 position-r">
+                <div class="inline-block position-a" style="right: 22px">
+                    <img ng-src="{{imgBaseURL}}img/circleIcon/praise_gray.png" alt="" style="width: 16px;height: 16px">
+                </div>
+                <div class="inline-block position-a text-align-l" style="right: -10px;width: 30px">
+                    <span style="font-size: 12px;color:#999">99</span>
+                </div>
+            </div>
+            <div class="float-r border-radius text-align-c"
+                 style="margin-top: 48px;margin-right: 6px;border: 1px solid #999;color: #999;font-size: 12px;height: 15px;width: 33px;line-height: 15px">
+                删除
+            </div>
+            <div class="width-100 bg-white"
+                 style="padding-top: 6px;padding-right: 80px;padding-left: 45px; font-size: 14px">
+                <div class="width-100  white-space-nowrap overflow-hidden font-bold"
+                     style="text-overflow: ellipsis;font-size: 12px">
+                    <span style="color: #555">晴天娃娃</span>
+                    <span style="color: #197bfd">回复</span>
+                    <span style="color: #555">奶奶妹</span>
+                </div>
+                <div class="width-100  white-space-nowrap overflow-hidden margin-top--5"
+                     style="text-overflow: ellipsis;font-size: 8px;color: #555">
+                    <span>1</span>
+                    <span>分钟前</span>
+                </div>
+                <div class="margin-top-5" style="font-size: 12px;color: #777">
+                    不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看
+                </div>
+            </div>
+        </div>
+
+        <div class="width-100 bg-white border-bottom padding-bottom-20">
+            <div class="padding float-l" style="width: 45px;">
+                <img ng-src="{{imgBaseURL}}img/ic_aboutUS_3.png" style="width: 25px;height: 25px" class="block" alt="">
+            </div>
+            <div class="text-align-c border-radius float-r margin-right-20 margin-top-10 position-r">
+                <div class="inline-block position-a" style="right: 22px">
+                    <img ng-src="{{imgBaseURL}}img/circleIcon/praise_gray.png" alt="" style="width: 16px;height: 16px">
+                </div>
+                <div class="inline-block position-a text-align-l" style="right: -10px;width: 30px">
+                    <span style="font-size: 12px;color:#999">99</span>
+                </div>
+            </div>
+            <div class="float-r border-radius text-align-c"
+                 style="margin-top: 48px;margin-right: 6px;border: 1px solid #999;color: #999;font-size: 12px;height: 15px;width: 33px;line-height: 15px">
+                删除
+            </div>
+            <div class="width-100 bg-white"
+                 style="padding-top: 6px;padding-right: 80px;padding-left: 45px; font-size: 14px">
+                <div class="width-100  white-space-nowrap overflow-hidden font-bold"
+                     style="text-overflow: ellipsis;font-size: 12px">
+                    <span style="color: #555">奶奶妹</span>
+                </div>
+                <div class="width-100  white-space-nowrap overflow-hidden margin-top--5"
+                     style="text-overflow: ellipsis;font-size: 8px;color: #555">
+                    <span>1</span>
+                    <span>分钟前</span>
+                </div>
+                <div class="margin-top-5" style="font-size: 12px;color: #777">
+                    不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看
+                </div>
+            </div>
+        </div>
+
+        <div class="width-100 bg-white border-bottom padding-bottom-20">
+            <div class="padding float-l" style="width: 45px;">
+                <img ng-src="{{imgBaseURL}}img/ic_aboutUS_3.png" style="width: 25px;height: 25px" class="block" alt="">
+            </div>
+            <div class="text-align-c border-radius float-r margin-right-20 margin-top-10 position-r">
+                <div class="inline-block position-a" style="right: 22px">
+                    <img ng-src="{{imgBaseURL}}img/circleIcon/praise_gray.png" alt="" style="width: 16px;height: 16px">
+                </div>
+                <div class="inline-block position-a text-align-l" style="right: -10px;width: 30px">
+                    <span style="font-size: 12px;color:#999">99</span>
+                </div>
+            </div>
+            <div class="float-r border-radius text-align-c"
+                 style="margin-top: 48px;margin-right: 6px;border: 1px solid #999;color: #999;font-size: 12px;height: 15px;width: 33px;line-height: 15px">
+                删除
+            </div>
+            <div class="width-100 bg-white"
+                 style="padding-top: 6px;padding-right: 80px;padding-left: 45px; font-size: 14px">
+                <div class="width-100  white-space-nowrap overflow-hidden font-bold"
+                     style="text-overflow: ellipsis;font-size: 12px">
+                    <span style="color: #555">奶奶妹</span>
+                </div>
+                <div class="width-100  white-space-nowrap overflow-hidden margin-top--5"
+                     style="text-overflow: ellipsis;font-size: 8px;color: #555">
+                    <span>1</span>
+                    <span>分钟前</span>
+                </div>
+                <div class="margin-top-5" style="font-size: 12px;color: #777">
+                    不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="width-100 bg-white border-top"
+         style="height: 50px;position: fixed;bottom: 0;font-size: 12px;color: #a3a3a3">
+        <div class="float-r">
+            <div class="inline-block padding">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/favorite.png" alt="" style="width: 26px;height: 26px">
+            </div>
+            <div class="inline-block">
+                <span>34</span>
+            </div>
+        </div>
+        <div class="float-r">
+            <div class="inline-block padding">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/praise_gray.png" alt="" style="width: 26px;height: 26px">
+            </div>
+            <div class="inline-block">
+                <span>34</span>
+            </div>
+        </div>
+        <div class="width-100 padding" style="height: 50px;padding-right: 130px">
+            <div style="height: 30px" class="width-100 bg-red">
+                <div style="padding: 4px;width: 30px" >
+                    <img class="" ng-src="{{imgBaseURL}}img/circleIcon/editTag.png" alt="" style="height: 22px;width: 22px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ion-view>

@@ -1,0 +1,25 @@
+<!--模板-->
+<ion-view class="background" view-title="付款成功" hide-back-button="true">
+  <ion-content scrollbar-y="false">
+
+	 <!--支付成功  -->
+  <div>
+		<div style="text-align:center;padding-top:70px;">
+			<img style="width:104px;" src="http://www.ehaier.com/mstatic//wd/img/pages/msg/pay.png" alt="">
+		</div>
+		<div style="font-size:20px;color:#000;text-align:center;margin-top:10px;">支付成功</div>
+    <div style="font-size:14px;color:#000;text-align:center;margin-top:10px;" >主人，您的宝物正加急呈送中<br>若无劫匪出没，不日便可到达</div>
+
+    <div style="text-align:center;margin-top: 1.6rem;color: #666;line-height: 0.75rem;">关注微信公众号：“顺逛微店”，<br/>享一手资讯，拿幸运好礼！</div>
+    <div ng-click="babyonerace()"><img style="display: block;width: 100%;margin-top: 4%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/race/search.jpg" alt="社群争霸赛"></div>
+	</div>
+
+  </ion-content>
+  <button class="button button-energized button-block" style="width:80%;position:absolute;bottom:0;left:10%;" ui-sref="orderManage">
+    查看订单
+  </button>
+  <!-- 返回社区争霸赛按钮 -->
+  <div class="text-center"ng-if="circleUrl"style="position:fixed;bottom:55px;right:15px;z-index:99;height:60px;">
+    <a href="{{circleUrl}}&openType=h5"><img src="{{imgBaseURL}}img/quanzi/compare.png" style="width: 60px;border-radius:50%;"></a>
+  </div>
+</ion-view>

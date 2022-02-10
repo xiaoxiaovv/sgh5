@@ -1,0 +1,14 @@
+<ion-view view-title="顺逛白条" hide-nav-bar="true">
+  <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+    <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="goBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">顺逛白条</div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" class="background" style="">
+    <div style='background:url(http://cdn09.ehaier.com/shunguang/H5/www/img/baitiao-background.png) no-repeat;background-size:100% 100%;position:relative;width:100%;height:100%;'>
+      <img ng-click="applyToWihte()" style='position:absolute;bottom:15%;width:162px;left:50%;margin-left:-81px;' ng-src="{{imgBaseURL}}img/baitiao-btn.png" alt="">
+    </div>
+  </ion-content>
+</ion-view>
+

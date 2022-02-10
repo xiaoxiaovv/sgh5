@@ -1,0 +1,90 @@
+<ion-view view-title="打赏列表" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+            <img ng-src="{{imgBaseURL}}img/share2.png" class="block" style="width: 20px;height: 20px">
+        </button>
+        <button ng-click="isClick()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+            <img ng-src="{{imgBaseURL}}img/dot3.png" class="block" style="width: 20px;height: 20px">
+        </button>
+    </ion-nav-buttons>
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3"
+         ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <!--分享界面 -->
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)"
+             ng-if="showWeChat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)"
+             ng-if="showWeChat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="showQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="showQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+
+            <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+        </div>
+    </div>
+
+    <ion-content scrollbar-y="false"delegate-handle="rewardHandle"on-swipe="getScrollHeight()"  class="bg-background" style="margin-bottom: 50px;z-index: -2">
+        <div id="bbb">
+            <div style="width:100%;height:91px;background:#ff9100;padding:0 20px;">
+                <div style="width:50%;height:60px;float:left;text-align:center;margin-top:15px;"><p style="color:#fff4e6;font-size:14px;">收获打赏</p><em style="color:#fff;font-size:28px;">{{shantotal.tipCount}}</em><span style="color:#fff;font-size:16px;">次</span></div>
+                <div style="width:50%;height:60px;float:left;text-align:center;margin-top:15px;"><p style="color:#fff4e6;font-size:14px;">收获金币</p><em style="color:#fff;font-size:28px;">{{shantotal.goldTotal}}</em><span style="color:#fff;font-size:16px;">金币</span></div>
+            </div>
+            <div style="margin-top:10px;background:#fff;">
+                <div ng-repeat="item in shanList track by $index" style="border-bottom:1px solid #e4e4e4;height:74px;padding:17px 15px;">
+                    <img ng-click="gotoothers(item)" ng-src="{{item.userImg|ImageUserFilter}}" style="width:40px;height:40px;margin-right:9px;float:left;"/>
+                    <div style="float:left;max-width:120px;overflow:hidden;">
+                        <p style="font-size:14px;color:rgba(51,51,51,0.87);margin:0;">{{item.userName}}</p>
+                        <p style="font-size:12px;color:rgba(102,102,102,0.87);margin:4px 0 0;">打赏{{item.amount}}个金币</p>
+                    </div>
+                    <div style="float:right;width:120px;">
+                        <!--<div ng-class="{true:'gray-follow'}[!!item.isFollow]" class="followHim-btn"
+                            ng-click="follow(!!item.isFollow);"
+                            ng-bind="item.isFollow?'已关注':'+关注'">
+                        </div>-->
+                        <div ng-if="item.isFollow==null" style="margin-left:50px;text-align:center;width:50px;height:20px;line-height:20px;border:1px solid #fff;border-radius:2px;font-size:12px;color:#ff9100"></div>
+                        <div ng-click="follow(item,$index)" ng-if="item.isFollow==false" style="margin-left:50px;text-align:center;width:50px;height:20px;line-height:20px;border:1px solid #ff9100;border-radius:2px;font-size:12px;color:#ff9100">+关注</div>
+                        <div ng-click="follow(item,$index)" ng-if="item.isFollow" style="margin-left:50px;text-align:center;width:50px;height:20px;line-height:20px;border:1px solid #999;border-radius:2px;font-size:12px;color:rgba(102,102,102,0.87);">已关注</div>
+                        <p style="font-size:12px;color:rgba(153,153,153,0.87);text-align:right;margin:4px 0 0 0;">{{item.createDateStr}}</p>
+                    </div>
+                </div>
+                <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+            </div>
+        </div>
+        <!--<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>-->
+
+    </ion-content>
+    <!--回到顶部按钮-->
+  <div style="position: fixed;right: 15px;bottom: 45px;" ng-click="scrollToTop()" ng-if="showTopBtn">
+    <img ng-src="{{imgBaseURL}}img/icon_toTop.png" style="width:44px">
+  </div>
+
+    
+    
+</ion-view>

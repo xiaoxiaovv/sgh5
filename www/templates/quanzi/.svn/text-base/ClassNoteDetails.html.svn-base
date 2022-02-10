@@ -1,0 +1,303 @@
+<ion-view view-title="话题详情" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+            <img ng-src="{{imgBaseURL}}img/share2.png" class="block" style="width: 20px;height: 20px">
+        </button>
+        <button ng-click="isClick()" class="button-clear"  style="opacity: 1 !important;" ng-if="isApp">
+            <img ng-src="{{imgBaseURL}}img/dot3.png" class="block" style="width: 20px;height: 20px">
+        </button>
+    </ion-nav-buttons>
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <!--分享界面 -->
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)"
+             ng-if="showWeChat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)"
+             ng-if="showWeChat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="showQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="showQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+        </div>
+    </div>
+
+    <ion-content class="bg-background" style="margin-bottom: 50px;z-index: -2" overflow-scroll="true" on-tap="nocommontId()">
+        <div class="width-100 padding-left" style="height: 30px;font-size: 12px;line-height: 30px">
+            <span>话题来自:</span>
+            <!--<span style="color: #0178fa" ng-bind="circleDetail.topicName" ng-click="inCirclePage(circleDetail.topicId)">海尔官方旗舰店</span>-->
+            <span style="color: #0178fa" ng-click="inCirclePage(circleDetail.topicId)">商学院</span>
+            <span style="color: #999" class="float-r margin-right-10"
+                  ng-bind="circleDetail.createDate">2016-12-01</span>
+        </div>
+        <div class="width-100">
+            <div class="padding float-l" style="width: 45px;">
+                <!--<img src="img/ic_aboutUS_3.png" style="width: 25px;height: 25px" class="block" >-->
+                <img src="{{circleDetail.userHead | ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" ng-click="inPersonalPage(circleDetail.userCode)"
+                     style="width: 25px;height: 25px;border-radius:4px;" class="block">
+            </div>
+            <div class="text-align-c border-radius float-r margin-right-10 ifFollow"
+                 ng-if="circleDetail.isFolled == 0" ng-click="follow(circleDetail.isFolled)">+&nbsp关注
+            </div>
+            <div class="text-align-c border-radius float-r margin-right-10 ifFollow"
+                 ng-if="circleDetail.isFolled == 1" ng-click="follow(circleDetail.isFolled)">已关注
+            </div>
+            <div class="width-100 bg-white border-bottom"
+                 style="padding-right: 80px;padding-left: 45px;height: 45px;line-height: 45px; font-size: 14px">
+                <div class="width-100  white-space-nowrap overflow-hidden font-bold font-size-14"
+                     ng-bind="circleDetail.userName" ng-click="inPersonalPage(circleDetail.userCode)"
+                     style="text-overflow: ellipsis;color: #555">
+                    潮妈妈爱干净
+                </div>
+            </div>
+        </div>
+        <!--长文详情-->
+        <!--标题-->
+        <div ng-bind="circleDetail.storyName" class="font-bold bg-white text-center font-size-16 padding-5 copy" data-tap-disabled="true"></div>
+        <div ng-click="showBigImage($event)" ng-bind-html="circleDetail.storyContent | trusted" class="longtopic padding-10 bg-white full-text copy" data-tap-disabled="true">
+        </div>
+
+
+        <!--关联商品-->
+        <div class="width-100 margin-top-10 bg-white padding" style="font-size: 12px;color: #777"
+             ng-repeat="item in products track by $index">
+            <div class="sg-hey-right-img"><img ng-src="{{item.metaFileId1}}"
+                                               err-src="" style="width: 82px"></div>
+            <div class="sg-hey-left-img">
+                <div class="sg-hey-left-img-title"><h5 class="show-two-lines font-bold" ng-bind="item.productTitle">
+                    海尔智能节能双门试冰箱</h5></div>
+                <div class="sg-hey-left-img-model"><span>型号:</span><span
+                        ng-bind="item.productName"> ZD32847242468</span></div>
+                <div class="sg-hey-left-img-money positon-r"><span>售价:</span><span class="color-red-sg">&nbsp;¥&nbsp;</span><span class="color-red-sg"
+                                                                                   ng-bind="item.miniPrice"> $2000.00</span>
+                    <span
+                            class="text-align-c color-red-sg font-size-12 position-a" ng-click="toProductDetail(item)"
+                            style="margin-right: 6px; border: 1px solid #f00;height: 24px; width: 80px; right: 10px;line-height: 24px;border-radius: 4px;">去购买</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="width-100 margin-top-10 bg-white padding" style="font-size: 14px;color: #444">
+            <span>评论(</span>
+            <span ng-bind="commentNumbers">23</span>
+            <span>)</span>
+        </div>
+        <!--评论-->
+        <div ng-repeat="item in commentList track by $index">
+            <div class="width-100 bg-white border-bottom padding-bottom-15" style="margin-top: 1px;"
+                 ng-if="item.commentId">
+                <div class="padding float-l" style="width: 45px;" ng-click="inPersonalPage(item.userCode)">
+                    <img ng-src="{{item.userHead | ImageUserFilter}}" style="width: 25px;height: 25px;border-radius: 4px;" class="block" alt="">
+                </div>
+                <div class="text-align-c border-radius float-r margin-right-20 margin-top-10 position-r">
+                    <div class="inline-block position-a" style="right: 22px" ng-click="commentPraise(item,$index)">
+                        <img ng-src="{{imgBaseURL}}img/quanzi/dianzan_no.png" alt="" style="width: 16px;height: 16px"
+                             ng-if="!item.commentPraiseNumberFlag">
+                        <img ng-src="{{imgBaseURL}}img/quanzi/dianzan.png" alt="" style="width: 16px;height: 16px"
+                             ng-if="item.commentPraiseNumberFlag">
+                    </div>
+                    <div class="inline-block position-a text-align-l" style="right: -10px;width: 30px">
+                        <span style="font-size: 12px;color:#999" ng-bind="item.commentPraiseNumber"
+                              ng-if="item.commentPraiseNumber>0">99</span>
+                    </div>
+                </div>
+                <div class="float-r border-radius text-align-c"
+                     style="margin-top: 48px;margin-right: 6px;font-size: 12px;">
+                    <div class="" ng-if="item.delFlag == 1" style="margin-right: 14px">
+                        <img ng-src="{{imgBaseURL}}img/circleIcon/deleteTrash.png" style="width: 20px;" ng-click="warnDeleteComments(item.id)">
+                    </div>
+                </div>
+                <div class="width-100 bg-white"
+                     style="padding-top: 6px;padding-right: 80px;padding-left: 45px; font-size: 14px">
+                    <div class="width-100  white-space-nowrap overflow-hidden font-bold margin-top-1"
+                         style="text-overflow: ellipsis;font-size: 14px">
+                        <span style="color: #555" ng-bind="item.userName" ng-click="inPersonalPage(item.userCode)">晴天娃娃</span>
+                        <span style="color: #197bfd">回复</span>
+                        <span style="color: #555" ng-bind="item.commentTo">奶奶妹</span>
+                        <span style="color: #555">:</span>
+                    </div>
+                    <div class="width-100  white-space-nowrap overflow-hidden"
+                         style="text-overflow: ellipsis;font-size: 8px;color: #555">
+                      <span>{{item.floor}}楼&nbsp;</span>
+                      <span ng-bind="item.commentTime">1</span>
+                        <!--<span>分钟前</span>-->
+                    </div>
+                    <div class="margin-top-5 copy" style="font-size: 14px;color: #777" ng-bind="item.comment" ng-click="getFocus(item.id,item.userName)" data-tap-disabled="true">
+                        不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看
+                    </div>
+                    <img class="" ng-repeat="it in item.imgaa track by $index" on-tap="showBigImage($event)" style="width:30%;height:80px;margin:0 3px;" ng-src="{{it}}" ng-if="it" id="{{it}}">
+                </div>
+            </div>
+
+            <div class="width-100 bg-white border-bottom padding-bottom-15" ng-if="item.commentId == null">
+                <div class="padding float-l" style="width: 45px;" ng-click="inPersonalPage(item.userCode)">
+                    <img ng-src="{{item.userHead | ImageUserFilter}}" style="width: 25px;height: 25px;border-radius: 4px;" class="block" alt="">
+                </div>
+                <div class="text-align-c border-radius float-r margin-right-20 margin-top-10 position-r"
+                     ng-click="commentPraise(item,$index)">
+                    <div class="inline-block position-a" style="right: 22px">
+                        <img ng-src="{{imgBaseURL}}img/quanzi/dianzan_no.png" alt="" style="width: 16px;height: 16px"
+                             ng-if="!item.commentPraiseNumberFlag">
+                        <img ng-src="{{imgBaseURL}}img/quanzi/dianzan.png" alt="" style="width: 16px;height: 16px"
+                             ng-if="item.commentPraiseNumberFlag">
+                    </div>
+                    <div class="inline-block position-a text-align-l" style="right: -10px;width: 30px">
+                        <span style="font-size: 12px;color:#999" ng-bind="item.commentPraiseNumber"
+                              ng-if="item.commentPraiseNumber>0">99</span>
+                    </div>
+                </div>
+                <div class="float-r border-radius text-align-c"
+                     style="margin-top: 26px;margin-right: 20px;font-size: 12px;">
+                    <div class="" ng-if="item.delFlag == 1" style="margin-top: 24px">
+                        <img ng-src="{{imgBaseURL}}img/circleIcon/deleteTrash.png" style="width: 20px;" ng-click="warnDeleteComments(item.id)">
+                    </div>
+                </div>
+                <div class="width-100 bg-white"
+                     style="padding-top: 6px;padding-right: 80px;padding-left: 45px; font-size: 14px">
+                    <div class="width-100  white-space-nowrap overflow-hidden font-bold margin-top-1" ng-click="inPersonalPage(item.userCode)"
+                         style="text-overflow: ellipsis;font-size: 14px">
+                        <span style="color: #555" ng-bind="item.userName">奶奶妹</span>
+                    </div>
+                    <div class="width-100  white-space-nowrap overflow-hidden "
+                         style="text-overflow: ellipsis;font-size: 8px;color: #555">
+                      <span>{{item.floor}}楼&nbsp;</span>
+                      <span ng-bind="item.commentTime">1</span>
+                    </div>
+                    <div class="margin-top-5 copy" style="font-size: 14px;color: #777" ng-bind="item.comment" ng-click="getFocus(item.id,item.userName)" data-tap-disabled="true">
+                        不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看哎呦,不错哦,真难看
+                    </div>
+                    <img class="" ng-repeat="it in item.imgaa track by $index" on-tap="showBigImage($event)" style="width:30%;height:80px;margin:0 3px;" ng-src="{{it}}" ng-if="it" id="{{it}}">
+                </div>
+            </div>
+
+            <ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMore()"
+                                 distance="1%"></ion-infinite-scroll>
+        </div>
+
+    </ion-content>
+    <!--背景-->
+    <div class="width-100 height-100" style="background: rgba(0,0,0,0);" ng-if="isDisplay" ng-click="isClick()"></div>
+    <!--消息弹框-->
+    <div ng-if="isDisplay" class="pop-news border-radius message-height1"
+         style="background: black;opacity: 0.8;color: white"
+         ng-class="{'iOStop':isIOS}">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow" style="top: -6px !important;background: black;color: white"></div>
+        <!--消息-->
+        <div class="pop-news-item">
+            <div class="float-l pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/noteMessage.png" alt="">
+            </div>
+            <div ng-click="jumpMsg()" class="float-l pop-news-text">消息</div>
+            <!--消息数量-->
+            <!--<div class="float-r pop-news-amount">
+                &lt;!&ndash;假数据99+&ndash;&gt;
+                <span>99+</span>
+                &lt;!&ndash;单向绑定数据messageNum，使用过滤器&ndash;&gt;
+                &lt;!&ndash;<span ng-bind="messageNum|Num2Filter"></span>&ndash;&gt;
+            </div>-->
+        </div>
+        <div class="pop-news-item" ng-click="goShop()">
+            <div class="float-l pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/smallShop.png" alt="">
+            </div>
+            <div class="float-l pop-news-text">小店</div>
+        </div>
+
+    </div>
+
+    <!--贴子收藏-->
+    <div class="width-100 bg-white border-top" ng-style="keyboardHeight"
+         style="max-height:100px;position: fixed;z-index:10;bottom: 0;font-size: 12px;color: #a3a3a3">
+        <!--收藏-->
+        <div class="float-r text-align-c" style="width: 50px; padding-top: 8px"
+             ng-click="topicFavorite(circleDetail.id)">
+            <div class="padding-left-15">
+                <img ng-src="{{imgBaseURL}}img/quanzi/shoucang_no.png" style="width: 20px;height: 20px"
+                     ng-if="!praiseNum.collectionFlag"
+                     class="block font-size-10">
+                <img ng-src="{{imgBaseURL}}img/quanzi/shoucang.png" style="width: 20px;height: 20px"
+                     ng-if="praiseNum.collectionFlag"
+                     class="block font-size-10">
+            </div>
+            <div style="width: 50px;top: -3px" class="position-r" ng-bind="praiseNum.collectionNumber">
+                9999+
+            </div>
+        </div>
+        <!--点赞-->
+        <div class="float-r text-align-c" style="width: 50px; padding-top: 8px" ng-click="topicPraise(circleDetail.id)">
+            <div class="padding-left-15">
+                <img ng-src="{{imgBaseURL}}img/quanzi/dianzan_no.png" style="width: 20px;height: 20px" ng-if="!praiseNum.praiseFlag"
+                     class="block font-size-10">
+                <img ng-src="{{imgBaseURL}}img/quanzi/dianzan.png" style="width: 20px;height: 20px" ng-if="praiseNum.praiseFlag"
+                     class="block font-size-10">
+            </div>
+            <div style="width: 50px;top: -3px" class="position-r" ng-bind="praiseNum.praise">
+                9999+
+            </div>
+        </div>
+        <div class="width-100 padding" style="height: 50px;padding-right: 100px;color: #a3a3a3"
+             ng-style="keyboardHeight">
+            <div class="width-100 border border-radius" style="height: 30px">
+                <div class="float-r padding-left-right-10" ng-click="insertComments()"
+                     style="height: 28px; line-height: 28px; background: #157af9;color: white;border-radius: 0 5px 5px 0">
+                    提交
+                </div>
+                <div class="width-100 border-radius" style="padding-right: 45px">
+                    <input type="text" style="height: 28px;width: 98%" ng-model="commentWords.words" id="inputId" ng-blur="leaveFocus()"
+                           class="padding-0 padding-left-right-5 border-radius" maxlength="200" placeholder="{{toSomeone?toSomeone:'来说点什么'}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--分享下载app-->
+    <!--<div class="padding-15 bottom-0 width-100"
+         style="color: white;background-color: rgba(0,0,0,0.7);position: fixed;z-index: 10"
+         ng-if="!isApp && ifDownload && ifInApp">
+        <div class="float-l">
+            <img src="img/ic_aboutUS_9.png" class="block width-height-40 border-radius">
+        </div>
+        &lt;!&ndash;关闭广告&ndash;&gt;
+        <div class="position-a right-0 top-0"
+             style="height:23px;width:23px;border-radius: 0 0 0 75%;background-color: rgba(0,0,0,1)"
+             ng-click="closeDownload()">
+            <img src="img/white-x.png" class="block float-r" style="width: 20px;height: 20px;">
+        </div>
+        <div class="float-r margin-top-10 font-size-12">
+            <div class=" padding-left-right-10 border-radius" style="border: 1px solid white;"
+                 ng-click="noticeDownload()">
+                <a href="{{downAppUrl}}" style="text-decoration: none;color: white">马上下载</a>
+            </div>
+        </div>
+        <div class="width-100 font-size-13" style="padding-left: 55px;padding-right: 90px">
+            <div class="width-100 overflow-hidden white-space-nowrap" style="text-overflow: ellipsis">一键开店赚30</div>
+            <div class="width-100 overflow-hidden white-space-nowrap" style="text-overflow: ellipsis">
+                零风险赚佣金&nbsp&nbsp无资金货源开店
+            </div>
+        </div>
+    </div>-->
+	<div ng-include="'templates/common/CommonLoginPopup3.html'"></div>
+
+</ion-view>

@@ -1,0 +1,267 @@
+.new_authentication_massage{
+   height: 186px;
+   background: #2979FF;
+   position: relative;
+   .new_authentication_pic{
+       width: 80px;
+       height: 80px;
+       position: absolute;
+       left: 0;
+       right: 0;
+      // top: 12px;
+       bottom: 84px;
+       margin: auto;
+       &>div{
+          width: 78px;
+          height: 78px;
+          border: 4px solid #84CBFF;
+          border-radius: 100%;
+          overflow: hidden;
+          background: #fff;
+          img{
+             width: 100%;
+             height: 100%;
+          }
+       }
+   }
+   .new_authentication_text{
+       width: 100%;
+       height: 18px;
+       font-size: 12px; /*no*/
+       color: #fff;
+       position: absolute;
+       left: 0;
+       right: 0;
+       bottom: 44px;
+       margin: auto;
+       text-align: center;
+   }
+}
+.true_authentication_title{
+  span{
+    font-size: 16px;/*no*/
+  }
+}
+.true_authentication_info{
+  top: 226px;
+}
+.new_authentication_info{
+   background: #fff;
+   &>div{
+     margin-left: 12px;
+     line-height: 48px;
+     height: 48px;
+     //border-bottom: 1px solid #e4e4e4;
+     span{
+         font-size: 14px;/*no*/
+         width: 75px;
+         height: 44px;
+         line-height: 44px;
+         display: inline-block;
+     }
+    p{
+      color: #999;
+    }
+   }
+}
+.trueAuthenticationInfoMsg{
+  //div{
+  //  margin-left: 14px;
+  //  line-height: 48px;
+  //  height: 48px;
+  //  border-bottom: 1px solid #e4e4e4;
+  //}
+}
+/*按钮*/
+.new_authentication_home_btn{
+   width: 90%;
+   height: 44px;
+   line-height: 44px;
+   text-align: center;
+   margin: 22px auto 8px auto;
+   border-radius: 22px;
+   font-size: 16px;/*no*/
+   color: #fff;
+   overflow: hidden;
+   span{
+      width: 100%;
+      height: 100%;
+     display: inline-block;
+   }
+}
+/*说明按钮*/
+.authenticationShBtn{
+  width: 40px;
+  height: 24px;
+  position: absolute !important;
+  top: 6px !important;
+  right: 0px !important;
+  bottom: 5px !important;
+  font-size: 16px;/*no*/
+  color: #999;
+}
+
+/*input输入框*/
+.new_authentication_input{
+   width: 240px;
+   vertical-align: inherit !important;
+   display: inline-block !important;
+   margin-left: 4px !important;
+   padding-top: 0px  !important;
+ //  line-height: 1 !important;
+   font-size: 14px;/*no*/
+}
+.new_authentication_input68{
+  height: 44px !important;
+  position: relative;
+  span{
+    line-height: 44px !important;
+  }
+  input{
+   //  height: 66px;
+     padding-top: 0px;
+    vertical-align: inherit !important;
+  }
+
+}
+.new_authentication_home_close{
+  width:20px;
+  //  height: 20px;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  z-index: 999;
+  // margin: 14px 10px 0px 0px;
+}
+.new_authentication_home_close2{
+  right: 36px;
+}
+/*实名认证*/
+.true_authentication_massage{
+   width: 100%;
+   background: #eee;
+   div{
+     width: 90%;
+     display: inline-block;
+     margin: 8px 16px 9px 16px;/*no*/
+     color:#999;
+     font-size: 12px;/*no*/
+   }
+}
+
+/*成功弹出框*/
+.authenticationPopup{
+  background: rgba(255,255,255,0.3);
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: 0;
+}
+.authenticationPopup_bg{
+  width: 80%;
+  height: 100px;
+  line-height: 120px;
+  background:rgba(0,0,0,0.7);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  color: #fff;
+  font-size: 16px;/*no*/
+  border-radius: 8px;
+  text-align: center;
+  z-index: 999;
+}
+/*对号*/
+.authenticationPopup_ok{
+   width: 16px;
+   height: 28px;
+   display: inline-block;
+   border: 2px solid #2979FF;
+   border-left: none;
+   border-top: none;
+   transform: rotate(40deg);
+   position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 10px auto;
+}
+/*未通过认证*/
+.authenticationPopupNot{
+  background: rgba(0,0,0,0.7);
+}
+.authenticationPopup_bg_not{
+  width: 80%;
+  background:#fff;
+  //z-index: 999;
+  color: #000;
+  font-size: 14px;/*no*/
+  border-radius: 8px;
+  p{
+     margin: 20px 22px 0px 22px;
+  }
+
+}
+.authenticationPopup_bg_not_ok{
+  background: #2464E6;
+  height: 40px;
+  width: 90%;
+  line-height:40px;
+  text-align: center;
+  border-radius: 10px;
+  color: #fff;
+  margin: 16px;
+  display: inline-block;
+}
+/*更换信息*/
+.authenticationPopup_bg_two{
+  width: 100%;
+ // position: absolute;
+ // bottom: 0px;
+  border-top: 1px solid #ccc;
+  span{
+    color: #999;
+    display: inline-block;
+    height: 40px;
+    line-height:40px;
+    text-align: center;
+    border-radius: 0 0 8px 0;
+  }
+}
+/*重新获取按钮*/
+.verificationCodeBtn{
+  position: absolute;
+  right: 16px;
+  top: 6px;
+  text-align: center;
+  border: 1px solid #2979FF;
+  border-radius: 20px;
+  color: #2979FF;
+  width: 110px;
+  height: 30px;
+  line-height: 30px;
+}
+/*我的实名认证列表*/
+.trueAuthenticationList_list{
+  margin-top: 9px;
+  &>div{
+    width: 45%;
+    float: left;
+    margin: 9px 0 9px 12px;
+    div{
+      margin-left: 4px;
+      color: #333;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.center-image{
+    width:120px;
+    height:120px;
+    background:url(http://cdn09.ehaier.com/shunguang/H5/www/img/xiangmu@2x.png) no-repeat center;
+    background-size:120px 120px;
+    border-radius:50%;
+    margin:50px auto 30px;
+}
+.p-all{
+    width:187px;
+    height:48px;
+    background:#f5f5f5;
+    margin:0 auto;
+    p{
+        font-size:17px;
+        color:#444;
+        text-align: center;
+    }
+}
+.btn-guang{
+    display:block;
+    width:264px;
+    height:44px;
+    color:#fff;
+    text-align: center;
+    line-height: 44px;
+    background:#2979FF;
+    border:none;
+    border-radius:21px;
+    margin:20px auto 0;
+}

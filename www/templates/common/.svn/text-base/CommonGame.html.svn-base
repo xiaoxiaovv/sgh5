@@ -1,0 +1,8 @@
+<ion-modal-view>
+  <div>
+    <img ng-src="{{game.activityPic}}" class="width-100">
+    <div class="text-align-c">
+      <i class="icon ion-ios-close-outline font-size-22" ng-click="closePic();"></i>
+    </div>
+  </div>
+</ion-modal-view>

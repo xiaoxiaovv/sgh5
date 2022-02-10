@@ -1,0 +1,289 @@
+<krpano version="1.19" title="Virtual Tour">
+
+  <!-- hide bottom bar -->
+  <include url="skin/vtourskin.xml" />
+
+
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+	<!-- <skin_settings maps="false"
+	               maps_type="google"
+	               maps_bing_api_key=""
+	               maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               gyro="true"
+	               webvr="true"
+	               webvr_gyro_keeplookingdirection="false"
+	               littleplanetintro="false"
+	               title="true"
+	               thumbs="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext="loading..."
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="0x2D3E50"
+	               design_bgalpha="0.8"
+	               design_bgborder="0"
+	               design_bgroundedge="1"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="0"
+	               design_text_css="color:#FFFFFF; font-family:Arial;"
+	               design_text_shadow="1"
+	               /> -->
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+  <!-- enable gyro by default -->
+  <plugin name="skin_gyro" keep="true" url="" html5_url="%SWFPATH%/plugins/gyro2.js" softstart="1.0" enabled="true" onavailable="skin_arrange_buttons();" devices="html5" />
+  
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[6].name); );
+		loadscene(get(startscene), null, MERGE);
+		if(startactions !== null, startactions() );
+ </action>
+  
+	<scene name="scene_bathroom" title="bathroom" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="to_bedroom_style" ath="-7" atv="-14" linkedscene="scene_bedroom" />
+		<hotspot name="spot2" style="to_kitchen_style" ath="-7" atv="0" linkedscene="scene_kitchen" />
+		<hotspot name="spot3" style="to_livingroom_style" ath="-7" atv="14" linkedscene="scene_livingroom" />
+    
+		<hotspot name="spot4" style="item_style" ath="128.552" atv="-36.203" linkedscene="scene_bathroom_blur" product_id="16311"/>
+
+	</scene>
+
+	<scene name="scene_bathroom_blur" title="bathroom_blur" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom_blur.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom_blur.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom_blur.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom_blur.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bathroom_blur.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_bedroom" title="bedroom" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="to_bathroom_style" ath="96.221" atv="-12" linkedscene="scene_bathroom" />
+		<hotspot name="spot2" style="to_kitchen_style" ath="96.221" atv="0" linkedscene="scene_kitchen" />
+		<hotspot name="spot3" style="to_livingroom_style" ath="96.190" atv="12" linkedscene="scene_livingroom" />
+    
+		<hotspot name="spot4" style="item_style" ath="-161.426" atv="-26.981" linkedscene="scene_bedroom_blur" product_id="12979" />
+
+	</scene>
+
+	<scene name="scene_bedroom_blur" title="bedroom_blur" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom_blur.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom_blur.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom_blur.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom_blur.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/bedroom_blur.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_kitchen" title="kitchen" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="to_bathroom_style" ath="-35.400" atv="-3.798" linkedscene="scene_bathroom" />
+		<hotspot name="spot2" style="to_bedroom_style" ath="-35.178" atv="8.723" linkedscene="scene_bedroom" />
+		<hotspot name="spot3" style="to_livingroom_style" ath="-97.550" atv="0.751" linkedscene="scene_livingroom" />
+    
+		<hotspot name="spot4" style="item_style" ath="-12.314" atv="5.942" linkedscene="scene_kitchen_blur" product_id="13175"/>
+		<hotspot name="spot5" style="item_style" ath="145.813" atv="-24.387" linkedscene="scene_kitchen_blur" product_id="16119"/>
+		<hotspot name="spot6" style="item_style" ath="72.505" atv="2.430" linkedscene="scene_kitchen_blur" product_id="13763"/>
+		<hotspot name="spot7" style="item_style" ath="75.390" atv="-22.428" linkedscene="scene_kitchen_blur" product_id="14473"/>
+		<hotspot name="spot7" style="item_style" ath="73.390" atv="-22.428" linkedscene="scene_kitchen_blur" product_id="14473"/>
+
+	</scene>
+
+	<scene name="scene_kitchen_blur" title="kitchen_blur" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen_blur.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen_blur.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen_blur.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen_blur.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/kitchen_blur.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_livingroom" title="livingroom" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="104.066" vlookat="4.180" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="to_kitchen_style" ath="91.035" atv="3.707" linkedscene="scene_kitchen" />
+		<hotspot name="spot2" style="to_bathroom_style" ath="31.099" atv="-7.277" linkedscene="scene_bathroom" />
+		<hotspot name="spot3" style="to_bedroom_style" ath="30.965" atv="4.521" linkedscene="scene_bedroom" />
+    
+		<hotspot name="spot4" style="item_style" ath="-54.357" atv="-14.401" linkedscene="scene_livingroom_blur" product_id="14685"/>
+		<hotspot name="spot5" style="item_style" ath="151.451" atv="-15.094" linkedscene="scene_livingroom_blur" product_id="14937"/>
+
+	</scene>
+
+	<scene name="scene_livingroom_blur" title="livingroom_blur" onstart="" havevrimage="true" thumburl="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom_blur.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom_blur.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1280" tiledimageheight="1280">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom_blur.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="640" tiledimageheight="640">
+				<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom_blur.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="http://cdn09.ehaier.com/shunguang/VRshop/panos/livingroom_blur.tiles/vr/pano_%s.jpg" />
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+
+</krpano>

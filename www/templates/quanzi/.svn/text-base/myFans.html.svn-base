@@ -1,0 +1,108 @@
+<ion-view class="background" view-title="我的粉丝" hide-back-button="true">
+    <!--白色标题栏-->
+    <!--回退按钮-->
+    <ion-nav-buttons side="left">
+        <button ng-click="$ionicGoBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;"></button>
+    </ion-nav-buttons>
+    <!--消息按钮-->
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新" refreshing-text="正在刷新" on-refresh="init()"></ion-refresher>
+        <ion-list>
+            <!--空-->
+            <div ng-if="!!nothing">
+                <div style="text-align: center;color: #777;font-size: 15px;line-height:30px;padding-top: 20px;margin-bottom: 100px;">
+                    <div><img ng-src="{{imgBaseURL}}img/kong4.png" alt="" width="70px"></div>
+                    <div style="margin:10px 0;"><span>亲,你还没有粉丝!<br>快去
+                        <span ui-sref="topic.qmine"
+                              style="display:inline-block;width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 0;">我的圈子</span>
+                        发表创作圈粉吧！</span></div>
+                </div>
+            </div>
+            <!--你可能感兴趣的人-->
+            <div ng-if="interested.length" class="users-head-bar">
+                <div class="content">
+                    <span class="title">你可能感兴趣的人</span>
+                    <span ng-click="more()" class="more">更多</span>
+                </div>
+            </div>
+            <ion-item ng-repeat="person in interested" ng-click="viewHim(person)" class="item-avatar person-item">
+                <img class="head" src="{{person.img|ImageUserFilter}}" alt=""
+                     onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'">
+                <!--昵称-->
+                <div ng-bind="person.memberName||'XXX'" class="name"></div>
+                <!--个性签名-->
+                <!--<div class="dot-line sign">个性签名，如果很长的话会这样，变成。。。</div>-->
+                <!--五星等级-->
+              <div style="display: flex;" class="position-a">
+                <div class="grade-start-diamond">
+                  <img ng-if="person.grideName!='盟主'" ng-src="{{imgBaseURL}}img/Commander{{person.gride}}@2x.png" style="width:11px;margin-right:4px;">
+                  <img ng-if="person.grideName=='盟主'" ng-src="{{imgBaseURL}}img/Commander mengzhu@2x.png" style="width:11px;margin-right:4px;">
+                  <span style="font-size: 12px;color:#ffffff;letter-spacing: 0.32px;line-height: 12px;" ng-bind="person.grideName">士兵</span>
+                </div>
+                <div class="inline-block" ng-if="person.storeGride  > 0">
+                  <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 1 && person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 2 && person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >3 && person.storeGride < 7">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >4 && person.storeGride < 7">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >5 && person.storeGride < 7">
+                </div>
+              </div>
+
+                <div class="follow-button" ng-class="{true:'no-follow',false:'follow'}[!!person.isFollow]"
+                     ng-bind="person.isFollow?'已关注':'+关注'"
+                     ng-click="$event.stopPropagation();followI(person,!person.isFollow);person.isFollow=!person.isFollow;"></div>
+            </ion-item>
+            <div ng-if="myFansData.myFans.length">
+                <!--我的粉丝-->
+                <div class="users-head-bar2">
+                    <div class="content">
+                        我的粉丝
+                    </div>
+                </div>
+                <ion-item ng-repeat="person in myFansData.myFans" ng-click="viewHim(person)"
+                          class="item-avatar person-item">
+                    <img class="head" src="{{person.img|ImageUserFilter}}" alt="粉丝头像"
+                         onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'">
+                    <!--昵称-->
+                    <div ng-bind="person.followName||'XXX'" class="name"></div>
+                    <!--个性签名-->
+                    <!--<div class="dot-line" ng-class="sign">个性签名，如果很长的话会这样，变成。。。</div>-->
+                    <!--五星等级-->
+                  <div style="display: flex;" class="position-a">
+                    <div class="grade-start-diamond">
+                      <img ng-if="person.grideName!='盟主'" ng-src="{{imgBaseURL}}ng-img/C{{imgBaseURL}}ommander{{person.gride}}@2x.png" style="width:11px;margin-right:4px;">
+                      <img ng-if="person.grideName=='盟主'" ng-src="{{imgBaseURL}}ng-img/C{{imgBaseURL}}ommander mengzhu@2x.png" style="width:11px;margin-right:4px;">
+                      <span style="font-size: 12px;color:#ffffff;letter-spacing: 0.32px;line-height: 12px;" ng-bind="person.grideName">士兵</span>
+                    </div>
+                    <div class="inline-block" ng-if="person.storeGride > 0">
+                      <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride<4">
+                      <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 1 && person.storeGride<4">
+                      <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 2 && person.storeGride<4">
+                      <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >3 && person.storeGride < 7">
+                      <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >4 && person.storeGride < 7">
+                      <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >5 && person.storeGride < 7">
+                    </div>
+                  </div>
+
+                    <div class="follow-button" ng-class="{true:'no-follow',false:'follow'}[!!person.isFollow]"
+                         ng-bind="!!person.isFollow?'已关注':'+关注'"
+                         ng-click="$event.stopPropagation();followF(person,!person.isFollow);person.isFollow=!person.isFollow;">
+                    </div>
+
+                </ion-item>
+               <!-- <div ng-if="!myFansData.hasMore" class="text-align-c">没有更多了。。。</div>-->
+                <!--上拉刷新-->
+                <ion-infinite-scroll on-infinite="loadData(myFansData)" immediate-check="false"
+                                     ng-if="myFansData.hasMore"></ion-infinite-scroll>
+            </div>
+        </ion-list>
+    </ion-content>
+    <!--轻通知-->
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="alreadyFollow">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>恭喜你多了一个新朋友</span>
+        </div>
+    </div>
+</ion-view>

@@ -1,0 +1,123 @@
+<ion-view class="background smartAppliance" view-title="家居家装" hide-nav-bar="true">
+
+    <ion-content scrollbar-y="false">
+      
+        <div id="banner">  
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">1</div>
+                <div class="swiper-slide">2</div>
+                <div class="swiper-slide">3</div>
+                <div class="swiper-slide">4</div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        
+          <!--Swiper轮播1-->
+          
+          <!-- <div class="swiper-container swipers-box" id="swpc-furnish-1" style="height:auto;">
+            <ul class="swiper-wrapper" style="height:auto;">
+              <li class="swiper-slide"  ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+                  <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+              </li>
+            </ul>
+            <div class="swiper-pagination" id="swpp-furnish-1"></div>
+          </div> -->
+          <!-- <ion-slide-box  delegate-handle="furnish_slider" auto-play="true" does-continue="true">
+            <ion-slide ng-repeat="imageItem in bannerList track by $index">
+              <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+            </ion-slide>
+          </ion-slide-box> -->
+      </div>
+      <div class="smart-nav">
+        <div class="nav-title">全屋解决方案</div>
+        <div class="nav-content">
+            <ul>
+                <li ng-repeat="item in programNav">
+                    <img src="{{item.iconUrl}}"/>
+                    <span>{{item.name}}</span>
+                </li>
+            </ul>
+        </div>
+      </div>
+      <div class="smart-look">
+            <div class="nav-title">视觉体验</div>
+            <div class="look-content">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="./img/newvision/27.jpg"/>
+                            <i>02:00</i>
+                        </div>
+                        <span>海尔智慧家庭发布</span>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="./img/newvision/27.jpg"/>
+                            <i>02:00</i>
+                        </div>
+                        <span>海尔智慧家庭发布</span>
+                    </li>
+                </ul>
+            </div>
+      </div>
+      <div class="smart-get">
+            <div class="nav-title">到店体验</div>
+            <div class="get-content">
+                <img src="./img/newvision/share_default.png"/>
+                <div>
+                    <span>智家体验店</span>
+                    <h3>胶州月星家居月星家居智慧家庭智能店家庭智能店</h3>
+                    <p>胶州月星家居月星家居智慧家庭智能店家庭智能店</p>
+                    <i><img src="./img/newvision/location.png"/><em>53.2公里</em></i>
+                </div>
+            </div>
+      </div>
+      <div class="smart-recommound">
+            <div class="nav-title">成套家电推荐</div>
+            <div class="recommound-content">
+                <ul>
+                    <li ng-repeat="item in recommend">
+                        <img src="{{item.imageUrl}}"/>
+                        <span>{{item.name}}</span>
+                    </li>
+                </ul>
+            </div>
+      </div>
+      <div class="smart-life">
+            <div class="nav-title">我的智慧生活</div>
+            <div class="life-content">
+                <ul>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/ic_haier_7.png"/>
+                        <h3>在海南入住的Airbnb#客厅</h3>
+                        <p>
+                            <span><img class="autor" src="./img/newvision/ic_haier_7.png"/><i>作者名字</i></span>
+                            <span><img src="./img/newvision/zan.png"/><i>6666</i></span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+      </div>
+
+  
+    </ion-content>
+  </ion-view>
+  

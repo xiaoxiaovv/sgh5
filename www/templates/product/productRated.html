@@ -1,0 +1,99 @@
+<ion-view class="background" view-title="商品评价({{assessData.totalNum}})">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l" ng-click="goBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <div class="border-top" style="position:absolute;z-index:10;width:100%;" ng-style="productRatedSub">
+    <div class="row bg-white padding-5 text-align-c" style="flex-flow: row wrap;">
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="allComment?isCheckStyle:noCheckStyle" ng-click="clickCommentType('all')">全部({{assessData.totalNum}})
+      </div>
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="goodComment?isCheckStyle:noCheckStyle" ng-click="clickCommentType('praise')">
+        <img ng-src='{{goodComment?imgBaseURL+"img/bs_good.png":imgBaseURL+"img/ass_good.png"}}' style="width: 20px;padding-right: 5px;margin-bottom: -2px;" />好评({{assessData.positiveNum}})
+      </div>
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="neutralComment?isCheckStyle:noCheckStyle" ng-click="clickCommentType('neutral')">
+        <img ng-src='{{neutralComment?imgBaseURL+"img/bs_middle.png":imgBaseURL+"img/ass_middle.png"}}' style="width: 20px;padding-right: 5px;margin-bottom: -2px;" />中评({{assessData.neutralNum}})
+      </div>
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="negativeComment?isCheckStyle:noCheckStyle" ng-click="clickCommentType('poor')">
+        <img ng-src='{{negativeComment?imgBaseURL+"img/bs_bad.png":imgBaseURL+"img/ass_bad.png"}}' style="width: 20px;padding-right: 5px;margin-bottom: -2px;" />差评({{assessData.negativeNum}})
+      </div>
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="havePicComment?isCheckStyle:noCheckStyle" ng-click="clickCommentType('image')">有图({{assessData.hasPicNum}})
+      </div>
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="productRatedContent">
+    <div ng-if="markData.length>0&&markData!=null&&markData" style="height:16px;"></div>
+    <div ng-if="markData.length>0&&markData!=null&&markData" class="row bg-white text-align-c" style="flex-flow: row wrap;">
+      <div class="col-30 border-radius padding-5 margin-5" ng-style="noCheckStyle" ng-repeat="mark in markData" style="overflow:hidden;text-overflow:ellipsis;white-space: nowrap;">{{mark.impressionName}}({{mark.labelNum}})
+      </div>
+    </div>
+    <div class="text-align-c" ng-if="!isHasData">
+      <div style="float:left;height:177px;width:100%;">
+        <img style="display:block;height:50%;margin:0 auto;margin-top:62px;" ng-src="{{imgBaseURL}}img/emptySearch.png" alt="海尔兄弟" />
+      </div>
+      <i style="font-size:15px;">还没有相关商品评价</i>
+    </div>
+    <div class="list bg-white" ng-if="isHasData">
+      <div class="padding-10 margin-top-5 border-top border-bottom-none border-left-right-none" ng-repeat="(key, value) in assessList">
+        <div>
+          <img class="ass_user_img" ng-src="{{imgBaseURL}}img/ass_tx.png">
+          <span class="font-size-12" ng-bind="value.memberName"></span>
+        </div>
+        <div class="margin-top-5 padding-5 font-size-15" ng-bind="value.commentContent"></div>
+        <div class="row margin-top-5 padding-5" style="flex-wrap: wrap;">
+          <div class="col col-20 padding-5" ng-repeat="commentP in value.commentPics" ng-click="showLarge(commentP.picUrl)">
+            <img width="100%" height="40px" ng-src="{{commentP.picUrl}}">
+          </div>
+        </div>
+        <div class="margin-top-5 padding-5 font-size-10" style="color: #69717d" ng-bind="value.createTime | date:'yyyy-MM-dd'">
+        </div>
+        <div ng-if="value.experienceTime != null" class="margin-top-5 padding-5 font-size-12">
+          <div ng-if="value.dayTime == 0" class=" color-text-orange ">
+            用户当天追评:
+          </div>
+          <div ng-if="value.dayTime != 0" class=" color-text-orange ">
+            用户{{value.dayTime}}天后追评:
+          </div>
+          <div class="margin-top-5 padding-5" ng-bind="value.experienceContent">
+          </div>
+          <div class="row margin-top-5 padding-5" style="flex-wrap: wrap;">
+            <div class="col col-20 padding-5" ng-repeat="experienceP in value.experiencePics" ng-click="showLarge(experienceP.picUrl)">
+              <img width="100%" height="40px" ng-src="{{experienceP.picUrl}}">
+            </div>
+          </div>
+        </div>
+        <div>
+          <div ng-repeat="(key, value) in value.serviceCommentReplies" class="margin-top-5 padding-5 font-size-13" style="background: #FDF4F4">
+            <span>小海回复:</span>
+            <span ng-bind="value.replyContent"></span>
+          </div>
+        </div>
+        <div>
+          <div ng-repeat="(key, value) in value.storeCommentReplies" class="margin-top-5 padding-5 font-size-13" style="background: #FDF4F4">
+            <span>商家回复:</span>
+            <span ng-bind="value.replyContent"></span>
+          </div>
+        </div>
+        <div ng-if="value.userCommentContent != null && value.userCommentContent != ''" class="margin-top-5 padding-5 font-size-12">
+          <div class=" color-text-orange ">
+            产品使用心得:
+          </div>
+          <div class="margin-top-5 padding-5" ng-bind="value.userCommentContent">
+          </div>
+          <div class="row margin-top-5 padding-5" style="flex-wrap: wrap;">
+            <div class="col col-20 padding-5" ng-repeat="experienceCommentP in value.userCommentPics" ng-click="showLarge(experienceCommentP.picUrl)">
+              <img width="100%" height="40px" ng-src="{{experienceCommentP.picUrl}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+  <div ng-if="showBigImage" style="width:100%;height: 100%;background: black;z-index:10;position: absolute;opacity: 0.6">
+    <img style="position: absolute;padding: 5px;right: 0;width: 40px;" ng-click="closeImg()" ng-src="{{imgBaseURL}}img/ic_erweima_close.png" />
+  </div>
+  <div style="width:90%;display:table-cell;height:80%;text-align:center; vertical-align:middle;background: transparent;position: fixed;top: 10%;left: 5%;z-index:10;" ng-if="showBigImage">
+    <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+    <img style="width: 90%;vertical-align: middle;" ng-src="{{largeImg}}" err-src="" />
+  </div>
+</ion-view>

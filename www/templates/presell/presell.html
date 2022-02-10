@@ -1,0 +1,41 @@
+ <ion-view class='background' view-title="品质预售" hide-back-button="true" style="background-color: $color-theme;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+		<div style="position:absolute;right:0;top: 0;margin: .06rem .426667rem 0 .266667rem;">
+			<div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+		    <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+		</div>
+		</div>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false" lazy-container>
+	<ion-list>
+	<ul class="yushoutotal" ng-if='preselllist.length!=0'>
+			<li class="yushoushuju" ng-repeat="i in preselllist" ui-sref="productDetail({'productId':i.productId,'storeId':storeId})">
+				<div class="yushoushujuleft">
+					<img ng-src="{{i.imageUrl}}" alt="">
+				</div>
+				<div class="yushoushujuright">
+					<p>
+					{{i.productName}}
+					</p>
+					<p class="yssjpri">
+						<span style="font-size: 14px;/*no*/">订金</span>
+						<span style="color:#FF4400;font-size: 14px;/*no*/">¥{{i.advance}}</span>
+						<span style="color:#999999;margin-left: 0.08rem;">商城价：{{i.price}}</span>
+					</p>
+					<p style="color:#666666" ng-if='false'>
+					已预约：3267328人
+					</p>
+					<div class="yushoushujuding">
+						立即预订
+					</div>
+				</div>
+			</li>
+		</ul>
+	</ion-list>
+	<div class='cui-nullss' ng-if='preselllist.length==0'>
+		暂时还没有预售活动~
+	</div>
+	<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

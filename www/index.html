@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>顺逛微店</title>
+  <link rel="icon" type="image/png" href="http://cdn09.ehaier.com/shunguang/H5/www/img/race/favicon.ico" sizes="60x60">
+  <!-- compiled css output -->
+  <!--生产环境css-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5/www/css/ionic.app.min.css" rel="stylesheet">-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5/www/css/app.rem.main.min.css" rel="stylesheet"> -->
+
+  <!--测试环境38080css-->
+  <!-- <link href="http://cdn09.ehaier.com/shunguang/H5test/www/css/ionic.app.min.css" rel="stylesheet">
+  <link href="http://cdn09.ehaier.com/shunguang/H5test/www/css/app.rem.main.min.css" rel="stylesheet"> -->
+
+  <!--测试环境38081css-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5test_38081/www/css/ionic.app.min.css" rel="stylesheet">-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5test_38081/www/css/app.rem.main.min.css" rel="stylesheet"> -->
+
+  <!--预发布环境css-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5pre/www/css/ionic.app.min.css" rel="stylesheet">-->
+  <!--<link href="http://cdn09.ehaier.com/shunguang/H5pre/www/css/app.rem.main.min.css" rel="stylesheet"> -->
+
+  <!--本地css-->
+  <link href="css/ionic.app.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.rem.main.min.css">
+    <!--swiper-->
+  <link rel="stylesheet" href="lib/swiper-4.2.2.min.css">
+  <script src="lib/swiper-4.2.2.min.js"></script>
+  <!--swiper-->
+  <!-- <link rel="stylesheet" href="http://cdn09.ehaier.com/shunguang/H5/www/lib/swiper-4.2.2.min.css" />
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/swiper-4.2.2.min.js"></script> -->
+
+  <!-- ionic/angularjs js -->
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/flexible.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/flexible_css.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/artEditor/jquery-1.11.2.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/jquery-3.1.1.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/ionic/js/ionic.bundle.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/ionic/js/angular/angular-cookies.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/ionic/js/angular/angular-sanitize.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/ionic/js/angular-ui/angular-ui-router.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/fileUpload/ng-file-upload-shim.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/fileUpload/ng-file-upload.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/pinchzoom.js"></script>
+  <!-- daba 圆形进度条插件 -->
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/radialIndicator.min.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <!--<script src="cordova.js"></script>-->
+
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/elastic.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/jquery_easing.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/stomp.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/lrz/dist/lrz.bundle.js"></script>
+  <!--angular 图片懒加载-->
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/me-lazyload.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/js/framework/play-sound.bundle.min.js"></script>
+
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/waverecode/WavAudioEncoder.min.js"></script>
+  <!--高德地图-->
+  <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=2c32eb44ce0ecd452ce7c7b9fd020e83"></script>
+  <!--create qrcode js add by jiangfeng-->
+  <script src='http://cdn09.ehaier.com/shunguang/H5/www/lib/dist/arale-qrcode/3.0.5/index.js'></script>
+
+  <!--图表echarts-->
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/echarts/echarts.min.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/artEditor/index.js"></script>
+
+  <!--业务逻辑-->
+
+  <!--日期选择-->
+  <script
+    src="http://cdn09.ehaier.com/shunguang/H5/www/lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+
+  <!--生产环境压缩文件-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5/www/release/templates.js" ></script>-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5/www/release/framework.js" ></script>-->
+
+  <!--测试环境38080压缩文件-->
+  <!-- <script src="http://cdn09.ehaier.com/shunguang/H5test/www/release/templates.js"></script>
+  <script src="http://cdn09.ehaier.com/shunguang/H5test/www/release/framework.js"></script> -->
+
+  <!--测试环境38081压缩文件-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5test_38081/www/release/templates.js"></script>-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5test_38081/www/release/framework.js"></script>-->
+
+  <!--预发布环境压缩文件-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5pre/www/release/templates.js"></script>-->
+  <!--<script src="http://cdn09.ehaier.com/shunguang/H5pre/www/release/framework.js"></script>-->
+
+  <!--本地压缩文件-->
+  <script src="release/templates.js"></script>
+  <script src="release/framework.js"></script>
+  <!-- 今日头条 -->
+  <script type="text/javascript">
+    (function (root) {
+      root._tt_config = true;
+      var ta = document.createElement('script');
+      ta.type = 'text/javascript';
+      ta.async = true;
+      ta.src = document.location.protocol + '//' + 's3.pstatp.com/bytecom/resource/track_log/src/toutiao-track-log.js';
+      ta.onerror = function () {
+        var request = new XMLHttpRequest();
+        var web_url = window.encodeURIComponent(window.location.href);
+        var js_url = ta.src;
+        var url = '//ad.toutiao.com/link_monitor/cdn_failed?web_url=' + web_url + '&js_url=' + js_url + '&convert_id=66993687926';
+        request.open('GET', url, true);
+        request.send(null);
+      }
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ta, s);
+    })(window);
+  </script>
+  <!-- 百度统计代码 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b90b41825a4a8fe5f40121456f1ab2d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- 品众埋点 -->
+  <script type='text/javascript'>
+ var _fxcmd=_fxcmd||[];
+ _fxcmd.sid='bdd19eb4dde6e943d358af8f109d5e51';
+ _fxcmd.trackAll=false;
+ // 参数配置(可选)...
+ // 追踪配置(可选)...
+ (function () {
+   var _pzfx=document['createElement']('script');
+   _pzfx.type='text/javascript';
+   _pzfx.async=true;
+   _pzfx.src='//static.w3t.cn/fx/1/1/fx.js';
+  var sc=document.getElementsByTagName('script')[0];
+  sc.parentNode.insertBefore(_pzfx,sc);
+  })();
+</script>
+</head>
+<body ng-app="starter">
+<!--
+  The nav bar that will be updated as we navigate between views.
+-->
+<ion-nav-bar class="bar-stable">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+-->
+<ion-nav-view>
+  <!--在微信中分享链接默认取此图片，不在页面中显示-->
+  <img ng-src="http://cdn09.ehaier.com/shunguang/H5/www/img/share_default.png"
+       style="width: 0 !important;height: 0 !important;"/>
+</ion-nav-view>
+<!-- 艾德追踪 -->
+<noscript><img src="http://t1.sagetrc.com/trc/atac/conv.gif?id=47713" width="0px" style="display:none !important;"/>
+</noscript>
+<script type="text/javascript">
+  var pubsage_sign = "";
+  var pubsage_url = "";
+  var url = window.location.href;
+  var domain = document.domain;
+  var mat = url.match(/adtiid=([^&#]*)/);
+  var iid = mat ? mat[1] : "";
+  if (iid == "" || typeof(iid) == "undefined") {
+    var uid = function (cookiekey) {
+      var strCookie = document.cookie;
+      var arrCookie = strCookie.split(";");
+      var value = "";
+      for (var i = 0; i < arrCookie.length; i++) {
+        var arr = arrCookie[i].split("=");
+        if (cookiekey == arr[0].replace(/(^\s*)|(\s*$)/g, "")) {
+          value = arr[1];
+          break
+        }
+      }
+      return value
+    }("_ws_uid");
+    if (uid == "" || typeof(uid) == "undefined") {
+      pubsage_url = "tca.sagetrc.com"
+    } else {
+      var strAry = domain.split(".");
+      var host = strAry[strAry.length - 2] + "." + strAry[strAry.length - 1];
+      var pf = uid.split(".");
+      if (pf[0] == "tqh") {
+        pubsage_url = "tqh_" + pubsage_sign + "." + host
+      }
+      if (pf[0] == "tgg") {
+        pubsage_url = "tgg_" + pubsage_sign + "." + host
+      }
+      if (pf[0] == "tsg") {
+        pubsage_url = "tsg_" + pubsage_sign + "." + host
+      }
+      if (pf[0] == "tdsp") {
+        pubsage_url = "tdsp_" + pubsage_sign + "." + host
+      }
+      if (pf[0] != "tsg" && pf[0] != "tgg" && pf[0] != "tqh" && pf[0] != "tdsp") {
+        pubsage_url = "trc_" + pubsage_sign + "." + host
+      }
+    }
+  } else {
+    if (iid.match("^g") != null) {
+      pubsage_url = "tgg.sagetrc.com"
+    }
+    if (iid.match("^q") != null) {
+      pubsage_url = "tqh.sagetrc.com"
+    }
+    if (iid.match("^s") != null) {
+      pubsage_url = "tsg.sagetrc.com"
+    }
+    if (iid.match("^d") != null) {
+      pubsage_url = "tdsp.sagetrc.com"
+    }
+    if (iid.match("^g|^q|^s|^d") == null) {
+      pubsage_url = "t1.sagetrc.com"
+    }
+  }
+  var pubsage_conv_id = 47713;
+  var pubsage_conv = pubsage_conv || [];
+  (function () {
+    try {
+      var d = document;
+      var at = d.createElement("script");
+      at.type = "text/javascript";
+      at.async = true;
+      at.src = ("https:" == document.location.protocol ? "https:" : "http:") + "//" + pubsage_url + "/trc/atac/conv_x.js?id=" + pubsage_conv_id;
+      var s = d.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(at, s)
+    } catch (e) {
+    }
+  })();
+</script>
+</body>
+
+<script type="text/javascript">
+  /*  //添加 haier sg analytics （暂时废弃）
+   (function() {
+   var sc = document.createElement('script');
+   sc.type = 'text/javascript';
+   sc.async = true;
+   var domain = 'm';
+   if(domain !=null && domain == 'm'){
+   sc.src ='http://211.151.171.120/wap_analytics.js';
+   }else{
+   sc.src ='http://211.151.171.120/wap_analytics_test.js';
+   }
+   var s = document.getElementsByTagName('script')[0];
+   console.log('insert ********** analyaze script ********');
+   s.parentNode.insertBefore(sc, s);
+   })();*/
+
+  //统计代码动态添加
+  document.write("<div style='display: none'><script src='http://s4.cnzz.com/z_stat.php?id=1259430011&web_id=1259430011'><\/script></div>");
+
+  // var _vds = _vds || [];
+  // window._vds = _vds;
+  // window.gio_userId = '';
+  // window.gio_userRole = '';
+  // (function () {
+  //   _vds.push(['setAccountId', '908df28d2b894e52']);
+  //   _vds.push(['enableHT', true]);
+  //   (function () {
+  //     var vds = document.createElement('script');
+  //     vds.type = 'text/javascript';
+  //     vds.async = true;
+  //     vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+  //     var s = document.getElementsByTagName('script')[0];
+  //     s.parentNode.insertBefore(vds, s);
+  //   })();
+  // })();
+  window.gio_userId = '';
+  window.gio_userRole = '';
+  !function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/op/2.0.1/gio.js","gio");
+  gio('init', '908df28d2b894e52',
+  {'setImp':'false',
+   'setTrackerHost':'vds.haier.net:443',
+   'setTrackerScheme':'https',
+   'setOrigin': 'https://udg.haier.net'
+  });
+
+  //put your custom page code here
+  gio('config', {'hashtag':true});
+  gio('send');
+</script>
+
+<script>
+  //可提现金额增加 语音函数
+  function Cash() {
+    this.audioUrl = 'http://cdn09.ehaier.com/shunguang/H5/www/voice/CashVoice.mp3';
+    this._createAudio();
+  }
+  Cash.prototype = {
+    constructor: Cash,
+    _createAudio: function () {
+      this.audioCashUp = document.createElement('audio');
+      this.audioCashUp.setAttribute("preload", "load");
+      this.audioCashUp.setAttribute("id", "cashAudio");
+      var CashSource = document.createElement('source');
+      CashSource.setAttribute("src", this.audioUrl);
+      CashSource.setAttribute("type", "audio/mp3");
+      this.audioCashUp.appendChild(CashSource);
+      var myBody = document.getElementsByTagName('body')[0];
+      myBody.appendChild(this.audioCashUp);
+
+    },
+    _destroyAudio: function () {
+      var myBody = document.getElementsByTagName('body')[0];
+      var myCashAudio = document.getElementById('cashAudio');
+      myBody.removeChild(myCashAudio);
+    },
+    _playAudio: function () {
+      this.audioCashUp.play();
+    }
+  }
+</script>
+<script>
+
+  function Coin(opts) {
+    //默认参数
+    this.defaults = {
+      coinSrc: "http://cdn09.ehaier.com/shunguang/H5/www/img/gold1@3x.png",     //金币图片地址
+      audioSrc: "http://download.taobaocdn.com/freedom/26370/media/shake.mp3", //金币音频地址
+      coinWidth: 25,           //金币宽度
+      coinHeight: 25,          //金币高度
+      density: 30
+    };
+    this.settings = this._extendDeep(this.defaults, opts);   //深拷贝
+    this.density = this.settings.density;                   //密度，即金币个数
+    this.timeLag = 1000;                                    //金币散落的事件间隔，数字越大表示间隔越大
+    this.coinWidth = this.settings.coinWidth;               //金币宽度
+    this.coinHeight = this.settings.coinHeight;             //金币高度
+    this.wrapWidth = 0;
+    this.wrapHeight = 0;
+    this._init();
+  }
+  Coin.prototype = {
+    constructor: Coin,
+    /**
+     * 动画初始化方法
+     * @method _init
+     **/
+    _init: function () {
+      //初始化包括尺寸大小
+      this.wrapWidth = document.documentElement.clientWidth;
+      this.wrapHeight = document.documentElement.clientHeight;
+      this._requestAnimationFrame();
+      this._createCanvas();
+      this._createAudio();
+    },
+    /**
+     * 对象深拷贝方法
+     * @method _extendDeep
+     * @param  {object} parent 父对象
+     {object} child  子对象
+     @return {object} child  父对象继承给子对象
+     **/
+    _extendDeep: function (child, parent) {
+      var i,
+        toStr = Object.prototype.toString,
+        astr = "[object Array]";
+      child = child || {};
+      for (i in parent) {
+        if (parent.hasOwnProperty(i)) {
+          if (typeof parent[i] === "object") {
+            child[i] = (toStr.call(parent[i]) === astr) ? [] : {};
+            extendDeep(parent[i], child[i]);
+          } else {
+            child[i] = parent[i];
+          }
+        }
+      }
+      return child;
+    },
+    /**
+     * requestAnimationFrame做兼容
+     * @method _requestAnimationFrame
+     **/
+    _requestAnimationFrame: function () {
+      var lastTime = 0;
+      var vendors = ['webkit', 'moz'];
+      for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+          window[vendors[x] + 'CancelRequestAnimationFrame'];
+      }
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (callback, element) {
+          var currTime = new Date().getTime();
+          var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+          var id = window.setTimeout(function () {
+            callback(currTime + timeToCall);
+          }, timeToCall);
+          lastTime = currTime + timeToCall;
+          return id;
+        };
+      }
+      if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function (id) {
+          clearTimeout(id);
+        };
+      }
+    },
+    /**
+     * 创建canvas画布
+     * @method _createCanvas
+     **/
+    _createCanvas: function () {
+      var _self = this;
+      this.canvas = document.createElement('canvas');
+      this.canvas.setAttribute("data-id", Date.now());
+      if (!this.canvas.getContext) {
+        alert("您的浏览器不支持canvas");
+        return;
+      }
+      this.context = this.canvas.getContext('2d');
+      this.canvas.width = this.wrapWidth;
+      this.canvas.height = this.wrapHeight;
+      var oBody = document.getElementsByTagName('body')[0];
+      oBody.appendChild(this.canvas);
+      this._createCacheCanvas();
+    },
+    _createCacheCanvas: function () {
+      var _self = this;
+      this.cacheCanvas = document.createElement('canvas');
+      this.cacheContext = this.cacheCanvas.getContext('2d');
+      this.cacheCanvas.width = this.wrapWidth;
+      this.cacheCanvas.height = this.wrapHeight;
+      this.coinImg = new Image();
+      this.coinImg.src = this.settings.coinSrc;
+      this.coinImg.onload = function () {
+        _self._startCacheCanvasAnim();
+      }
+    },
+    /**
+     * 执行金币绘制动画
+     * @method _startCanvasAnim
+     **/
+    _startCacheCanvasAnim: function () {
+      var _self = this;
+      var availWidth = this.cacheCanvas.width - this.coinWidth;
+      var availHeight = this.cacheCanvas.height - this.coinHeight;
+      //var disX=availWidth/this.density;  //每个硬币X轴的间距
+      var coinRange = availWidth * this.density / (this.density + 15);
+      var rangeStart = (availWidth - coinRange) / 2;
+      var g = 9.8 * 280;   //重力加速度
+      var bPlayAudio = false;
+      var coinAttrArr = [];  //存储金币下落过程中的一些属性参数
+      for (var i = 0; i < _self.density; i++) {
+        var randomCoinWidthAndHeight = i / 3 == 0 ? 25 : (i / 3 == 1 ? 30 : 35);  //金币大小分为三种
+        coinAttrArr[i] = {
+          rndX: Math.random(),                                    //存储金币开始降落x轴随机值
+          rndOrder: Math.round(Math.random() * _self.timeLag / 17),   //存储金币撒落顺序的一个数组
+          time: 0,                                //存储金币绘制的具体时间
+          top: 0,                                                 //存储金币绘制距离顶部的距离
+          left: 0,                                                //存储金币弹起后距离左边的距离
+          endSpeed: 0,                                            //存储金币第一次接触地面的速度
+          bEnd: false,                              //存储金币是否触碰到地面
+          reDownSpeed: 0,                                         //存储金币弹起后重新降落的速度
+          reDownHDelta: Math.random() * 100 + 580,                    //存储金币弹起的高度参数，随机值250~350之间
+          rndOffsetX: Math.random() * 0.06 + 0.97,                    //存储金币x轴的偏移量，随机值0.97~1.03之间
+          coinWidth: randomCoinWidthAndHeight,
+          coinHeight: randomCoinWidthAndHeight
+        }
+      }
+      var startTime = Date.now();  //开始绘制前的时间
+      function draw() {
+        var drawStart = Date.now();  //记录重绘的结束事件
+        //计算每次重绘所需要的事件，单位为秒
+        var diff = (drawStart - startTime) / 1000;
+        startTime = drawStart;   //结束事件传给开始事件
+        _self.context.clearRect(0, 0, _self.canvas.width, _self.canvas.height);  //清除画布，方便重绘
+        _self.cacheContext.clearRect(0, 0, _self.cacheCanvas.width, _self.cacheCanvas.height);  //清除画布，方便重绘
+        _self.cacheContext.save();
+        //根据金币个数循环绘制金币
+        for (var i = 0; i < _self.density; i++) {
+          if ((coinAttrArr[i].rndOrder == 0 && coinAttrArr[i].time == 0)) {   //如果顺序为0，表示开始下落，同时下落的初始时间为0时，赋值初始时间
+            coinAttrArr[i].time = diff;
+          }
+          if (coinAttrArr[i].time > 0) {     //如果初始事件大于0，表示已经在下落过程中,则每次的初始时间递增
+            coinAttrArr[i].time = coinAttrArr[i].time + diff;
+          }
+          if (coinAttrArr[i].rndOrder == 0) {  //如果顺序为0，开始下落，则开始绘制金币
+            if (!coinAttrArr[i].bEnd) {   //金币下落（过程一），自由落体运动
+              coinAttrArr[i].top = g * Math.pow(coinAttrArr[i].time, 2) / 2 - _self.coinHeight;   //自由落体加速度运动，求下落的高度
+              //coinAttrArr[i].left=disX*coinAttrArr[i].rndX+i*disX;
+              coinAttrArr[i].left = coinRange * coinAttrArr[i].rndX + rangeStart;
+            } else if (coinAttrArr[i].endSpeed == 0) {   //金币弹起后在空中重新下落（过程三）
+              coinAttrArr[i].reDownSpeed = coinAttrArr[i].reDownSpeed * 1.1;
+              coinAttrArr[i].top = coinAttrArr[i].top + coinAttrArr[i].reDownSpeed;
+              coinAttrArr[i].left = coinAttrArr[i].left * coinAttrArr[i].rndOffsetX;
+            } else {   //金币弹起（过程二）
+              coinAttrArr[i].endSpeed = -Math.abs(coinAttrArr[i].endSpeed * 0.96);
+              if (Math.abs(coinAttrArr[i].endSpeed) < 1) coinAttrArr[i].endSpeed = 0;
+              coinAttrArr[i].top = coinAttrArr[i].top + coinAttrArr[i].endSpeed;
+              coinAttrArr[i].left = coinAttrArr[i].left * coinAttrArr[i].rndOffsetX;
+            }
+            //金币第一次降落超过地面时，将其高度设置和地面齐平
+            if (coinAttrArr[i].top > _self.cacheCanvas.height - _self.coinHeight && !coinAttrArr[i].bEnd) {
+              coinAttrArr[i].top = _self.cacheCanvas.height - _self.coinHeight;
+            }
+            //金币落地时，计算落地的速度
+            if (coinAttrArr[i].top == _self.cacheCanvas.height - _self.coinHeight) {
+              coinAttrArr[i].endSpeed = g * coinAttrArr[i].time / coinAttrArr[i].reDownHDelta;
+              coinAttrArr[i].reDownSpeed = coinAttrArr[i].endSpeed / 10;
+              coinAttrArr[i].bEnd = true;
+            }
+            //绘制金币
+            _self.cacheContext.drawImage(_self.coinImg, coinAttrArr[i].left, coinAttrArr[i].top, coinAttrArr[i].coinWidth, coinAttrArr[i].coinHeight);
+          }
+          coinAttrArr[i].rndOrder = coinAttrArr[i].rndOrder == 0 ? 0 : coinAttrArr[i].rndOrder - 1;//顺序每一次重绘则递减一次，直到为0时，代表开始下落
+        }
+        _self.cacheContext.restore();
+        _self.context.drawImage(_self.cacheCanvas, 0, 0, _self.canvas.width, _self.canvas.height);
+        var firstH = _self._maxNum(coinAttrArr, "top");//求降落过程中高度最大的金币高度
+        if (firstH >= _self.cacheCanvas.height - _self.coinHeight && !bPlayAudio) {
+          _self._playAudio();
+          bPlayAudio = true;
+        }
+        var lastH = _self._minNum(coinAttrArr, "top");//求降落过程中高度最小的金币高度
+        if (lastH <= _self.cacheCanvas.height + _self.coinHeight) { //最后一个金币高度超出canvas的高度停止重绘
+          window.requestAnimationFrame(draw);  //重绘，递回调用绘制方法
+        } else {
+          console.log("金币都撒完了");
+          _self._destory();
+          if (goldRainCallback) {
+            goldRainCallback();
+            goldRainCallback = null;
+          }
+        }
+      }
+
+      window.requestAnimationFrame(draw);  //第一次绘制
+    },
+    /**
+     * 求最小值
+     * @method _minNum
+     * @param   {arr}    arr  属性数组
+     {string} attr 数组下的属性名称
+     * @return  {number}      返回数组下属性值最小的值
+     **/
+    _minNum: function (arr, attr) {
+      var tempArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        tempArr.push(arr[i][attr]);
+      }
+      return tempArr.sort(function (a, b) {
+        return a - b
+      })[0];
+    },
+    /**
+     * 求最大值
+     * @method _minNum
+     * @param   {arr}    arr  属性数组
+     {string} attr 数组下的属性名称
+     * @return  {number}      返回数组下属性值最大的值
+     **/
+    _maxNum: function (arr, attr) {
+      var tempArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        tempArr.push(arr[i][attr]);
+      }
+      return tempArr.sort(function (a, b) {
+        return b - a
+      })[0];
+    },
+    /**
+     * 创建音频对象
+     * @method _createAudio
+     **/
+    _createAudio: function () {
+      this.audio = document.createElement('audio');
+      this.audio.setAttribute("preload", "load");
+      var oSource = document.createElement('source');
+      oSource.setAttribute("src", this.settings.audioSrc);
+      oSource.setAttribute("type", "audio/mp3");
+      this.audio.appendChild(oSource);
+      var oBody = document.getElementsByTagName('body')[0];
+      oBody.appendChild(this.audio);
+    },
+    /**
+     * 播放音频
+     * @method _playAudio
+     **/
+    _playAudio: function () {
+      this.audio.play();
+    },
+    /**
+     * 销毁canvas和audio
+     * @method _destory
+     **/
+    _destory: function () {
+      var oBody = document.getElementsByTagName('body')[0];
+      oBody.removeChild(this.canvas);
+      oBody.removeChild(this.audio);
+
+    }
+  }
+</script>
+<script>
+  init();
+  var goldRainCallback = null;
+  function goldFall(cb) {
+    var coin = new Coin();
+    goldRainCallback = cb;
+  }
+  var SHAKE_THRESHOLD = 400;
+  var last_update = 0;
+  var index = 0;
+  var x = y = z = last_x = last_y = last_z = 0;
+  var w_curTime = 0;
+  function init() {
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+      alert('not support mobile event');
+    }
+  }
+  function deviceMotionHandler(eventData) {
+    var acceleration = eventData.accelerationIncludingGravity;
+    var curTime = new Date().getTime();
+    if ((curTime - last_update) > 100) {
+      var diffTime = curTime - last_update;
+      last_update = curTime;
+      x = acceleration.x;
+      y = acceleration.y;
+      z = acceleration.z;
+      var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+      var delta = Math.abs(x + y + z - last_x - last_y - last_z);
+      if (speed > SHAKE_THRESHOLD) {
+        if ((curTime - w_curTime) > 2000) {
+          //掉金币掉的实在受不了了 注释
+          //w_curTime!=0 && new Coin({density:Math.round(delta)});
+          w_curTime = curTime;
+        }
+      }
+      last_x = x;
+      last_y = y;
+      last_z = z;
+    }
+  }
+
+</script>
+<!--rem布局兼容性 勿动-->
+<script>
+  function modifileRootRem() {
+    var root = window.document.documentElement;
+    var fontSize = parseFloat(root.style.fontSize);
+    var finalFontSize = parseFloat(window.getComputedStyle(root).getPropertyValue("font-size"));
+    if (finalFontSize === fontSize)
+      return;
+    root.style.fontSize = fontSize + (fontSize - finalFontSize) + "px";
+  }
+  if (typeof window.onload === 'function') {
+    var oldFun = window.onload;
+    window.onload = function () {
+      oldFun();
+      modifileRootRem();
+    }
+  } else {
+    window.onload = modifileRootRem;
+  }
+</script>
+</html>

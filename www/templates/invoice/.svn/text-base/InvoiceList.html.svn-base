@@ -1,0 +1,17 @@
+<!--模板-->
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">选择发票抬头</h1>
+    <div class="icon ion-ios-arrow-left mystore-back-btn color-text-l" ng-click="closeModal()" ng-style="leftArrow" style="position: absolute;z-index: 10;width: 30px;font-size: 38px !important;"></div>
+  </ion-header-bar>
+  <ion-view class="background">
+    <ion-content scrollbar-y="false">
+      <ion-list>
+        <ion-item class=" padding-10" ng-repeat="item in invoiceList" ng-click="listClick($index)">
+          <span ng-bind="item.invoiceTitle"></span>
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+  </ion-view>
+</div>

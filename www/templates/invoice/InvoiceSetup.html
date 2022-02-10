@@ -1,0 +1,129 @@
+<!--模板-->
+<ion-view class="background" view-title="设置发票信息">
+  <ion-content scrollbar-y="false">
+    <!--发票类型title-->
+    <div class="bg-white padding-top-10 padding-left-right-10 padding-bottom-5">
+      <div class="" style="height: 25px">
+        <span class="color-text-pink" ng-bind="errMessage"></span>
+      </div>
+      <span class="font-size-15">发票类型</span>
+      <span style="color: #0000FF;font-size: 12px;" class="padding-left-15" ng-click="note()">发票相关注意事项&nbsp<span class="icon ion-ios-help-outline" style="color: #f00"></span></span>
+    </div>
+    <!--发票类型tab-->
+    <div class="row bg-white margin-top-5 padding-top-bottom-20 padding-left-right-10 font-size-15 position-r">
+      <div class="border padding-top-bottom-5 padding-left-right-10 border-radius" ng-class="{'2': 'sg-blue-border color-text-theme'}[invoiceType]"
+           ng-click="dzClick()"> 普通发票
+      </div>
+      <div class="border margin-left-20 padding-top-bottom-5 padding-left-right-10 border-radius" ng-class="{'1': 'sg-blue-border color-text-theme'}[invoiceType]"
+           ng-click="zzClick()">增值税专用发票
+      </div>
+      <div class="position-a padding-top-bottom-5 padding-left-right-10 color-text-red" style="right: 10px"
+           ng-if="invoiceType==1&&isChoose"
+           ng-click="openModal()">选择
+      </div>
+    </div>
+
+    <ion-list ng-if="invoiceType=='2'">
+      <div class="row" style="text-align: center;background-color: #fff;">
+        <div class="col" ng-click="chooseNormalType(1)">
+          <div style="width: 20px;height: 20px;display: inline-block;">
+            <img ng-if="normalInvoiceType==1" ng-src="{{imgBaseURL}}img/circle1.png" style="width: 100%;height: 100%;">
+            <img ng-if="normalInvoiceType!=1" ng-src="{{imgBaseURL}}img/circle2.png" style="width: 100%;height: 100%;">
+          </div>
+          <span style="position: relative;bottom:5px;">个人</span>
+        </div>
+        <div class="col" ng-click="chooseNormalType(2)">
+          <div style="width: 20px;height: 20px;display: inline-block;">
+            <img ng-if="normalInvoiceType==2" ng-src="{{imgBaseURL}}img/circle1.png" style="width: 100%;height: 100%;">
+            <img ng-if="normalInvoiceType!=2" ng-src="{{imgBaseURL}}img/circle2.png" style="width: 100%;height: 100%;">
+          </div>
+          <span style="position: relative;bottom:5px;">企业</span>
+        </div>
+      </div>
+      <ion-item  class="row padding-10">
+        <span>发票抬头：</span>
+      </ion-item>
+      <ion-item  class="row padding-10">
+        <input  class="border width-100 font-size-15" style="border-color: black !important;" maxlength="40" placeholder="可填入个人/单位名称" ng-model="faPiao.faPiaoTaiTou">
+      </ion-item>
+      <div ng-if="normalInvoiceType==2">
+        <ion-item class="row padding-10">
+          <span>纳税人识别号：</span>
+        </ion-item>
+        <ion-item class="row padding-10">
+          <input class="border width-100 font-size-15" style="border-color: black !important;" maxlength="20" placeholder="长度为15位或18位或20位" ng-model="normalInvoice.TaxpayerNumber">
+        </ion-item>
+      </div>
+      <ion-item class="padding-10 border-none">
+        <div class="bg-theme border-radius padding-5 color-text-white text-align-c" ng-click="dianZiQueDing()">确  定</div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="invoiceType=='1'">
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">公司名称：</span>
+        <textarea  class="border-none width-100 padding-top-10 padding-left-right-10" style="display: inline;" placeholder="公司名称" ng-model="faPiao.gongSiMingCheng"></textarea>
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">纳税人识别号：</span>
+        <input  class="border-none width-100" placeholder="长度为15位或18位或20位" ng-model="faPiao.shiBieHao">
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">注册地址：</span>
+        <textarea style="display: inline;" class="border-none width-100 padding-top-10 padding-left-right-10" placeholder="注册地址" ng-model="faPiao.zhuCeDiZhi"></textarea>
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">注册电话：</span>
+        <input  class="border-none width-100" placeholder="座机(区号-号码)或手机" ng-model="faPiao.zhuCeDianHua">
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">开户银行：</span>
+        <input  class="border-none width-100" placeholder="" ng-model="faPiao.kaiHuYinHang">
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="text-color-light-red padding-right-5">*</span>
+        <span class="">开户账号：</span>
+        <input  class="border-none width-100" placeholder="" ng-model="faPiao.kaiHuZhangHao">
+      </ion-item>
+      <ion-item class="bg-background padding-5 font-size-10 padding-bottom-15">
+        发票邮寄地址：如发票与商品发往同一地址，发票邮寄地址可不填
+      </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="">收件人姓名：</span>
+        <input  class="border-none width-100" ng-model="receipt.consignee" placeholder="">
+      </ion-item>
+      <ion-item class="padding-10" ng-click="addressTop()">
+      <span class=" {{textColor}}" ng-bind="addressRegionName"></span> <!--address.regionName-->
+    </ion-item>
+    <!--</div>-->
+    <!--街道-->
+    <ion-item class="padding-10" ng-click="StreetTop()">
+      <span class=" {{streetTextColor}}" ng-bind="addressStreet" ></span>
+    </ion-item>
+      <ion-item  class=" padding-10">
+        <span class="">详细地址：</span>
+        <textarea style="display: inline;"  class="border-none width-100 padding-top-10" ng-model="receipt.address" placeholder="请输入详细地址[包含省市区]"></textarea>
+      </ion-item>
+      <ion-item class=" padding-10">
+        <span class="">收件人邮编：</span>
+        <input  class="border-none width-100" ng-model="receipt.zipcode" placeholder="">
+      </ion-item>
+      <ion-item class=" padding-10">
+        <span class="">收件人电话：</span>
+        <input  class="border-none width-100" ng-model="receipt.mobile" placeholder="">
+      </ion-item>
+
+      <ion-item class="padding-10 border-bottom-none">
+        <div class="bg-theme border-radius padding-5 color-text-white text-align-c" ng-click="naShuiQueDing()">确  定</div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-modal-view>
+  <div>
+    <div class="item item-input padding-left-0">
+      <button ng-click="closeSearchModal();"
+              class="color-text-l button-clear icon ion-ios-arrow-left font-size-26"></button>
+      <label class="border margin-left-10 width-70 item-input-wrapper">
+        <i class="icon ion-ios-search-strong font-size-20 margin-right-5"></i>
+        <input type="text" class="padding-right-0 background width-80" placeholder="请搜索名称、型号等关键字"
+               ng-model="keywords.keyword">
+      </label>
+      <button class="color-text-l button button-clear padding-left-0 margin-left-5" ng-click="searchGoods()">搜索</button>
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" class="goods-search-content">
+    <div class="row goods-search-list border-bottom" ng-repeat="item in searchGoodsList">
+      <div class="col col-25 col-center">
+        <img ng-src="{{item.defaultImageUrl}}" alt="商品图片" class="width-100"/>
+      </div>
+      <div class="col col-75 position-r">
+        <div ng-bind="item.productFirstName" class="font-size-16"></div>
+        <div ng-bind="item.productSecondName"></div>
+        <div ng-bind="item.productTitle" class="goods-introduces color-text-s"></div>
+        <div class="color-text-s">微价:<span ng-bind="item.finalPrice|currency:'&yen'"></span></div>
+        <div class="color-text-s">佣金：<span  style="color: #EF4078" ng-bind="item.commission|currency:'&yen'"></span></div>
+        <i class="icon ion-ios-checkmark-outline color-text-theme font-size-26 add-goods-btn" ng-if="item.onShelf" ng-click="removeProduct($index)"></i>
+        <i class="icon ion-ios-plus-outline color-text-theme font-size-26 add-goods-btn" ng-if="!item.onShelf" ng-click="addProduct($index)"></i>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

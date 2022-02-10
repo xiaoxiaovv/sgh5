@@ -1,0 +1,30 @@
+<krpano>
+	
+	<plugin name="pp" 
+	        url="postprocessing_multipass_blur.js" keep="true" 
+	        blur="1"
+	        onloaded="blur_demo_loop();"
+	        />
+
+	<action name="blur_demo_loop">
+		asyncloop(true,
+			Math.sin(t, calc(Math.PI*0.5 + timertick/1000.0/2.0 * Math.PI));
+			calc(blur, (((1.0 - t)/2.0) ^ 2.0) * 10.0); 
+		  );
+	</action>
+	
+	<image>
+		<sphere url="pano.jpg" />
+	</image>
+	
+	<layer name="infotext"
+	       url="textfield.swf" 
+	       html="krpano Postprocessing Plugin Demo - Multi-Pass-Blur"
+	       width="90%"
+	       css="font-size:20px; font-style:italic; color:#FFFFFF; text-align:center;"
+	       textshadow="1"
+	       background="false"
+	       align="top" y="20"
+	       />
+	
+</krpano>

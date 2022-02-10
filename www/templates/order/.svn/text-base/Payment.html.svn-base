@@ -1,0 +1,72 @@
+<!--模板-->
+<ion-view class="background" view-title="选择支付" cache-view="false">
+  <ion-content scrollbar-y="false">
+
+    <div class="border-top" style="margin-top: 2px; padding-top: 30px">
+      <div class="padding">
+        <div class="font-size-15">支付方式</div>
+      </div>
+
+      <div>
+        <div class="text-align-c padding-top" style="width: 33%; display:inline-block;" ng-repeat="item in payWayList track by $index">
+          <div class="border-radius padding-left-right-5 button-sg-pay padding-top-bottom-5"
+               ng-class="{true:'button-sg-pay-checked',false:''}[item.paymentCode == paymentCode]"
+               ng-click="checkedpay(item.paymentCode)">
+            {{payWayMap[item.paymentCode]}}
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-if="false">
+        <div class="col col-30" ng-if="alipayText != null">
+          <div ng-if="!zfb_checked"
+               class=" float-l width-100  border border-radius padding-left-right-5 text-align-c"
+               ng-click="checkedpay('alipaymobile')">
+            <label ng-bind="alipayText">支付宝</label>
+          </div>
+
+          <div ng-if="zfb_checked"
+               class=" float-l width-100 afterOrder-border-color-blue border-radius padding-left-right-5 text-align-c">
+            class=" float-l width-100 afterOrder-border-color-blue border-radius padding-left-right-5 text-align-c">
+            <div id="alipaymobile" class="float-l ion-chevron-down color-text-theme font-size-10 margin-right-5"></div>
+            <label for="alipaymobile" ng-click="checkedpay('alipaymobile')" class="float-l color-text-theme"
+                   ng-bind="alipayText">支付宝</label>
+          </div>
+        </div>
+
+        <div class="col col-35 margin-left-5" ng-if="codText != null">
+          <div ng-if="!huod_checked"
+               class=" float-l width-100 border border-radius padding-left-right-5 text-align-c"
+               ng-click="checkedpay('cod')">
+            <label ng-bind="codText">货到付款</label>
+          </div>
+
+          <div ng-if="huod_checked"
+               class="float-l width-100 afterOrder-border-color-blue border-radius padding-left-right-5 text-align-c">
+            <div id="cod" class="float-l ion-chevron-down color-text-theme font-size-10 margin-right-10"></div>
+            <label for="cod" ng-click="checkedpay('cod')" class="float-l color-text-theme"
+                   ng-bind="codText">货到付款</label>
+          </div>
+        </div>
+        <div class="col col-30 margin-left-5" ng-if="kjtpayText != null">
+          <div ng-if="!kjt_checked"
+               class="float-l width-100 border border-radius padding-left-right-5 text-align-c"
+               ng-click="checkedpay('kjtpay')">
+            <label for="kjtpay" ng-bind="kjtpayText">快捷通</label>
+          </div>
+
+          <div ng-if="kjt_checked"
+               class="float-l width-100 afterOrder-border-color-blue border-radius padding-left-right-5 text-align-c">
+            <div id="kjtpay" class="float-l ion-chevron-down color-text-theme font-size-10 margin-right-5"></div>
+            <label for="kjtpay" ng-click="checkedpay('kjtpay')" class="float-l color-text-theme" ng-bind="kjtpayText">快捷通</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="button-full bg-theme color-text-white text-align-c margin-10 padding-5 border-radius"
+         ng-click="pushPayWay()">
+      确定
+    </div>
+
+  </ion-content>
+</ion-view>

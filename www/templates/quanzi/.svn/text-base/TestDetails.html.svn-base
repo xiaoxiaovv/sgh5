@@ -1,0 +1,81 @@
+<ion-view view-title="考试">
+  <ion-nav-buttons side="right">
+    <button class="font-bold font-size-16" style="color: blue" ng-click="showCommitPaper()">全部考题</button>
+  </ion-nav-buttons>
+  <ion-content scroll="false">
+    <div style="height: 25px;background: #e5f2fe" class="font-bold color-blue-sg font-size-16"
+         ng-if="examQuestionList[index].subjectType == '单选'">
+      <div class="float-l" style="background: blue;width: 4px;height: 100%"></div>
+      <div class="padding-left-10" style="line-height: 25px">单选题(共{{examQuestionList[index].typeNum}}题)</div>
+    </div>
+    <div style="height: 25px;background: #e5f2fe" class="font-bold color-blue-sg font-size-16"
+         ng-if="examQuestionList[index].subjectType == '判断'">
+      <div class="float-l" style="background: blue;width: 4px;height: 100%"></div>
+      <div class="padding-left-10" style="line-height: 25px">判断题(共{{examQuestionList[index].typeNum}}题)</div>
+    </div>
+    <div style="height: 25px;background: #e5f2fe" class="font-bold color-blue-sg font-size-16"
+         ng-if="examQuestionList[index].subjectType == '多选'">
+      <div class="float-l" style="background: blue;width: 4px;height: 100%"></div>
+      <div class="padding-left-10" style="line-height: 25px">多选题(共{{examQuestionList[index].typeNum}}题)</div>
+    </div>
+
+    <div class="padding-20">
+      <div class="float-l font-bold font-size-20">{{examQuestionList[index].subjectNo}}.</div>
+      <div class="font-bold font-size-20" ng-bind="examQuestionList[index].subjectDescribe">
+        干燥的冬天，人们都会选择使用加湿器是空气不那么干燥，那目前市场上加湿器种类有？
+      </div>
+    </div>
+    <!--选项-->
+    <div class="padding-20 font-size-15"
+         ng-if="examQuestionList[index].subjectType == '单选' || examQuestionList[index].subjectType == '多选'">
+      <div ng-repeat="item in examQuestionList[index].optionsList track by $index">
+        <i class="icon ion-ios-circle-outline font-size-20 float-l color-blue-sg"
+           ng-click="selectAnswer(index,$index)" ng-if="!item.isSelect"></i>
+        <i class="icon ion-ios-circle-filled font-size-20 float-l color-blue-sg"
+           ng-click="selectAnswer(index,$index)" ng-if="item.isSelect"></i>
+        <div class="float-l padding-left" ng-bind="item.optionsName">A.</div>
+        <div class="float-l">、</div>
+        <span class="" ng-bind="item.optionsContent">电加热式加湿器</span>
+        <div style="clear: both"></div>
+      </div>
+    </div>
+    <div class="padding-20 font-size-15" ng-if="examQuestionList[index].subjectType == '判断'">
+            <span ng-repeat="item in examQuestionList[index].optionsList track by $index">
+                <i class="icon ion-android-checkbox-outline-blank font-size-20 float-l color-blue-sg"
+                   ng-click="selectAnswer(index,$index)" ng-if="!item.isSelect"></i>
+                <i class="icon ion-android-checkbox font-size-20 float-l color-blue-sg"
+                   ng-click="selectAnswer(index,$index)" ng-if="item.isSelect"></i>
+                <div class="float-l padding-left" ng-bind="item.optionsName">A.</div>
+                <div class="float-l">、</div>
+                <span class="" ng-bind="item.optionsContent">电加热式加湿器</span>
+                <div style="clear: both"></div>
+    </div>
+    </div>
+
+    <!--答案-->
+    <div class="padding-20 position-a width-100" style="bottom: 80px">
+      <div class="padding bg-background width-100">
+        <label>正确答案：</label>
+        <label>AB</label>
+      </div>
+    </div>
+    <!--不可点击-->
+    <div class="text-center font-bold position-a" style="bottom: 50px;width: 36%;left: 20px;color: gray"
+         ng-if="!index">
+      <div class="border-radius" style="line-height: 30px;border: 1px solid gray">上一题</div>
+    </div>
+    <!--可点-->
+    <div class="text-center font-bold position-a" style="bottom: 50px;width: 36%;left: 20px;color: #0c60ee"
+         ng-if="index" ng-click="beforeQuestion()">
+      <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee">上一题</div>
+    </div>
+    <div class="text-center font-bold position-a" style="bottom: 50px;width: 36%;right: 20px;color: #0c60ee"
+         ng-click="nextQuestion()" ng-if="index!=examQuestionList.length-1">
+      <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee">下一题</div>
+    </div>
+    <div class="text-center font-bold position-a" style="bottom: 50px;width: 36%;right: 20px;color: #0c60ee"
+         ng-click="showCommitPaper()" ng-if="index==examQuestionList.length-1">
+      <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee">确认提交</div>
+    </div>
+  </ion-content>
+</ion-view>

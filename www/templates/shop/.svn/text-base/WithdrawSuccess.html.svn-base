@@ -1,0 +1,18 @@
+<!--提现成功页面-->
+<ion-view class="background" view-title="收入提现" hide-back-button="true">
+
+  <ion-content scrollbar-y="false">
+    <div class="text-align-c margin-top-20 padding-top-20">
+      <img ng-src="{{imgBaseURL}}img/ic_money.png" class="width-20"/>
+      <div class="margin-top-20">提现申请已提交，请耐心等待</div>
+      <div ng-bind="content">
+      </div>
+    </div>
+  </ion-content>
+  <!--<ion-footer-bar>-->
+    <!--<div class="wc-btn-done">完成</div>-->
+  <!--</ion-footer-bar>-->
+  <div class="text-align-c width-100 padding down-side">
+    <div class="text-align-c color-text-white padding unload-background" ng-click="goBack()">完成</div>
+  </div>
+</ion-view>

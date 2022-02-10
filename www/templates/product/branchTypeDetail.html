@@ -1,0 +1,105 @@
+<ion-view view-title="分类列表" class=" branchtype-box" hide-back-button="true" hide-nav-bar="true">
+    <!--头部定位-搜索-消息中心-->
+    <div flex="main:center cross:center box:justify" class="selection_top branchtype-heade branchtype-top-ios" id="BranchtypeHeade" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]" ng-style="changeOpacity">
+        <!--地理位置-->
+        <div class="address" ng-click="goBack()">
+            <img ng-src="{{locationImgUrl}}" ng-style="locationImgUrltransform90">
+        </div>
+        <!--搜索-->
+        <div class="search" flex="cross:center" ng-style="searchBg" ui-sref="goodsSearch({front:1})">
+            <img ng-src="{{imgBaseURL}}img/searchIcon@2x.png">
+            <div>{{gsPlaceholder}}</div>
+        </div>
+        <!--消息-->
+        <div class="message" flex="dir:top main:center cross:center" ui-sref="goodsSearch({front:1})" style="margin:0px;padding:5px;">
+            <div ng-style="changeColor" class="text-msg">搜索</div>
+        </div>
+    </div>
+    <!--选项卡-->
+    <div flex="main:justify cross:center" class="selectionOnePixelBorder" ng-class="{true:'iosAppFixedTopTwo',false:'normalFixedTopTwo'}[isIosApp]" style="width:100%;height:44px;padding: 0 12px;position: fixed;left:0;z-index: 999;background: #ffffff;">
+        <div flex="main:center cross:center" ng-class="{0: 'selectionSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]" ng-click="chooseTab(0)" style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>综合</span>
+            <img ng-src="{{comprehensive[comprehensive_index]}}" style="width:6px;height: 4px;margin-left:2px;">
+        </div>
+
+        <div ng-if="isBuyer == '1'&& settingsList[0].checked" flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]" ng-click="chooseTab(1)" style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>佣金</span>
+            <img ng-src="{{arrowState[commission_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionSelected',4:'selectionUnSelected'}[chooseIndex]" ng-click="chooseTab(3)" style="border-radius: 13px;width: 60px;height: 26px;">
+            销量
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionSelected'}[chooseIndex]" ng-click="chooseTab(4)" style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>价格</span>
+            <img ng-src="{{arrowState[price_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]" ng-click="chooseTab(2)" style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>筛选</span>
+            <img ng-src="{{filterState[filter_index]}}" style="width:11px;height: 11px;margin-left: 2px;">
+        </div>
+    </div>
+
+    <!--点击综合的子选项-->
+    <div ng-click="closeComprehensiveSub()" ng-if="showComprehensiveSub" ng-style="comprehensiveSubHeight" style="position:absolute;left:0;width: 100%;background: rgba(0,0,0,0.7);z-index: 999;">
+        <div ng-click="selectComprehensiveSub($index,$event)" ng-repeat="item in comprehensiveSub track by $index" flex="main:justify cross:center" style="height: 40px;background: #ffffff;padding: 0 20px;">
+            <span>{{item}}</span>
+            <img ng-if="selectComprehensiveSubIndex==$index" ng-src="{{imgBaseURL}}img/comprehensive_select.png" style="width: 24px;height: 24px;">
+        </div>
+    </div>
+    <!--返回顶部-->
+    <go-top delegate-handle="scrollSelection" offset="{{isBuyer == '0'? 15:65}}"></go-top>
+
+    <ion-content lazy-container scrollbar-y="false" delegate-handle="scrollSelection" class="branchtype" ng-class="{true:'iosContent',false:'normalContent'}[isIosApp]">
+        <!--列表-->
+        <div class="scroll-view" ng-class="{true:'LXCpaddingTop',false:''}[showTab&&lianXC]">
+            <div style="width:100%;height:44px;"></div>
+
+            <!--筛选类容为空-->
+            <div style="padding:20px 0 20px 0;" ng-if="isListNull">
+                <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+                <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">未查找到搜索商品</div>
+            </div>
+
+            <div class="row row-no-padding row-warp bg-white margin-0" ng-repeat="goods in contentDataList" ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">
+                <div class="col col-25 border-top">
+                    <span class="font-size-10 bg-pink color-text-white position-a margin-top-10 text-align-c" style="padding-left: 3px;padding-right: 4px" ng-if="goods.recommend">推荐</span>
+                    <div class="text-align-c">
+                        <img class="margin-bottom-10 margin-top-15 margin-left-5" lazy-src="{{goods.defaultImageUrl|addImgURLPostfix:200:200}}" animate-visible="true" animate-speed="1s" alt="商品图片" style="width: 85px" />
+                    </div>
+                </div>
+                <div class="col col-75 border-top padding-top-5 padding-left-right-10">
+                    <div class="font-size-12 font-bold">
+                        <span>{{goods.productFirstName}}</span>
+                    </div>
+                    <span class="font-size-12 font-bold">{{goods.productSecondName}}</span>
+                    <div class="margin-bottom-5  font-size-10">
+                        <div style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"><span>{{goods.productTitle}}</span></div>
+                        <div class="row padding-top-0 padding-left-0" ng-if="goods.showFinalPrice">
+                            <span ng-if="front==1">价格:</span>
+                            <span>{{goods.saleGuidePrice | currency:'￥'}}</span>
+                        </div>
+                        <div class="row padding-0">
+                            <span></span>
+                            <span style="display: inline-block;width: 70px;" class="text-color-light-red">{{goods.finalPrice | currency:'￥'}}</span>
+                            <span>
+                            <span ng-if="isWdHost==1 && isCommission&& goods.commission!==undefined" class="border-circular">赚</span>
+                            <span ng-if="isWdHost==1 && isCommission && goods.commission!==undefined" class="color-text-red margin-right-15 ">¥{{goods.commission|cutTwoFilter}}</span>
+                            <span ng-if="isWdHost==1 && isCommission && goods.commission==undefined" class="color-text-red margin-right-15">佣金计算中</span>
+                            </span>
+                        </div>
+                        <div class="margin-right-10 " style="position:relative;">
+
+                            <span class="color-text-theme " ng-if="goods.hasStock=='有货' " ng-bind="goods.hasStock "></span>
+                            <span class="color-text-red " ng-if="goods.hasStock!='有货' " ng-bind="goods.hasStock "></span>
+                            <div style="position:absolute;right:16px;bottom:0;z-index:8;" ng-if="!isApp&&(shareStoreId&&userId==shareStoreId)||isApp && (isBuyer==1)||(!isApp&&!shareStoreId&&isBuyer==1)">
+                                <i class="icon ion-ios-checkmark-outline color-text-theme font-size-26 " ng-click="changeState(goods.productId,0,$index); $event.stopPropagation();" style="width: 20px " ng-if="goods.onShelf "></i>
+                                <i class="icon ion-ios-plus-outline color-text-theme font-size-26 " ng-click="changeState(goods.productId,1,$index);$event.stopPropagation(); " style="width: 20px " ng-if="!goods.onShelf "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="hasmore " on-infinite="loadMore() " immediate-check="false " distance="10% "></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

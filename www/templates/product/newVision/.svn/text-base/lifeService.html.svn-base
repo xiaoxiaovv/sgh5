@@ -1,0 +1,113 @@
+<ion-view class="background" view-title="家居家装" hide-nav-bar="true">
+       
+        
+        <ion-content scrollbar-y="false">
+          <div class="furnishTopPic">
+              <!--Swiper轮播1-->
+              <!-- <div class="swiper-container swipers-box" id="swpc-furnish-1" style="height:auto;">
+                <ul class="swiper-wrapper" style="height:auto;">
+                  <li class="swiper-slide"  ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+                      <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+                  </li>
+                </ul>
+                <div class="swiper-pagination" id="swpp-furnish-1"></div>
+              </div> -->
+              <ion-slide-box  delegate-handle="furnish_slider" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="imageItem in bannerList track by $index">
+                  <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+                </ion-slide>
+              </ion-slide-box>
+          </div>
+          <div class="life-nav">
+              <ul>
+                  <li>
+                      <img src="./img/newvision/nav1.png"/>
+                      <span>家政服务</span>
+                  </li>
+                  <li>
+                        <img src="./img/newvision/nav1.png"/>
+                        <span>家政服务</span>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/nav1.png"/>
+                        <span>家政服务</span>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/nav1.png"/>
+                        <span>家政服务</span>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/nav1.png"/>
+                        <span>家政服务</span>
+                    </li>
+                    <li>
+                        <img src="./img/newvision/nav1.png"/>
+                        <span>家政服务</span>
+                    </li>
+              </ul>
+          </div>
+          <div class="life-relaxhome">
+              <div class="relaxhome-title">
+                  <span><i>轻松</i><em>家</em></span>
+              </div>
+              <div class="relaxhome-content">
+                    <div>
+                        <img src="./img/newvision/27.jpg">
+                        <h3>商品</h3>
+                        <p>¥56.78</p>
+                        <span>
+                            <i>赚</i>
+                            <em>¥56.78</em>
+                        </span>
+                    </div>
+                    <div>
+                        <img src="./img/newvision/27.jpg">
+                        <h3>商品</h3>
+                        <p>¥56.78</p>
+                        <span>
+                            <i>赚</i>
+                            <em>¥56.78</em>
+                        </span>
+                    </div>
+                    <div>
+                        <img src="./img/newvision/27.jpg">
+                        <h3>商品</h3>
+                        <p>¥56.78</p>
+                        <span>
+                            <i>赚</i>
+                            <em>¥56.78</em>
+                        </span>
+                    </div>
+              </div>
+          </div>
+          <div class="life-onlyService">
+              <div class="relaxhome-title">
+                  <span><i>专享</i><em>服务</em></span>
+              </div>
+              <div class="onlyService-content">
+                <div>
+                  <img src="./img/newvision/27.jpg"/>
+                  <h3>商品视频</h3>
+                  <p><span>¥567</span><i>赚</i><em>¥17.67</em></p>
+                </div>
+                <div>
+                    <img src="./img/newvision/27.jpg"/>
+                    <h3>商品视频</h3>
+                    <p><span>¥567</span><i>赚</i><em>¥17.67</em></p>
+                </div>
+                <div>
+                    <img src="./img/newvision/27.jpg"/>
+                    <h3>商品视频</h3>
+                    <p><span>¥567</span><i>赚</i><em>¥17.67</em></p>
+                </div>
+                    
+
+              </div>
+          </div>
+          
+          
+    
+      
+        </ion-content>
+      </ion-view>
+      

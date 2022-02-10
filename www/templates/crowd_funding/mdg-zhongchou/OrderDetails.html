@@ -1,0 +1,155 @@
+<!--订单详情-->
+<ion-view view-title="订单详情" class="background">
+  <div ng-if="isShowPcTips" ng-class="{true:'iosTop',false:'androidTop'}[isIos]" style="width:100%;padding-left:12px;height:40px;position:fixed;left:0; z-index:120;background:#f5b123;color:#fff;line-height:40px;">
+    <span>此订单非顺逛订单，请到相关平台查看</span>
+    <i class="icon ion-close-round" style="position:absolute;right:10px;top:0px;" ng-click="hidePcTips()"></i>
+  </div>
+  <ion-content>
+    <div class="width-100 sg-order-detail-header position-r">
+      <span ng-bind="orderDetailList.orderStatusName" class="color-text-white padding-left-25"></span>
+      <img ng-src="http://www.ehaier.com/mstatic/wd/v2/img/pages/order/{{orderDetailList.iconName}}"/>
+    </div>
+    <div class="row bg-white margin-bottom-10">
+      <div class="col col-10">
+        <img class="width-100 padding-top-7" ng-src="{{imgBaseUrl}}img/ic_location.jpg">
+      </div>
+      <div class="col">
+        <div class="position-r">
+          <span>收货人：<span ng-bind="orderDetailList.orderDetail.consignee | cut:true:10:'...'"></span></span>
+          <span ng-bind="orderDetailList.orderDetail.mobile" class="position-a right-0"></span>
+        </div>
+        <div>
+          收货地址：<span ng-bind="orderDetailList.orderDetail.regionName"></span><span
+          ng-bind="orderDetailList.orderDetail.address"></span>
+        </div>
+      </div>
+    </div>
+    <!--<div ng-if="orderDetailList.o2oStoreName" class="bg-white padding-10" ng-bind="orderDetailList.o2oStoreName"></div>-->
+
+    <div ng-if="orderDetailList.isO2o" ng-if="!orderDetailList.pcProductFlag" class="row bg-white padding-0" ui-sref="myStore({storeId:orderDetailList.o2oStoreId})">
+          <div class="col col-10"><img class="width-100" ng-src="{{imgBaseUrl}}img/tab_ic_home.png" style="padding-top:3px;"></div>
+          <span class="col col-center"><span ng-bind="orderDetailList.o2oStoreName"></span></span>
+    </div>
+    <div class="row margin-top-10 margin-bottom-10" ng-click="pcProduct(orderDetailList.pcProductFlag)">
+      <div class="col col-20" style="position:relative;">
+       <!-- <div class="position-r">-->
+          <i id="changeBackSizes" ng-if="orderDetailList.zActivityOrder==1" ng-style="{'1':raiseStatusOne,'2':raiseStatusTwo,'3':raiseStatusThree,'100':raiseStatusFour}[orderDetailList.zActivityStatus]" style="position:absolute;left:5px;top:5px;z-index:1000;display:block;width:85.99%;height:18px;font-size:13px;text-align: center;">{{orderDetailList.zActivityStatus==1?'众筹中':(orderDetailList.zActivityStatus==2?'众筹成功':(orderDetailList.zActivityStatus==100?'计算中':'众筹失败'))}}</i>
+          <div ng-if="orderDetailList.orderProductDetail.isBook&&!orderDetailList.zActivityOrder" style="position:absolute;top: 5px;left: 5px;width:85.99%;height:18px;background: #ff0000;text-align:center;font-size: 13px;color:#ffffff;">预定</div>
+          <img class="width-100" ng-src="{{orderDetailList.productDetail.defaultImageUrl}}"/>
+        <!--</div>-->
+      </div>
+      <div class="col position-r font-size-13">
+        <div class="font-size-15" style="min-height: 20px">
+          <span ng-bind="orderDetailList.productDetail.productFullName"></span><span
+          ng-bind="orderDetailList.orderProductDetail.price | currency:'&yen;'" class="position-a right-5"></span>
+        </div>
+        <div class="font-size-15 padding-bottom-10" style="min-height: 20px">
+          <span ng-bind="orderDetailList.productDetail.productName "></span>
+          <span class="position-a right-5">
+          ×<span ng-bind="orderDetailList.orderProductDetail.number"></span>
+        </span>
+        </div>
+        <!--<div class="color-text-m">
+          <span>收货信息：<span ng-bind="orderDetailList.orderDetail.consignee | cut:true:8:'...'"></span></span>
+          <span ng-bind="orderDetailList.orderDetail.mobile" class="position-a right-5"></span>
+        </div>
+        <div class="color-text-m">
+          <span>店铺信息：<span ng-bind="orderDetailList.storeDetail.storeName"></span></span>
+          <span class="position-a right-5">ID：<span ng-bind="orderDetailList.storeDetail.ownerId"></span></span>
+        </div>-->
+      </div>
+    </div>
+    <div class="bg-white padding-5 margin-bottom-10">
+      <div class="row padding-0" style="border:1px solid #eee;" ng-click="goToDelete()">
+          <div class="col col-40 padding-0 padding-top-5" style="text-align:right;vertical-align:center;"><img style="width:20px;height:20px;" ng-src="{{imgBaseURL}}img/timg.jpg"></div>
+          <span class="col col-center padding-left-10">拨打电话</span>
+      </div>
+    </div>
+
+    <div class="bg-white padding-top-bottom-10 padding-left-10 margin-bottom-5">
+      <div class="position-r">
+        <span ng-if="orderDetailList.invoicesUrl" ng-click="invoice()"
+              class="color-theme">{{orderDetailList.invoiceTypeName == '电子发票'?'普通发票':orderDetailList.invoiceTypeName}}</span>
+
+        <span ng-if="!orderDetailList.invoicesUrl">{{orderDetailList.invoiceTypeName == '电子发票'?'普通发票':orderDetailList.invoiceTypeName}} </span>
+        <button ng-click="copeText(orderDetailList.invoicesUrl);" ng-if="orderDetailList.invoicesUrl && isApp"
+                class="padding-left-right-10 button-clear border color-text-l margin-left-10">复制链接
+        </button>
+        <span class="position-a" style="width:50%;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;right: 4px;">
+          发票抬头：<span ng-bind="orderDetailList.invoiceTitle"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="padding-left-10 padding-top-bottom-10 bg-white margin-bottom-10">
+      <div class="position-r">运费<span ng-bind="orderDetailList.orderProductDetail.shippingFee | currency:'&yen;'"
+                                      class="position-a right-10"></span></div>
+      <div ng-if="orderDetailList.couponCode" class="position-r">
+        <span>卡券</span>
+        <span class="position-a right-10">-<span ng-bind="orderDetailList.couponAmount | currency:'&yen;'"></span>
+      </span>
+      </div>
+      <div ng-if="orderDetailList.ordercouponCode" class="position-r">
+        <span>优惠券</span>
+        <span class="position-a right-10">-<span ng-bind="orderDetailList.couponAmount | currency:'&yen;'"></span>
+      </span>
+      </div>
+      <div ng-if="orderDetailList.orderProductDetail.orderPromotionAmount" class="position-r">
+        <span>下单立减</span>
+        <span class="position-a right-10">-<span ng-bind="orderDetailList.orderProductDetail.orderPromotionAmount|currency:'&yen;'"></span></span>
+      </div>
+      <div class="position-r">应付款（含运费）<span ng-bind="orderDetailList.totalAmount | currency:'&yen;'"
+                                            class="color-text-red position-a right-10"></span></div>
+    </div>
+    <div class="bg-white padding-left-10 padding-top-bottom-10 color-text-m">
+      <div>订单编号：<span ng-bind="orderDetailList.orderSn"></span>
+        <button ng-click="copeText(orderDetailList.orderSn);"
+                class="padding-left-right-10 position-a right-5 button-clear border color-text-l">复制
+        </button>
+      </div>
+      <div>创建时间：<span ng-bind="orderDetailList.createTime"></span></div>
+      <div>付款时间：<span ng-bind="orderDetailList.payTime"></span></div>
+      <div>发货时间：<span ng-bind="orderDetailList.shippingTime"></span></div>
+      <div ng-if="orderDetailList.orderStatusName=='已取消'">取消时间：<span ng-bind="orderDetailList.receiptOrRejectTime"></span></div>
+      <div ng-if="orderDetailList.orderStatusName!='已取消'">签收时间：<span ng-bind="orderDetailList.receiptOrRejectTime"></span></div>
+    </div>
+    <div ng-if="orderDetailList.canConfirm&&orderDetailList.canClickConfirm&&!orderDetailList.orderRepairs" class="color-text-m" style="float: right;padding: 10px 20px;">您的商品正在飞奔您的家中！</div>
+    <div ng-if="orderDetailList.canConfirm&&orderDetailList.confirmException&&!orderDetailList.orderRepairs" class="color-text-m" style="float: right;padding: 10px 20px;">很抱歉，签收失败，请重新签收</div>
+    <div ng-if="orderDetailList.canConfirm&&!orderDetailList.canClickConfirm&&!orderDetailList.orderRepairs" class="color-text-m" style="float: right;padding: 10px 20px;">正在签收订单</div>
+    <div ng-if="!orderDetailList.canConfirm&&orderDetailList.canAssess&&!orderDetailList.orderRepairs" class="color-text-m" style="float: right;padding: 10px 20px;">您的商品已经签收完毕</div>
+  </ion-content>
+  <ion-footer-bar class="padding-top-bottom-5 ">
+    <div class="font-size-12 padding-left-right-25" ng-click="customerServe();">
+      <img height="20px" ng-src="{{imgBaseURL}}img/ic_kf.png">
+
+      <div class="position-a top-50">客服</div>
+    </div>
+    <div class="position-a right-10" flex="cross:center">
+      <button ng-if="orderDetailList.canRepair&&canSubmitRepair&&!orderDetailList.orderRepairs" ng-click="goApplyRefund(orderDetailList.cOrderSn);"
+              class="margin-right-5 sg-order-button button-clear color-text-l padding-left-right-10 font-size-12 border">
+        退款/退货
+      </button>
+      <button ng-if="orderDetailList.canRepair&&!canSubmitRepair&&!orderDetailList.orderRepairs" ng-click="goApplyRefund(orderDetailList.cOrderSn);"
+              class="margin-right-5 sg-order-button button-clear color-text-s padding-left-right-10 font-size-12 border">
+        退款/退货
+      </button>
+      <button ng-if="orderDetailList.orderRepairs"
+              class="margin-right-5 sg-order-button button-clear color-text-l padding-left-right-10 font-size-12 border" ui-sref='refundDetail({orderProductId:orderDetailList.orderProductDetail.id,memberId:orderDetailList.loginMemberId})'>
+        退款详情
+      </button>
+      <button ng-click="goOrderTrack(orderDetailList.orderSn);"
+              class="margin-right-5 button-clear sg-order-button color-text-l padding-left-right-10 font-size-12 border">追踪订单
+      </button>
+      <button ng-if="orderDetailList.canConfirm&&orderDetailList.canClickConfirm&&!orderDetailList.orderRepairs" ng-click="confirmReceive(orderDetailList.cOrderSn)" class="button-clear sg-order-button color-text-l padding-left-right-10 font-size-12 border">确认收货
+      </button>
+      <button ng-if="orderDetailList.canConfirm&&orderDetailList.confirmException&&!orderDetailList.orderRepairs" ng-click="confirmReceive(orderDetailList.cOrderSn)" class="button-clear sg-order-button color-text-l padding-left-right-10 font-size-12 border">确认收货
+      </button>
+      <button  ng-if="orderDetailList.canConfirm&&!orderDetailList.canClickConfirm&&!orderDetailList.orderRepairs" class="button-clear sg-order-button padding-left-right-10 font-size-12 border" disabled style="background-color: #CCCCCC;color: #FFFFFF;">确认收货
+      </button>
+      <button ng-if="!orderDetailList.canConfirm&&orderDetailList.canAssess&&!orderDetailList.orderRepairs" class="button-clear sg-order-button color-text-l padding-left-right-10 font-size-12 border" ng-click="asse(orderDetailList.orderDetail.id,orderDetailList.cOrderSn,orderDetailList.pcProductFlag)">去评价
+      </button>
+      <button ng-if="!orderDetailList.canConfirm&&orderDetailList.assessed&&!orderDetailList.orderRepairs" class="button-clear sg-order-button color-text-l padding-left-right-10 font-size-12 border" ui-sref="lookAssess({orderId:orderDetailList.orderDetail.id,cOrderSn:orderDetailList.cOrderSn})">查看评价
+      </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

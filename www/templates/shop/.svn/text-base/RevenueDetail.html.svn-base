@@ -1,0 +1,233 @@
+<!--营收详细页面-->
+<ion-view style="background-color: white" view-title="{{title}}">
+  <ion-content scrollbar-y="false" ng-click="closeMenu()">
+    <div class="xvv-otherTotal">
+      合计：{{total|currency:'&yen'}}
+      
+      <span ng-if='type==4' ng-click='chooseTime()'>{{rewardStart | datachange}} - {{rewardEnd | datachange}}</span>
+    </div>
+    
+    <!--预计收益奖励-->
+  
+    <div class='margin-left-15 font-size-17'>
+      <!-- 佣金 -->
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectBrokerage" ui-sref="yongjinDetail({'code':type,'title':'佣金','earningType':earningType})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(type==1?(imgBaseURL+'img/yingshoufive.png'):(imgBaseURL+'img/yingshouthree.png')))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        佣金
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="reward.expectBrokerage|currency:'&yen'"></span>
+      </div>
+      <!-- 月度奖励有详情 -->
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if='type==1&&reward.expectMonth' ui-sref="monthReward({'code':type,'title':'月度奖励','earningType':earningType})">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        月度奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="reward.expectMonth|currency:'&yen'"></span>
+        <div style='font-size: 13px;color: #999999;padding-left: 27px;width:9.07rem;margin-top: 5px;'>您当月还差{{reward.nowGapAmount|currency:'&yen'}}销售额可以拿到{{reward.nextLevelAmount|currency:'&yen'}}月度奖励</div>
+      </div>
+      <!-- 月度奖励无详情 -->
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if='type==1&&!reward.expectMonth'>
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        月度奖励
+        <span class="float-r margin-right-10 margin-top-5" style='color:#FF4400' ng-bind="reward.expectMonth|currency:'&yen'"></span>
+        <div style='font-size: 13px;color: #999999;padding-left: 27px;width:9.07rem;margin-top: 5px;'>您当月还差{{reward.nowGapAmount|currency:'&yen'}}销售额可以拿到{{reward.nextLevelAmount|currency:'&yen'}}月度奖励</div>
+      </div>
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectOpen">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        开店奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectOpen|currency:'&yen'"></span>
+      </div>
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectOpenCommend">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        推荐开店奖励
+       
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectOpenCommend|currency:'&yen'"></span>
+      </div>
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectRecommend">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        推荐奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectRecommend|currency:'&yen'"></span>
+      </div>
+      <div ng-if="nulldata==true" class="defaltdiv">
+          <img ng-src="{{imgBaseURL}}img/personal-center/zhanweitu.png" alt="占位">
+            <div>您搜索的奖励为0哦，换种奖励试试吧</div>
+      </div>
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectDzLeader">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        舵主奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectDzLeader|currency:'&yen'"></span>
+      </div>
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectLeader">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        盟主奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectLeader|currency:'&yen'"></span>
+      </div>
+      <!-- 预计收益里永远无育成奖励,注掉 -->
+      <!-- <div class="row row-no-padding-15 border-bottom margin-top-0" ng-if="reward.expectYcAmount!=null">
+        <div class="col col-75">
+          <div class="exp-reward-left">
+            <img ng-src="img/ic_reward.png" width="23px" height="30px"/>
+            <div class="exp-reward-text">
+              <div>育成奖励</div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-25 exp-reward-count">
+          <div ng-bind="reward.expectYcAmount|currency:'&yen'"></div>
+        </div>
+      </div> -->
+      <!--寻源奖励 预计-->
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectXyAmount">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        寻源奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectXyAmount|currency:'&yen'"></span>
+      </div>
+      <!--开拓奖励-->
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if="reward.expectThreeLevel">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        开拓奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectThreeLevel|currency:'&yen'"></span>
+      </div>
+      
+      <div class="padding-15 padding-right-5 padding-left-5 bg-white border-bottom" ng-if='reward.expectOtherAmount'>
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        其他奖励
+        
+        <span class="float-r margin-right-10 margin-top-5" ng-bind="reward.expectOtherAmount|currency:'&yen'"></span>
+      </div>
+    </div>
+    <!--非预计收益奖励-->
+    <!--佣金start-->
+    <div ng-if="rewardO.expectBrokerage">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="yongjinDetail({'code':type,'title':'佣金','earningType':earningType,'start':rewardStart,'end':rewardEnd})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        佣金
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectBrokerage|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--佣金end-->
+    <!--月度奖励start-->
+    <div ng-if="isRewardY">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="monthReward({'code':type,'title':'月度奖励','earningType':earningType})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        月度奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectMonth|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--月度奖励end-->
+    <!--开店奖励start-->
+    <div ng-if="isRewardA">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'开店奖励','earningType':earningType,'rewardType':'A'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        开店奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectOpen|currency:'&yen'}}</span>
+      </div>
+    </div>
+    <!--开店奖励end-->
+    <!--推荐开店奖励start-->
+    <div ng-if="isRewardB">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'推荐开店奖励','earningType':earningType,'rewardType':'B'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        推荐开店奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectOpenCommend|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--推荐开店奖励end-->
+    <!--推荐奖励start-->
+    <div ng-if="isRewardZ">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'推荐奖励','earningType':earningType,'rewardType':'Z'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        推荐奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectRecommend|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--推荐奖励end-->
+    <!--舵主奖励start-->
+    <div ng-if="isRewardD">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'舵主奖励','earningType':earningType,'rewardType':'D'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        舵主奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectDzLeader|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--舵主奖励end-->
+    <!--盟主奖励start-->
+    <div ng-if="isRewardC">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'盟主奖励','earningType':earningType,'rewardType':'C'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        盟主奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectLeader|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--盟主奖励end-->
+    <!--寻源奖励start-->
+    <div ng-if="isRewardXY">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'寻源奖励','earningType':earningType,'rewardType':'XY'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        寻源奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectXyAmount|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--寻源奖励end-->
+    <!--开拓奖励start-->
+    <div ng-if="isRewardTZ">
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="someReward({'code':type,'title':'开拓奖励','earningType':earningType,'rewardType':'TZ'})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        开拓奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectThreeLevel|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!--开拓奖励end-->
+    <!-- 其他奖励 start-->
+    <div ng-if='rewardO.expectOtherAmount'>
+      
+      <div class="padding-15 margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom font-size-17" ui-sref="otherReward({'code':type,'title':'其他奖励','earningType':earningType})">
+           <img ng-src="{{type==2?(imgBaseURL+'img/yingshoutwo.png'):(type==3?(imgBaseURL+'img/yingshouone.png'):(imgBaseURL+'img/yingshouthree.png'))}}" style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        其他奖励
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{rewardO.expectOtherAmount|currency:'&yen'}}</span>
+      </div>
+      
+    </div>
+    <!-- 其他奖励 end-->
+  </ion-content>
+</ion-view>

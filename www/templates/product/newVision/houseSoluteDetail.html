@@ -1,0 +1,27 @@
+<ion-view class="background" hide-nav-bar="true" hide-back-button="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify">
+        <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+        <div style="height:24px;width:24px;">
+            <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+        </div>
+        </div>
+        <div style="height:44px;font-size: 20px;letter-spacing: -0.41px;text-align:center;line-height:44px;width:80%">{{frompage==0?name:'家电成套解决方案'}}</div>
+    </div>
+  <ion-content scrollbar-y="false" overflow-scroll="true" style='margin-top: 44px;'>
+    
+            <img ng-src='{{imgUrl}}' width='100%' ng-if='frompage==0'/>
+          
+          
+  <div class='housetitle' style='background-color: #fff;' ng-if='frompage==0'>
+    <div></div>
+    <div>解决方案</div>
+  </div>
+  <div class='quchufirststyle'>
+  <div class='jjfalistDetail' ng-repeat='i in listdata' ui-sref="itSoluteDetail({'solutionId':i.id})">
+    <img ng-src='{{i.imageUrl}}'/>
+    <div>{{i.name}}</div>
+  </div>
+</div>
+<ion-infinite-scroll ng-if="hasmore" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

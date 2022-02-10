@@ -1,0 +1,212 @@
+<!--个人中心-->
+<ion-view class="background" view-title="个人中心" hide-nav-bar="true" hide-back-button="true">
+  <ion-content scrollbar-y="false">
+    <div class="person-center">
+      <div style="position: relative; background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/mine/babynew.png) left top no-repeat;background-size: cover;" ng-class="{true:'iosAppPersonHead',false:'normalPersonHead'}[isIosApp]">
+        <img style="width: 28px;height: 28px;position: absolute;top: 10px;left: 10px;z-index: 999;" ng-src="{{imgBaseURL}}img/personalSetting@2x.png" alt="设置" ui-sref='accsetting'/>
+        <div class="setting" flex="main:right cross:center">
+          <!-- <img ng-src="{{imgBaseURL}}img/personalSetting@2x.png" alt="设置" ui-sref='accsetting'/> -->
+          <img style="margin-right: 12px;" ng-src="{{imgBaseURL}}img/mine/service.png" alt="客服" ng-click="customerServe()"'/>
+          <div ng-class="{true:'personalCenterPoint',false:''}[flagNum]" style="height: 28px;width: 28px;margin-top:-0.12rem;position:relative;">
+            <img style="height: 28px;width: 28px;" ui-sref="ClassifyMessageCenter" ng-src="{{imgBaseURL}}img/personalMsg@2x.png" alt="消息"/>
+          </div>
+        </div>
+        <div class="loginUser clearfix" style="display: table;height: 0;">
+          <div class="photo" style="display: table-cell;vertical-align: middle;float: none;padding-right: 15px"><img ng-src="{{avatarImage}}" alt="头像"></div>
+          <div class="info" style="display: table-cell;vertical-align: middle;float: none; position: relative;padding-bottom: 16px;" ng-if="isHost==1">
+            <div class="loginName" style="margin-bottom: 0;">{{isHost==1?storeName:"未开店"}}</div>
+            <div style="font-size: 12px;background: rgb(4,123,243, 0.2);border-radius: 100px;margin: 4% 0 2% 0;text-align: center;display: inline-block;line-height: 24px;height: 24px;padding: 0 10px 0 10px;" ng-if="isHost==1"><span>等级:&nbsp;{{nowLevelName}}</span></div>
+            <div ui-sref="taskShare" style="width: 96.5px;height:30px;background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/mine/task.png) center center no-repeat;background-size: 99%;text-indent: -9999px;" ng-if="isHost==1">今日任务</div>
+          </div>
+          <div style="display: table-cell;vertical-align: middle;width: 100px;background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/mine/goto.png) center center no-repeat;background-size: 60% auto;text-indent: -999px;" ng-if="isHost==1" ui-sref="myStore({storeId:storeId,shareStoreId:''})">进入店铺</div>
+        </div>
+      </div>
+      <div class="order">
+        <div class="title" ui-sref="orderManage({orderStatus:0,orderType:'全部订单',orderFlag:0})">
+          <img style="display: none;" ng-src="{{imgBaseURL}}img/myOrder@2x.png"/>
+          <span class="char" style="color: #333333;font-size: 15px;font-weight: bold;margin-left: 0;">我的订单</span>
+          <span class="desc">查看订单</span>
+          <img ng-src="{{imgBaseURL}}img/goOrder@2x.png">
+        </div>
+        <ul class="content clearfix">
+          <li ng-click="goOrderManage(1,1)">
+            <img ng-src="{{imgBaseURL}}img/waitPay@2x.png" />
+            <div class="item-name">待付款</div>
+            <span ng-if="orderAmountData.waitPay!=0">{{orderAmountData.waitPay}}</span>
+          </li>
+          <li ng-click="goOrderManage(1,2)">
+            <img ng-src="{{imgBaseURL}}img/waitSend@2x.png"/>
+            <div class="item-name">待发货</div>
+            <span ng-if="orderAmountData.waitShipping!=0">{{orderAmountData.waitShipping}}</span>
+          </li>
+          <li ng-click="goOrderManage(1,3)">
+            <img ng-src="{{imgBaseURL}}img/waitGet@2x.png"/>
+            <div class="item-name">待收货</div>
+            <span ng-if="orderAmountData.waitReceipt!=0">{{orderAmountData.waitReceipt}}</span>
+          </li>
+          <li ng-click="goOrderManage(1,4)">
+            <img ng-src="{{imgBaseURL}}img/waitJudge@2x.png"/>
+            <div class="item-name">待评价</div>
+            <span ng-if="orderAmountData.waitComment!=0">{{orderAmountData.waitComment}}</span>
+          </li>
+          <li  ui-sref="customerService">
+            <img ng-src="{{imgBaseURL}}img/fixIcon@2x.png"/>
+            <div class="item-name">售后/维修</div>
+          </li>
+        </ul>
+      </div>
+      <div class="wallet">
+        <div class="title" ui-sref='myWallet'>
+          <!-- <img ng-src="{{imgBaseURL}}img/wdqb@2x.png"/> -->
+          <span class="char" style="color: #333333;font-size: 15px;font-weight: bold;margin-left: 0;">我的钱包</span>
+
+          <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+          <span class='float-r' style='color:#999999;margin-right:10px;'>查看全部</span>
+        </div>
+        <ul class="content clearfix">
+          <li ui-sref="myCouponsList">
+            <div class="coupon">{{babyCoupon}}张</div>
+            <div class="item-name">优惠券</div>
+          </li>
+          <li ng-if="isHost==1" ui-sref="goldRecord">
+            <div class="gold">{{babyGold}}</div>
+            <div class="item-name">金币</div>
+          </li>
+          <li ui-sref="walletDiamonds">
+            <div style="color: #B63DF2;" class="gold">{{babyDiamond}}</div>
+            <div class="item-name">钻石</div>
+          </li>
+          <!-- <li ng-if="isHost==1" ui-sref='bankCard'>
+            <div class="bank-card">{{card==0?'未设置':'已设置'}}</div>
+            <div class="item-name">提现设置</div>
+          </li> -->
+          <li ng-click="toApplyForWhite()">
+            <div class='white-shows'>
+              <img ng-src="{{imgBaseURL}}img/baitiao-mine.png" alt="">
+            </div>
+            <div class="item-name">顺逛白条</div>
+          </li>
+        </ul>
+      </div>
+      <div class="shop">
+        <div class="title" ng-click="goToMyStore()">
+          <img style="display: none;" ng-src="{{imgBaseURL}}img/wddp@2x.png"/>
+          <span class="char" style="color: #333333;font-size: 15px;font-weight: bold;margin-left: 0;">我的店铺</span>
+          <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        </div>
+        <ul class="content clearfix">
+          <div class="horizontalLine" style="background:transparent;"></div>
+          <li ng-click="checkPhoneNumber()" ng-if="isHost==0" style="border-right: none;">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/open.png" />
+            <div class="item-name">我要开店</div>
+          </li>
+          <li ui-sref="shopRevenue" ng-if="isHost==1" style="border-right: none;">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cfirst.png" />
+            <div class="item-name">我的营收</div>
+          </li>
+          <!-- <li ng-if="isHost==1" ui-sref='bankCard'>
+            <div class="bank-card">{{card==0?'未设置':'已设置'}}</div>
+            <div class="item-name">提现设置</div>
+          </li> {{card==0 ? '未设置':'已设置'}} -->
+          <li ng-if="isHost==1" ui-sref='bankCard' style="border-right: none;">
+            <img style="width: 40px;height: 40px;" ng-if="card==0" ng-src="{{imgBaseURL}}img/mine/cthird.png"/>
+            <img style="width: 40px;height: 40px;" ng-if="card!=0" ng-src="{{imgBaseURL}}img/mine/cfourth.png"/>
+            <div class="item-name">提现设置</div>
+          </li>
+          <li style="border-right: none;" ui-sref="trueAuthenticationList" ng-if="isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cfour.png"/>
+            <div class="item-name">我的认证</div>
+          </li>
+          <li style="border-right: none;" ui-sref="teamSupervise" ng-if="isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cfive.png"/>
+            <div class="item-name">合伙人</div>
+          </li>
+          <li style="border-right: none;" ui-sref="myStoreManage" ng-if="isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/ctwo.png"/>
+            <div class="item-name">店铺管理</div>
+          </li>
+          <!-- <li ui-sref="microSchool" ng-if="isHost==1">
+            <img ng-src="{{imgBaseURL}}img/wdkt@2x.png" />
+            <div class="item-name">微店课堂</div>
+          </li> -->
+          <li style="border-right: none;" ui-sref="storeTeamOwner" ng-if="isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cfifth.png"/>
+            <div class="item-name">数据统计</div>
+          </li>
+          <!-- <li  ng-if="isHost==1 && !iso2o" ui-sref="trueAuthenticationList" ng-style="changeOpacity">
+            <img ng-src="{{imgBaseURL}}img/smrz@2x.png"/>
+            <div class="item-name">我的认证</div>
+          </li> -->
+          <li style="border-right: none;" ng-click="goMemberCenter()" ng-if="isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/csix.png"/>
+            <div class="item-name">会员中心</div>
+            <div class='item-icon' ng-show='applyStatus==-2'>申请{{applyName}}</div>
+          </li>
+          <!--海尔大学免登-->
+          <li style="border-right: none;" ui-sref="newClass">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cnine.png" />
+            <div class="item-name">顺逛学院</div>
+          </li>
+        </ul>
+      </div>
+      <div class="common">
+        <div class="title">
+          <img style="display: none;" ng-src="{{imgBaseURL}}img/cygn@2x.png"/>
+          <span class="char" style="color: #333333;font-size: 15px;font-weight: bold;margin-left: 0;">常用功能</span>
+        </div>
+        <ul class="content clearfix">
+          <div class="horizontalLine" style="background:transparent;"></div>
+          <li style="border-right: none;" ui-sref="getCouponsList">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/ceight.png"/>
+            <div class="item-name">领券中心</div>
+          </li>
+          <li style="border-right: none;" ng-click="goToLiving()">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cone.png" />
+            <div class="item-name">充值缴费</div>
+          </li>
+          <li style="border-right: none;" ui-sref="address">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cthree.png"/>
+            <div class="item-name">地址管理</div>
+          </li>
+          <li style="border-right: none;" ng-click="goToRace()">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cten.png"/>
+            <div class="item-name">社群争霸赛</div>
+          </li>
+          <li style="border-right: none;" ui-sref="collection">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/celeven.png"/>
+            <div class="item-name">我的收藏</div>
+          </li>
+          <li style="border-right: none;" ng-click="goGoldGame()">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/cseven.png"/>
+            <div class="item-name">金币游戏</div>
+          </li>
+          <li style="border-right: none;" ui-sref="myAppointment" ng-if="1||isHost==1">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/csecond.png"/>
+            <div class="item-name">我的预约</div>
+          </li>
+          <li style="border-right: none;" ng-click="goToManageMoney(isHost)" ui-sref="manageMoney">
+            <img style="width: 40px;height: 40px;" ng-src="{{imgBaseURL}}img/mine/ctwelve.png" />
+            <div class="item-name">我的投资</div>
+          </li>
+          <!-- <li ng-if="isHost==0" ng-click="goToManageMoney(isHost)">
+            <img ng-src="{{imgBaseURL}}img/jrlc@2x.png"/>
+            <div class="item-name">我的金融</div>
+          </li> -->
+          <!--<li ng-if="isHost==1">
+            <img ng-src="img/wdzc@2x.png" />
+            <div class="item-name">我的众筹</div>
+          </li>-->
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </ion-content>
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,51 @@
+<div class="crowd_home_new">
+  <!-- 接收到数据 渲染视图  数据还没请求-->
+  <div class="crowd_home_new_content">
+    <!--请求的图片-->
+    <dl>
+      <dt>
+      <div class="crowd_home_new_pic">
+        <img ng-src="http://cdn21test.ehaier.com:8080/file/594789a60ba9344cea11d6e3.png" alt="商品图片">
+      </div>
+      </dt>
+      <dd>
+        <!--名称标题-->
+        <div class="crowd_home_new_title">
+          自行车的阶段八点上班灯虎大电算化南水北调第四位发
+        </div>
+        <!--显示状态 目标金额-->
+        <div class="crowd_home_new_loading crowd_home_soon_info">
+          <!--显示状态-->
+           <span class="crowd_home_new_loading_state">预热中</span>
+           <i class="crowd_home_new_loading_target">目标金额: ¥5000000</i>
+        </div>
+        <!--显示距离开始还有多久-->
+        <div class="crowd_home_new_count crowd_home_soon_money">
+          <!--已筹资金-->
+          <p class="crowd_home_new_info">
+            <span>距离开始还有：</span><i>8小时20分钟</i>
+          </p>
+
+        </div>
+      </dd>
+    </dl>
+
+    <div class="sg-ms-title  font-size-12" ng-bind="data.firstVo.productSecondName"></div>
+    <div class=" font-size-12">￥<span style="color: #EF4078" ng-bind="data.firstVo.finalPrice"></span>
+      <span ng-if="isApp&&isCommission" style="margin:0 6px 0 2px;color: #EF4078;">
+                  <i style="color:#999;">/&nbsp;&nbsp;</i>赚
+                  <span style="color: #EF4078;font-weight:800;font-size:13px;" ng-bind="data.firstVo.commission|cutTwoFilter"></span>
+                </span>
+    </div>
+    <div class="font-size-12" style="display:flex;justify-content: flex-start;align-items:center;">
+      <i class="icon ion-ios-checkmark-outline color-text-theme font-size-20"
+         ng-click="changeStateFind(data.firstVo.sku,0,0);"
+         style="width: 20px;" ng-if="data.firstVo.onShelf&&isBuyer == '1'"></i>
+      <i class="icon ion-ios-plus-outline color-text-theme font-size-20"
+         ng-click="changeStateFind(data.firstVo.sku,1,0);"
+         style="width: 20px;" ng-if="!data.firstVo.onShelf&&isBuyer == '1'"></i>
+      <span class="color-text-theme" ng-bind="data.firstVo.hasStock" ng-if="data.firstVo.hasStock=='有货'"></span>
+      <span class="color-text-red" ng-bind="data.firstVo.hasStock" ng-if="data.firstVo.hasStock!='有货'"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<!--二级管理-->
+<ion-view view-title="用户搜索" class="background" hide-nav-bar="true">
+  <ion-header-bar align-title="center" style="padding-right: 0px;top:0;">
+    <button ng-click="backToLastView()" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+    <div class="row">
+      <!--<span class="position-r col col-25" style="text-align: center;margin-top: -2px" ng-click="chooseType()">-->
+      <!--<span  style="" ng-bind="typeChoose">-->
+      <!--</span>-->
+      <!--<i class="ion-chevron-down font-size-10"></i>-->
+      <!--</span>-->
+      <div class="border border-radius inline-block col col-85" style="text-align: right;height: 30px;position: relative;margin-top: -3px">
+        <input id="focus" type="text" class="inline-block" style="margin-top: -5px;width: 97%;height: 28px;padding-right:24px;" placeholder="{{placeHolder}}" ng-model="searchValue" ng-keypress="todoSomething($event)" />
+        <input-clear style="top: -2px;" ng-model="searchValue"></input-clear>
+      </div>
+      <div class="col col-15 padding-top-5">
+        <div class="color-text-l" ng-style="" style=" width: 100%;text-align: center;font-size: 15px;margin-top: -3px;" ng-click="searchConnection()">搜索</div>
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <!--搜索结果列表-->
+
+      <div ng-if="searchResults" style="background: #fff;"  class="team_user_msg">
+        <!--合伙人 团队-->
+        <dl ng-if="selectedIndex==2?false:true" flex="box:first" ng-repeat="item in searchResults track by $index" ui-sref="teamMessage({'memberId':item.memberId})" >
+          <dt>
+                <div style="position: relative;display: inline-block;margin: 16px 16px 32px 0;">
+                     <span class="team_userPic">
+                       <img style="width: 100%;height: 100%;" ng-src="{{item.avatarImageFileId}}">
+                     </span>
+                    <span  ng-if="item.teamLevelName=='微店主'?false:true"  class="team_level" style="overflow: hidden;">
+                           {{Reps(item.teamLevelName)}}
+                     </span>
+                </div>
+          </dt>
+          <dd>
+            <!--标题-->
+            <div class="team_user_title">
+              <strong style="margin-right: 6px;">{{item.storeName}}</strong>
+            <!--  <span class="team_team_level">
+                                    <i>V10</i>
+                                    <em>{{item.levelName}}</em>
+               </span>-->
+              <span class="team_team_level" ng-if="item.levelOrder>0?true:false">
+                    <i>
+                    <img ng-src="{{imgBaseURL}}img/V@2x.png" style="width: 7px;height: 8px;"> {{item.levelOrder}}
+                    </i>
+                    <em style="padding: 0 4px;">{{item.levelName}}</em>
+              </span>
+              <span class="team_team_isAuthenticated" ng-if="item.isAuthenticated">
+                     <i><img style="margin-left: 2px;" ng-src="{{imgBaseURL}}img/icon-rz@2x.png"></i>
+                     <em>认证</em>
+              </span>
+            </div>
+            <!--活跃 人数-->
+            <div class="team_user_active">
+              <span>本月活跃: {{item.isActive==true?'是':'否'}}</span>
+              <span>合伙人: {{item.subLevelNum}}</span>
+              <span>团队: {{item.teamSize}}</span>
+            </div>
+            <!--时间-->
+            <p style="color: #999;margin-top: 6px;">开店时间:{{timeFun(item.startTime)}}</p>
+          </dd>
+        </dl>
+         <!--用户-->
+        <dl ng-if="selectedIndex==2?true:false" flex="box:first" ng-repeat="item in searchResults track by $index" ui-sref="userMessage({'memberId':item.memberId,'name':item.userName,'mobile':item.mobile,'isTeamNum':item.isTeamNum})" >
+          <dt>
+                <div  style="position: relative;display: inline-block;margin: 16px 16px 32px 0;">
+                         <span class="team_userPic">
+                           <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/registerSuccess.png">
+                         </span>
+                </div>
+          </dt>
+          <dd>
+            <!--标题-->
+            <div class="team_user_title">
+              <strong style="margin-right: 6px;">{{item.userName}}</strong>
+              <span class="team_team_level">
+                      <i>V10</i>
+                      <em>{{item.level}}</em>
+              </span>
+              <span class="team_team_isAuthenticated">
+                     <i><img style="margin-left: 2px;" ng-src="{{imgBaseURL}}img/icon-rz@2x.png"></i>
+                     <em>认证</em>
+              </span>
+            </div>
+            <!--活跃 人数-->
+            <div class="team_user_active">
+              <span>商品数量: {{item.purchasedNum}} 件</span>
+            </div>
+            <!--时间-->
+            <p style="color: #999;margin-top: 6px;">最近一次购买时间：{{timeFun(item.recentBuyingTime)}}</p>
+          </dd>
+        </dl>
+      </div>
+    <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    <!--搜索无结果-->
+    <div flex="dir:top main:center cross:center" style="margin-top:20px;"  ng-if="noSearchResults">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据</span>
+    </div>
+
+  </ion-content>
+
+</ion-view>

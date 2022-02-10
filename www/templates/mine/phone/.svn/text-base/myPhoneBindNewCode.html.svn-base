@@ -1,0 +1,35 @@
+<!--身份认证-->
+<ion-view class="background" view-title="身份认证" hide-nav-bar="true" hide-back-button="true">
+    <!--判断是否是ios设备-->
+    <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+    <header flex="main:center cross:center box:first" class="header-top-height">
+        <div><img ng-click="$ionicGoBack();" class="goback-img" ng-src="{{GoBackImgUrl}}"></div>
+        <div class="text-c title-text">身份认证</div>
+    </header>
+
+    <ion-content class="content-head-top" scrollbar-y="false">
+        <!--判断是否是ios设备-->
+        <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+        <div class="Prompt-msg-1">
+            <div>验证码已发送到手机{{Phone | encryptPhone}}</div>
+        </div>
+        <ul class="background-fff text-input-list">
+            <li class="cl list-top-border" flex="cross:center;">
+                <input class="fl" ng-model="code.captcha" placeholder="请输入短信验证码" onkeydown="var ev=window.event; if(ev.keyCode !=8 ){if(value.length >=6){value = value.substring(0,6); ev.preventDefault(); return false;} }" onkeyup="var ev=window.event;if(ev.keyCode !=8 ){if(value.length >=6){value = value.substring(0,6); ev.preventDefault(); return false;} }"
+                />
+                <label class="ft text-c border-left-1" ng-click="getCodePhone()" ng-if="CodePhoneState == 0"><i class="phoneCode-text">获取验证码</i></label>
+                <label class="ft text-c border-left-1" ng-click="getCodePhone()" ng-if="CodePhoneState == 1"><i class="phoneCode-text">重新获取</i></label>
+                <label class="ft text-c border-left-1" ng-if="CodePhoneState == 2">{{ PhoneTime }}S后重新获取</label>
+            </li>
+        </ul>
+
+        <div class="text-c">
+            <div ng-show="code.captcha.length != 6 ">
+                <button class="btn-send-Phone mt-50">下一步</button>
+            </div>
+            <div ng-show="code.captcha.length == 6">
+                <button class="btn-send-Phone mt-50 active-send-phone" ng-click="goToIdCard()">下一步</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

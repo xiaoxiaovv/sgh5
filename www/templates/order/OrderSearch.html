@@ -1,0 +1,103 @@
+<!--订单搜索-->
+<ion-view view-title="订单搜索" class="background" hide-nav-bar="true">
+  <ion-header-bar class="border-bottom" align-title="center" style="top:0;">
+    <button ng-click="closeSearchModal();" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+    <div class="item item-input padding-left-right-10 border-none width-100">
+      <label class="border width-70 item-input-wrapper">
+        <i class="icon ion-ios-search-strong"></i>
+        <input type="text" ng-model="search.keyWord" class="padding-right-0 background width-80" maxlength="50"
+               style="padding-top: 2px;"
+               placeholder="输入商品名、订单号、收货人、手机号">
+      </label>
+      <button style="width: 30px;font-size:14px !important;" ng-click="searchOrder();"
+              class="color-text-l button button-clear padding-left-0 margin-left-5">搜索
+      </button>
+    </div>
+  </ion-header-bar>
+  <ion-content delegate-handle="searchOrderHandle">
+    <div ng-if="noOrders" class="text-align-c">
+      <img ng-src="{{imgBaseURL}}img/basket.png" alt="" class="width-60"/>
+      <h4 class="font-bold margin-top-0">没有找到符合条件的订单</h4>
+
+      <div class="color-text-l">换个条件再搜一下吧</div>
+    </div>
+    <div class="list width-100">
+      <div ng-repeat="item in searchOrderList" class="item border-top-none padding-0 margin-bottom-10">
+        <div class="sg-order-border-bottom padding-10 position-r">
+          <span class="font-size-14 color-text-l"> 订单编号：
+            <span ng-bind="item.orderSn" class="color-text-m"></span>
+          </span>
+          <span ng-show="!item.isRightService" ng-bind="item.orderStatusName"
+                class="position-a font-size-14 right-10 color-text-red"></span>
+        </div>
+        <div class="item border-none padding-left-right-10 padding-bottom-10" ng-repeat="detail in item.orderProducts">
+          <div class="row padding-0"
+               ng-click="goOrderDetails(item.orderSn,detail.cOrderSn,item.isRightService,detail.orderProductId,item.memberId,1)">
+            <div class="col col-20 padding-0 padding-right-10 position-r">
+              <div class="position-r">
+                  <div ng-if="detail.isBook&&!item.zActivityOrder" style="position:absolute;top: 0;left: 0;width:100%;background: #ff0000;text-align:center;font-size: 13px;color:#ffffff;">预订</div>
+                  <img class="width-100" ng-src="{{detail.defaultImageUrl}}" />
+                </div>
+               <i id="changeBackSize" ng-if="item.zActivityOrder==1" style="position:absolute;left:0;top:0;z-index:1000;display:block;width:85.99%;height:18px;font-size:13px;text-align: center;background-color: #f00;color: #fff;">{{item.zActivityStatus==1?'众筹中':(item.zActivityStatus==2?'众筹成功':(item.zActivityStatus==100?'计算中':'众筹失败'))}}</i>
+            </div>
+            <div class="col position-r font-size-13 padding-0">
+              <div class="font-size-14">
+                <span ng-bind="detail.productFullName | cut:true:10:'...'"></span>
+                <span ng-bind="detail.price | currency:'&yen;'" class="position-a color-text-l right-5"></span>
+              </div>
+              <div class="font-size-14 padding-bottom-10">
+                <span ng-bind="detail.productName | cut:true:16:'...'"></span>
+                <span class="position-a right-5">×
+                    <span ng-bind="detail.number"></span>
+                  </span>
+              </div>
+              <!-- <div class="color-text-m font-size-12">
+                <span>收货信息：<span ng-bind="item.consignee | cut:true:6:'...'"></span></span>
+                <span ng-bind="item.mobile" class="position-a right-5"></span>
+              </div> -->
+              <!-- <div class="color-text-m font-size-12">
+                <span>店铺信息：<span ng-bind="item.storeInfo.storeName | cut:true:6:'...'"></span></span>
+                <span class="position-a right-5">ID：<span ng-bind="item.storeInfo.ownerId"></span></span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div ng-if="!item.isRightService"
+             class="text-align-r font-size-13 padding-left-right-10 padding-bottom-10 color-text-m sg-order-border-bottom">
+          <div>
+            共<span ng-bind="item.productTotalNo"></span>件商品 合计：
+            <span ng-bind="item.totalAmount | currency:'&yen;'" class="color-text-l"></span>
+            (含运费：<span ng-bind="item.totalShippingFeeAmount | currency:'&yen;'"></span>元)
+          </div>
+          <div>
+            下单时间：<span ng-bind="item.addTime"></span>
+          </div>
+        </div>
+        <div ng-if="!item.isRightService" class="padding-10 text-align-r">
+            <span ng-if="!item.canDelete">
+            <button
+              ng-if="(item.paymentCode != 'cod') && item.isMyOrder && item.paymentStatus ==100&&item.orderStatus==200 && !item.payRelationOrder && item.memberId == memberId"
+              ng-click="toPamentxyz(item.orderSn);"
+              class="margin-right-10 sg-order-button button-clear sg-border-red color-text-red">立即支付
+            </button>
+            <button
+            ng-if="(item.payRelationOrder && (item.paymentCode != 'cod') && ( item.orderStatus==201 || item.orderStatus==200 ) && item.memberId == memberId)"
+            ng-click="Pamentxyz(item.relationOrderSn,item.relationOrderAmount,item.isPayCoupon);"
+            class="margin-right-10 sg-order-button button-clear sg-border-red color-text-red">
+            支付尾款
+          </button>
+            <button ng-click="orderCancel(item.orderId);"
+                    ng-if="item.canCancel && item.isMyOrder && item.memberId == memberId"
+                    class="margin-right-10 sg-order-button button-clear border color-text-l">取消订单
+            </button>
+            <button ng-if="item.orderType!=7" ng-click="goOrderTrack(item.orderSn);" class="sg-order-button button-clear border color-text-l">追踪订单
+            </button>
+              </span>
+          <button class="sg-order-button button-clear border color-text-l" ng-click="deleteOrder(item.orderId);" ng-if="item.canDelete">删除</button>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll distance="2%" ng-if="hasMoreDataSearch" immediate-check="false"
+                         on-infinite="loadMoreSearch()"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

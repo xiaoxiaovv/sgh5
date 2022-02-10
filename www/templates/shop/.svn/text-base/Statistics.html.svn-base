@@ -1,0 +1,206 @@
+<!--数据统计-->
+<ion-view view-title="数据统计" class="background" hide-nav-bar="true">
+  <div ng-class="{true:'personalStat',false:'contributionCommission'}[isPersonalStat]" ng-style="paddingtopClass">
+      <div flex="main:center cross:center" style="height:24px;position:relative;">
+        <div ng-click="backToLastView()" style="position:absolute;left:12px;width:24px;height:24px;padding-top:3px;">
+          <img ng-src="{{imgBaseURL}}img/connectionBack@2x.png" style="width:9px;height:16px;">
+        </div>
+        <div style="margin-right:30px;" ng-click="switchType(0)" ng-class="{true:'activeType',false:'freezedType'}[typeState[0]]">贡献佣金</div>
+        <div style="margin-left:30px;" ng-click="switchType(1)" ng-class="{true:'activeType',false:'freezedType'}[typeState[1]]">个人统计</div>
+      </div>
+      <div ng-if="!isPersonalStat" flex="main:center cross:center box:mean" style="width:90%;height:34px;margin:20px auto 10px;border:1px solid #ffffff;border-radius: 8px;">
+        <div ng-click="switchConnectionType(0)" ng-class="{true:'activeConnection',false:'freezedConnection'}[connectionType[0]]">合伙人</div>
+        <div ng-click="switchConnectionType(1)" ng-class="{true:'activeConnection',false:'freezedConnection'}[connectionType[1]]">人脉</div>
+      </div>
+    </div>
+    <!--背景-->
+    <div ng-if="isShowOption" ng-click="closeOption()" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index:20;background:rgba(0,0,0,0.4);"></div>
+    <!--回到顶部-->
+    <div ng-if="isShowScrollToTopButton" ng-click="scrollToTop()" style="position:fixed;right:13px;bottom:35px;z-index: 40;">
+      <img ng-src="{{imgBaseURL}}img/IC-TOP@2x.png" style="width:50px;height:50px;border-radius:25px;">
+    </div>
+    <!--当月 累计 选项卡-->
+    <div ng-if="isShowOption" style="position:absolute;z-index:130;top:124px;width:100%;background: #ffffff;padding:0 12px;font-size: 16px;">
+      <div ng-click="closeOption()" flex="cross:center" style="height:40px;border-bottom:1px solid #e4e4e4;">
+        <div style="font-size:16px;color:#2196F3;">{{optionArr[0]==true?'当月':'累计'}}</div>
+        <img ng-src="{{imgBaseURL}}img/icon-arrowBottom@2x.png" style="margin-left:7px;width:10px;height:5px;">
+      </div>
+      <div ng-click="switchOption(0)" flex="main:justify cross:center" style="height:40px;border-bottom:1px solid #e4e4e4;" ng-class="{true:'activeOption',false:'frezedOption'}[optionArr[0]]">
+        <div style="font-size:16px;">当月</div>
+        <img ng-src="{{imgBaseURL}}img/activeOption@2x.png" style="width:15px;height:15px;">
+      </div>
+      <div ng-click="switchOption(1)" flex="main:justify cross:center" style="height:40px;" ng-class="{true:'activeOption',false:'frezedOption'}[optionArr[1]]">
+        <div style="font-size:16px;">累计</div>
+        <img ng-src="{{imgBaseURL}}img/activeOption@2x.png" style="width:15px;height:15px;">
+      </div>
+    </div>
+  <ion-content scrollbar-y="false" on-drag="watchScrollPosition()">
+    <div ng-class="{true:'heightOne',false:'heightTwo'}[isPersonalStat]"></div>
+    <!--贡献佣金 当月 表格展示-->
+    <div ng-if="hasSubLevel&&((hasPartner&&connectionType[0])||(hasConnection&&connectionType[1]))&&optionArr[0]&&!isPersonalStat" class="scrollBox" style="font-family: Arial, Helvetica, sans-serif;padding:0 12px 52px;background: #ffffff;">
+      <div flex="main:justify cross:center" style="height:40px;">
+        <div ng-click="closeOption()" flex="main:center cross:center">
+          <div style="font-size:16px;color:#2196F3;">{{optionArr[0]==true?'当月':'累计'}}</div>
+          <img ng-src="{{imgBaseURL}}img/icon-arrowBottom@2x.png" style="margin-left:7px;width:10px;height:5px;">
+        </div>
+        <div flex="main:center cross:center">
+          <div style="font-size:14px;color:#000000;">总计贡献:</div>
+          <div style="margin-left:4px;font-size:14px;color:#f56767;">{{connectionType[0]?partnerData.totalNewBrokerageAmount:connectionData.totalBrokerageAmount}}</div>
+        </div>
+      </div>
+      <table class="statisticsTable">
+        <tr class="tableTitle" style="background:#f3f3f3;height:30px;">
+          <td rowspan="2" style="width:15%;letter-spacing: 6px;">贡献排名</td>
+          <td rowspan="2" style="width:21%;">合伙人</td>
+          <td rowspan="2" style="width:21%;">贡献佣金</td>
+          <td colspan="2" style="width:21%;">最新动态</td>
+          
+        </tr>
+        <tr class="tableTitle" style="background:#f3f3f3;height:30px;">
+          
+          <td style="width:21%;">订单金额</td>
+          <td style="width:21%;">下单时间</td>
+        </tr>
+        <tr class="tdContent" ng-repeat="item in nowMonthContent | orderBy:'-nowAmount'">
+          <td>{{$index+1}}</td>
+          <td class="storeName">{{item.storeName}}</td>
+          <td style="color:#f56767;">{{item.nowAmount}}</td>
+          <td>{{item.lastOrderAmount}}</td>
+          <td>{{timeTransform(item.lastOrderTime)}}</td>
+        </tr>
+      </table>
+      <div style="margin-top:12px;opacity:0.53;font-size:12px;color:#000000;line-height:16px;text-align:left;">
+        注：贡献佣金为本月预计贡献佣金，仅供参考，如产生退款、退货等操作会影响预计贡献佣金金额，请以下月结算金额为准。
+      </div>
+    </div>
+    <!--贡献佣金 累计 表格展示-->
+    <div ng-if="hasSubLevel&&((hasPartner&&connectionType[0])||(hasConnection&&connectionType[1]))&&optionArr[1]&&!isPersonalStat" class="scrollBox" style="font-family: Arial, Helvetica, sans-serif;padding:0 12px 52px;background: #ffffff;">
+      <div flex="main:justify cross:center" style="height:40px;">
+        <div ng-click="closeOption()" flex="main:center cross:center">
+          <div style="font-size:16px;color:#2196F3;">{{optionArr[0]==true?'当月':'累计'}}</div>
+          <img ng-src="{{imgBaseURL}}img/icon-arrowBottom@2x.png" style="margin-left:7px;width:10px;height:5px;">
+        </div>
+        <div flex="main:center cross:center">
+          <div style="font-size:14px;color:#000000;">总计贡献:</div>
+          <div style="margin-left:4px;font-size:14px;color:#f56767;">{{connectionType[0]?partnerData.totalBrokerageAmount:connectionData.totalBrokerageAmount}}</div>
+        </div>
+      </div>
+      <table class="statisticsTable">
+        <tr class="tableTitle" style="background:#f3f3f3;height:60px;">
+          <td style="width:23%;">贡献排名</td>
+          <td style="width:38%;">合伙人</td>
+          <td style="width:38%;">贡献佣金</td>
+        </tr>
+        <tr class="tdContent" ng-repeat="item in totalContent | orderBy:'-sumAmount'">
+          <td>{{$index+1}}</td>
+          <td class="storeName">{{item.storeName}}</td>
+          <td style="color:#f56767;">{{item.sumAmount}}</td>
+        </tr>
+      </table>
+      <div style="margin-top:12px;opacity:0.53;font-size:12px;color:#000000;line-height:16px;text-align:left;">
+        注：贡献佣金为本月预计贡献佣金，仅供参考，如产生退款、退货等操作会影响预计贡献佣金金额，请以下月结算金额为准。
+      </div>
+    </div>
+    <!--个人统计 展示-->
+    <div ng-if="isPersonalStat" style="font-family: Arial, Helvetica, sans-serif;padding:0 12px 52px;background: #ffffff;">
+      <!--我-->
+      <div flex="main:left cross:center" style="height:40px;">
+        <div style="opacity:0.69;background:#2196f3;width:4px;height:14px;"></div>
+        <div style="margin-left:4px;font-size:16px;color:#2196f3;letter-spacing:0px;text-align:center;">我</div>
+      </div>
+      <div style="opacity:0.53;font-size:12px;color:#000000;letter-spacing:0px;line-height:40px;text-align:left;">
+        注：佣金包含合伙人与人脉贡献的佣金，单量和销售额为自己的
+      </div>
+      <div flex="main:justify cross:center" style="height:40px;font-size:14px;color:#000000;letter-spacing:0px;text-align:center;">
+        <div flex="main:center cross:center">
+          <div>当月预计佣金：</div><div style="color:#f56767;">{{newBrokerageAmount}}</div>
+        </div>
+        <div flex="main:center cross:center">
+          <div>累计佣金：</div><div style="color:#f56767;">{{totalBrokerageAmount}}</div>
+        </div>
+      </div>
+      <table class="personalStatTable">
+        <tr class="firstLine">
+          <td style="width:50%;">当月单量</td>
+          <td style="width:50%;">当月销售额</td>
+        </tr>
+        <tr class="secondLine">
+          <td>{{allData.newProductOrderNum}}</td>
+          <td>{{allData.newSumAmount}}</td>
+        </tr>
+      </table>
+      <table class="personalStatTable" style="margin-top:13px;">
+        <tr class="firstLine">
+          <td style="width:50%;">累计单量</td>
+          <td style="width:50%;">累计销售额</td>
+        </tr>
+        <tr  class="secondLine">
+          <td>{{allData.productOrderNum}}</td>
+          <td>{{allData.sumAmount}}</td>
+        </tr>
+      </table>
+      <!--我的合伙人-->
+      <div flex="main:left cross:center" style="height:40px;">
+        <div style="opacity:0.69;background:#2196f3;width:4px;height:14px;"></div>
+        <div style="margin-left:4px;font-size:16px;color:#2196f3;letter-spacing:0px;text-align:center;">我的合伙人</div>
+      </div>
+      <table class="personalStatTable">
+        <tr class="firstLine">
+          <td style="width:50%;">当月发展</td>
+          <td style="width:50%;">当月活跃</td>
+        </tr>
+        <tr class="secondLine">
+          <td>{{(hasSubLevel&&hasPartner)?partnerData.newIncrementNum:0}}</td>
+          <td>{{(hasSubLevel&&hasPartner)?partnerData.newIncrementActiveNum:0}}</td>
+        </tr>
+      </table>
+      <table class="personalStatTable" style="margin-top:13px;">
+        <tr class="firstLine">
+          <td style="width:23%;">累计发展</td>
+          <td style="width:38%;">累计激活</td>
+          <td style="width:38%;">累计当月活跃</td>
+        </tr>
+        <tr class="secondLine">
+          <td>{{(hasSubLevel&&hasPartner)?partnerData.totalIncrementNum:0}}</td>
+          <td>{{(hasSubLevel&&hasPartner)?partnerData.totalIncrementActiveNum:0}}</td>
+          <td>{{(hasSubLevel&&hasPartner)?partnerData.totalIncrementNewActiveNum:0}}</td>
+        </tr>
+      </table>
+      <!--我的人脉-->
+      <div flex="main:left cross:center" style="height:40px;">
+        <div style="opacity:0.69;background:#2196f3;width:4px;height:14px;"></div>
+        <div style="margin-left:4px;font-size:16px;color:#2196f3;letter-spacing:0px;text-align:center;">我的人脉</div>
+      </div>
+      <table class="personalStatTable">
+        <tr class="firstLine">
+          <td style="width:50%;">当月发展</td>
+          <td style="width:50%;">当月活跃</td>
+        </tr>
+        <tr class="secondLine">
+          <td>{{(hasSubLevel&&hasConnection)?connectionData.newIncrementNum:0}}</td>
+          <td>{{(hasSubLevel&&hasConnection)?connectionData.newIncrementActiveNum:0}}</td>
+        </tr>
+      </table>
+      <table class="personalStatTable" style="margin-top:13px;">
+        <tr class="firstLine">
+          <td style="width:23%;">累计发展</td>
+          <td style="width:38%;">累计激活</td>
+          <td style="width:38%;">累计当月活跃</td>
+        </tr>
+        <tr class="secondLine">
+          <td>{{(hasSubLevel&&hasConnection)?connectionData.totalIncrementNum:0}}</td>
+          <td>{{(hasSubLevel&&hasConnection)?connectionData.totalIncrementActiveNum:0}}</td>
+          <td>{{(hasSubLevel&&hasConnection)?connectionData.totalIncrementNewActiveNum:0}}</td>
+        </tr>
+      </table>
+      <div style="margin-top:12px;opacity:0.53;font-size:12px;color:#000000;line-height:16px;text-align:left;">
+        注：贡献佣金为本月预计贡献佣金，仅供参考，如产生退款、退货等操作会影响预计贡献佣金金额，请以下月结算金额为准。
+      </div>
+    </div>
+    <!--没有合伙人和人脉的情况-->
+    <div flex="dir:top main:center cross:center" style="margin-top:20px;"  ng-if="(!hasSubLevel&&!isPersonalStat)||(connectionType[1]&&hasSubLevel&&!hasConnection&&!isPersonalStat)">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据，快去分享你的店铺赚取佣金吧！</span>
+    </div>
+  </ion-content>
+</ion-view>

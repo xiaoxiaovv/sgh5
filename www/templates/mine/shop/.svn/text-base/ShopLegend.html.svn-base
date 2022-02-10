@@ -1,0 +1,27 @@
+<!--我的页面->店铺信息->联盟-->
+<ion-view class="background" view-title="联盟">
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div ui-sref="commonUnion({'flag':'SHOP_SELECT_UNION','data':selectText})"
+         class="margin-top-20 bg-white position-r padding-10 font-size-14">
+      <span class="font-size-14 color-text-m">联盟分类</span>
+      <div class="position-a right-10 top-10">
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20 color-text-s" ng-bind="selectText"></span>
+      </div>
+    </div>
+
+    <div class="padding color-text-m bg-white padding-top-5 padding-bottom-5 bg-white border-top" ng-if="selectText=='人人服务（服务兵创业）'">
+      <span style="margin-top: 5px">上岗证号：</span>
+      <form class="white-space-nowrap inline">
+        <input class="color-text-m inline width-70 input-style" ng-class="{true: 'border-red', false: ''}[showAlert||showAlertCheck]" maxlength="25" ng-model="hrCode.value" placeholder="请输入上岗证号">
+      </form>
+    </div>
+    <div class="padding-top padding-left font-size-10 color-text-red" ng-if="showAlert">上岗证编号需要以HR开头，总长度8到20位</div>
+    <div class="padding-top padding-left font-size-10 color-text-red" ng-if="showAlertCheck">上岗证编号已存在请修改后保存</div>
+    <div class="padding-top padding-left font-size-10 color-text-red" ng-if="isHaierCloud">如果选择海尔云店联盟,确定保存后不可以修改为其他联盟</div>
+
+  </ion-content>
+</ion-view>

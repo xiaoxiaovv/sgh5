@@ -1,0 +1,51 @@
+<!--create by@zyr on 2017/11/20 -->
+<ion-view class="background" hide-nav-bar="true">
+  
+  <ion-content scrollbar-y="false">
+    <div class='sign-head' ng-style='contentHeight'>
+      <div class='head-title' flex="main:justify cross:center" ng-style="paddingtopClass">
+        <div class='user-img' flex='cross:center' ng-click="goBack()">
+          <img ng-src="{{imgBaseURL}}img/vipLeftArrow.png" class='go-back' >
+        </div>
+        <div  class='title'>签到排行榜</div>
+        <div class='head-share' flex="main:center cross:center">
+        </div>
+      </div>
+      <div class='head-tab' flex='main:justify cross:center'>
+        <div class='tab-item' ng-class='{0:"active",1:""}[tabIndex]' ng-click='chooseTab(0)'>本圈签到排行</div>
+        <div class='tab-item' ng-class='{0:"",1:"active"}[tabIndex]' ng-click='chooseTab(1)'>社区签到总排行</div>
+      </div>  
+    </div>
+    <div class='sign-list-box'>
+      <div class='list-title' ng-if="tabIndex==0">
+        您当前总签到<span>{{userSignCount}}</span>天，位于本{{signListTitle}}第<span>{{userRank}}</span>位
+      </div>
+      <div class='list-title' ng-if="tabIndex==1">
+        您当前总签到<span>{{userSignCount}}</span>次，位于本{{signListTitle}}第<span>{{userRank}}</span>位
+      </div>
+      <div class='list-box'>
+        <div class='list-item' flex='dir:left box:last cross:center' ng-repeat='item in rankList track by $index' ng-class='{true:"padding-default",false:""}[$index<3]'>
+          <div class='item-left' flex='main:left cross:center' ng-class='{1:"item-frist",2:"item-second",3:"item-third"}[item.rank]'>
+            <div class='item-num'>{{item.rank}}</div>
+            <div class='item-user' flex='dir:left'>
+              <i ng-if='item.rank==1'><img ng-src="{{imgBaseURL}}img/signIn/crown_frist.png" alt=""></i>
+              <i ng-if='item.rank==2'><img ng-src="{{imgBaseURL}}img/signIn/crown_second.png" alt=""></i>
+              <i ng-if='item.rank==3'><img ng-src="{{imgBaseURL}}img/signIn/crown_third.png" alt=""></i>
+              <div class='user-img'>
+                <img src="{{item.userImg}}" alt="" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'">
+              </div>
+              <div class='user-info' flex='dir:top main:justify'>
+                <div class='user-name'>{{item.userName}}</div>
+                <!--用户的身份暂时不展示-->
+                <!-- <div class='user-ident'>{{item.shenfen}}</div> -->
+              </div>
+            </div>
+          </div>
+          <div ng-if="tabIndex==0" class='item-right'>签到{{item.signCount}}天</div>
+          <div ng-if="tabIndex==1" class='item-right'>总签到{{item.signCount}}次</div>
+        </div>
+      </div>
+    </div>
+  </ion-content> 
+</ion-view>
+

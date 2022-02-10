@@ -1,0 +1,84 @@
+<ion-view class="background" view-title="{{title}}" hide-nav-bar="true">
+  <div flex="main:left cross:center dir:left box:first" ng-style="paddingtopClass" style="height:44px;background:#fafafa;" class='partner-nav'>
+    <div flex="cross:center" ng-click="goBack()" style="width:34px;height:44px;padding-left:6px;" class='partner-nav-back'>
+      <div flex="cross:center" class='img-box' style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="返回">
+      </div>
+    </div>
+    <div class='partner-nav-title' style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">{{title}}</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" delegate-handle="scrollSelection" class='partner-padtop'>
+    <!--tab 切换-->
+    <div class="part-tab-box" flex='dir:left box:mean cross:center main:left'>
+      <!--tab切换-->
+      <div class="open-time tab-item" flex="main:center cross:center" ng-click="chooseTab(0)" ng-class="{0: 'partnerSelected',1:'partnerUnSelected',2:'partnerUnSelected'}[chooseIndex]">
+        <span>开店时间</span>
+        <img ng-src="{{arrowState[openStoreTime_index]}}" alt="排序">
+      </div>
+      <div class='real-name-auth tab-item' flex="main:center cross:center" ng-click="chooseTab(1)" ng-class="{0: 'partnerUnSelected',1:'partnerSelected',2:'partnerUnSelected'}[chooseIndex]">实名认证</div>
+      <div class='leader-add-jim tab-item' flex="main:center cross:center" ng-click="chooseTab(2)" ng-class="{0: 'partnerUnSelected',1:'partnerUnSelected',2:'partnerSelected'}[chooseIndex]">盟主舵主</div>
+    </div>
+    <!--已认证和未认证 显示-->
+    <div class='auth-box' flex="main:left cross:center" ng-show='chooseIndex == 1'>
+      <div class='auth-item' flex="main:left cross:center" ng-click='chooseAnthen(0)' ng-class="{0: 'authSelect',1:'authUnSelect'}[authenIndex]">
+        <div class='auth-img'>
+        </div>
+        <div class='auth-data'>已认证<span>{{authenticatedNum | number}}</span>人</div>
+      </div>
+      <div class='auth-item' flex="main:left cross:center" ng-click='chooseAnthen(1)' ng-class="{0: 'authUnSelect',1:'authSelect'}[authenIndex]">
+        <div class='auth-img'>
+        </div>
+        <div class='auth-data'>未认证<span>{{UnAuthenticatedNum | number}}</span>人</div>
+      </div>
+    </div>
+    <div class='partner-box'>
+      <div class='item-part'  ng-repeat='child in partnerChildren' ui-sref='dataAnalysis({memberId: child.memberId})'>
+        <div class='row row-no-padding part-list-box' flex='main:justify cross:bottom dir:left box:frist'>
+          <div class="list-left" flex='main:left cross:center'>
+            <div class='teamLevel' ng-show='child.teamLevelName == "舵主"'><img src="{{imgBaseURL}}img/duozhuIcon@2x.png" alt="舵主"></div>
+            <div class='teamLevel' ng-show='child.teamLevelName == "盟主"'><img src="{{imgBaseURL}}img/mengzhu@2x.png" alt="盟主"></div>
+            <div class='list-item-img' flex-box="0">
+              <img ng-src="{{child.avatarImageFileId}}" alt="头像">
+            </div>
+            <div class='list-item-info'>
+              <div class='item-title'>{{child.storeName}}</div>
+              <div class='item-icon' flex='main:left cross:center'>
+                <div class='icon-v-box' flex='main:left box:mean'>
+                  <div class='icon-v' flex='main:center cross:center'>
+                    <div class='vip-icon-img'>
+                      <img src="{{imgBaseURL}}img/V@2x.png" alt="V">
+                    </div>
+                    <div class='vip-icon-text'>{{child.levelOrder}}</div>
+                  </div>
+                  <div class='icon-v-text'>{{child.levelName}}</div>
+                </div>
+                <div class='icon-a-box' flex='main:left' ng-show='child.isAuthenticated'>
+                  <div class='icon-a' flex='main:justify cross:center'>
+                    <div class='a-icon-img'>
+                      <img src="{{imgBaseURL}}img/auth@2x.png" alt="认证">
+                    </div>
+                    <div class='icon-a-text'>认证</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='list-right' ng-show='child.lastOrderTime'>
+            <div class='list-info'>
+              <div class='info-title'>最近一次购买：<span>{{(child.lastOrderTime)*1000 | date:'yyyy/MM/dd'}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class='border-bot'></div>
+      </div>
+      <div class='empty-box' ng-show='partnerChildren.length == 0' flex='main:center cross:center dir:top'>
+        <div class='empty-img'>
+          <img src="{{imgBaseURL}}img/Coupon@2x.png" alt="暂无数据">
+        </div>
+        <div>暂无伙伴，加油召集吧</div>
+      </div>
+    </div>
+    <div style="width: 100%;height: 50px"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

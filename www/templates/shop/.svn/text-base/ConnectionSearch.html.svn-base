@@ -1,0 +1,41 @@
+<!--二级管理-->
+<ion-view view-title="合伙人、人脉搜索" class="background" hide-nav-bar="true">
+<ion-header-bar align-title="center" style="padding-right: 0px;top:0;">
+      <button ng-click="backToLastView()" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+      <div class="row">
+        <!--<span class="position-r col col-25" style="text-align: center;margin-top: -2px" ng-click="chooseType()">-->
+          <!--<span  style="" ng-bind="typeChoose">-->
+          <!--</span>-->
+          <!--<i class="ion-chevron-down font-size-10"></i>-->
+        <!--</span>-->
+        <div class="border border-radius inline-block col col-85" style="text-align: right;height: 30px;position: relative;margin-top: -3px">
+          <input id="focus" type="text" class="inline-block" style="margin-top: -5px;width: 97%;height: 28px;padding-right:24px;" placeholder="{{placeHolder}}" ng-model="searchValue" ng-keypress="todoSomething($event)" />
+          <input-clear style="top: -2px;" ng-model="searchValue"></input-clear>
+        </div>
+        <div class="col col-15 padding-top-5">
+        <div class="color-text-l" ng-style="" style=" width: 100%;text-align: center;font-size: 15px;margin-top: -3px;" ng-click="searchConnection()">搜索</div>
+        </div>
+      </div>
+    </ion-header-bar>
+  <ion-content>
+    <!--搜索结果列表-->
+    <div ng-if="searchResults">
+      <div ng-repeat="item in searchResults" style="padding:0 12px; background: #ffffff;">
+        <div flex="main:left cross:center" style="height:65px;" ng-click="gotoPartnerDetail(item.memberId,searchType)">
+          <img ng-src="{{item.avatarImageFileId}}" style="margin:0 12px 0 4px;width:46px;height:46px;border-radius: 23px;">
+          <div>
+            <div style="font-size:16px;color:#000000;letter-spacing:0px;text-align:left;">{{item.storeName}}的小店</div>
+            <div style="margin-top:9px;opacity:0.87;font-size:14px;color:#030303;letter-spacing:0px;line-height:14px;text-align:left;">{{item.name}},友圈排名：{{item.relationshipRank}}<span style="opacity:0.54;font-size:14px;color:#030303;letter-spacing:0px;text-align:left;">总排名：{{item.userRank}}</span></div>
+          </div>
+        </div>
+        <div class="onePixelLine"></div>
+      </div>
+      <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </div>
+    <!--搜索无结果-->
+    <div flex="dir:top main:center cross:center" style="margin-top:20px;"  ng-if="noSearchResults">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据</span>
+    </div>
+  </ion-content>
+</ion-view>

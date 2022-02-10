@@ -1,0 +1,200 @@
+.secLev_body{
+  background: #eeeeee;
+}
+.secLevStore_header{
+  position: absolute;
+  overflow: visible;
+  z-index: 999;
+  top:0;
+  left:0;
+  width:100%;
+  background: #FFFFFF;
+  .backBtn{
+    width: 40px;
+    padding: 0 0 0 16px;
+    i{
+      font-size: 32px;
+      color: #999999;
+    }
+  }
+  .title{
+    font-size: 17px;/*no*/
+    color: #030303;
+  }
+  .lookMore{
+    position: relative;
+    overflow: visible;
+    width:  40px;
+    height: 40px;
+    .lookMoreIcon{
+      width:  18px;
+    }
+    .lookMoreDetail{
+      position: absolute;
+      width: 120px;
+      //height:120px;
+      right:0px;
+      top:24px;
+      background: rgba(0,0,0,0.8);
+      font-size: 14px;
+      color: #FFFFFF;
+      &>div{
+        width:120px;
+        height:40px;
+        img{
+          width:13px;
+          height:13px;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+.secondLevel_typeContainer{
+  height:40px;
+  overflow: hidden;
+  .type_box{
+    height:150%;
+    white-space: nowrap;
+    overflow-x: auto;
+    &>div{
+      display: inline-block;
+    }
+  }
+}
+.commonType_css{
+  width:72px;
+  height: 24px;
+  margin: 8px 0 0 16px;
+  -webkit-border-radius:12px;
+  -moz-border-radius:12px;
+  border-radius:12px;
+  font-size: 12px;/*no*/
+  line-height: 24px;
+  text-align: center;
+}
+.checkedType_css{
+  background: #2979FF;
+  color: #ffffff;
+  border:1px solid #2979FF;
+}
+.uncheckedType_css{
+  color: #999999;
+  border:1px solid #999999;
+}
+.secLev_filter{
+  width:100%;
+  height:44px;
+  background: #FFFFFF;
+  padding: 0 36px;
+  font-size:14px;/*no*/
+  &>div{
+    height:100%;
+  }
+  //二级类目页 筛选排序 样式
+  .UnSelected{
+    color: #666666;
+  }
+  .Selected{
+    color: #2979ff;
+    border-bottom: 2px solid #2979FF;
+  }
+}
+.secLev_productContainer{
+  .product_block{
+    float: left;
+    width:180px;
+    min-height:300px;
+    background: #FFFFFF;
+    margin:5px 0 0 5px;
+    img{
+      width:160px;
+      height:160px;
+      display: inline-block;
+      margin:10px 0 0 10px;
+    }
+    .product_content{
+      font-size: 14px;/*no*/
+      color: #333333;
+      //height: 28px;/*no*/
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      margin:22px 0 12px 16px;
+    }
+    .product_price{
+      font-size: 14px;/*no*/
+      color: #FF4400;
+      margin:0 0 4px 16px;
+    }
+    .product_commission{
+      background: url('http://cdn09.ehaier.com/shunguang/H5/www/img/zhuan@2x.png') center/100% no-repeat;
+      width: 81px;
+      height: 20px;
+      padding: 4px 0 0 15px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 12px;
+      margin:0 0 0 16px;
+      /*no*/
+      span {
+        transform: scale(0.83, 0.83);
+        margin-top: 2px;
+        margin-left: -2px;
+      }
+    }
+
+  }
+}
+
+.shareToWhere{
+  font-size: 14px;/*no*/
+  color: #999999;
+  margin:23px 0 18px 0;
+  .horizontalLine{
+    width:120px;
+    height:1px;
+    background: #e4e4e4;
+  }
+  &>div:nth-child(2){
+    margin:0 30px;
+  }
+}
+.horizontalLineBottom{
+  width:343px;
+  height:1px;
+  background: #e4e4e4;
+  margin:15px auto 0;
+}
+.cancelShare{
+  width:100%;
+  height:50px;
+  font-size: 16px;/*no*/
+  line-height: 50px;
+  color: #666666;
+  text-align: center;
+}
+.shareBackDrop{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.8);
+}
+.shoppingCarTml{
+  .CommonShoppingCar{
+    z-index: 120;
+  }
+}
+.moreDetailDrop{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+

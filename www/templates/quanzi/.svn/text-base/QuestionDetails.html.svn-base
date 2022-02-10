@@ -1,0 +1,78 @@
+<ion-view view-title="问题详情">
+  <ion-content class="bg-background">
+    <ion-refresher pulling-text="下拉刷新..." refreshing-text="" on-refresh="init()"></ion-refresher>
+    <div class="margin-top-10 padding-10 bg-white">
+      <div class="float-l">
+        <img ng-src="{{imgBaseURL}}img/btn_qq.png" alt="" class="width-height-20">
+      </div>
+      <div style="margin-left: 30px;">什么是微学堂，能举几个例子吗？什么是微学堂，能举几个例子吗?</div>
+    </div>
+    <div class="padding-10 bg-white">
+      <div class="float-l">
+        <img ng-src="{{imgBaseURL}}img/btn_qq.png" alt="" class="width-height-20">
+      </div>
+      <div style="margin-left: 30px">锋芒毕露</div>
+    </div>
+
+    <div class="margin-top-10 padding-10 bg-white">
+      <div class="float-l">
+        <img ng-src="{{imgBaseURL}}img/btn_qq.png" alt="" class="width-height-20">
+      </div>
+      <div style="margin-left: 30px">共
+        <span style="color: dodgerblue;">8</span>
+        <span>条回答</span>
+      </div>
+    </div>
+    <!--回答内容-->
+    <div class="margin-top-1 bg-white">
+      <!--答-->
+      <div class="padding-left-right-10 padding-top-bottom-5 bg-white"
+           style="box-sizing: border-box;height: 40px">
+        <div class="float-l">
+          <img src="{{item.firstAnswerUserImg | scoleFilter}}" alt="" class="block width-height-20"
+               style="">
+        </div>
+        <div style="margin-left: 6px" class="float-l padding-left-5 font-size-12">锋芒毕露
+        </div>
+        <div class="margin-left-5 float-l color-white padding-left-right-5 margin-top-1"
+             style="line-height: 16px;height: 16px;background: orange;border-radius: 8px;">师
+        </div>
+        <div class="float-r">2016-12-12</div>
+        <div style="clear: both"></div>
+      </div>
+      <div class="padding-left-right-10 ">
+        <div class="padding-left font-bold color-text-m" style="margin-left: 20px">
+          微课堂是顺逛微课堂是顺逛，微课堂是顺逛微课堂是顺逛，微课堂是顺逛微课堂是顺逛
+        </div>
+      </div>
+      <div class="padding-10">
+        <div class="font-size-12 float-r margin-right-5" style="line-height: 16px;color: #c0c0c0">删除</div>
+        <img ng-src="{{imgBaseURL}}img/circleIcon/deleteTrash.png" class="float-r" style="width: 16px;height: 16px;">
+      </div>
+      <div style="clear: both"></div>
+    </div>
+
+
+  </ion-content>
+  <!--提交-->
+  <div class="bg-background width-100 padding-10" style="position: fixed;bottom: 0;height: 50px"
+       ng-style="keyboardHeight">
+    <div class="inline-block position-a border bg-white border-radius"
+         style="height: 30px;left: 10px;right: 80px;padding: 1px">
+      <div class="inline-block" style="z-index: 999">
+        <img ng-src="{{imgBaseURL}}img/circleIcon/editTag.png" class="position-a" style="width: 18px;top: 5px;left:5px" alt="">
+      </div>
+      <div class="inline-block">
+        <input type="search" ng-model="namedTags" id="inputId" class="padding-0 padding-left-25 inline-block width-100"
+               placeholder="请输入回答" maxlength="8" style="height: 26px;">
+      </div>
+    </div>
+
+    <div class="inline-block float-r">
+      <div style="width: 60px;height: 30px;color: white;background:#0277fd;line-height: 30px"
+           class="text-center border-radius" ng-click="commitAnswer(namedTags)">
+        提交
+      </div>
+    </div>
+  </div>
+</ion-view>

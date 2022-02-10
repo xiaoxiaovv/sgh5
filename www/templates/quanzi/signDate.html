@@ -1,0 +1,84 @@
+<!--create by@zyr on 2017/11/20 -->
+<ion-view class="background" hide-nav-bar="true">
+  
+  <ion-content scrollbar-y="false">
+    <div class='sign-date-box'>
+      <div class='date-head' ng-style='' style='height:44px;'>
+        <div class='head-title' flex="main:justify cross:center" ng-style='paddingtopClass' style='height:44px;'>
+          <div class='user-img' flex='cross:center' ng-click="goBack()">
+            <img ng-src="{{imgBaseURL}}img/vipLeftArrow.png" class='go-back' >
+          </div>
+          <div  class='title'></div>
+          <div style="display:none;" ng-if="isMoreSign>0" class='head-buqian' flex="main:center cross:center" ng-click='replenishSign()'>
+            <img ng-src="{{imgBaseURL}}img/signIn/replenish_sign_btn.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class='date-content'>
+        <div class='date-bg'>
+          <img ng-src="{{imgBaseURL}}img/signIn/date_box_bg.png" alt="">
+        </div>
+        <div class='sign-info' flex='dir:top cross:center'>
+          <div class='info-title'>圈子{{topicName}}您已经签到{{signCount}}天</div>
+          <div class='ingo-btn'>
+            <div class='btn-bg' flex='cross:center'><img ng-src="{{imgBaseURL}}img/signIn/sign_btn.png" alt=""></div>
+            <div class='btn-text' ng-click='signChart(topicId)'>签到排行榜</div>
+          </div>
+        </div>
+        <div class='date-box'>
+          <div class='date-btn' flex='main:justify'>
+            <div class='prev-btn' >
+              <div ng-click='prevMonth()'>
+                <i><img ng-src="{{imgBaseURL}}img/signIn/prev_month.png" alt=""></i><span>上一月</span>
+              </div>
+            </div>
+            <div class='date-text'>{{getYear}}年{{getMonth}}月</div>
+            <div  class='next-btn'>
+              <div ng-if='!(monthFlag==0)' ng-click='nextMonth()'>
+                <span>下一月</span><i><img ng-src="{{imgBaseURL}}img/signIn/next_month.png" alt=""></i>
+              </div>
+            </div>
+          </div>
+          <div class='week-box'>
+            <div class='week-border'>
+              <div ng-repeat='week in weeks track by $index' class='week' >
+                {{week}}
+              </div>
+            </div>
+          </div>
+          <div class='day-box'>
+            <!-- <div class='day-item' ng-repeat ='item in currentDays track by $index' ng-class='{true:"active",false:"noactive"}[!($index<prevLast.length||($index+1)>(prevLast.length+fullCurrentMonth.length))]'><span>{{item}}</span></div> -->
+            <div class='day-item' ng-repeat ='item in currentDays track by $index' ng-class='{"active":!($index<prevLast.length||($index+1)>(prevLast.length+fullCurrentMonth.length)),"noactive":$index<prevLast.length||($index+1)>(prevLast.length+fullCurrentMonth.length),"sign-active":(item.isSign==1)}' >
+              <div ng-if='item.extraContentType==2'>
+                <div class='active-img' ng-if='item.activityImg'><img ng-src="{{item.activityImg}}" alt=""></div>
+                <a ng-href="{{item.extraContent}}"><span>{{item.signDate.split('-')[2]}}</span></a>
+              </div>
+              <div ng-if='item.extraContentType!=2' ng-click='signDateActive(item.extraContent,item.extraContentType,item.postProductEntity)'>
+                <div  class='active-img' ng-if='item.activityImg' ><img ng-src="{{item.activityImg}}" alt=""></div>
+                <span>{{item.signDate.split('-')[2]}}</span>
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='sign-instruction'>
+        <div class='instruction-title'>
+          <img ng-src="{{imgBaseURL}}img/signIn/instruction_sign_title.png" alt="">
+        </div>
+        <div class='instruction-content'>
+          <div class='instruction-bg'>
+            <img ng-src="{{imgBaseURL}}img/signIn/instruction_content_bg.png" alt="">
+          </div>
+          <div class='instruction-text' style="width:75%;left:15%;text-align:left;">
+             <p style="text-indent:-22px;margin-top:5px;">1、签到是圈子活跃分子对本圈活跃的表现，每个圈子每天限制签到1次；</p>
+             <p style="text-indent:-22px;margin-top:5px;">2、圈子签到每天限制5个圈子，漏签不补；</p>
+             <p style="text-indent:-22px;margin-top:5px;">3、签到日历记录你本圈月度签到情况，活动节点标注让你精彩不再错过。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content> 
+</ion-view>
+

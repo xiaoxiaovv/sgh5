@@ -1,0 +1,6 @@
+<ion-view class="background" view-title="{{title}}">
+  <ion-content scrollbar-y="false">
+    <div ng-bind-html="htmlContent"></div>
+  </ion-content>
+</ion-view>
+

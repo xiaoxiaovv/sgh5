@@ -1,0 +1,80 @@
+<ion-view view-title="银行卡" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:40px;height:44px;padding-left:16px;" flex="cross:center">
+      <div style="width:34px;height:24px;" flex="cross:center" ng-click="goBack()">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">银行卡</div>
+    <div style="margin-right:9px;height:44px;padding-right:6px;font-size:17px;color:#999;width:80px;letter-spacing: 0;" flex="main:center cross:center" ui-sref="personnalCenter">我的</div>
+  </div>
+  <ion-content scrollbar-y="false" class="bankCardSecond" ng-style="paddingtopClasscontent">
+    <div class="bankCardfirst"></div>
+    <div  flex="dir:top" class="bankCardthird">
+      <div class="bankCard" ng-if="isKJT">
+        <div flex="box:first" style="background: {{backGroundOrPic[88888888].background}};">
+          <div flex="main:center cross:center">
+            <div flex="main:center cross:center"><img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[88888888].img}}.png"></div>
+          </div>
+          <div>
+            <p>
+              <span>快捷通</span>
+              <img ng-src="{{imgBaseURL}}img/baozhang.png">
+            </p>
+            <p>{{bankCardDetailList}}</p>
+          </div>
+          <div>
+            <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[88888888].img}}.png">
+          </div>
+        </div>
+      </div>
+      <div class="bankCard" ng-if="!isKJT">
+        <div flex="box:first" style="background: {{backGroundOrPic[bankCardDetailList.bankNo].background}};">
+          <div flex="main:center cross:center">
+            <div flex="main:center cross:center"><img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[bankCardDetailList.bankNo].img}}.png"></div>
+          </div>
+          <div>
+            <p>
+              <span>{{bankCardDetailList.bankName}}</span>
+              <img ng-src="{{imgBaseURL}}img/baozhang.png">
+            </p>
+            <p>{{bankCardDetailList.cardNo}}</p>
+          </div>
+          <div>
+            <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[bankCardDetailList.bankNo].img}}.png">
+          </div>
+        </div>
+      </div>
+      <div class="bankCardDetail" ng-if="isKJT">
+        <!--<div flex="" class="border-bottom">-->
+          <!--<div>姓名</div>-->
+          <!--<div>{{nameKjt}}</div>-->
+        <!--</div>-->
+        <div flex="">
+          <div>手机号</div>
+          <div>{{bankCardDetailList}}</div>
+        </div>
+      </div>
+      <div class="bankCardDetail" ng-if="!isKJT">
+        <div flex="" class="border-bottom">
+          <div>姓名</div>
+          <div>{{bankCardDetailList.ownerName}}</div>
+        </div>
+        <div flex="" class="border-bottom">
+          <div>银行预留手机号</div>
+          <div>{{bankCardDetailList.phoneNo}}</div>
+        </div>
+        <div class="byuerCountThe" flex="dir:left box:last main:center cross:center">
+          <input type="text" name="name" placeholder="短信验证码" ng-model="userInfo.verificationCode">
+          <span ng-click="getVCode()">{{VCodeTips}}</span>
+        </div>
+      </div>
+      <div ng-if="!isKJT" class="bankCardDetailTwo" ng-click="unBindBank()">
+        解除绑定
+      </div>
+      <div ng-if="isKJT" class="bankCardDetailTwo" ng-click="clickUnBind()">
+        解除绑定
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

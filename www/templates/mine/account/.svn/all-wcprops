@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/dev/!svn/ver/176644/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account
+END
+ChangeEmail.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account/ChangeEmail.html
+END
+SelectSex.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/160016/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account/SelectSex.html
+END
+AccountMessage.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/dev/!svn/ver/137155/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account/AccountMessage.html
+END
+ChangeName.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account/ChangeName.html
+END
+ChangePassword.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/dev/!svn/ver/176644/haier-store/shunguang-v3/H5/trunk/www/templates/mine/account/ChangePassword.html
+END

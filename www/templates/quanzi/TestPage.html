@@ -1,0 +1,49 @@
+<ion-view view-title="考试">
+  <ion-content scroll="false">
+    <div class="padding-20 height-100" style="box-sizing: border-box">
+      <div class="font-bold text-center bg-blue-color-white" style="width: 100px" ng-bind="essentialInfo.courseName">
+        微课堂第10课
+      </div>
+
+      <div class="font-bold font-size-20 margin-top-10" ng-bind="essentialInfo.paperName">"商城君"为你传授如何正确选购家电？</div>
+      <div class="color-blue-sg font-bold margin-top-25 font-size-15">
+        <div>
+          <div>亲，你们已完成此次考试</div>
+        </div>
+        <div>
+          <div class="float-l">题目类型：</div>
+          <div ng-bind="essentialInfo.subjectType">单选、多选、判断</div>
+        </div>
+        <div>
+          <div class="float-l">题目数量：</div>
+          <div ng-bind="essentialInfo.subjectNum">15道</div>
+        </div>
+        <div>
+          <div class="float-l">已答数量：</div>
+          <div ng-bind="essentialInfo.answerNum">15道</div>
+        </div>
+        <div>
+          <div class="float-l">错题数量：</div>
+          <div ng-bind="essentialInfo.errorNum">15道</div>
+        </div>
+        <div>
+          <div class="float-l" style="width: 75px">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</div>
+          <div>本测试全部为客观选择</div>
+          <ion-content class="height-100 scroll-content ionic-scroll  has-header">
+        </div>
+      </div>
+    </div>
+    <div class="text-center font-bold position-a width-100" style="bottom: 50px" ng-click="toTestDetails()"
+         ng-if="essentialInfo.answerStatus==0">
+      <div class="border-radius bg-blue" style="margin-left: 12%;margin-right: 12%;line-height: 40px">开始答题</div>
+    </div>
+    <div class="text-center font-bold position-a width-100" style="bottom: 20px" ng-click="toTestDetails()"
+         ng-if="essentialInfo.answerStatus==2">
+      <div class="border-radius bg-blue" style="margin-left: 12%;margin-right: 12%;line-height: 40px">查看考卷</div>
+    </div>
+    <div class="text-center font-bold position-a width-100" style="bottom: 20px" ng-click="toTestDetails()"
+         ng-if="essentialInfo.answerStatus==1">
+      <div class="border-radius bg-blue" style="margin-left: 12%;margin-right: 12%;line-height: 40px">继续答题</div>
+    </div>
+  </ion-content>
+</ion-view>

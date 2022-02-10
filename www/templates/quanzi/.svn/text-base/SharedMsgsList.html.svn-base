@@ -1,0 +1,33 @@
+<div style="width: 100%;background-color: #fff;
+    padding: 8px;
+    margin-top: 4px;" >
+    <div  style="width: 100%"> {{item.from}}</div>
+    <div class="sg-share-list-mini-out">
+        <span style="font-size: 12px;">{{item.shareMsgsList[0].groupMsgUser}}:</span>
+        <div  ng-if="item.shareMsgsList[0].fileType == '.wav'">
+        一段音频
+        </div>
+        <div  ng-if="item.shareMsgsList[0].fileType == '.jpg'">
+        一副图片
+        </div>
+        <div  ng-if="!item.shareMsgsList[0].fileType" ng-bind-html="item.shareMsgsList[0].groupMsg">
+
+        </div>
+    </div>
+    <div ng-if="item.shareMsgsLength>1" class="sg-share-list-mini-out">
+        <span style="font-size: 12px;" >{{item.shareMsgsList[1].groupMsgUserName}}:</span>
+        <div  ng-if="item.shareMsgsList[1].fileType == '.wav'">
+        一段音频
+        </div>
+        <div  ng-if="item.shareMsgsList[1].fileType == '.jpg'">
+        一副图片
+        </div>
+        <div  ng-if="!item.shareMsgsList[1].fileType" ng-bind-html="item.shareMsgsList[1].groupMsg">
+
+        </div>
+    </div>
+    <div style="font-size: 12px;border-top: solid 1px #ddd;height: 18px;line-height: 18px;padding: 4px;">
+        聊天记录
+    </div>
+
+</div>

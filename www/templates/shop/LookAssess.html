@@ -1,0 +1,86 @@
+<!--查看评价-->
+<ion-view view-title="查看评价" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:74px;height:44px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;margin-right:11px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">查看评价</div>
+    <div style=" width:74px;height:44px;padding-right:14px;font-size: 15px;color:#999;" flex="main:center cross:center"></div>
+  </div>
+  <!-- 邀请评价等 -->
+  <div flex="dir:left box:mean" style="position:absolute;bottom:0;width:100%;z-index:99;" ng-if="stateList.isUserCommented == 0&&stateList.isMyOrder == 0&&stateList.isCanExperience == 1&&timeIsOrNo&&stateList.isStoreMember==1">
+    <div style="height:48px;font-size: 14px;color:#333;background-color:#fff;" flex="main:center cross:center" ui-sref="chaseEvaluate({cOrderSn:cOrderSn,isMeorder:stateList.isMyOrder})">追加评价</div>
+    <div style="height:48px;font-size: 14px;color:#fff;background: #2979FF;" flex="main:center cross:center" ui-sref="criticalSuccess({cOrderSn:cOrderSn})">邀请评价</div>
+  </div>
+  <div ng-if="stateList.isCanExperience == 1&&(stateList.isUserCommented != 0||stateList.isMyOrder != 0||!timeIsOrNo||stateList.isStoreMember!=1)" flex="dir:left box:mean" style="position:absolute;bottom:0;width:100%;z-index:99;background:#f4f4f4;">
+    <div flex="main:center cross:center" style="height:92px;">
+      <div flex="main:center cross:center" style="height:44px;margin:0 16px;background:#2979FF;box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);border-radius: 100px;width:100%;font-size: 17px;
+color: #fff;" ui-sref="chaseEvaluate({cOrderSn:cOrderSn,isMeorder:stateList.isMyOrder})">追加评价</div>
+    </div>
+  </div>
+  <div ng-if="stateList.isCanExperience != 1&&stateList.isUserCommented == 0&&stateList.isMyOrder == 0&&timeIsOrNo&&stateList.isStoreMember==1" flex="dir:left box:mean" style="position:absolute;bottom:0;width:100%;z-index:99;background:#f4f4f4;">
+    <div flex="main:center cross:center" style="height:92px;">
+      <div flex="main:center cross:center" style="height:44px;margin:0 16px;background:#2979FF;box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);border-radius: 100px;width:100%;font-size: 17px;
+color: #fff;" ui-sref="criticalSuccess({cOrderSn:cOrderSn})">邀请评价</div>
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="lookAssessDiv background">
+    <div class="starDiv">
+      <div class="starDivTop" flex="dir:left main:justify">
+        <div class="starText" ng-if="assessList.star == 5">好评</div>
+        <div class="starText" ng-if="assessList.star == 3">中评</div>
+        <div class="starText" ng-if="assessList.star == 1">差评</div>
+        <div class="starTime" ng-bind="assessList.createTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+      </div>
+      <div class="contentText">{{assessList.commentContent}}</div>
+      <div class="assessPic" flex="dir:left">
+        <div class="assessPicList" flex="cross:center" ng-repeat="a in assessList.commentPics track by $index" ng-click="showLarge(a.picUrl)"><img ng-src={{a.picUrl}}></div>
+      </div>
+    </div>
+    <div class="starDiv" ng-if="stateList.isMyOrder==0&&stateList.isUserCommented==1">
+      <div class="starDivTop" flex="dir:left main:justify">
+        <div class="starText">用户使用心得</div>
+        <div class="starTime" ng-bind="assessList.userCommentCreateTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+      </div>
+      <div class="contentText">{{assessList.userCommentContent}}</div>
+      <div class="assessPic" flex="dir:left">
+        <div class="assessPicList" flex="cross:center" ng-repeat="a in assessList.userCommentPics track by $index" ng-click="showLarge(a.picUrl)"><img ng-src={{a.picUrl}}></div>
+      </div>
+    </div>
+    <div class="starDiv" ng-if="stateList.isExperienced == 1">
+      <div class="starDivTop" flex="dir:left main:justify">
+        <div class="starText">追加评论</div>
+        <div class="starTime" ng-bind="assessList.experienceTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+      </div>
+      <div class="contentText">{{assessList.experienceContent}}</div>
+      <div class="assessPic" flex="dir:left">
+        <div class="assessPicList" flex="cross:center" ng-repeat="a in assessList.experiencePics track by $index" ng-click="showLarge(a.picUrl)"><img ng-src={{a.picUrl}}></div>
+      </div>
+    </div>
+    <div class="starDiv" ng-repeat="haier in assessList.serviceCommentReplies">
+      <div class="starDivTop" flex="dir:left main:justify">
+        <div class="starText">小海回复</div>
+        <div class="starTime" ng-bind="haier.createTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+      </div>
+      <div class="contentText">{{haier.replyContent}}</div>
+    </div>
+    <div class="starDiv" ng-repeat="haier in assessList.storeCommentReplies">
+      <div class="starDivTop" flex="dir:left main:justify">
+        <div class="starText">商家回复</div>
+        <div class="starTime" ng-bind="haier.createTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+      </div>
+      <div class="contentText">{{haier.replyContent}}</div>
+    </div>
+    <div ng-if="stateList.isUserCommented == 0&&stateList.isMyOrder == 0&&stateList.isCanExperience == 1&&timeIsOrNo" style="width:100%;height:68px;"></div>
+    <div ng-if="stateList.isCanExperience == 1&&(stateList.isUserCommented != 0||stateList.isMyOrder != 0||!timeIsOrNo)" style="width:100%;height:112px;"></div>
+    <div ng-if="stateList.isCanExperience != 1&&stateList.isUserCommented == 0&&stateList.isMyOrder == 0&&timeIsOrNo" style="width:100%;height:112px;"></div>
+  </ion-content>
+</ion-view>
+<div ng-if="show" style="width:100%;height: 100%;background: black;z-index:9;position: absolute;opacity: 0.6">
+</div>
+<div style="width:100%;display:table-cell;height:100%;text-align:center; vertical-align:middle;background: transparent;position: fixed;z-index:10;" ng-if="show" ng-click="closeImg()">
+  <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+  <img style="width: 88%;vertical-align: middle;" ng-src="{{largeImg}}" err-src="" />
+</div>

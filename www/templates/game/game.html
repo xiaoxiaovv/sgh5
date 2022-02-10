@@ -1,0 +1,256 @@
+<ion-view class="background" hide-nav-bar="true">
+    <!-- *********************分享标签－whiteBird start********************* -->
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+            <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+        </div>
+    </div>
+    <!-- *********************分享标签－whiteBird end********************* -->
+  <button style="padding: 0px;z-index: 100;right: 10px;color:#999999" ng-style="topBtnCss4IOS"
+          class="button back-button buttons button-clear header-item" ng-click="goBack()">
+    <i class="icon ion-ios-arrow-left sg-game-back"></i>
+    <span class="back-text"></span>
+  </button>
+  <img style="width: 36px;height: 40px;float:right;z-index: 100;position: relative;top: 6px;" ng-style="topBtnCss4IOS"
+       ng-click="share()"
+       ng-src="{{imgBaseURL}}img/ic-share-b.png" ng-if="isApp">
+  <ion-content has-bouncing="false" scrollbar-y="false" ng-class="{true:'',false:'game-no-bkg-color'}[hasBkgColor]">
+    <!--遮罩层-->
+    <div style="width: 100%;height: 100%;background-color: transparent;position: fixed;z-index: 101;" ng-if="isAdmin&&isAdmin==1"></div>
+    <img class="sg-game-wrap" ng-src="{{game.backgroundPic}}" ng-if="game.backgroundPic">
+    <img class="sg-game-wrap" ng-src="{{imgBaseURL}}img/game_banner.png" ng-if="!game.backgroundPic">
+
+    <div style="width: 100%;height:231px">
+
+      <div class="sg-game-desc-div"><p>{{game.gameTitle}}</p></div>
+      <div class="sg-game-watch-div" ng-click="openPic();" ng-if="game.activityPic"><div class="button-small button-clear" style="background-color: #df64e6;color:#ffffff; width:120px;font-size: 14px; display: inline-block;border-radius: 4px;padding-top: 2px;"> 查看活动奖品>></div></div>
+    </div>
+    <div style="text-align: center" ng-if="prizeList.length>11"><!-- 若返回奖品格子少于12个不显示 -->
+      <div class="con_top">
+        <div id="random_1" ng-model="prizeList[0]" ng-class="{true: 'cur-pos', false: ''}[0 === curP ]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-1"><img
+          ng-src="{{prizeList[0].image? prizeList[0].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+        <div id="random_2" ng-model="prizeList[1]" ng-class="{true: 'cur-pos', false: ''}[1 === curP ]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-2"><img
+          ng-src="{{prizeList[1].image ? prizeList[1].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}"></div>
+        <div id="random_3" ng-model="prizeList[2]" ng-class="{true: 'cur-pos', false: ''}[2 === curP ]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-3"><img
+          ng-src="{{prizeList[2].image? prizeList[2].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+        <div id="random_4" ng-model="prizeList[3]" ng-class="{true: 'cur-pos', false: ''}[3 === curP ]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-4"><img
+          ng-src="{{prizeList[3].image? prizeList[3].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+
+      </div>
+      <div style="margin-top: 8px">
+        <div class="sg-game-middle-left">
+          <div id="random_12" ng-model="prizeList[11]" ng-class="{true: 'cur-pos', false: ''}[11 === curP]"
+               ng-style="gridHeight"
+               class="sg-game-color-3"><img ng-src="{{prizeList[11].image? prizeList[11].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+          <div id="random_11" ng-model="prizeList[10]" ng-class="{true: 'cur-pos', false: ''}[10 === curP]"
+               ng-style="gridHeight"
+               style="margin-top: 8px;" class="sg-game-color-4"><img
+            ng-src="{{prizeList[10].image? prizeList[10].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+        </div>
+        <div class="sg-game-middle" ng-click="clickChou()">
+          <img class="imgBtn" ng-src="{{imgBaseURL}}img/game_click.png">
+        </div>
+        <div class="sg-game-middle-right" ng-style="gridHeightMiddle">
+          <div id="random_5" ng-model="prizeList[4]" ng-class="{true: 'cur-pos', false: ''}[4=== curP]"
+               ng-style="gridHeight"
+               class="sg-game-color-1"><img ng-src="{{prizeList[4].image? prizeList[4].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+          <div id="random_6" ng-model="prizeList[5]" ng-class="{true: 'cur-pos', false: ''}[5 === curP]"
+               ng-style="gridHeight"
+               class="sg-game-color-3" style="margin-top: 8px;"><img
+            ng-src="{{prizeList[5].image? prizeList[5].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+        </div>
+      </div>
+      <div class="con_top" style="margin-top: 8px">
+        <div id="random_10" ng-model="prizeList[9]" ng-class="{true: 'cur-pos', false: ''}[9 === curP]"
+             ng-style="gridHeight"
+             class="sg-game-squre " style="background: #453C84;"><img
+          ng-src="{{prizeList[9].image? prizeList[9].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+        <div id="random_9" ng-model="prizeList[8]" ng-class="{true: 'cur-pos', false: ''}[8 === curP]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-3"><img
+          ng-src="{{prizeList[8].image? prizeList[8].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+        <div id="random_8" ng-model="prizeList[7]" ng-class="{true: 'cur-pos', false: ''}[7 === curP]"
+             ng-style="gridHeight"
+             class="sg-game-squre sg-game-color-2"><img
+          ng-src="{{prizeList[7].image? prizeList[7].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}"></div>
+        <div id="random_7" ng-model="prizeList[6]" ng-class="{true: 'cur-pos', false: ''}[6 === curP]"
+             ng-style="gridHeight"
+             class="sg-game-squre " style="background: #F18D00;"><img
+          ng-src="{{prizeList[6].image? prizeList[6].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;padding-bottom: 20px;">
+      <div class="width-100" ng-click="popup()" style="position: relative;top: 2px;">
+        <img style="width: 100%;" ng-src="{{imgBaseURL}}img/game_light_top.png">
+      </div>
+      <div
+        style="padding: 0 15px;background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/game_light_middle.png) top center repeat-y;background-size: 100%;">
+        <div style="padding:0 7px;margin-top:-4px;">
+          <h4 style="margin-bottom: 5px;width: 30%;height: 20px;line-height: 20px;
+          margin-top: 0px;
+          background: url(http://www.ehaier.com/mstatic/wd/v2/img/game/ico.png) top center no-repeat;
+          background-size: 100%;
+        font-size: 13px;text-align: center;">活动时间 </h4>
+
+          <p style=" color: #FFF;margin-bottom: 10px;">{{startTime}}至{{endTime}}</p>
+
+          <div class="details" style="padding-bottom: 4px">
+            <h4 style="margin-bottom: 5px;width: 30%;height: 20px;line-height: 20px;
+    background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/game_icon.png) top center no-repeat;
+    background-size: 100%;
+    font-size: 13px;text-align: center;">活动说明</h4>
+            <p style="color: #FFF;margin-bottom: 2px;line-height: 20px;}" ng-bind-html="game.activityDesc | trusted"></p>           
+          </div>
+        </div>
+      </div>
+      <div class="game-bottom" style="width: 100%;">
+        <img style="width: 100%" ng-src="{{imgBaseURL}}img/game_light_foot.png">
+      </div>
+
+
+    </div>
+    <!-- 抽到奖品后填写 邮寄地址 -->
+
+    <div ng-if="isShowForm"
+         style="position: absolute;background-color: rgba(21,21,21,0.6);width: 100%;height:100%;top:0px;z-index:110;">
+      <div
+        style="position: relative;top:{{chouResult.prizeType===1?200:300}}px;width: 80%;margin: 0 10%;background-color: #fff;border-radius: 6px;">
+        <div ng-if="chouResult.prizeType ===1"> <!-- 实物奖品 -->
+          <div class="list" style="padding:16px;padding-left: 16px;">
+            <p style="position: relative;top: 5px;">恭喜你抽中了<font style="color:#f7296d;">{{chouResult.prizeName}}</font>奖！
+            </p>
+
+            <p style=" padding-bottom: 13px;border-bottom: 1px #ccc dashed;color: #033333;margin-bottom: 0px;">
+              请确认你的联系方式和邮寄地址</p>
+
+            <p
+              style="padding-top: 10px; padding-bottom: 13px;border-bottom: 1px #ccc dashed;color: #033333;margin-bottom: 0px;">
+              我们的工作人员会尽快和你联系, 请耐心等待。</p>
+
+            <div class="item-input sg-game-form">
+              <label class="input-label">收货人:</label>
+              <input class="border-bottom" placeholder="请输入姓名" type="text" ng-model="chouResult.consignee">
+            </div>
+            <div class="item-input  sg-game-form">
+              <label class="input-label">手机号码:</label>
+              <input class="border-bottom" placeholder="请输入手机号" type="tel" ng-model="chouResult.mobile">
+            </div>
+            <div class="item-input  sg-game-form">
+              <label class="input-label">所在地区:</label>
+              <!--<input placeholder="省市区" type="tel">-->
+              <div class="padding  bg-white border-bottom" style="padding-left: 0px;padding-bottom: 5px;width:65%;"
+                   ng-click="addressTop()">
+                <span ng-bind="chouResult.regionName"></span>
+              </div>
+            </div>
+            <div class="item-input sg-game-form">
+              <label class="input-label">详细地址:</label>
+              <input class="border-bottom" placeholder="详细地址" type="text" ng-model="chouResult.address">
+            </div>
+            <div style="width: 100%;text-align: center;margin-top: 15px;">
+              <div ng-click="confirmGameInfo()"
+                   style="display: inline-block;border:none;width: 90px;height: 30px;border-radius: 5px;color: #fff;background-color: #f7296d;padding: 4px;">
+                确认
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="chouResult.prizeType ===2"><!--  优惠券 奖品-->
+          <div style="padding: 16px;">
+            <p> 恭喜您抽中<span style="color:#f7296d;">{{chouResult.prizeName}}</span>奖！</p>
+
+            <p style="padding-bottom: 13px;border-bottom: 1px #ccc dashed;color: #033333;margin-bottom: 0px;">
+              优惠券已经发放至您的帐户中，请到我的优惠券中查看！
+              谢谢您的参与！</p>
+
+            <div style="width: 100%;text-align: center;margin-top: 15px;">
+              <div ng-click="hideForm()"
+                   style="display: inline-block;border:none;width: 90px;height: 30px;border-radius: 5px;color: #fff;background-color: #f7296d;padding: 4px;">
+                我知道了
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="chouResult.prizeType ===3"><!--  谢谢参与 todo  抽奖次数用完-->
+          <div style="padding: 16px">
+            <div style="padding-bottom: 13px;color: #033333;margin-bottom: 0px;"
+                 class="text-align-c">
+              <p>很遗憾哦，什么都没抽到！</p>
+
+              <p>谢谢您的参与！</p>
+            </div>
+            <div style="width: 100%;text-align: center;margin-top: 15px;">
+              <div ng-click="hideForm()"
+                   style="display: inline-block;border:none;width: 90px;height: 30px;border-radius: 5px;color: #fff;background-color: #f7296d;padding: 4px;">
+                再试一次
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div ng-if="chouResult.prizeType ===4"><!--  红包 奖品-->
+          <div style="padding: 16px;">
+            <p> 恭喜您抽中<span style="color:#f7296d;">{{chouResult.prizeName}}</span></p>
+
+            <p style="padding-bottom: 13px;border-bottom: 1px #ccc dashed;color: #033333;margin-bottom: 0px;">
+              谢谢您的参与！</p>
+
+            <div style="width: 100%;text-align: center;margin-top: 15px;">
+              <div ng-click="hideForm()"
+                   style="display: inline-block;border:none;width: 90px;height: 30px;border-radius: 5px;color: #fff;background-color: #f7296d;padding: 4px;">
+                我知道了
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="chouResult.prizeType ===5"><!--  红包 奖品-->
+          <div style="padding: 16px;">
+            <p> 恭喜您抽中<span style="color:#f7296d;">{{chouResult.prizeName}}</span></p>
+
+            <p style="padding-bottom: 13px;border-bottom: 1px #ccc dashed;color: #033333;margin-bottom: 0px;">
+              谢谢您的参与！</p>
+
+            <div style="width: 100%;text-align: center;margin-top: 15px;">
+              <div ng-click="hideForm()"
+                   style="display: inline-block;border:none;width: 90px;height: 30px;border-radius: 5px;color: #fff;background-color: #f7296d;padding: 4px;">
+                我知道了
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

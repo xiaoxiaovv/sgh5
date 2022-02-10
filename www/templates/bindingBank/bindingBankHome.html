@@ -1,0 +1,168 @@
+<ion-view class="background trueAuthenticationView" hide-nav-bar="true" view-title="绑定银行卡">
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:18px;width:18px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">绑定银行卡</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+    <div class="scroll-view">
+      <!--未认证-->
+      <div ng-if="isNotAuthentication">
+        <!--1.信息提示-->
+        <div class="true_authentication_massage">
+          <div>
+            请填写您的银行卡信息，本平台暂只支持储蓄卡认证和提现。
+          </div>
+        </div>
+        <!--2.填写信息-->
+        <div class="new_authentication_info">
+          <!--2.1 姓名 -->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">姓名</span>
+            <p ng-if="!isInputs"class="new_authentication_input"  style="color: #999;font-size: 12px;">{{userName}}</p>
+            <input style="height: 100%;"  ng-if="isInputs" ng-model="obj.isMyName" class="new_authentication_input" type="text"  placeholder="请输入姓名">
+          </div>
+          <!--2.2证件号-->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">证件号</span>
+            <p ng-if="!isIdNumber" class="new_authentication_input" style="color: #999;font-size: 12px;">{{IDNumber}}</p>
+            <input style="height: 100%;"  ng-if="isIdNumber"  ng-model="obj.isMyIdNumber" class="new_authentication_input" type="text" maxlength="18"  placeholder="请输入身份证号">
+          </div>
+            <!--卡号是否正确 显示-->
+          <div  ng-if="isEffective" style="background: #eee;width: 100%;margin-left: 0;line-height: 1.6;font-size: 12px;">
+             <p style="padding-left: 16px;padding-top: 4px;font-size: 12px;" >*{{info}}</p>
+         <!--    <p style="padding-left: 16px;"  ng-if="isEffectiveOK">*{{info}}</p>-->
+          </div>
+          <!--2.3银行卡号-->
+          <div flex="box:mean" ng-if="isBankNum" style="position: relative;border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">银行卡号</span>
+            <input  onpaste="return false;" style="height: 100%;" ng-model="obj.isMyBank"  id="keyRoom" ng-keyup="keyFun($event)" class="new_authentication_input" type="text"  maxlength="23"  placeholder="请输入需要绑定银行卡号">
+            <i ng-if="isHasKey" ng-click="isClear()" class="new_authentication_home_close">
+              <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/Clear@2x.png" >
+            </i>
+          </div>
+          <!--2.4卡类型  不能识别的情况下显示-->
+          <div flex="box:mean"  ng-if="isType" ui-sref="chooseTheBank" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">卡类型</span>
+            <p ng-if="!hasChooseBank" class="new_authentication_input" style="color: #999;font-size: 12px;">选择卡银行与类型</p>
+            <p ng-if="hasChooseBank" class="new_authentication_input" style="color: #999;font-size: 12px;">{{hasChooseBank}}</p>
+            <i class="icon ion-chevron-right float-r" style="color:#C7C7CC;margin-right: 16px;"></i>
+          </div>
+          <div  flex="box:mean" style="font-size: 12px;border-bottom: 1px solid #e4e4e4;" ng-if="isOkType">
+            <p class="new_authentication_input" style="color: #999;">{{obj.bankNames}}</p>
+          </div>
+          <div  ng-if="isBankType" style="line-height: 1;font-size: 12px;height: auto;" >
+            <p class="new_authentication_input" style="color: #999;width: 98%;margin: 8px 0;">*本平台暂只支持储蓄卡认证和提现，请正确填写后再试。</p>
+          </div>
+          <!--2.5手机号-->
+          <div  flex="box:mean" ng-if="isPhoneNum" style="position: relative;border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">手机号</span>
+            <input style="height: 100%;" ng-model="obj.phoneNumber"  maxlength="15"  class="new_authentication_input" type="text" placeholder="请输入预留手机号">
+            <i ng-if="isHasVal" ng-click="isClearVal()" class="new_authentication_home_close new_authentication_home_close2">
+              <img style="width: 100%;" ng-src="{{imgBaseURL}}img/Clear@2x.png" >
+            </i>
+            <i ng-if="isHasKey" ng-click="isMoreInfo()"  class="new_authentication_home_close">
+              <img style="width: 100%;" ng-src="{{imgBaseURL}}img/!@2x.png" >
+            </i>
+          </div>
+           <div ng-if="isOKTel" >
+               <p class="new_authentication_input" style="color: red;">*请输入正确的手机号！</p>
+           </div>
+
+        </div>
+        <!--3.提示-->
+        <div ng-if="!isPrompts" style="position: relative;">
+          <span ng-click="isAgreement()" style="display: inline-block; width: 18px;height: 18px;border-radius: 100%;margin:10px 8px 0px 16px;">
+            <img ng-if="!obj.agreement" style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/ic_select.png" alt="同意顺逛支付相关协议">
+            <img ng-if="obj.agreement" style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/ic_check.png" >
+          </span>
+          <p style=" position: absolute;top: 10px;left: 46px;color: #999;font-size: 12px;"  ng-click="toRules(915,'实名认证服务协议')">同意顺逛支付相关协议</p>
+          <span ng-if="!isShows" style="color: #999;float: right;padding-right: 16px;padding-top: 10px;font-size: 12px;" ng-click="isRepl()">更换身份</span>
+        </div>
+        <!--4.按钮-->
+        <div class="new_authentication_home_btn">
+          <span style="background: #75A8FF;" ng-if="!isComplete">下一步</span>
+          <span style="background: #2464E6;" ng-if="isComplete" ng-click="goAuthentication(obj.isMyName||userName,obj.isMyIdNumber||IDNumber,obj.isMyBank,obj.phoneNumber,bankNo,bankPhone)">下一步</span>
+        </div>
+        <!--介绍-->
+        <div style="width: 100%;text-align: center;color: #999;font-size: 12px;">
+          <span>本服务由海尔海融易服务</span>
+        </div>
+      </div>
+
+      <!--已经绑定-->
+      <!-- <div ng-if="isNotAuthentication">
+        &lt;!&ndash;1.信息提示&ndash;&gt;
+        <div class="true_authentication_massage">
+          <div>
+            身份认证已完成!
+          </div>
+        </div>
+        &lt;!&ndash;2.已完成认证信息&ndash;&gt;
+        <div class="new_authentication_info">
+          &lt;!&ndash;2.1 手机号 &ndash;&gt;
+          <div>
+            <span>手机号</span>
+            <p class="new_authentication_input">{{phoneNumber}}</p>
+          </div>
+          &lt;!&ndash;2.2 证件类型&ndash;&gt;
+          <div>
+            <span>证件类型</span>
+            <p class="new_authentication_input">身份证</p>
+          </div>
+          &lt;!&ndash;2.3姓名&ndash;&gt;
+          <div>
+            <span>姓名</span>
+            <p class="new_authentication_input" >{{userName}}</p>
+          </div>
+          &lt;!&ndash;2.4证件号&ndash;&gt;
+          <div>
+            <span>证件号</span>
+            <p class="new_authentication_input">{{IDNumber}}</p>
+          </div>
+        </div>
+      </div>-->
+
+    </div>
+  </ion-content>
+  <!--点击手机号 ！-->
+    <div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isOther">
+      <div class=" authenticationPopup_bg_not">
+        <p>银行预留手机号是您在办理该银行卡时所填写的手机号。如忘记、停用或无预留手机号，请拨打银行客服电话 <a href="tel:{{bankPhone}}">{{bankPhone}}</a> 更新处理!</p>
+        <div class="authenticationPopup_bg_not_ok" ng-click="retry()">确定</div>
+      </div>
+    </div>
+   <!--验证手机号正确与否 弹框-->
+    <div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isAccord">
+      <div class=" authenticationPopup_bg_not" >
+        <p style="text-align: center;">  {{message}}</p>
+        <div class="authenticationPopup_bg_not_ok" ng-click="phoneClose()">确定</div>
+      </div>
+    </div>
+    <!--是否更换信息-->
+    <div flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isReplaces">
+      <div class=" authenticationPopup_bg_not">
+        <p style="margin-bottom: 10px;">您绑定的银行开户信息与认证身份信息不一致，以后会存在支付风险，确认绑定？</p>
+        <div class="authenticationPopup_bg_two" flex="box:mean" style="border-top: 1px solid #ccc;">
+          <span  ng-click="replaceInfoOk()">确定</span>
+          <span style=" border-left: 1px solid #ccc;background: #2464E6;color: #fff;" ng-click="replaceInfoClose()">取消</span>
+        </div>
+      </div>
+    </div>
+  <!--未实名认证-->
+  <div flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isTrueMsg">
+    <div class=" authenticationPopup_bg_not" style="text-align: center;">
+      <p style="margin-bottom: 10px;">您未身份认证，是否身份认证？</p>
+      <div class="authenticationPopup_bg_two" flex="box:mean" style="color: #32BEFF;border-top: 1px solid #ccc;">
+        <span ng-click="isNoTrue()">否</span>
+        <span  style=" border-left: 1px solid #ccc;" ng-click="goTrueAutThentication()">是</span>
+      </div>
+    </div>
+  </div>
+
+
+</ion-view>

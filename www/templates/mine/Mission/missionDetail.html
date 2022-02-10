@@ -1,0 +1,150 @@
+<ion-view class="background" view-title="任务详情">
+  <ion-nav-bar>
+    <ion-nav-buttons side="left">
+      <div style="width:34px;height:34px;text-align:center;line-height:34px;padding-top:3px;" ng-click="goBack()">
+        <!-- <i class="icon ion-ios-arrow-left" style="font-size:26px;opacity:0.37;"></i> -->
+        <img ng-src="{{imgBaseURL}}img/missionBack@2x.png" style="width:27px;height:27px;">
+      </div>
+
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <div style="width:34px;height:34px;text-align:center;line-height:34px;padding-top:3px;" ng-click="share()" ng-if="taskType!=5&&taskType!=7">
+        <!-- <i class="icon ion-share" style="font-size:26px;" ng-if="isApp"></i> -->
+        <img ng-src="{{imgBaseURL}}img/missionShare@3x.png" style="width:18px;height:16px;">
+      </div>
+
+      <div style="width:34px;height:34px;text-align:center;line-height:34px;padding-top:3px;" ui-sref="competition({taskDestId:xyzTaskDestId,taskType:taskType})" ng-if="taskType==7">
+        <!-- <i class="icon ion-share" style="font-size:26px;" ng-if="isApp"></i> -->
+        <img ng-src="{{imgBaseURL}}img/missionShare@3x.png" style="width:18px;height:16px;">
+      </div>
+
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <!-- *********************分享标签－whiteBird start********************* -->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div ng-if="(isApp && (isBuyer==1)&&(userId==storeId))" style="color:#7EC0EE;background: white;font-size: 12px;text-align:center;padding-top:10px;">通过你的分享链接购买此商品，您将赚到不菲的佣金哦</div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1,'微信')" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2,'朋友圈')" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3,'QQ')" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4,'QQ空间')" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0,'微博')">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <!--
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(-1,'ios平台分享')" ng-if = "isIOS">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">平台分享</div>
+    </div>
+    -->
+    <!-- <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="img/btn_link.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div> -->
+    <div class="pixelBorderTop" style="height:44px;text-align:center;line-height:44px;margin:0 15px;" ng-click="hideblackCover()" >
+      取消
+    </div>
+  </div>
+  <ion-content scrollbar-y="false">
+    <div flex="main:justify cross:center" style="height:40px;background:#ffffff;padding:0 12px;">
+      <span class="font-size-16">{{missionTitle}}</span>
+      <span ng-if="!isFinished&&taskType!=5" class="font-size-14" style="color:#f56767;">分享成功+{{taskAwardsContent}}</span>
+      <span ng-if="isFinished&&taskType!=5" class="font-size-14" style="color:#f56767;">分享成功+{{taskAwardsContent}}</span>
+      <span ng-if="!isFinished&&taskType!=5" class="font-size-14" style="color:#f56767;">未完成</span>
+      <span ng-if="isFinished&&taskType!=5" class="font-size-14" style="color:#f56767;">已完成</span>
+
+      <span ng-if="!isFinished&&taskType==5&&UserTaskStatus==null" class="font-size-14" style="color:#f56767;">胜利+{{taskAwardsContent}}</span>
+      <span ng-if="!isFinished&&taskType==5&&UserTaskStatus==null" class="font-size-14" style="color:#f56767;">未接招</span>
+
+      <span ng-if="!isFinished&&taskType==5&&UserTaskStatus==0" class="font-size-14" style="color:#f56767;">胜利+{{taskAwardsContent}}</span>
+      <span ng-if="!isFinished&&taskType==5&&UserTaskStatus==0" class="font-size-14" style="color:#f56767;">开战</span>
+
+      <span ng-if="isFinished&&UserTaskStatus==20&&taskType==5" class="font-size-14" style="color:#f56767;">胜利+{{taskAwardsContent}}</span>
+      <span ng-if="isFinished&&UserTaskStatus==20&&taskType==5" class="font-size-14" style="color:#f56767;">胜利</span>
+      <!-- ng-if="isFinished&&taskType==5" -->
+
+
+      <span class="font-size-14" style="color:#6f6f6f;" ng-bind="time | date:'yyyy-MM-dd'"></span>
+    </div>
+    <div style="background:#ffffff;padding:0 12px;margin-top:8px;">
+      <div class="pixelBorder font-size-16" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;color:#000000;line-height:40px;margin-bottom:11px;">
+        <span>{{name}}</span>
+      </div>
+      <textarea ng-change="savaEditContent($parent.editContent)" ng-if="taskType!=5" name="name" rows="5"  style="resize:none;width:100%;height:120px;padding:0;" ng-model="$parent.editContent"></textarea>
+      <pre ng-if="taskType==5" style="width:100%;padding:0;" ng-bind="$parent.editContent"></pre>
+      <!-- <textarea ng-model="$parent.editContent" rows=1 cols=40 style='width:100%;min-height:120px;resize:none;overflow:scroll;overflow-y:scroll;;overflow-x:hidden' onfocus="window.activeobj=this;this.clock=setInterval(function(){activeobj.style.height=activeobj.scrollHeight+'px';},200);" onblur="clearInterval(this.clock);if(this.value.length==0){activeobj.style.height=120+'px';}"></textarea> -->
+
+    </div>
+    <!-- 分享链接 -->
+    <div ng-if="taskType==4" style="background:#ffffff;padding:0 12px;margin-top:8px;">
+      <div class="pixelBorder font-size-16" style="color:#000000;line-height:40px;">
+        <span>分享链接：</span>
+      </div>
+      <div flex="main:justify cross:center" class="font-size-16" style="color:#000000;line-height:40px;margin-bottom:11px;">
+
+        <div style="width:70%;height:40px;overflow:hidden;">{{linkUrl}}</div>
+        <div class="font-size-14" ng-click="copyLinkUrl()"
+        style="width:86px;height:26px;border-radius:4px;border:1px solid #2196f3;line-height:26px;text-align:center;color:#2196f3;">
+          复制链接
+        </div>
+      </div>
+      <div flex="" style="-webkit-box-lines: multiple;-webkit-flex-wrap: wrap;flex-wrap:wrap;">
+        <div ng-repeat="item in imgArr track by $index" style="width:29%;position:relative;margin-right:11px;margin-bottom:11px;" ng-click="checkImage($index)">
+          <img ng-src="{{item}}" style="width:100%;">
+        </div>
+      </div>
+    </div>
+    <!-- 分享商品 图片 -->
+    <div ng-if="taskType==3" style="background:#ffffff;padding:0 12px;margin-top:8px;">
+      <div class="pixelBorder font-size-16" style="color:#000000;line-height:40px;">
+        <span>分享商品：</span>
+        <span>{{productName}}</span>
+      </div>
+      <div flex="" style="-webkit-box-lines: multiple;-webkit-flex-wrap: wrap;flex-wrap:wrap;padding-top:8px;">
+        <div ng-repeat="item in imgArr track by $index" style="width:29%;position:relative;margin-right:11px;margin-bottom:11px;" ng-click="checkImage($index)">
+          <img ng-src="{{item}}" style="width:100%;">
+        </div>
+      </div>
+    </div>
+    <!-- 分享任务图片 -->
+    <div ng-if="taskType==1||taskType==2||taskType==6" style="background:#ffffff;padding:0 0 0 12px;margin-top:8px;">
+      <div class="pixelBorder font-size-16" style="color:#000000;line-height:40px;margin-bottom:11px;margin-right:12px;">
+        <span>任务图片：</span>
+      </div>
+      <div flex="" style="-webkit-box-lines: multiple;-webkit-flex-wrap: wrap;flex-wrap:wrap;">
+        <div ng-repeat="item in imgArr track by $index" style="width:29%;position:relative;margin-right:11px;margin-bottom:11px;">
+          <img ng-src="{{item}}" style="width:100%;">
+        </div>
+      </div>
+    </div>
+    <div class="" style="height:60px;">
+
+    </div>
+  </ion-content>
+  <div style="width:100%;height:60px;position:fixed;bottom:0px;background:#f4f4f4;"  ng-if="taskType!=5&&taskType!=7">
+    <div style="width:93%;height:40px;background:#2196f3;line-height:40px;text-align:center;margin:0 auto;color:#ffffff;font-size:16px;border-radius:4px;"
+     ng-click="share()">
+      分享
+    </div>
+  </div>
+  <div style="width:100%;height:60px;position:fixed;bottom:0px;background:#f4f4f4;" ng-if="taskType==7">
+    <div style="width:93%;height:40px;background:#2196f3;line-height:40px;text-align:center;margin:0 auto;color:#ffffff;font-size:16px;border-radius:4px;"
+     ui-sref="competition({taskDestId:xyzTaskDestId,taskType:taskType})">
+      分享
+    </div>
+  </div>
+</ion-view>

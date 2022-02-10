@@ -1,0 +1,126 @@
+.myApm {
+  width: 100%;
+  height: 170px;
+  margin-bottom: 8px;
+  background: $bgColor;
+  .myApmTop {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    &::after {
+      content: '';
+      width: 343px;
+      height: 1px;
+      background: #e4e4e4;
+      position: absolute;
+      bottom: 0px;
+      left: 16px;
+    }
+    &>div:first-child {
+      width: 92px;
+      height: 92px;
+      margin: 0 16px;
+      img {
+        width: 92px;
+        height: 92px;
+      }
+    }
+    &>div.myApmDetail {
+      &>div:first-child {
+        font-size: 14px;
+        /*np*/
+        color: #333333;
+        margin: 0 0 15px;
+        @include overflowDeal();
+      }
+      &>div:nth-child(2) {
+        margin-bottom: 10px;
+        &>div:first-child {
+          font-size: 12px;
+          /*no*/
+          color: #666666;
+        }
+        &>div:last-child {
+          font-size: 14px;
+          /*no*/
+          color: #FF4400;
+        }
+      }
+      &>div:last-child {
+        font-size: 12px;
+        /*no*/
+        color: #666666;
+        &>span {
+          color: #FF4400;
+        }
+      }
+    }
+  }
+
+  .myApmBtm {
+      width: 100%;
+      height: 48px;
+      &>div {
+        width: 84px;
+        height: 26px;
+        border-radius: 13px;
+        font-size: 14px;
+        /*no*/
+        color: #FFFFFF;
+        margin-right: 16px;
+      }
+      div.waitBuy {
+        background: #FFA27F;
+      }
+      div.buyNow {
+        background: #FF4400;
+      }
+    }
+}
+@include onePixelBorderBottom1(){
+  .myApm .myApmTop{
+    &::after{
+      @include commonOnePixelBorderBottomStyle(0.7);
+    }
+  }
+}
+@include onePixelBorderBottom2(){
+  .myApm .myApmTop{
+    &::after{
+      @include commonOnePixelBorderBottomStyle(0.5);
+    }
+  }
+}
+@include onePixelBorderBottom3(){
+  .myApm .myApmTop{
+    &::after{
+      @include commonOnePixelBorderBottomStyle(0.333333);
+    }
+  }
+}
+
+.noData{
+  &>div:first-child{
+    margin-top: 56px;
+    img{
+      width: 120px;
+      height: 120px;
+    }
+  }
+  &>div:nth-child(2){
+    font-size: 17px;/*no*/
+    color: #666666;
+    text-align: center;
+    margin: 24px 0;
+  }
+  &>div:nth-child(3){
+    width: 264px;
+    height: 44px;
+    background: #2979FF;
+    box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);
+    color: #ffffff;
+    font-size: 17px;/*no*/
+    border-radius: 22px;
+    margin: 0 auto;
+  }
+}

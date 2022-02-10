@@ -1,0 +1,495 @@
+<ion-view class="background" view-title="特产汇" hide-nav-bar="true">
+
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;color: #030303;">特产汇</div>
+    <div flex="main:center cross:center">
+      <div style="width: 26px;height: 44px;position: relative;" flex="main:center cross:center" ng-click="goToSearch()">
+          <img style="width:28px;height:28px;" ng-src="{{imgBaseURL}}img/EMSearch@3x.png">
+      </div>
+      <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center" ng-click="showMenu()">
+        <span class="shareStyleddd"></span>
+        <span class="shareStyleddd" style="margin: 0 3px;"></span>
+        <span class="shareStyleddd"></span>
+      </div>
+    </div>
+  </div>
+  <!--头部右上角-->
+  <div ng-if="isDisplay" style="background-color: rgba(0,0,0,0);position: absolute;top: 0;bottom: 0;right: 0;left: 0; z-index:1000;width: 100%;height: 100%;"
+    ng-click="hideMenu()">
+    <div class="pop-news border-radius" style="background: black;opacity: 0.8;color: white;height:auto;border-radius: 0;top: 38px;right: 10px;"
+      ng-class="{'ios-margin-top-20':isIOS}">
+      <div style="height: 40px;" flex="main:center cross:center" ng-click="toShare()">
+        <!--ng-if="isAdmin=='true'"-->
+        <div style="width: 16px;height: 16px;">
+          <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/ic_toShare.png" alt="">
+        </div>
+        <div class="float-l pop-news-text">去分享</div>
+      </div>
+      <div style="height: 40px;" flex="main:center cross:center" ng-click="toHomePage()">
+        <!-- ng-if="isHost=='true'"-->
+        <div style="width: 16px;height: 16px;">
+          <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/ic_homePage.png">
+        </div>
+        <div class="float-l pop-news-text">首&nbsp;&nbsp;&nbsp;页</div>
+      </div>
+      <div style="height: 40px;" flex="main:center cross:center" ng-click="contactCustomer()">
+        <!-- ng-if="isHost=='true'"-->
+        <div style="width: 16px;width: 16px;">
+          <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/ic_custom.png">
+        </div>
+        <div class="float-l pop-news-text">客&nbsp;&nbsp;&nbsp;服</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--头部右上角end-->
+  <!--分享  start-->
+  <!--<div style="z-index:1000;position: fixed;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7)" ng-show="showQRimg">-->
+  <!--<div style="width: 90%;height: 70%;position: absolute;right:5%;top:10%;background-color: #FFFFFF;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;padding: 5px;">-->
+  <!--<img ng-src="{{qrcodeImageUrl}}" style="width: 100%;height: 85%;" />-->
+  <!--<div ng-click="saveImg();" style="width: 80%;height: 40px;margin-left:9%;position:absolute;bottom:10px;background-color: #F8F8F8;text-align: center;border:1px solid #d2d2d2;line-height: 40px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;">-->
+  <!--<img ng-src="{{imgBaseURL}}img/ic_download_qrcode.png" style="width: 14px;height: 14px;margin-top:-2px;" /><span style="color:#333;">保存图片到本地相册</span>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div ng-click="hideQRImg();">-->
+  <!--<img ng-src="{{imgBaseURL}}img/ic_erweima_close.png" style="width: 30px;position: absolute;right: 46%;top: 84%;" />-->
+  <!--</div>-->
+  <!--</div>-->
+  <div style='z-index: 99;position: absolute;width: 100%;bottom: 0px;left: 0px;height: 100%;background-color: rgba(0,0,0,0.7)'
+    ng-if="showShare">
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;">
+      <div style='height: 40px; position: relative;'>
+        <div style='position: absolute;z-index: 2;top: 25px;left: 5%; height: 1px;width: 90%;background-color: #ccc;'></div>
+        <span style="position: absolute;z-index:3;top: 15px; width: 20%; left: 40%;text-align: center;background-color: white;font-size: 16px;">
+          分&nbsp;享&nbsp;到
+        </span>
+      </div>
+      <div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+          <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png" />
+          <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+        </div>
+        <!--<div style="text-align: center;width: 24%;display: inline-block" ng-click="showQRImg()">-->
+        <!--<img style="padding: 15px 15px 0;width: 75%" ng-src="img/ic_share_qrcode.png" />-->
+        <!--<div style=" font-size: 12px;padding-bottom: 5px">二维码</div>-->
+        <!--</div>-->
+      </div>
+      <div style='height: 40px;'>
+        <div style='width: 90%;margin-left: 5%;height: 1px; background-color: #ccc;'></div>
+        <div style='letter-spacing:15px;line-height: 39px;font-size: 20px; text-align: center;' ng-click="cancelShare()">
+          取消
+        </div>
+        <div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--分享  end-->
+
+  <go-top delegate-handle="scrollSelection" offset="15"></go-top>
+  <ion-content class='cui-tolhide' scrollbar-y="false" overflow-scroll="true" ng-style="paddingtopClasscontent" style="background: #eee;"
+    id="box">
+    <!--轮播-->
+    <div style="width: 100%;height: auto;overflow: hidden;">
+      <ion-slide-box delegate-handle="crowd_funding_slider" auto-play="true" does-continue="true">
+        <ion-slide style="height: auto; overflow: hidden;" ng-repeat="item in arrList.bannerList track by $index">
+          <img ng-src="{{item.pic | addImgURLPostfix:750:320}}" style="width: 100%;height:auto;" ng-click="bannerClick(item.linkType,item.link,item.relationId)">
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+
+    <!--省级特产-->
+    <div class="local_specialty_province" style="width: 100%;height: 100px;background: #fff;" flex="box:mean">
+      <dl flex="dir:top main:center cross:center" ng-repeat="item in arrList.navList track by $index" ng-click="toGoSecialtyVenueHome(item.regionId)">
+        <dt>{{item.simpleName}}</dt>
+        <dd>{{item.regionName}}</dd>
+      </dl>
+      <dl flex="dir:top main:center cross:center" ng-click="moreSelectSpecialty()">
+        <dt>
+          <img ng-src="{{imgBaseURL}}img/localS_more.png" style="width: 100%;height: 100%;">
+        </dt>
+        <dd>更多特产</dd>
+      </dl>
+    </div>
+    <!--省级特产结束-->
+
+    <!--限时抢购 start-->
+    <!--限时抢购-->
+    <div class="sg_timeSale1" ng-if='newAndlimit.flashProductList&&newAndlimit.flashProductList.length!=0'>
+      <div flex="main:center cross:center" class='cuigengduo' ui-sref="flashsale({type:2})">
+          <div>更多</div>
+          <img ng-src="{{imgBaseURL}}img/newvision/more.png">
+      </div>
+      <div class="timeSale_top" flex="main:left cross:center" ui-sref="flashsale({type:2})">
+        <div flex="main:center cross:center">
+          <img ng-src="{{imgBaseURL}}img/deadline.png">
+          <div>限时抢购</div>
+        </div>
+      </div>
+      <div class="timeSale_countDown">
+        <div flex="main:justify cross:center" class="timeSale_tabs" ng-style='newAndlimit.flashProductList.length<4?{"justify-content":"center"}:""'>
+          <div flex='dir:top' ng-repeat='i in newAndlimit.flashProductList' ng-click='chooseTimer($index)' ng-class='clickFlag==$index?"timeSale_tabclick":"timeSale_tab"' ng-style='(newAndlimit.flashProductList.length<4&&($index)!=(newAndlimit.flashProductList.length-1))?{"margin-right":"15px"}:""'>
+                <div>{{i.timeStr}}</div>
+                <div ng-if='systemTime>=i.startTime&&systemTime<=i.endTime'>正在疯抢</div>  
+                <div ng-if='systemTime<i.startTime'>即将开抢</div> 
+          </div>
+        </div>
+      </div>
+      <div class="scrollX-container" style="margin-top: 0.3rem">
+        <div class='scrollX-box' lazy-container>
+            <div  ng-repeat="item in newAndlimit.flashProductList[clickFlag].products track by $index" ng-click="goProductDetail(item.productId)" class='timeSale_list_item'>
+              <img lazy-src="{{item.imageUrl|addImgURLPostfix:200:200}}" animate-visible="true" animate-speed="1s">
+              <div>{{item.productName}}</div>
+              <div><span>¥{{dealPrice(item.flashsalePrice).priceInt||'--'}}</span><span>.{{dealPrice(item.flashsalePrice).priceFloat||'--'}}</span></div>
+              <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+                <i>¥&nbsp;{{item.commission|keepInt}}</i><span>{{item.commission|keepFloat}}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    <!--限时抢购 end-->
+
+    <!--新品预约 start-->
+    <div ng-if="showReserveList">
+      <!--头部 start-->
+      <div class="sg_timeSale" style="padding-bottom: 0;height: 56px; line-height: 56px;">
+        <div style="top: 0;" flex="main:center cross:center" class='cuigengduo' ui-sref="newres({'type':2})">
+          <div style="color: #3DCF78;">更多</div>
+          <img ng-src="{{imgBaseURL}}img/go_Newyuyue.png">
+        </div>
+        <div style="padding-top: 0;" class="timeSale_top" flex="main:center cross:center" ui-sref="newres({'type':2})">
+          <div style="background: #3DCF78;height: 1px;"></div>
+          <div style="color: #3DCF78;" flex="main:center cross:center">
+            <div>新品预约</div>
+          </div>
+          <div style="background: #3DCF78;height: 1px;"></div>
+        </div>
+      </div>
+      <!--头部 end-->
+      <div ng-repeat="value in newAndlimit.newSendList">
+        <div class="newbuysay" style="height:4.8rem;" ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">
+          <div class="new-zhong" style="height:4.8rem;">
+            <img ng-src="{{value.imageUrl}}">
+            <div>
+              <span>剩余时间：</span>
+              <span>{{Timetotal[$index]}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="yuyuepro">
+          <p ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">{{value.productName}}</p>
+          <p>{{value.productTitle}}</p>
+          <p>
+            <span>预约价：</span>
+            <span ng-if='isWd'>¥{{value.price}}</span>
+            <span ng-if='!isWd' style='font-size: 24px;'>¥{{value.price}}</span>
+            <span ng-if='isWd&&isCommission'>.00</span>
+            <img ng-src="{{imgBaseURL}}img/zhuan2.png" alt="赚" ng-if='isWd&&isCommission'>
+            <span ng-if='isWd&&isCommission'>¥{{value.commission|keepInt}}</span>
+            <span ng-if='isWd&&isCommission'>{{value.commission|keepFloat}}</span>
+          </p>
+          <p>
+            已预约：{{value.reserveNum}}人
+          </p>
+          <div ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">
+            立即预约
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--新品预约 end-->
+
+    <!--众筹 start-->
+    <div ng-if="crowdFundingList">
+      <!--头部 start-->
+      <div class="sg_timeSale" ng-if="crowdFundingList" style="padding-bottom: 0;height: 56px; line-height: 56px;">
+        <div style="top: 0;" flex="main:center cross:center" class='cuigengduo' ui-sref="crowdFunding({'type':2})">
+          <div style="color: #FC459D;">更多</div>
+          <img ng-src="{{imgBaseURL}}img/go_Crowdfunding.png">
+        </div>
+        <div style="padding-top: 0;" class="timeSale_top" flex="main:center cross:center" ui-sref="crowdFunding({'type':2})">
+          <div style="background: #FC459D;height: 1px;"></div>
+          <div style="color: #FC459D;" flex="main:center cross:center">
+            <div>众筹</div>
+          </div>
+          <div style="background: #FC459D;height: 1px;"></div>
+        </div>
+      </div>
+      <!--头部 end-->
+      <div ng-if='zcnow.length!=0 && zcnow' ng-repeat="i in zcnow">
+        <div class="newbuysay">
+          <div class="new-zhong">
+            <img ng-src="{{(i.customImage==null)?(i.imageUrl):(i.customImage)}}">
+            <div>
+              <span>剩余时间：</span>
+              <span>{{i.toEndTime}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="newzhichi newsendsurp">
+          <p>{{i.activityName}}</p>
+          <div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+            <!--显示进度-->
+            <div class="crowd_home_new_loading_load" style='width:56%;'>
+              <div class="crowd_home_new_loading_color" ng-style="{width:(i.raisedAmount/i.targetAmount)*100+'%'}"></div>
+            </div>
+            <!--显示文字-->
+            <span class="cui_num min_w_home">{{i.schedule.slice(0,i.schedule.indexOf('.'))+'%'}}</span>
+            <!-- <span class="cui_num min_w_home">{{((i.raisedAmount/i.targetAmount)*100).toString.slice(0,2)+'%'}}</span> -->
+          </div>
+          <div class='absol' ui-sref="crowd_funding_details({'zActivityId':i.id})">立即支持</div>
+        </div>
+        <div class="newsendsurp jineslide">
+          <div>
+            <p>{{i.targetAmount}}</p>
+            <p>目标金额</p>
+          </div>
+          <div>
+            <p>{{i.raisedAmount}}</p>
+            <p>已筹金额</p>
+          </div>
+          <div>
+            <p>{{i.supportNum}}</p>
+            <p>支持人数</p>
+          </div>
+        </div>
+      </div>
+      <div ng-if='zcpre.length!=0 && zcpre' ng-repeat="i in zcpre">
+        <div class="newbuysay">
+          <div class="new-zhong">
+            <img ng-src="{{(i.customImage==null)?(i.imageUrl):(i.customImage)}}">
+            <div style='background: #02AD58;'>
+              <span>开始倒计时：</span>
+              <span>{{i.toStartTime}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="newzhichi newsendsurp">
+          <p>{{i.activityName}}</p>
+          <div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+            <!--显示进度-->
+            <div class="crowd_home_new_loading_load" style='width:56%;'>
+            </div>
+            <span class="cui_num min_w_home">未开始</span>
+          </div>
+          <div style="background:#02AD58" class='absol' ui-sref="crowd_funding_details({'zActivityId':i.id})">预热中</div>
+        </div>
+        <div class="newsendsurp jineslide">
+          <div>
+            <p>{{i.targetAmount}}</p>
+            <p>目标金额</p>
+          </div>
+          <div>
+            <p>{{i.raisedAmount}}</p>
+            <p>已筹金额</p>
+          </div>
+          <div>
+            <p>{{i.supportNum}}</p>
+            <p>支持人数</p>
+          </div>
+        </div>
+      </div>
+      <div ng-if='zcold.length!=0' ng-repeat="item in zcold">
+        <div class="newbuysay">
+          <div class="new-zhong">
+            <img ng-src="{{(item.customImage==null)?(item.imageUrl):(item.customImage)}}">
+          </div>
+        </div>
+        <div class="newzhichi newsendsurp">
+          <p>{{item.activityName}}</p>
+          <div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+            <!--显示进度-->
+            <div class="crowd_home_new_loading_load" style='width:56%;'>
+              <div class="crowd_home_new_loading_color" ng-style="{width:(item.raisedAmount/item.targetAmount)*100+'%'}"></div>
+            </div>
+            <!--显示文字-->
+            <span class="cui_num min_w_home">{{item.schedule}}</span>
+            <!-- <span class="cui_num min_w_home">{{((item.raisedAmount/item.targetAmount)*100).toString.slice(0,2)+'%'}}</span> -->
+          </div>
+          <div style="background:#F43531" class='absol' ui-sref="crowd_funding_details({'zActivityId':item.id})">众筹成功</div>
+        </div>
+        <div class="newsendsurp jineslide">
+          <div>
+            <p>{{item.targetAmount}}</p>
+            <p>目标金额</p>
+          </div>
+          <div>
+            <p>{{item.raisedAmount}}</p>
+            <p>已筹金额</p>
+          </div>
+          <div>
+            <p>{{item.supportNum}}</p>
+            <p>支持人数</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--众筹 end-->
+
+    <!--特产饮品 start-->
+    <div class="fav_recommond" style="padding-bottom: 0;" ng-if="isDrinkList">
+      <!--头部 start-->
+      <div class="sg_timeSale" style="padding-bottom: 0;height: 56px;line-height: 56px;" ng-if="isDrinkList">
+        <div class="timeSale_top" flex="main:center cross:center" style="padding-top: 0;">
+          <div style="background: #13DBEB;height: 1px;"></div>
+          <div style="color: #13DBEB;" flex="main:center cross:center">
+            <div>{{arrList.specialtyListDrink.moduleTitle}}</div>
+          </div>
+          <div style="background: #13DBEB;height: 1px;"></div>
+        </div>
+      </div>
+      <!--头部 end-->
+      <div style="width: 100%;" ng-if="arrList.specialtyListDrink.topBanner == null? false : true">
+        <img style="width: 100%;height: 100%;" ng-src="{{arrList.specialtyListDrink.topBanner.pic}}" ng-click="bannerClick(arrList.specialtyListDrink.topBanner.linkType,arrList.specialtyListDrink.topBanner.link,arrList.specialtyListDrink.topBanner.relationId)">
+      </div>
+      <div class="fav_pic" flex="main:justify" style="margin-top: 0;" ng-if="drinkList">
+        <ion-slide-box delegate-handle="crowd_funding_slider" does-continue="true">
+          <ion-slide ng-repeat="imageItem in drinkList track by $index">
+            <img ng-repeat="item in imageItem | limitTo:3" ng-src="{{item.pic|addImgURLPostfix:400:600}}" animate-visible="true" animate-speed="1s"
+              ng-click="bannerClick(item.linkType,item.link,item.relationId)" />
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+    </div>
+    <!--特产饮品 end-->
+
+    <!--特产吃食 start-->
+    <div style="background: #fff;" ng-if="isFoodList">
+      <!--头部 start-->
+      <div class="sg_timeSale" style="padding-bottom: 0;height: 56px;line-height: 56px;" ng-if="isFoodList">
+        <div class="timeSale_top" flex="main:center cross:center" style="padding-top: 0;">
+          <div style="background: #E66CE9;height: 1px;"></div>
+          <div style="color: #E66CE9;" flex="main:center cross:center">
+            <div>{{arrList.specialtyListFood.moduleTitle}}</div>
+          </div>
+          <div style="background: #E66CE9;height: 1px;"></div>
+        </div>
+      </div>
+      <!--头部 end-->
+      <div style="width: 100%;" ng-if="arrList.specialtyListFood.topBanner == null? false:true">
+        <img style="width: 100%;height: 100%;" ng-src="{{arrList.specialtyListFood.topBanner.pic}}" ng-click="bannerClick(arrList.specialtyListFood.topBanner.linkType,arrList.specialtyListFood.topBanner.link,arrList.specialtyListFood.topBanner.relationId)">
+      </div>
+      <div class="scrollX-container" style="height: auto;" ng-if="foodList">
+        <div class='scrollX-box' style="overflow-x: auto;">
+          <div style="margin-bottom: 20px;" ng-repeat="item in foodList track by $index" ng-click="goProductDetail(item.id)" class='timeSale_list_item'>
+            <img ng-src="{{item.imageUrl|addImgURLPostfix:200:200}}">
+            <div class="local_specialty_food_name" style="white-space: normal;">{{item.name}}</div>
+            <div>¥{{dealPrice(item.price).priceInt||'--'}}
+              <span>.{{dealPrice(item.price).priceFloat||'--'}}</span>
+            </div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+              ¥&nbsp;{{item.commission|keepInt}}
+              <span>{{item.commission|keepFloat}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--特产吃食 end-->
+
+    <!--逛客怎么说 start-->
+    <div class="sg_judge" ng-if="arrList.midCommList==null?false:true">
+      <!--<img ng-src="img/gkbg@2x.png" class="gkbg">-->
+      <!--头部-->
+      <div style="position: relative;" ng-if="arrList.midCommList.bannerList==null?false:true">
+        <div class="judge_top" flex="main:center cross:center" style="height: 56px;line-height: 56px;padding-top: 0;">
+          <div style="height: 1px;"></div>
+          <div>{{arrList.midCommList.moduleTitle}}</div>
+          <div style="height: 1px;"></div>
+        </div>
+        <div class="judge_more" flex="main:center cross:center" ui-sref="topic.qhot" style="margin-top: 0; position: absolute;right: 12px;top: 18px;">
+          <div>更多</div>
+          <img ng-src="{{imgBaseURL}}img/toSeeMore@2x.png">
+        </div>
+      </div>
+      <!--头部 end-->
+      <div class="judge_content" flex="main:center cross:center">
+        <div ng-repeat="item in arrList.midCommList.bannerList | limitTo :2" ng-click="bannerClick(item.linkType,item.link,item.relationId)">
+          <img ng-src="{{item.pic|addImgURLPostfix:360:200}}" animate-speed="1s">
+          <div>{{item.title}}</div>
+          <!--<div>10小时高清屏iPAD，食</div>-->
+        </div>
+      </div>
+      <div class="judge_footer" flex="main:center cross:center">
+        <div flex="main:justify cross:center" ng-repeat="item in arrList.midCommList.bannerList | limitTo :2">
+          <div flex="cross:center">
+            <img ng-src="{{item.avatar}}" animate-speed="1s">
+            <div>{{item.storeName}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--逛客怎么说 end-->
+
+    <!--猜你喜欢 分类 start-->
+    <div ng-if="(youLikeTypeArr.length!=0 && youLikeDataArr.length!=0)">
+      <!--头部分类 start-->
+      <div flex="box:mean" class="moreYouLike" ng-if="youLikeTypeArr.length!=0">
+        <div ng-repeat="(key ,item) in youLikeTypeArr track by $index" ng-click="goToClassify($index,item.cId)" style="position: relative;"
+          ng-class="{ {{key}}:'local_specialty_color'}[selectedIndex]">
+          {{item.name}}
+          <div ng-class="{ {{key}} :'local_specialty_line'}[selectedIndex]"></div>
+        </div>
+      </div>
+      <!--头部分类 end-->
+      <div style="margin-top: 4px;">
+        <div style="margin-bottom: 6px;margin-top: 0;" class="local_specialty_you_like" ng-repeat="(key ,item) in youLikeDataArr track by $index"
+          ui-sref="productDetail({'productId':item.pId,'storeId':storeId})">
+          <!--图片-->
+          <div class="local_specialty_you_like_pic">
+            <img ng-if="item.pic" ng-src="{{item.pic}}">
+          </div>
+          <!--标题-->
+          <div class="local_specialty_you_like_title">{{item.name}}</div>
+          <!--价钱-->
+          <div class="local_specialty_you_like_price">¥{{item.price}}</div>
+          <!--佣金-->
+          <div ng-if="isWdHost==1 && settingsList[0].checked" style="display: -webkit-box;padding-left: 10px;">
+            <div class="local_specialty_you_like_money" flex="main:center cross:center">
+              ¥&nbsp
+              <span style="font-size: 12px;">{{item.comm}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--猜你喜欢 分类 end-->
+
+  </ion-content>
+
+  <!--<div ng-include="'templates/common/CommonLoginPopup1.html'"></div>-->
+  <!--<div ng-include="'templates/common/CommonLoginPopup2.html'"></div>-->
+  <div ng-include="'templates/common/CommonShoppingCar.html'"></div>
+
+</ion-view>

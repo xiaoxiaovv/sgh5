@@ -1,0 +1,86 @@
+<!--我的->消息分类-->
+<ion-view class="background" view-title="消息中心" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">消息中心</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+    <!-- 客服入口 start -->
+    <div class="border-radius border-bottom" ng-click='customerServe()' style="background-color:#ffe9c5;">
+      <div class="row padding-10 clearfix">
+        <div class="padding-5 float-l">
+          <img ng-src="{{imgBaseURL}}img/ic_service.png" width="42" style="vertical-align:middle;" />
+        </div>
+        <p class="margin-top-5" style="margin-bottom: 0;flex: 1;-webkit-flex: 1;-moz-flex:1;-ms-flex:1;-o-flex:1;">
+          <span class="sg-ms-title font-size-15 padding-5" style="color: #905900;">客服服务</span><br />
+          <span class="font-size-12 padding-5" style="color: #D99933;">点击联系顺逛在线客服</span>
+        </p>
+      </div>
+    </div>
+    <!-- 客服入口 end -->
+    <!-- 订单消息 start -->
+    <div class="border-radius border-bottom" ng-click="goMessageList('1')" style="background-color:#FFFFFF;">
+      <div class="row padding-10 clearfix" style="position: relative;">
+        <div ng-if="orderNum>=10" style="width:32px;height:20px;border-radius:10px;position: absolute;top: 5px;left: 33px;background: #F43531;color:#fff;text-align: center;">{{orderNumClose}}</div>
+        <div ng-if="orderNum<10&&orderNum>0" style="width:20px;height:20px;border-radius:50%;position: absolute;top: 5px;left: 47px;background: #F43531;color:#fff;text-align: center;">{{orderNumClose}}</div>
+        <div class="padding-5">
+          <img ng-src="{{imgBaseURL}}img/ic_messageOrder.png" width="42" style="vertical-align:middle;" />
+        </div>
+        <p class="margin-top-5" style="margin-bottom: 0;flex: 1;-webkit-flex: 1;-moz-flex:1;-ms-flex:1;-o-flex:1;">
+          <span class="sg-ms-title font-size-15 padding-5">订单消息</span><br />
+          <span class="font-size-12 padding-5" style="display: inline-block;">{{orderMessage}}</span>
+        </p>
+      </div>
+    </div>
+    <!-- 订单消息  end -->
+    <!-- 平台消息消息 start -->
+    <div class="border-radius border-bottom" ng-click="goMessageList('3')" style="background-color:#FFFFFF;">
+      <div class="row padding-10 clearfix" style="position: relative;">
+        <div ng-if="platformNum>=10" style="width:32px;height:20px;border-radius:10px;position: absolute;top: 5px;left: 33px;background: #F43531;color:#fff;text-align: center;">{{platformNumClose}}</div>
+        <div ng-if="platformNum<10&&platformNum>0" style="width:20px;height:20px;border-radius:50%;position: absolute;top: 5px;left: 47px;background: #F43531;color:#fff;text-align: center;">{{platformNumClose}}</div>
+        <div class="padding-5 float-l">
+          <img ng-src="{{imgBaseURL}}img/ic_messageMessage.png" width="42" style="vertical-align:middle;" />
+        </div>
+        <p class="margin-top-5" style="margin-bottom: 0;flex: 1;-webkit-flex: 1;-moz-flex:1;-ms-flex:1;-o-flex:1;">
+          <span class="sg-ms-title font-size-15 padding-5">平台消息</span><br />
+          <span class="font-size-12 padding-5" style="display: inline-block;">{{platformMessage}}</span>
+        </p>
+      </div>
+    </div>
+    <!-- 平台消息消息  end -->
+    <!-- 会员动态消息 start -->
+    <div class="border-radius border-bottom" ng-click="goMessageList('2')" style="background-color:#FFFFFF;">
+      <div class="row padding-10 clearfix" style="position: relative;">
+        <div ng-if="memberNum>=10" style="width:32px;height:20px;border-radius:10px;position: absolute;top: 5px;left: 33px;background: #F43531;color:#fff;text-align: center;">{{memberNumClose}}</div>
+        <div ng-if="memberNum<10&&memberNum>0" style="width:20px;height:20px;border-radius:50%;position: absolute;top: 5px;left: 47px;background: #F43531;color:#fff;text-align: center;">{{memberNumClose}}</div>
+        <div class="padding-5 float-l">
+          <img ng-src="{{imgBaseURL}}img/ic_messsageMember.png" width="42" style="vertical-align:middle;" />
+        </div>
+        <p class="margin-top-5" style="margin-bottom: 0;flex: 1;-webkit-flex: 1;-moz-flex:1;-ms-flex:1;-o-flex:1;">
+          <span class="sg-ms-title font-size-15 padding-5">会员动态消息</span><br />
+          <span class="font-size-12 padding-5" style="display: inline-block;">{{memberMessage}}</span>
+        </p>
+      </div>
+    </div>
+    <!-- 会员动态消息 end -->
+    <!--add 社区动态消息 start @zyr-->
+    <div class="border-radius border-bottom" ng-click="goMessageList('4')" style="background-color:#FFFFFF;">
+      <div class="row padding-10 clearfix" style="position: relative;">
+        <div ng-if="communityNum>=10" style="width:32px;height:20px;border-radius:10px;position: absolute;top: 5px;left: 33px;background: #F43531;color:#fff;text-align: center;">{{communityNumClose}}</div>
+        <div ng-if="communityNum<10&&communityNum>0" style="width:20px;height:20px;border-radius:50%;position: absolute;top: 5px;left: 47px;background: #F43531;color:#fff;text-align: center;">{{communityNumClose}}</div>
+        <div class="padding-5 float-l" style="width: 16%;text-align: center;">
+          <img ng-src="{{imgBaseURL}}img/ic_messsageCommunity.png" width="42" style="vertical-align:middle;" />
+        </div>
+        <p class="margin-top-5" style="margin-bottom: 0;flex: 1;-webkit-flex: 1;-moz-flex:1;-ms-flex:1;-o-flex:1;">
+          <span class="sg-ms-title font-size-15 padding-5">社区动态</span><br />
+          <span class="font-size-12 padding-5" style="display: inline-block;">{{communityMessage}}</span>
+        </p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

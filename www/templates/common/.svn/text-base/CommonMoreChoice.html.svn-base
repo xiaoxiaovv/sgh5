@@ -1,0 +1,38 @@
+<!--模板-->
+<ion-modal-view class="background" view-title="{{title}}" hide-nav-bar="true" style="position: fixed;top: 262px;left: 0;">
+  <div align-title="center" style="height: 50px;background: #FFFFFF;padding: 10px;text-align: center;border-bottom: 1px solid #ddd;">
+    <h1 class="title" style="font-size: 18px;padding-top: 4px;">更多选择</h1>
+    <span class="ion-ios-close-empty" ng-click="closeStoreModal()" style="font-size: 32px;position: absolute;top: 6px;right: 5px;padding: 0 10px;"></span>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="hig" style="top: 52px;background: #fff;" delegate-handle="mainScroll">
+    <div class="housproductlist">
+      <div class='row' style='position: relative;'>
+      </div>
+
+      <div class='row productlilist' ng-repeat='item in productListMore track by $index'>
+        <label class="checkbox col col-10">
+          <input type="checkbox" id='smallthis' style='top:0.88rem;' ng-model='item.checked' ng-click='choiceSelect(item)'>
+        </label>
+        <div class='col col-90 outrelativediv' ng-click="goProductDetail()" ui-sref="productDetail({'productId':item.id,'storeId':storeId})" >
+          <img  ng-src='{{item.imageUrl}}'/>
+          <div flex="main:justify">
+            <div style="display: inline-block;width: 160px;overflow: hidden;	text-overflow:ellipsis;white-space: nowrap;">{{item.name}}</div>
+          </div>
+          <div>{{item.title}}</div>
+          <div>
+            <div>{{item.price | currency:'￥'}}</div>
+            <div ng-if='item.commission!=null&&isLogin'>赚</div>
+            <div ng-if='item.commission!=null&&isLogin'>{{item.commission | currency:'￥'}}</div>
+          </div>
+          <div>x1</div>
+          <div ng-if='!item.stock'>无货 可预定</div>
+        </div>
+        <div class='housexiahuaxian' style='bottom: 0;width: 8.8rem;left: 1.23rem;'></div>
+      </div>
+
+    </div>
+
+
+  </ion-content>
+
+</ion-modal-view>

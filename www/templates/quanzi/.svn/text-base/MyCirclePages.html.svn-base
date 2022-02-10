@@ -1,0 +1,94 @@
+<ion-view view-title="我的圈子" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-content class="" ng-class="{'hui-back':!myCreatTopics.length && !myTopics.length}">
+        <!--搜索框-->
+        <div class="bg-background padding-top-bottom-5 padding-left-right-10">
+            <form>
+                <input type="search" class="border font-size-12" style="width: 90%;border-radius: 20px;height: 22px;padding-left: 10%"
+                       ng-model="input.keywords" ng-keypress="($event.which === 13)?search($event):0" placeholder="搜索">
+            </form>
+            <i ng-if="iconShow" class="icon ion-ios-search position-a font-size-16" style="top: 9px;left: 8%;color: #6a6a6a;"></i>
+        </div>
+        <!-- 我创建的圈子-->
+        <div class="  font-size-12  border-bottom  " ng-if="myCreatTopics.length"
+             style="background-color: #fafafa;height:30px;color: #777;">
+            <div class="float-l" style="width: 5px;height:30px;background-color: #7edafe;"></div>
+            <div class="padding-top-5">
+                <i class="margin-left-10">我创建的圈子</i>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="bg-background">
+            <ion-list>
+                <ion-item class="item-avatar topic-st" ng-repeat="topic in myCreatTopics" ng-click="clickIn(topic.id,topic.auditStatus)">
+                    <img src="{{topic.topicImg|ImageTopicFilter}}" alt="" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/quanzi.png'"
+                         class="topic-head">
+                    <div ng-bind="topic.topicName" class="topic-title">
+                    </div>
+                    <div class="dot-line topic-des " ng-bind="topic.topicDescription">
+                    </div>
+                    <div class="row padding-0 topic-nums">
+                        <div class="col padding-0 text-align-l"><span
+                                ng-bind="topic.storyNum|Num4Filter"></span>个话题
+                        </div>
+                        <div class="col padding-0 text-align-l"><span
+                                ng-bind="topic.joinNum|Num4Filter"></span>个人
+                        </div>
+                    </div>
+                    <div class="icon ion-ios-arrow-right follow-button view-topic-arrow" ng-if="topic.auditStatus == 0"></div>
+                    <div class="in-review" style="color: #0c60ee" ng-if="topic.auditStatus == 2">审批中</div>
+                    <div class="in-review" style="color: #0c60ee" ng-if="topic.auditStatus == 3">草稿</div>
+                    <div class="in-review" style="color: red;" ng-if="topic.auditStatus == 1">未通过</div>
+                </ion-item>
+            </ion-list>
+        </div>
+        <!--我加入的圈子-->
+        <div class="font-size-12  border-bottom" ng-if="myTopics.length"
+             style="background-color: #fafafa;height:30px;color: #777;">
+            <div class="float-l" style="width: 5px;height:30px;background-color: #fbb840;"></div>
+            <div class="padding-top-5">
+                <i class="margin-left-10">我加入的圈子</i>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="bg-background">
+            <ion-list>
+                <ion-item class="item-avatar topic-st" ng-click="viewTopic(topic.id)" ng-repeat="topic in myTopics">
+                    <img src="{{topic.topicImg|ImageTopicFilter}}" alt="" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/quanzi.png'"
+                         class="topic-head">
+                    <div ng-bind="topic.topicName" class="topic-title">
+                    </div>
+                    <div class="dot-line topic-des " ng-bind="topic.topicDescription">
+                    </div>
+                    <div class="row padding-0 topic-nums">
+                        <div class="col padding-0 text-align-l"><span
+                                ng-bind="topic.storyNum|Num4Filter"></span>个话题
+                        </div>
+                        <div class="col padding-0 text-align-l"><span
+                                ng-bind="topic.joinNum|Num4Filter"></span>个人
+                        </div>
+                    </div>
+                    <div class="icon ion-ios-arrow-right follow-button view-topic-arrow"></div>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <!-- 空显示-->
+        <div class="text-align-c font-size-18" style="padding: 34px 20px;"
+             ng-if="myTopics.length==0 && myCreatTopics.length==0">
+            <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-input-null.png" style="height: 100px;">
+            <div class=" text-align-c " style="color: #777"><p>亲,去加入喜欢的圈子吧,</p></div>
+            <p style="color: #777">获取一手信息</p>
+        </div>
+    </ion-content>
+
+    <!--轻通知-->
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="applyBottomNotice">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>您的申请提交成功，请等待审批。</span>
+        </div>
+    </div>
+</ion-view>

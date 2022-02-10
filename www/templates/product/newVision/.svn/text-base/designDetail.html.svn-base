@@ -1,0 +1,90 @@
+<ion-view class="background" view-title="设计师详情" hide-nav-bar="true" hide-back-button="true">
+  <go-top delegate-handle="scrollSelection" offset="{{isBuyer == '0'? 15:65}}"></go-top>
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <!--分享界面 -->
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="showWeChat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_weixin.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="showWeChat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_friend.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="showQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_qq.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="showQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_zone.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_weibo.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_link.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <ion-content>
+    <div ng-class="{true:'iosApphomedesHead',false:'normalhomedesHead'}[isIosApp]" style='background: url("{{designerData.imageUrl}}") no-repeat;position: relative;-webkit-background-size:100% 100%;background-size:100% 100%;'>
+      <img src='{{imgBaseURL}}img/linshi/Backw@2x.png' style='position: absolute; width: 24px;left: 15px;top: 30px;' ng-click='goback()'/>
+    <button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;position: absolute; top: 30px;right: 10px;" ng-if="isApp">
+      <img src="{{imgBaseURL}}img/linshi/sharegw@2x.png" class="block" style="width: 24px;height: 24px">
+    </button>
+    <div style='position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    bottom: -32px;
+    left: 15px;z-index:30'>
+      <img ng-src='{{designerData.avatar?designerData.avatar:imgBaseURL+"img/quanzi/user.jpg"}}' width=100% height=100% err-src="{{imgBaseURL}}img/quanzi/user.jpg"/>
+    </div>
+    <div style='position: absolute;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    bottom: -33px;
+    left: 13px;
+    border: 3px solid #999;z-index: 9'>
+    </div>
+    </div>
+  <div class="desDtifo">
+    <div>{{designerData.name}}</div>
+    <div>{{designerData.area}}</div>
+    <div>{{designerData.introduction}}</div>
+  </div>
+  <div class='housetitle' style="background-color: white;">
+    <div></div>
+    <div>设计案例</div>
+  </div>
+  <div class='dopaddingnosize'>
+    <div class="homedesignlist" ng-repeat='i in listdata' style="margin-bottom: 4px;">
+        <div>
+          <img ng-src="{{i.imageUrl}}" ui-sref='homeDetail({"solutionId":i.id})'/>
+          <div>
+            <div ng-show='false'>
+              
+            </div>
+            <div ng-show='false'></div>
+            <div>{{i.area}}</div>
+          </div>
+        </div>
+        <div ui-sref='homeDetail({"solutionId":i.id})'>{{i.name}}</div>
+        <div>
+          <div ng-repeat='item in (i.label).split(" ")'>{{item}}</div>
+        </div>
+  </div>
+  </div>
+  
+
+
+
+<ion-infinite-scroll ng-if="hasmore" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+ 
+</ion-content>
+</ion-view>

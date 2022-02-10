@@ -1,0 +1,30 @@
+<!--问题反馈-->
+<ion-view view-title="意见反馈">
+  <ion-content scroll="false">
+    <div class="padding-left-15 padding-top-bottom-15 border-top-bottom">
+      <div>购买和售后支持，请拨打24小时客服电话</div>
+      <a href="tel:4006-999-999" class="sg-rank-text">4006-999-999</a>
+    </div>
+    <div class="padding-15">海尔顺逛微小店相关内容，请填写下表：</div>
+    <div class="row padding-left-15 margin-bottom-20">
+      <span class="col-30">反馈类型：</span>
+      <label ng-click="openSelect();" class="item item-input sg-rank-text border width-50">
+        <label class="sg-feedback-label" ng-bind="feedbackType"></label>
+        <i class="icon ion-ios-arrow-down color-text-m"></i>
+      </label>
+    </div>
+    <div class="row padding-left-right-15 margin-bottom-20">
+      <span class="col-30">反馈内容：</span>
+      <textarea placeholder="" ng-model="userInfo.content" rows="5" class="border width-70"></textarea>
+    </div>
+    <div class="row padding-left-right-15 margin-bottom-20">
+      <span class="col-30">联系方式：</span>
+      <input placeholder="" ng-model="userInfo.contact" class="border width-70" type="tel" maxlength="11"/>
+    </div>
+    <div class="padding-left-right-10 margin-top-5">
+      <button ng-click="submitFeedback();" class="sg-feedback-submit width-100 padding-top-bottom-5 color-text-white">
+        提交
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

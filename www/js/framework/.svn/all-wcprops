@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/dev/!svn/ver/193741/haier-store/shunguang-v3/H5/trunk/www/js/framework
+END
+FileUploadService.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dev/!svn/ver/137155/haier-store/shunguang-v3/H5/trunk/www/js/framework/FileUploadService.js
+END
+AppRun.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/dev/!svn/ver/193552/haier-store/shunguang-v3/H5/trunk/www/js/framework/AppRun.js
+END
+InputClearDirective.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/dev/!svn/ver/160016/haier-store/shunguang-v3/H5/trunk/www/js/framework/InputClearDirective.js
+END
+PlatformService.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/PlatformService.js
+END
+AppConfig.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/AppConfig.js
+END
+AddressService.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/dev/!svn/ver/186447/haier-store/shunguang-v3/H5/trunk/www/js/framework/AddressService.js
+END
+VersionService.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/dev/!svn/ver/133058/haier-store/shunguang-v3/H5/trunk/www/js/framework/VersionService.js
+END
+ConfigInterceptors.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/dev/!svn/ver/176835/haier-store/shunguang-v3/H5/trunk/www/js/framework/ConfigInterceptors.js
+END
+ConfigCommon.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/ConfigCommon.js
+END
+CommonFactory.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/dev/!svn/ver/157330/haier-store/shunguang-v3/H5/trunk/www/js/framework/CommonFactory.js
+END
+$localstorage.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/$localstorage.js
+END
+UrlService.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/dev/!svn/ver/193741/haier-store/shunguang-v3/H5/trunk/www/js/framework/UrlService.js
+END
+ConfigRoute.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/dev/!svn/ver/193632/haier-store/shunguang-v3/H5/trunk/www/js/framework/ConfigRoute.js
+END
+CacheService.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/CacheService.js
+END
+PopupService.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dev/!svn/ver/187500/haier-store/shunguang-v3/H5/trunk/www/js/framework/PopupService.js
+END
+Filter.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/dev/!svn/ver/193632/haier-store/shunguang-v3/H5/trunk/www/js/framework/Filter.js
+END
+play-sound.bundle.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/dev/!svn/ver/160016/haier-store/shunguang-v3/H5/trunk/www/js/framework/play-sound.bundle.min.js
+END
+IMService.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/dev/!svn/ver/166559/haier-store/shunguang-v3/H5/trunk/www/js/framework/IMService.js
+END
+H5LocationService.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/H5LocationService.js
+END
+AreaService.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/AreaService.js
+END
+CreditService.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/dev/!svn/ver/157330/haier-store/shunguang-v3/H5/trunk/www/js/framework/CreditService.js
+END
+InAppBrowserService.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/dev/!svn/ver/130404/haier-store/shunguang-v3/H5/trunk/www/js/framework/InAppBrowserService.js
+END
+UserService.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/dev/!svn/ver/189915/haier-store/shunguang-v3/H5/trunk/www/js/framework/UserService.js
+END
+MediaService.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/dev/!svn/ver/137155/haier-store/shunguang-v3/H5/trunk/www/js/framework/MediaService.js
+END

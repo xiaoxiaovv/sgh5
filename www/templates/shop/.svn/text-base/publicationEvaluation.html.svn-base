@@ -1,0 +1,91 @@
+<!--评价-->
+<ion-view view-title="发表评价" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">发表评价</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="publicationEvaluation" ng-class='(isMeOrder||isStore)?"bg-background":""'>
+      <div class="topDiv" flex="dir:left box:first">
+        <div class="topDivl" flex="cross:center">
+          <img ng-src={{productPic}} alt="商品图">
+        </div>
+        <div class="topDivr">
+          <div class="topDivT">整体评价</div>
+          <div flex="dir:left">
+            <div ng-click='evaluateMethod("5")' class="topDivB" flex="dir:left cross:center">
+              <img src='{{evaluateList=="5"?imgBaseURL+"img/ic_select.png":imgBaseURL+"img/ic_check.png"}}' alt="图标" />
+              <span>好评</span>
+            </div>
+            <div ng-click='evaluateMethod("3")'  class="topDivB" flex="dir:left cross:center">
+              <img src='{{evaluateList=="3"?imgBaseURL+"img/ic_select.png":imgBaseURL+"img/ic_check.png"}}' alt="图标" />
+              <span>中评</span>
+            </div>
+            <div ng-click='evaluateMethod("1")'  class="topDivB" flex="dir:left cross:center">
+              <img src='{{evaluateList=="1"?imgBaseURL+"img/ic_select.png":imgBaseURL+"img/ic_check.png"}}' alt="图标" />
+              <span>差评</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contentDiv">
+            <textarea class="width-100 bg-background " rows="5" maxlength="500" style="resize: none;position:relative;" ng-model="commentObj.commentTt" placeholder={{placeholderText}} ></textarea>
+            <span ng-if="commentObj.commentTt.length<=0">500字</span>
+            <span ng-if="commentObj.commentTt.length>0">{{commentObj.commentTt.length}}/500</span>
+      </div>
+      <div class="picDiv" flex="dir:left cross:center" ng-if="isMeOrder||isStore">
+        <div flex="dir:top main:center cross:center" ng-repeat="imgone in imageList track by $index" ng-click="removeImage($index)">
+          <img ng-src="{{imgone}}"/>
+        </div>
+        <div ng-click = "addImage()" class="picDivOne" flex="dir:top main:center cross:center">
+          <img class="picDivOneimg" ng-src="{{imgBaseURL}}img/fd-camera.png"/>
+          <span ng-if="imageCount<=0">添加</span>
+          <span ng-if="imageCount>0">{{imageCount}}/9</span>
+        </div>
+      </div>
+      <div class="shopScore" ng-if="isMeOrder||isStore">
+        <div class="shopScoreOne">综合评分</div>
+        <div class="shopScoreAll" flex="dir:left cross:center">
+          <span>商品评分</span>
+          <comment-bar-new comment-value="valueAll.value1" comment-change="change(0);"></comment-bar-new>
+        </div>
+        <div class="shopScoreAll" flex="dir:left cross:center">
+          <span>物流配送</span>
+          <comment-bar-new comment-value="valueAll.value2" comment-change="change(1);"></comment-bar-new>
+        </div>
+        <div class="shopScoreAll" flex="dir:left cross:center">
+          <span>服务态度</span>
+          <comment-bar-new comment-value="valueAll.value3" comment-change="change(2);"></comment-bar-new>
+        </div>
+      </div>
+      <div class="buyerImpression" ng-if="(isMeOrder||isStore)&&impressionStr.length>0">
+        <div class="impressionText">买家印象</div>
+        <div class="impressionList" flex="dir:left">
+          <div ng-repeat = "ims in impressionStr" ng-click = "buyerIms($index)" ng-style='isChecked($index)?isCheckedCss:""'>{{ims.impressionName}}</div>
+        </div>
+      </div>
+      <div class="divBottom" flex="main:center cross:center">
+        <div class="submitButton" ng-click="submitEvaluation()">发表评价</div>
+      </div>
+  </ion-content>
+
+  <!--软键盘完成-->
+  <div class="width-100 bg-white" ng-style="keyboardBtn"
+  style="position: fixed;z-index:10;font-size: 14px;color: #32BEFF;height: 35px;line-height: 35px;text-align: right;padding-right: 20px; bottom: 0;display: none;">完成</div>
+  <div ng-if="show"
+       style="width:100%;height: 100%;background: black;z-index:10;position: absolute;opacity: 0.6">
+    <img style="position: absolute;padding: 5px;left: 10px;width: 40px;top:20px" ng-click="deleteImg()" ng-src="{{imgBaseURL}}img/trash9.png"/>
+    <img style="position: absolute;padding: 5px;right: 10px;width: 40px;top:20px" ng-click="closeImg()" ng-src="{{imgBaseURL}}img/ic_erweima_close.png"/>
+  </div>
+  <div
+    style="width:90%;display:table-cell;height:80%;text-align:center; vertical-align:middle;background: transparent;position: fixed;top: 10%;left: 5%;z-index:10;"
+    ng-if="show">
+    <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+    <img style="width: 90%;vertical-align: middle;" ng-src="{{largeImg}}" err-src=""/>
+  </div>
+
+</ion-view>

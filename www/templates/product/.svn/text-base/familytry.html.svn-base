@@ -1,0 +1,24 @@
+<ion-view class="background" view-title="智能家庭体验">
+  <ion-content scrollbar-y="false">
+    <div class='familytry familytry_four' ng-click='gotocity()'>
+      <img ng-src="{{imgBaseURL}}img/homepage/xuanzhuan.png">
+      <img ng-src="{{imgBaseURL}}img/homepage/yinying.png" >
+      <div>城市智慧生活</div>
+    </div>
+    <div class='familytry familytry_one' ng-click='gototianyuan()'>
+      <img ng-src="{{imgBaseURL}}img/homepage/xuanzhuan.png">
+      <img ng-src="{{imgBaseURL}}img/homepage/yinying.png" >
+      <div>现代田园风格</div>
+    </div>
+    <div class='familytry familytry_two' ng-click='gotohunda()'>
+      <img ng-src="{{imgBaseURL}}img/homepage/xuanzhuan.png">
+      <img ng-src="{{imgBaseURL}}img/homepage/yinying.png" >
+      <div>现代混搭风格</div>
+    </div>
+    <div class='familytry familytry_three' ng-click='gotojianyue()'>
+      <img ng-src="{{imgBaseURL}}img/homepage/xuanzhuan.png">
+      <img ng-src="{{imgBaseURL}}img/homepage/yinying.png" >
+      <div>现代简约风格</div>
+    </div>
+  </ion-content>
+</ion-view>

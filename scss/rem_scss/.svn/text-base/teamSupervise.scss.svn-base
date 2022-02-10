@@ -1,0 +1,511 @@
+.team_userName{
+  width: 100%;
+  height: 18px;
+  font-size: 12px; /*no*/
+  color: #fff;
+  position: absolute;
+  margin: auto;
+  text-align: center;
+}
+.team_myCode{
+  width: 162px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;/*no*/
+  color: #2979FF ;
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+}
+.team_myCode_pic{
+   width: 12px;
+   height: 12px;
+   position: absolute;
+   left: 10px;
+   top: 2px;
+   img{
+     width: 100%;
+     height: 100%;
+   }
+}
+.team_myCode_code{
+  position: absolute;
+  top: 1px;
+  left: 26px;
+  //width: 80%;
+  //text-align: center;
+}
+.team_userInfo_a1{
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+}
+.team_level{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  line-height: 1.6;/*no*/
+  border-radius: 100%;
+  border: 1px solid #FEFB00;
+  background-color: #0B4CBC;
+  text-align: center;
+  color: #FEFB00;
+  font-size: 12px;
+}
+.team_nav{
+    height: 44px;
+    //line-height: 44px;
+    padding: 8px 0;
+    background: #eee;
+    z-index:9999;
+    span{
+      font-size: 12px;
+      color: #999;
+      padding: 4px 12px;
+      text-align: center;
+      &:first-child{
+          margin-left: 14px;
+      }
+      &:last-child{
+          margin-right: 14px;
+      }
+    }
+}
+/*团队管理2级导航添加类*/
+
+.team_nav_default{
+    color: #2979FF !important;
+    border: none !important;
+}
+.order_list{
+  border-bottom: 2px solid #2979FF !important;
+  color: #2979FF !important;
+  //border: none !important;
+}
+/*用户头像*/
+.team_userPic{
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.team_user_msg{
+    dl{
+       // border-bottom: 1px solid #e4e4e4;
+       margin-left: 16px;
+    }
+}
+/*用户信息*/
+.team_user_title{
+    margin-top: 12px;
+    height: 24px;
+    line-height: 24px;
+    strong{
+      font-size: 16px;
+    //  font-weight: 400;
+    }
+    span{
+      font-size: 12px;
+      color: #666;
+    }
+}
+.team_user_active{
+  color: #666;
+  padding-top: 8px;
+  clear: both;
+  span{
+     padding-right: 20px;
+  }
+}
+/*是否注册APP*/
+.team_isShows{
+  width: 8px;/*no*/
+  height: 12px;/*no*/
+  display: inline-block;
+  border: 1px solid #fff;
+  border-left: none;
+  border-top: none;
+  transform: rotate(40deg);
+  -webkit-transform: rotate(40deg);
+  position: absolute;
+  left: 54px;/*no*/
+  right: 0;
+  top: 2px;
+ // bottom: 0;
+}
+.team_user_isShows{
+  span{
+    position: relative;
+    display: inline-block;
+    padding-right: 24px;
+  }
+
+}
+
+/*基本信息*/
+.team_user_basics{
+  background: #fff;
+  div{
+      height: 44px;
+      line-height: 44px;
+     // border-bottom: 1px solid #e4e4e4;
+      font-size: 14px;
+      //margin-left: 14px;
+      span{
+        margin-left: 14px;
+      }
+      i{
+        color: #999;
+      //  float: right;
+        padding-right: 16px;
+        text-align: right;
+        img{
+          width: 24px;
+          height: 24px;
+          position: absolute;
+          right: 16px;
+          margin: 10px 0;
+        }
+      }
+   }
+}
+
+/*订单*/
+.team_user_order{
+   background: #fff;
+   margin-top: 8px;
+}
+.team_user_info{
+   dl{
+      dt{
+         margin:16px 12px 16px 12px;
+         width: 70px;
+         height: 70px;
+         img{
+            width: 100%;
+            height: 100%;
+         }
+      }
+      dd{
+         color: #666;
+         font-size: 14px;
+         p{
+           margin-top: 12px;
+         }
+         div{
+           margin-top: 10px;
+         }
+      }
+   }
+}
+
+/*固定大容器*/
+.team_supervise{
+  color: #fff;
+  background:#2979FF;
+  box-shadow: 0 4px 20px 0;
+  width: 100%;
+  overflow: hidden;
+}
+.team_user_box{
+  position:relative;
+  background:#2979FF;
+  height:192px;
+}
+/*1级导航*/
+.team_nav_one{
+  height: 40px;
+  line-height: 40px;
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+}
+.team_user_nav{
+  background:#fff;
+  color: #2979FF;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #e4e4e4;
+  height: 40px;
+  line-height: 40px;
+}
+
+/*距离上边高度*/
+.team_supervise_content{
+  margin-top: 327px;
+}
+.team_supervise_content1{
+  margin-top: 310px;
+}
+.team_user_content{
+  top: 284px;
+}
+.team_message_box{
+   height: 242px;
+}
+.user_message_content{
+   top: 240px;
+}
+
+.team_commont_box{
+  background: #eee;
+  margin-left:0;
+  height: 8px;
+}
+
+.team_user_orderNum{
+  height: 34px;
+  line-height: 34px;
+  margin-left: 16px;
+  border-bottom: 1px solid #e4e4e4;
+  color: #333;
+}
+/*用户 头像*/
+
+.team_user_pic{
+  width: 76px;
+  height:76px;
+  border-radius: 100%;
+  margin-top:20px;
+  margin-left: 20px;
+  img{
+    width:100%;
+    height:100%;
+    border-radius:100%;
+    border:3px solid rgba(255,255,255,0.35);
+  }
+}
+.team_user_message{
+  width: 256px;
+  height: 90px;
+//  margin-left: 10px;
+ // margin-top: 30px;
+  position: absolute;
+  left: 110px;
+ // top: 68px;
+  color: #fff;
+}
+.team_user_info_title{
+  height:44px;
+  padding:0 12px;
+}
+
+/*等级 认证*/
+.team_team_level{
+  border-radius: 3px;
+  margin-right: 6px;
+//  float: left;
+  i{
+    background: #2979FF;
+    color: #fff;
+    padding: 1px 2px;
+    border-radius: 3px 0 0 3px;
+  }
+  em{
+    background: #fff;
+    color: #2979FF;
+    border: 1px solid #2979FF;
+    border-radius: 0 3px 3px 0;
+  }
+}
+.team_team_isAuthenticated{
+  background: #F39924;
+  border-radius: 2px;
+ // margin-top: 2px;
+  padding: 1px 0;
+//  float: left;
+  i{
+    padding: 0 2px;
+    img{
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+    }
+  }
+  em{
+    color: #fff;
+    padding-right: 4px;
+  }
+}
+/*店铺数据详情*/
+.team_product_forms{
+   margin-top: 20px;
+   .team_product_forms_pic{
+     margin-bottom: 30px;
+     text-align: center;
+      div{
+         width: 24px;
+         height: 24px;
+         border-radius: 10px;
+         margin: 0 auto;
+         img{
+           width: 100%;
+           height: 100%;
+         }
+      }
+   }
+}
+/*次数*/
+.team_product_forms_num{
+  padding-top: 10px;
+   color: #333;
+   font-size: 13px;
+}
+/*社交*/
+.team_product_forms_tool{
+  color: #999;
+}
+/*店铺名称*/
+.store_name{
+   float: left;
+   display: inline-block;
+   max-width: 140px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+.store_name_title{
+ // height: 14px;
+ // line-height: 14px;
+  display: inline-block;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ // float: left;
+}
+.homepage_login_success{
+  //height: 160px !important;
+}
+.text-red{
+  color: red;
+}
+.homepage_login_success_info{
+  text-align: center;
+  margin: 10px 0;
+  font-size: 16px;/*no*/
+}
+.history_popup{
+  //height: 300px !important;
+}
+.is_not_someing{
+  width: 80%;
+  height: 120px;
+  background:#fff;
+  z-index: 999;
+  color: #000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 14px;/*no*/
+  border-radius: 8px;
+  p{
+    margin: 20px 22px 0px 22px;
+  }
+}
+.popup_btn{
+  height: 140px !important;
+}
+/* 推荐人新增样式 */
+.my_referee{
+  position:relative;
+  left:0;
+  right:0;
+  height:18px;
+  background:#2979FF;
+  margin-top:-1px;/* no */
+  .my_refereecont{
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    color:white;
+    img{
+      margin-left:-4px;
+    }
+  }
+}
+@media (width: 320px) {
+  .homepage_login_success{
+    //height: 200px !important;
+  }
+  .popup_btn{
+    height: 140px !important;
+  }
+  .history_popup{
+  //  height: 340px !important;
+  }
+  .is_not_someing{
+      height: 120px !important;
+  }
+  .team_myCode{
+     width: 190px !important;
+  }
+  /* .team_supervise_content{
+    top: 340px !important;
+  } */
+
+}
+@media (width: 320px) {
+  .team_supervise_content{
+    margin-top: 286px !important;/* no */
+  }
+  .team_supervise_content1{
+    margin-top: 270px !important;/* no */
+  }
+}
+//@media (width: 540px) {
+//  .history_popup{
+//  //  height: 230px !important;
+//  }
+//}
+@media (width: 414px)  {
+  .history_popup{
+ //   height: 280px !important;
+  }
+  /* .team_supervise_content{
+    top: 316px !important;
+  }
+ */}
+/* @media (width: 412px) {
+  .history_popup{
+   // height: 270px !important;
+  }
+  .team_supervise_content{
+    top: 308px !important;
+  }
+
+} */
+@media (width: 360px) {
+  .history_popup{
+  //  height: 300px !important;
+  }
+  .team_myCode{
+    width: 170px !important;
+  }
+  /* .team_supervise_content{
+    top: 318px !important;
+  } */
+}
+//@media (min-width: 760px) and (max-width: 1366px){
+//  .homepage_login_success{
+//   // height: 130px !important;
+//  }
+//  .history_popup{
+//   // height: 200px !important;
+//  }
+//  //.team_supervise_content{
+//  //  top: 448px !important;
+//  //}
+//}

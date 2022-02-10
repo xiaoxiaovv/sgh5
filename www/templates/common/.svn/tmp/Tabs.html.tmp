@@ -1,0 +1,34 @@
+<div class="tabs tabs-icon-top border border-bottom-none border-left-right-none" style="background-image: url({{tabsImg.background}});background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
+  <a class="tab-item" ui-sref="newHome" nav-transition="none" ng-if="tabNav!=='newHome'" style="color:{{tabsTextColor.sgFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.sg}} alt="逛逛"/>逛逛
+  </a>
+  <a class="tab-item" ui-sref="newHome" nav-transition="none" ng-if="tabNav=='newHome'" style="color:{{tabsTextColor.sqHoverFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.sgHover}} alt="逛逛"/>逛逛
+  </a>
+  <a class="tab-item" ui-sref="branchType" nav-transition="none" ng-if="tabNav!=='branchType'" style="color:{{tabsTextColor.flFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.fl}} alt="分类"/>分类
+  </a>
+  <a class="tab-item" ui-sref="branchType" nav-transition="none" ng-if="tabNav=='branchType'" style="color:{{tabsTextColor.flHoverFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.flHover}} alt="分类"/>分类
+  </a>
+  <!-- <a class="tab-item" ui-sref="topic.qhot" nav-transition="none" ng-if="tabNav!=='qhot'&&tabNav !=='personalHomePageHe'&&tabNav !=='personalHomepageMe'" style="color:{{tabsTextColor.sqFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.sq}} alt="社区"/>社区
+  </a>
+  <a class="tab-item" ui-sref="topic.qhot" nav-transition="none" ng-if="tabNav=='qhot'||tabNav =='personalHomePageHe'||tabNav =='personalHomepageMe'" style="color:{{tabsTextColor.sqHoverFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.sqHover}} alt="社区"/>社区
+  </a> -->
+  <a class="tab-item" ui-sref="cart" nav-transition="none" ng-if="tabNav!=='cart'" style="color:{{tabsTextColor.gwcFontColor}};position: relative;">
+	<div style='height:14px;width:14px;background-color: #ff4400;position: absolute;right:0.72rem;border-radius: 50%;color:white;' ng-if='!(BottomCartNum==0 || BottomCartNum==null)'>{{ BottomCartNum }}</div>
+    <img class="padding-3 icon" ng-src={{tabsImg.gwc}} alt="购物车"/>购物车
+  </a>
+  <a class="tab-item" ui-sref="cart" nav-transition="none" ng-if="tabNav=='cart'" style="color:{{tabsTextColor.gwcHoverFontColor}};position: relative;">
+	<div style='height:14px;width:14px;background-color: #ff4400;position: absolute;right:0.72rem;border-radius: 50%;color:white;' ng-if='!(BottomCartNum==0 || BottomCartNum=="")'>{{ BottomCartNum }}</div>
+    <img class="padding-3 icon" ng-src={{tabsImg.gwcHover}} alt="购物车"/>购物车
+  </a>
+  <a class="tab-item" ui-sref="personnalCenter" nav-transition="none" ng-if="tabNav!=='personnalCenter'" style="color:{{tabsTextColor.wdFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.wd}} alt="我的"/>我的
+  </a>
+  <a class="tab-item" ui-sref="personnalCenter" nav-transition="none" ng-if="tabNav=='personnalCenter'" style="color:{{tabsTextColor.wdHoverFontColor}}">
+    <img class="padding-3 icon" ng-src={{tabsImg.wdHover}} alt="我的"/>我的
+  </a>
+</div>

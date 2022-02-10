@@ -1,0 +1,49 @@
+<!--我的->地址管理-->
+<ion-view class="background" view-title="批量删除" hide-nav-bar="true">
+  <!--ios并且是 app 的话，一个占位符 ，因为ios状态栏的缘故-->
+  <div ng-if="isIosAndInApp" style="position: fixed;z-index:120;top:0;left:0;width:100%;height: 20px;background:#f4f4f4;"></div>
+  <!--标题-->
+  <div ng-style="iosStyleTwo" flex="main:center cross:center" style="width:100%;height:44px;background:#f8f8f8;position: fixed;z-index:120;top:0;left:0; padding: 0 16px;">
+    <div ng-click="goBack()" flex="main:left cross:center" style="width:44px;height: 44px;position: absolute;top:0;left:0px;">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;margin-left:16px;">
+    </div>
+    <div style="font-size: 17px;color: #000;">批量删除</div>
+    <div ng-click="selectAllOrder()"  ng-class="cancelSelectAll" style="position: absolute;top:12px;right:16px;height:20px;font-size: 16px;">{{isSelectAllOrder==true?'取消全选':'全选'}}</div>
+  </div>
+  <ion-content scrollbar-y="false">
+    <div style="height:44px;"></div>
+    <div ng-repeat="list in closeOrderData" style="margin-top:8px;width:100%;background:#fff;" ng-init="outIndex = $index">
+      <div style="height:44px;color:#666;font-size:14px;background:#fff;line-height:44px;display:flex;justify-content:space-between;margin-left:17%;width:100%;padding:0 10px;">
+        <span>订单号:&nbsp;&nbsp;{{list.orderSn}}</span>
+        <span style="color:#2979FF;margin-right:20px;">{{list.orderStatusName}}</span>
+      </div>
+      <div class="background" style="height:90px;display:flex;" ng-repeat="lis in list.OrderProducts">
+        <div style="width:17%;height:90px;display:flex;justify-content:center;align-items:center;" ng-click="selectOrderAddress(outIndex)">
+          <img style="height:16px;width:16px;" ng-src="{{image[outIndex]}}" alt="" />
+        </div>
+        <div style="width:100%; display:flex;">
+          <img style="height:70px;width:70px;margin:10px 0 10px 0;" ng-src="{{lis.defaultImageUrl}}" alt="">
+          <div style="flex:1;padding:10px 10px 0 10px;">
+            <div style="width:100%;display:flex;font-size:14px;">
+              <div style="width:85%;line-height:20px;">
+              <span>{{lis.productFullName}}</span>
+              <span ng-bind="lis.productName"></span>
+              </div>
+              <span style="font-size:17px;position:fixed;left:90%;">￥{{lis.price}}</span>
+            </div>
+            <div style="opacity:0.66;color:#666;margin-top:10px;">下单时间:&nbsp;&nbsp;{{list.addTime}}</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:45px;background:#fff;font-size:14px;line-height:45px;margin-left:33%;width:100%;">
+        共<span ng-bind="list.productTotalNo"></span>件商品 合计：
+        <span ng-bind="list.totalAmount | currency:'&yen;'"></span> (含运费<span ng-bind="list.totalShippingFeeAmount | currency:'&yen;'"></span>)
+      </div>
+    </div>
+    <div style="height:93px;width:100%;background:#f4f4f4;"></div>
+    <ion-infinite-scroll immediate-check="false" distance="5%" ng-if="hasMoreData" on-infinite="loadMore()"></ion-infinite-scroll>
+  </ion-content>
+  <div ng-click="batchDelete()" style="width:100%;height:90px;position: fixed;bottom:0px;background: #f4f4f4;">
+    <div style="width:91%;height:44px;margin:23px auto;background: #fff;border-radius: 50px;line-height:44px;text-align: center;color: #666;font-size: 17px;box-shadow:0 3px 6px 0">删除</div>
+  </div>
+</ion-view>

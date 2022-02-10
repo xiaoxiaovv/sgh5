@@ -1,0 +1,158 @@
+<ion-view view-title="关联商品" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <!--<button ng-click="yes();" class="button-clear" style="color:#999999;">确定</button>-->
+    <!--<button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+      <img src="img/share2.png" class="block" style="width: 20px;height: 20px">
+    </button>-->
+    <!--<button ng-click="isClick()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+      <img ng-src="./img/dot3.png" class="block" style="width: 20px;height: 20px">
+    </button>-->
+  </ion-nav-buttons>
+  <!--导航-->
+  <div ng-class="{true:'iosTopMargin',false:'androidTopMargin'}[isIOS]" style="opacity:0.6;font-weight:700;text-align:center;display:flex;color: #444;height:28px;font-size:16px;line-height:28px;">
+    <div ng-click="onTabSelected(0)" style="flex:1;" ng-class="{true:'selectTrue',false:''}[shop0]">我的小店</div>
+    <div ng-click="onTabSelected(1)" style="flex:1;" ng-class="{true:'selectTrue',false:''}[shop1]">购买商品</div>
+    <div ng-click="onTabSelected(2)" style="flex:1;" ng-class="{true:'selectTrue',false:''}[shop2]">我的收藏</div>
+    <div ng-click="onTabSelected(3)" style="flex:1;" ng-class="{true:'selectTrue',false:''}[shop3]">搜其他</div>
+  </div>
+  <!--<ion-tabs class="tabs-striped" delegate-handle="qztab"
+              ng-class="{true:'sgqz-home-tabs-ios',false:'sgqz-home-tabs'}[isIOS]">
+        <ion-tab  title="我的小店" on-select="onTabSelected(0)">
+            <ion-nav-view name="topic-qhot" ></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="购买商品" on-select="onTabSelected(1)">
+            <ion-nav-view name="topic-qmine"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="我的收藏" on-select="onTabSelected(2)">
+            <ion-nav-view name="topic-qwschool"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="搜其他" on-select="onTabSelected(3)">
+            <ion-nav-view name="topic-qwschool"></ion-nav-view>
+        </ion-tab>
+  </ion-tabs>-->
+  <div style="background:#fff;height:30px;margin-left:10px;line-height:30px;">已选 {{productId.length}} 个，最多选5个</div>
+  <div class="row"  ng-if="shop0" style="padding-top:5px;padding-bottom:10px;">
+        <div class="border border-radius inline-block col col-85" style="text-align: right;height: 30px;position: relative;margin-top: -3px">
+          <input id="focus" type="text" class="inline-block" style="margin-top: -5px;width: 97%;height: 28px;"ng-style="inputPadding" placeholder="{{gsPlaceholder}}" ng-model="searchName.searchShop" ng-keypress="todoSomething($event,2)" />
+          <input-clear style="top: -2px;" ng-model="searchName.searchShop"></input-clear>
+        </div>
+        <div class="col col-15 padding-top-5">
+        <div class="color-text-l" ng-style="" style=" width: 100%;text-align: center;font-size: 15px;margin-top: -3px;" ng-click="searchProduct(2)">搜索</div>
+        </div>
+   </div>
+   <div class="row"  ng-if="shop2" style="padding-top:5px;padding-bottom:10px;">
+        <div class="border border-radius inline-block col col-85" style="text-align: right;height: 30px;position: relative;margin-top: -3px">
+          <input id="focus" type="text" class="inline-block" style="margin-top: -5px;width: 97%;height: 28px;"ng-style="inputPadding" placeholder="{{gsPlaceholder}}" ng-model="searchName.searchHold" ng-keypress="todoSomething($event,2)" />
+          <input-clear style="top: -2px;" ng-model="searchName.searchHold"></input-clear>
+        </div>
+        <div class="col col-15 padding-top-5">
+        <div class="color-text-l" ng-style="" style=" width: 100%;text-align: center;font-size: 15px;margin-top: -3px;" ng-click="searchHold()">搜索</div>
+        </div>
+   </div>
+  <div class="row"  ng-if="search" style="padding-top:5px;padding-bottom:10px;">
+        <div class="border border-radius inline-block col col-85" style="text-align: right;height: 30px;position: relative;margin-top: -3px">
+          <input id="focus" type="text" class="inline-block" style="margin-top: -5px;width: 97%;height: 28px;"ng-style="inputPadding" placeholder="{{gsPlaceholder}}" ng-model="searchName.searchAll" ng-keypress="todoSomething($event,1)" />
+          <input-clear style="top: -2px;" ng-model="searchName.searchAll"></input-clear>
+        </div>
+        <div class="col col-15 padding-top-5">
+        <div class="color-text-l" ng-style="" style=" width: 100%;text-align: center;font-size: 15px;margin-top: -3px;" ng-click="searchProduct(1)">搜索</div>
+        </div>
+   </div>
+  <!--<div style="background:#fff;margin-top:73px;background:#f4f4f4;height:20px;">已选 {{productId.length}} 个，最多选5个</div>-->
+  <ion-content scrollbar-y="false" delegate-handle="scrollSelection" style="margin-bottom:90px;" ng-class="{true:{true:'margin-top80',false:'margin-top60'}[isIOS],false:{true:'margin-top120',false:'margin-top100'}[isIOS]}[shop1]">
+    
+    <!--<ion-refresher class="" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>-->
+      
+      
+      <!--非发现页商品展z示-->
+      <div class="row row-no-padding bg-white margin-0" ng-repeat="goods in productList" ng-if="isShop">
+        <div class="col col-10 border-top" ng-click="selectOrderAddress(goods)" style="height:90px;display:flex;justify-content:center;align-items:center;">
+            <img style="height:16px;width:16px;" ng-src="{{image[goods.productId]}}" alt="" />
+        </div>
+        <div class="col col-25 border-top">
+          <!--<div class="text-align-c" ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})" style="display:inline-block;">-->
+          <div style="display:inline-block;">
+            <img class="margin-bottom-10 margin-top-15 margin-left-5" ng-src="{{goods.defaultImageUrl||goods.image}}" err-src=""
+                 style="width: 82px"/>
+          </div>
+        </div>
+
+        <div class="col col-65 border-top padding-top-5 padding-left-right-10">
+          <!--<div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">-->
+          <div>
+            <div class="font-size-12 font-bold margin-top-15">
+              <span>{{goods.productName||goods.productFirstName}}</span>
+            </div>
+            <span class="font-size-12 font-bold"
+              >{{goods.productSecondName}}</span>
+          </div>
+          <div class="margin-bottom-5  font-size-10">
+            <!--<div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">-->
+          <div>
+              
+              <div class="row padding-0 margin-bottom-5" ng-if="goods.showFinalPrice">
+                <span class="">价格:</span>
+                <span class="">￥{{goods.saleGuidePrice}}</span>
+              </div>
+              <div class="row padding-0">
+                <span class=""></span>
+                <span class="color-text-red">￥{{goods.price||goods.finalPrice}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--非发现页商品展z示-->
+      <!--<div class="bg-white margin-0" ng-repeat="pro in productList" ng-if="isAreadyShop">
+        <div>{{pro.orderSn}}</div>
+        <div class="row row-no-padding bg-white margin-0" ng-repeat="goods in pro.OrderProducts">
+        <div class="col col-10 border-top" ng-click="selectOrderAddress(goods.productId)" style="height:90px;display:flex;justify-content:center;align-items:center;">
+            <img style="height:16px;width:16px;" ng-src="{{image[goods.productId]}}" alt="" />
+        </div>
+        <div class="col col-25 border-top">
+          <div class="text-align-c" ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})" style="display:inline-block;">
+            <img class="margin-bottom-10 margin-top-15 margin-left-5" ng-src="{{goods.defaultImageUrl}}" err-src=""
+                 style="width: 82px"/>
+          </div>
+        </div>
+
+        <div class="col col-65 border-top padding-top-5 padding-left-right-10">
+          <div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+            <div class="font-size-12 font-bold margin-top-15">
+              <span>{{goods.productName}}</span>
+            </div>
+          </div>
+          <div class="margin-bottom-5  font-size-10">
+            <div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+              <div class="row padding-0">
+                <span class=""></span>
+                <span class="color-text-red">￥{{goods.price}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>-->
+      <!--<div style="width: 100%;height: 50px"></div>-->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+  <!--确定按钮-->
+  <div ng-click="productOK()" style="width:100%;height:90px;position: fixed;bottom:0px;background: #f4f4f4;">
+    <div style="width:91%;height:44px;margin:23px auto;background: #fff;border-radius: 50px;line-height:44px;text-align: center;color: #666;font-size: 17px;box-shadow:0 3px 6px 0">确定</div>
+  </div>
+  <!--回到顶部按钮-->
+  <div style="position: fixed;right: 15px;bottom: 45px;" ng-click="scrollToTop()" ng-if="showTopBtn">
+    <img ng-src="{{imgBaseURL}}img/icon_toTop.png" style="width:44px">
+  </div>
+
+</ion-view>

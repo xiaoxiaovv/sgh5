@@ -1,0 +1,22 @@
+<!--绑定手机-->
+<ion-view class="background" view-title="绑定手机" hide-nav-bar="true" hide-back-button="true">
+    <!--判断是否是ios设备-->
+    <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+    <header flex="main:center cross:center box:first" class="header-top-height">
+        <div><img ng-click="$ionicGoBack();" class="goback-img" ng-src="{{GoBackImgUrl}}"></div>
+        <div class="text-c title-text">绑定手机</div>
+    </header>
+
+    <ion-content class="content-head-top background-fff" scrollbar-y="false">
+        <!--判断是否是ios设备-->
+        <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+        <div class="text-c">
+            <img ng-src="{{ResultImgUrl}}" class="result-img">
+            <p class="mt-30 success-text">绑定成功</p>
+            <p class="text-phone mt-35">验证通过，已绑定手机号{{ phone | encryptPhone}}</p>
+        </div>
+        <div class="text-c">
+            <button class="btn-send-Phone mt-50 active-send-phone" ng-click="unload()">确认</button>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-view class="background" view-title="我的预约" hide-nav-bar="true">
+  <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+    <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="$ionicGoBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">我的预约</div>
+    <div style="position:absolute;right:0;top: 0;margin: .12rem .3rem 0 .266667rem;">
+      <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+          <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <div ng-if="!item.hasOver" class="myApm" ng-repeat="item in data">
+      <div class="myApmTop" flex="cross:center box:first" ng-click="goProductDetail(item.productId)">
+        <div>
+          <img ng-src="{{item.imageUrl}}" >
+        </div>
+        <div class="myApmDetail">
+          <div>{{item.productName}}</div>
+          <div flex="cross:center">
+            <div>预约价：</div>
+            <div>￥{{item.price}}</div>
+          </div>
+          <div>
+            {{item.hasBegan?'距结束:':'距开抢:'}}<span>{{item.days}}</span>天<span>{{item.hours}}</span>时<span>{{item.minutes}}</span>分<span>{{item.seconds}}</span>秒
+            </div>
+        </div>
+      </div>
+      <div class="myApmBtm" flex="main:right cross:center">
+        <div ng-if="!item.hasBegan" class="waitBuy" flex="main:center cross:center">
+          等待抢购
+        </div>
+        <div ng-if="item.hasBegan" class="buyNow" flex="main:center cross:center" ng-click="goProductDetail(item.productId)">
+          立即抢购
+        </div>
+      </div>
+    </div>
+    <div class="noData" ng-if="noData">
+      <div flex="main:center cross:center">
+        <img ng-src="{{imgBaseURL}}img/zc@2x.png" >
+      </div>
+      <div>您暂时还没有关注的项目,去预约首页逛逛吧</div>
+      <div flex="main:center cross:center" ui-sref="newres">去逛逛</div>
+    </div>
+    <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

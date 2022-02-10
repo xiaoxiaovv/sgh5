@@ -1,0 +1,472 @@
+/**
+数据统计 店铺、团队、个人  @zhangyr --start/08/04
+**/
+/***店铺数据 start***/
+//nav 导航
+.all-nav {
+  height: 44px; 
+  background: #fafafa; 
+  padding-top: 0px;
+  border-bottom: 1px solid #b2b2b2;
+  position: relative;
+  z-index: 1;
+  .all-nav-back {
+    width:40px;
+    height:44px;
+    padding-left:16px;
+    .img-box {
+      width:34px;
+      height:24px;
+      img {
+        height:100%;
+      }
+    }
+  }
+  .all-nav-title {
+    height:44px;
+    font-size: 17px;
+    letter-spacing: 0px;
+    text-align:center;
+    line-height:44px;
+    color: #030303;
+    margin: 0 45px 0 5px;
+    .activeType {
+      color: #2979ff;
+    }
+    .freezedType {
+      color: #030303;
+    }
+  }
+}
+.tab-box {
+  background: #fff;
+  .days-tab {
+    height: 71px;
+    width: 90%;
+    margin: 0 auto;
+    background: #fff;
+    .days-item {
+      width: 100%;
+      height: 68px;
+      .item-tab {
+        width: 105px;
+        height: 30px;
+        line-height: 26px;
+        text-align: center;
+        border-radius: 15px;
+        border: 2px solid #e7e7e7;
+      }
+      &.current {
+        border-bottom: 1px solid #2979FF;
+        .item-tab {
+          border: 2px solid #2979FF;
+          color: #2979FF;
+        }
+      }
+      &.unCurrent {
+        border-bottom: 1px solid #e4e4e4;
+      }
+    }
+  }
+}
+.data-box {
+  background: #fff;
+  padding: 10px 10px 30px 10px;
+  .data-box-item {
+    width: 100%;
+    margin-top: 20px;
+    .circle {
+      text-align: center;
+      width: 90px;
+      .cir-img {
+        width: 60px;
+        height: 60px;
+        display:inline-block;
+        border-radius: 100%;
+        overflow: hidden;
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      .data-num {
+        font-size: 16px;
+        color: #000;
+      }
+      .data-text {
+        font-size: 11px;
+        color: #666;
+      }
+    }
+  }
+}
+/*7天排行榜*/
+.week-rank-list {
+  background: #fff;
+  .rank-head {
+    height: 41px;
+    padding: 0 17px 0 21px;
+    box-shadow: 0 -3px 3px 0 rgba(0,0,0,0.05);
+    .rank-title {
+      height: 41px;
+      line-height: 41px;
+      font-size: 14px;
+      color: #000;
+    }
+    .rank-time {
+      line-height: 41px;
+      font-size: 12px;
+      color: #5C98FF;
+      &:before {
+        content: "";
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: #5C98FF;
+        margin:0 4px 4px 0;
+        border-radius: 2px;
+      }
+    }
+  }
+  .rank-box {
+    padding: 0 16px 0 21px;
+    .rank-item {
+      height: 57px;
+      border-bottom: 1px solid #e4e4e4;
+      margin-right: -16px;
+      padding-right: 16px;
+      .rank-img-box {
+        .rank-img {
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          overflow:hidden;
+          margin-right: 10px;
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+        .rank-name {
+          font-size: 15px;
+          color: #333;
+        }
+      }
+      .rank-from {
+        color: #999;
+        font-size: 12px;
+        .from-time {
+          
+        }
+        .from-where {
+          width: 100%;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+.empty-box {
+  .empty-img {
+    width: 200px;
+    img {
+      width: 200px;
+    }
+  }
+}
+/***店铺数据 end***/
+/***团队数据 start***/
+.team-data {
+  // head date
+  .date-box {
+    padding: 25px 16px 16px 16px;
+    background: #eee;
+    .team-time {
+      span {
+        color: #000;
+        font-size: 15px;
+        &.start-date {
+
+        }
+        &.end-date {
+
+        }
+      }
+    }
+    .team-refresh {
+      span {
+        font-size: 12px;
+        color: #666;
+        &.refresh-time {
+
+        }
+        &.refresh-date {
+
+        }
+      }
+    }
+  }
+  // 内容部分
+  .data-con {
+    background: #fff;
+    .con-item {
+      margin-bottom: 8px solid #eee;
+      .item-title {
+        height: 34px;
+        line-height: 34px;
+        padding: 0 16px;
+        font-size: 14px;
+        color: #000;
+        border-bottom: 1px solid #e4e4e4;
+      }
+      .item-con {
+        padding: 35px 20px 30px 20px;
+        border-bottom: 8px solid #eee;
+        .total-deve {
+          margin-bottom: 45px;
+          overflow: visible;
+          .deve-info {
+            overflow: visible;
+            .deve-img {
+              width: 50px;
+              height: 50px;
+              margin-right: 20px;
+              overflow: visible;
+              img {
+                width: 50px;
+              }
+            }
+            .deve-detail {
+              height: 50px;
+              .deve-num {
+                font-size: 30px;
+                color: #37394C;
+                line-height: 30px;
+              }
+              .deve-text {
+                letter-spacing: 1px;
+                font-size: 12px;
+                color: #666;
+              }
+            }
+          }
+          .deve-icon {
+            width: 17px;
+            height: 17px;
+            overflow: visible;
+            img {
+              width: 17px;
+            }
+          }
+        }
+        .active-line {
+          .active-item {
+            .line-img {
+              width: 20px;
+              img {
+                width: 20px;
+              }
+            }
+            .line-data {
+              font-size: 18px;
+              color: #000;
+            }
+            .line-text {
+              font-size: 12px;
+              color: #7f7f7f;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/***团队数据 end***/
+
+/***个人数据 start***/
+.owner-data {
+  // head date
+  .date-box {
+    padding: 25px 16px 16px 16px;
+    background: #eee;
+    .team-time {
+      span {
+        font-size: 15px;
+        color: #000;
+        &.start-date {
+
+        }
+        &.end-date {
+
+        }
+      }
+    }
+    .team-refresh {
+      span {
+        font-size: 12px;
+        color: #666;
+        &.refresh-time {
+
+        }
+        &.refresh-date {
+
+        }
+      }
+    }
+  }
+  //data table
+  .table-box {
+    background: #fff;
+    border-bottom: 8px solid #eee;
+    .row-item {
+      height: 124px;
+      .item-detail {
+        text-align: center;
+        height: 100%;
+        border-right: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
+        .item-icon {
+          width: 20px;
+          height: 28px;
+          img {
+            width: 20px;
+          }
+        }
+        .item-num {
+          font-size: 22px;
+          line-height: 26px;
+          color: #000;
+        }
+        .item-text {
+          font-size: 11px;
+          color: #666;
+        }
+        &:last-child{
+          border-right: none;
+        }
+      }
+    }
+  }
+  // 进度条
+  .data-progress {
+    background: #fff;
+    padding: 20px;
+    .progress-nav {
+      .nav-title {
+        font-size: 15px;
+        color: #090909;
+      }
+      .nav-btn {
+        width: 72px;
+        height: 27px;
+        border: 1px solid #2979ff;
+        border-radius: 13px;
+        color: #2979ff;
+        font-size: 13px;
+        text-align: center;
+        line-height: 25px;
+      }
+    }
+    .progress-con {
+      .pro-item {
+        height: 106px;
+        border-bottom: 1px solid #e4e4e4;
+        padding-bottom: 21px;
+        &:last-child {
+          border: none;
+        }
+        .pro-title {
+          margin: 14px 0 22px 0;
+          font-size: 14px;
+          color: #666;
+          .pro-his {
+            color: #2979ff;
+            text-decoration: underline;
+            float: right;
+          }
+        }
+        p {
+          margin-bottom: 13px;
+          font-size: 15px;
+          color: #090909;
+          .now-data {
+            color: #2979ff;
+          }
+        }
+        .pro-detail {
+          position: relative;
+          .pro-default {
+            width: 100%;
+            height: 7px;
+            background: #e4e4e4;
+            border-radius: 3.5px;
+          }
+          .pro-active {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 80%;
+            height: 7px;
+            background: #2979ff;
+            border-radius: 3.5px;
+          }
+        }
+      }
+    }
+  }
+}
+// 历史弹窗
+.popup-container .popup {
+  overflow: visible;
+}
+.his-box {
+  max-height: 437px;
+  h3 {
+    margin-top: 12px;
+    font-size: 17px;
+    color: #000;
+  }
+  h5 {
+    margin: 16px 0 37px 0;
+    font-size: 13px;
+    color: #333;
+  }
+  .his-nav {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #333;
+  }
+  .his-list {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #333;
+    .his-item {
+      height: 43px;
+      line-height: 43px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+  }
+  .his-close {
+    position: absolute;
+    height: 50px;
+    width: 28px;
+    top: -50px;
+    right: 0;
+    padding-top: 2px;
+    .close-img {
+      width: 28px;
+      height: 28px;
+      img {
+        width: 28px;
+      }
+    }
+    .close-bor {
+      width:15px;
+      height: 22px;
+      display: block;
+      border-right: 1px solid #fff;
+    }
+  }
+}
+/***个人数据 end***/
+

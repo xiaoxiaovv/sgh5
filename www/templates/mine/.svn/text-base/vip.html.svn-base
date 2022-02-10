@@ -1,0 +1,678 @@
+<!--模板-->
+<ion-view class="" hide-nav-bar="true">
+  <ion-content scrollbar-y="false">
+    <div class='myvip'>
+      <div style="position:absolute;z-index:30;top:0;left:0;background:rgba(0,0,0,0.4);width:100%;height:100%;" ng-click="closeAll()" ng-if="isShowMore||isShowRule"></div>
+      <!-- 右上角按钮 -->
+      <div style="position:absolute;z-index:40;top:50px;right:7px;width:118px;height:137px;background:transparent;" ng-if="isShowMore">
+        <div style="float:right;margin-right:7px;width:0px;height:0px;border-left:5px solid transparent;border-top:7px solid #ffffff;border-right:5px solid transparent;-webkit-transform:rotate(180deg);transform:rotate(180deg);"></div>
+        <div style="width:118px;height:100px;background:#ffffff;">
+          <div flex="main:center cross:center" style="width:70%;height:50%;border-bottom:1px solid #e4e4e4;margin:7px auto 0;">
+            <img ng-src="{{imgBaseURL}}img/Store2x.png" style="width:24px;height:24px;">
+            <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin:0;margin-left:12px;" ui-sref="myStore({storeId: storeId})">小店</p>
+          </div>
+          <div flex="main:center cross:center" style="width:70%;height:50%;margin:0 auto;">
+            <img ng-src="{{imgBaseURL}}img/Message2x.png" style="width:24px;height:24px;">
+            <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin:0;margin-left:12px;" ui-sref="ClassifyMessageCenter">消息</p>
+          </div>
+          <!--
+          <div style="width:70%;height:33.3333333%;display:flex;justify-content:center;align-items:center;margin:0 auto;">
+            <img src="img/SQ2x.png" style="width:24px;height:24px;">
+            <p style="opacity: 0.8;font-size: 15px;color: #000000;letter-spacing: 0.42px;margin-top:7px;margin-left:12px;">社区</p>
+          </div>
+          -->
+        </div>
+      </div>
+      <!-- 金币规则 -->
+      <div style="background:transparent;width:89%;height:70%;position:absolute;z-index:110;top:0;left:0;bottom:0;right:0;margin:auto;" ng-if="isShowRule">
+        <img ng-src="{{imgBaseURL}}img/Coin Regulation@2x.png" style="width:26px;position:absolute;top:-20px;right:0;" ng-click="closeRule()">
+        <ion-scroll  style="overflow:hidden;width:100%;height:100%;position:absolute;top:20px;background:#ffffff;padding:16px 10px 30px;font-size: 16px;color: #111111;letter-spacing: -0.41px;border-radius:8px;">
+          <p style="text-indent: 0;text-align:center;color: #000000;font-weight:bold;">金币（积分）说明</p>
+          <p style="margin:0 0 4px 0;font-weight:bold;">顺逛金币（积分）是什么</p><br />
+          <p style="text-indent: 2em;margin:0 0 4px 0;">金币（积分）是顺逛用户在顺逛微店购物、评价、晒单分享等相关活动情况给予的奖励，金币（积分）仅可在顺逛使用，“顺逛金币”具备现金、
+            抵用券和优惠券等兑换功能(后续版本)。如用户帐号暂停使用，则顺逛将取消该用户帐号内积分相关使用权益。</p><br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">微店主等级</p><br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">微店主等级升级标准</p>
+          <table width="100%;" cellpadding="0" cellspacing="0" class="sg-table">
+            <tr style="background:#7171C6;color:#ffffff;">
+              <td>等级</td>
+              <td>顺逛头衔</td>
+              <td colspan="2">升级标准</td>
+
+              <td>升级奖励</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>A、累计订单金额</td>
+              <td>B、累计金币数</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>1级</td>
+              <td>士兵</td>
+              <td>0金额</td>
+              <td>0 金币</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>2级</td>
+              <td>班长</td>
+              <td>>=￥1000.00</td>
+              <td>100 金币</td>
+              <td>10 金币</td>
+            </tr>
+            <tr>
+              <td>3级</td>
+              <td>排长</td>
+              <td>>=￥2000.00</td>
+              <td>200 金币</td>
+              <td>10 金币</td>
+            </tr>
+            <tr>
+              <td>4级</td>
+              <td>连长</td>
+              <td>>=￥3000.00</td>
+              <td>500 金币</td>
+              <td>20 金币</td>
+            </tr>
+            <tr>
+              <td>5级</td>
+              <td>营长</td>
+              <td>>=￥4000.00</td>
+              <td>1000 金币</td>
+              <td>50 金币</td>
+            </tr>
+            <tr>
+              <td>6级</td>
+              <td>团长</td>
+              <td>>=￥5000.00</td>
+              <td>5000 金币</td>
+              <td>50 金币</td>
+            </tr>
+            <tr>
+              <td>7级</td>
+              <td>旅长</td>
+              <td>>=￥6000.00</td>
+              <td>10000 金币</td>
+              <td>50 金币</td>
+            </tr>
+            <tr>
+              <td>8级</td>
+              <td>师长</td>
+              <td>>=￥8000.00</td>
+              <td>20000 金币</td>
+              <td>100 金币</td>
+            </tr>
+            <tr>
+              <td>9级</td>
+              <td>军长</td>
+              <td>>=￥9000.00</td>
+              <td>50000 金币</td>
+              <td>100 金币</td>
+            </tr>
+            <tr>
+              <td>10级</td>
+              <td>司令</td>
+              <td>>=￥10000.00</td>
+              <td>80000 金币</td>
+              <td>100 金币</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>盟主</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          </table>
+          <br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">微店主行为金币衡量指标</p>
+          <p style="text-indent: 2em;margin:0 0 4px 0;">（衡量单位：金币）</p>
+          <table width="100%;" cellpadding="0" cellspacing="0" class="sg-table">
+            <tr style="background:#7171C6;color:#ffffff;">
+              <td>序号</td>
+              <td style="width:50px;">项目</td>
+              <td style="width:60px;">标的</td>
+              <td>单位</td>
+              <td>*级</td>
+              <td style="width:50px;">最多获得（次）</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>注册</td>
+              <td>注册成功且绑定手机</td>
+              <td>首次</td>
+              <td>5</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>登录</td>
+              <td>账户成功登录，首次启动一次</td>
+              <td>每天1次</td>
+              <td>5</td>
+              <td>1/天</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>订单评价</td>
+              <td>评价</td>
+              <td>每条</td>
+              <td>1</td>
+              <td>1/单</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>累计订单金额</td>
+              <td>每满1000元</td>
+              <td>每满1000元</td>
+              <td>2</td>
+              <td>不限</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>退货</td>
+              <td>每退一个网单</td>
+              <td colspan="2">网单金额，按梯度扣分<br/>0=<1000 , -2；<br/>1000=<2000 , -4；<br/>2000=<3000 , -6；<br/>3000=<4000 , -8；<br/> .... <br/>(n-1)000=< n000 , -n*2</td>
+              <td>不限</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>第三方平台分享</td>
+              <td>分享</td>
+              <td>每分享一次</td>
+              <td>1</td>
+              <td>5/天</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>微店主</td>
+              <td>二级数量</td>
+              <td>每增加一个</td>
+              <td>5</td>
+              <td>不限</td>
+            </tr>
+          </table><br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">客户等级</p><br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">客户等级升级标准</p><br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">O2O旗舰店铺</p>
+          <table width="100%;" cellpadding="0" cellspacing="0" class="sg-table">
+            <tr style="background:#7171C6;color:#ffffff;">
+              <td style="width:70px;">等级</td>
+              <td style="width:70px;">店铺等级</td>
+              <td style="width:70px;">升级标准</td>
+            </tr>
+            <tr>
+              <td>1级</td>
+              <td>一颗星</td>
+              <td>0 积分</td>
+            </tr>
+            <tr>
+              <td>2级</td>
+              <td>二颗星</td>
+              <td>100 积分</td>
+            </tr>
+            <tr>
+              <td>3级</td>
+              <td>三颗星</td>
+              <td>200 积分</td>
+            </tr>
+            <tr>
+              <td>4级</td>
+              <td>一颗钻石</td>
+              <td>300 积分</td>
+            </tr>
+            <tr>
+              <td>5级</td>
+              <td>二颗钻石</td>
+              <td>500 积分</td>
+            </tr>
+            <tr>
+              <td>6级</td>
+              <td>三颗钻石</td>
+              <td>1000 积分</td>
+            </tr>
+
+          </table>
+          <br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">O2O非旗舰店</p>
+          <table width="100%;" cellpadding="0" cellspacing="0" class="sg-table">
+            <tr style="background:#7171C6;color:#ffffff;">
+              <td style="width:70px;">等级</td>
+              <td style="width:70px;">店铺等级</td>
+              <td style="width:70px;">升级标准</td>
+            </tr>
+            <tr>
+              <td>1级</td>
+              <td>一颗星</td>
+              <td>0 积分</td>
+            </tr>
+            <tr>
+              <td>2级</td>
+              <td>二颗星</td>
+              <td>100 积分</td>
+            </tr>
+            <tr>
+              <td>3级</td>
+              <td>三颗星</td>
+              <td>200 积分</td>
+            </tr>
+          </table>
+          <br />
+          <p style="margin:0 0 4px 0;font-weight:bold;">客户行为积分衡量指标</p>
+          <p style="margin:0 0 4px 0;">（衡量单位：积分）</p>
+          <table width="100%;" cellpadding="0" cellspacing="0" class="sg-table">
+            <tr style="background:#7171C6;color:#ffffff;">
+              <td rowspan="2">序号</td>
+              <td rowspan="2" style="width:50px;">项目</td>
+              <td rowspan="2" style="width:50px;">标的</td>
+              <td rowspan="2">单位</td>
+              <td>*级</td>
+            </tr>
+            <tr>
+
+              <td style="background:#7171C6;color:#ffffff;">*星</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>店铺订单被评价</td>
+              <td>好评</td>
+              <td>每网单</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>店铺订单被评价</td>
+              <td>差评</td>
+              <td>每网单</td>
+              <td>-1</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>店铺订单物流配送</td>
+              <td>及时</td>
+              <td>每网单</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>店铺订单物流配送</td>
+              <td>不及时</td>
+              <td>每网单</td>
+              <td>-1</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>店铺订单累计订单金额</td>
+              <td>每满1000元</td>
+              <td>每满1000元</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>店铺订单退货</td>
+              <td>每退一个网单（受理完成）</td>
+              <td colspan="2">网单金额，每级别扣分<br/>0=<1000 , -1；<br/>1000=<2000 , -2；<br/>2000=<3000 , -3；<br/>3000=<4000 , -4；<br/>....<br/>（n-1）000=< n000 , -n</td>
+
+            </tr>
+          </table>
+          <p style="height:30px;"></p>
+        </ion-scroll>
+      </div>
+      <!--vip head部分-->
+      <div class='vip-head'>
+        <div flex="main:justify cross:center" ng-style="paddingtopClass" class='vip-nav'>
+          <!-- <div class="icon icon-left ion-chevron-left" style="colo r:#ffffff;font-size:24px;margin-left:16px;" ng-click="goBack()"></div> -->
+          <img ng-src="{{imgBaseURL}}img/vipLeftArrow.png" class='go-back' ng-click="goBack()">
+          <div  class='title'>会员中心</div>
+          <div flex="main:center cross:center" class='head-right'>
+            <img ng-src="{{imgBaseURL}}img/Regulation.png" class='regulation-img' ng-click="toRules()">
+            <div flex="main:center cross:center" class='more-info' ng-click="showMore()">
+              <img ng-src="{{imgBaseURL}}img/Back@2x.png">
+            </div>
+          </div>
+        </div>
+        <div class='vip-info'>
+          <div class='vip-user' flex='cross:center'>
+            <div class='img'>
+              <img ng-src="{{avatarImageFileId}}" alt="头像">
+              <!-- <span class='small-title'>舵</span> -->
+              <img ng-src="{{imgBaseURL}}img/duozhuIcon@2x.png" class='title-img' alt="舵主" ng-show='teamLevelName=="舵主"'>
+              <img ng-src="{{imgBaseURL}}img/mengzhu@2x.png" class='title-img' alt="盟主" ng-show='teamLevelName=="盟主"'>
+            </div>
+            <span class='shop-name' ng-bind="storeVipName"></span>
+            <!-- <div class='vip-star' flex="cross:center">
+              <div ng-repeat='starItem in starsList | limitTo: starsListLimit' class='star-item'>
+                <img ng-src='{{starItem.src}}' alt="星级">
+              </div>
+            </div> -->
+          </div>
+          <div class='vip-data'>
+            <ul class='data-list' flex='main:center cross:center box:mean'>
+              <li>
+                <span>成长值：</span>
+                <span class='data-num'>{{creditNum}}</span>
+              </li>
+              <li>
+                <span>金币：</span>
+                <span class='data-num'>{{totalCreditNum}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div flex="main:center cross:center" class='vip-store-star' ng-if="storeCreditWithLevel">
+          <img ng-repeat="item in levelArray track by $index" ng-src={{item}}>
+          <p>{{storeName}}</p>
+        </div>
+      </div>
+      <div class="levelGrow position-r vip-content">
+        <!-- 你的等级进度 -->
+        <div class="vip-box">
+          <div class='vip-con-title'>
+            <p class='vip-title-text'><i class='icon-grade'></i><span class='grade-text'><img ng-src='{{imgBaseURL}}img/grade@2x.png'>你的等级进度</span></p>
+          </div>
+          <div class="vip-grade-map">
+            <ion-scroll zooming="false" direction="x" style="width: 100%;" scrollbar-x='false' delegate-handle="gradeScroll">
+              <div class='grade-scroll-box' style='width:1200px;'>
+                <div class="levelLineH position-r"></div>
+                <div flex="cross:center main:center box:mean" class="setP position-r progress-grade" style="">
+                  <!-- <div ng-repeat='level in levelGrowArr' flex="main:center cross:center" class='item-box' ng-class="order+1==($index+1)? 'martop10':(order+1<($index+2)?'martop35':'')">
+                    <div flex="main:center cross:center dir:top" ng-class="order==($index+1)&&levelUpExp!=0?'currentLevelShow currentLevelShow1':(order==($index+1)?'currentLevel':(order<=($index+1)?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="img-box cur1">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage1.png" class='img-item1'>
+                        <img ng-if="order==($index+1)" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==($index+1)" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==($index+1)" class="shineStar3 img-item4" src="img/star3.png">
+                      </div>
+                      <p class="userName">{{level.name}}</p>
+                      <p class="font-size-12" ng-if="order<($index+2)&&order!=($index+1)" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order+1==($index+1)" class='hei20'>成长值：{{levelGrowArr[$index+1].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order+1==($index+1)" class='hei20'>网单：￥{{levelGrowArr[$index+1].orderAmount}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>($index+1)" class='hei20'></p>
+                    </div>
+                  </div> -->
+                  <div flex="main:center cross:center" class='item-box'>
+                    <div flex="main:center cross:center dir:top" ng-class="order==1&&levelUpExp!=0?'currentLevelShow currentLevelShow1':(order==1?'currentLevel':(order<=1?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur1 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage1.png" class='img-item1'>
+                        <img ng-if="order==1" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==1" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==1" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">士兵</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>1" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==2? 'martop10':(order+1<2?'martop35':'')">
+                    <div flex="main:center cross:center dir:top"  ng-class="order==2&&levelUpExp!=0?'currentLevelShow':(order==2?'currentLevel':(order<=2?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur2 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage2.png" class='img-item1'>
+                        <img ng-if="order==2" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==2" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==2" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">班长</p>
+                      <p class="font-size-12" ng-if="order<2&&order!=1" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==1" class='hei20'>成长值：{{levelGrowArr[1].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==1" class='hei20'>网单：{{levelGrowArr[1].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>2" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==3? 'martop10':(order+1<3?'martop35':'')">
+                    <div flex="main:center cross:center dir:top"  ng-class="order==3&&levelUpExp!=0?'currentLevelShow':(order==3?'currentLevel':(order<=3?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur3 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage3.png" class='img-item1'>
+                        <img ng-if="order==3" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==3" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==3" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">排长</p>
+                      <p class="font-size-12" ng-if="order<3&&order!=2" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==2" class='hei20'>成长值：{{levelGrowArr[2].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==2" class='hei20'>网单：{{levelGrowArr[2].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>3" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center"  class='item-box' ng-class="order+1==4? 'martop10':(order+1<4?'martop35':'')">
+                    <div flex="main:center cross:center dir:top"  ng-class="order==4&&levelUpExp!=0?'currentLevelShow':(order==4?'currentLevel':(order<=4?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur4 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage4.png" class='img-item1'>
+                        <img ng-if="order==4" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==4" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==4" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">连长</p>
+                      <p class="font-size-12" ng-if="order<4&&order!=3" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==3" class='hei20'>成长值：{{levelGrowArr[3].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==3" class='hei20'>网单：{{levelGrowArr[3].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>4" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==5? 'martop10':(order+1<5?'martop35':'')">
+                    <div flex="main:center cross:center dir:top" ng-class="order==5&&levelUpExp!=0?'currentLevelShow':(order==5?'currentLevel':(order<=5?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur5 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage5.png" class='img-item1'>
+                        <img ng-if="order==5" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==5" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==5" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">营长</p>
+                      <p class="font-size-12" ng-if="order<5&&order!=4" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==4" class='hei20'>成长值：{{levelGrowArr[4].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==4" class='hei20'>网单：{{levelGrowArr[4].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>5" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center"  class='item-box' ng-class="order+1==6? 'martop10':(order+1<6?'martop35':'')">
+                    <div flex="main:center cross:center dir:top" ng-class="order==6&&levelUpExp!=0?'currentLevelShow':(order==6?'currentLevel':(order<=6?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur6 img-box" >
+                        <img ng-src="{{imgBaseURL}}img/HeadImage6.png"  class='img-item1'>
+                        <img ng-if="order==6" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png" >
+                        <img ng-if="order==6" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png" >
+                        <img ng-if="order==6" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png" >
+                      </div>
+                      <p class="userName">团长</p>
+                      <p class="font-size-12" ng-if="order<6&&order!=5" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==5"  class='hei20'>成长值：{{levelGrowArr[5].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==5" class='hei20'>网单：{{levelGrowArr[5].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>6" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==7? 'martop10':(order+1<7?'martop35':'')">
+                    
+                    <div flex="main:center cross:center dir:top" ng-class="order==7&&levelUpExp!=0?'currentLevelShow':(order==7?'currentLevel':(order<=7?'':'passedLevel'))"  class='grade-item'>
+                      <div flex="main:center cross:center" class="cur7 img-box" >
+                        <img ng-src="{{imgBaseURL}}img/HeadImage7.png" class='img-item1'>
+                        <img ng-if="order==7" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png" >
+                        <img ng-if="order==7" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png" >
+                        <img ng-if="order==7" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png" >
+                      </div>
+                      <p class="userName">旅长</p>
+                      <p class="font-size-12" ng-if="order<7&&order!=6" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==6" class='hei20'>成长值：{{levelGrowArr[6].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==6" class='hei20'>网单：{{levelGrowArr[6].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>7" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==8? 'martop10':(order+1<8?'martop35':'')">
+                    
+                    <div flex="main:center cross:center dir:top" ng-class="order==8&&levelUpExp!=0?'currentLevelShow currentLevelShow8':(order==8?'currentLevel currentLevel8':((order<8&&order>=5)?'comeingLevel8':(order>8?'passedLevel':'')))"  class='grade-item'>
+                      <div flex="main:center cross:center" class="cur8 img-box" >
+                        <img ng-src="{{imgBaseURL}}img/HeadImage8.png" class='img-item1'>
+                        <img ng-if="order==8" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==8" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==8" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName">师长</p>
+                      <p class="font-size-12" ng-if="order<8&&order!=7" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==7" class='hei20'>成长值：{{levelGrowArr[7].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==7" class='hei20'>网单：{{levelGrowArr[7].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>8" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==9? 'martop10':(order+1<9?'martop35':'')">
+                    <div flex="main:center cross:center dir:top" ng-class="order==9&&levelUpExp!=0?'currentLevelShow currentLevelShow9':(order==9?'currentLevel currentLevel9':(order<=9?'':'passedLevel'))" class='grade-item'>
+                      <div flex="main:center cross:center" class="cur9 img-box">
+                        <img ng-src="{{imgBaseURL}}img/HeadImage9.png" class='img-item1'>
+                        <img ng-if="order==9" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==9" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==9" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName" class="userName">军长</p>
+                      <p class="font-size-12" ng-if="order<9&&order!=8" class='hei20'> </p>
+                      <p class="font-size-10" ng-if="order==8" class='hei20'> 成长值：{{levelGrowArr[8].creditNum}}</p>
+                      <p class="font-size-10" ng-if="order==8" class='hei20'>网单：{{levelGrowArr[8].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>9" class='hei20'></p>
+                    </div>
+                  </div>
+                  <div flex="main:center cross:center" class='item-box' ng-class="order+1==10? 'martop10':(order+1<10?'martop35':'')">
+                    <div flex="main:center cross:center dir:top" ng-class="order==10&&levelUpExp!=0?'currentLevelShow currentLevelShow10':(order==10?'currentLevel currentLevel10':(order==9?'leftMargin':(order==11?'rightMargin':(order<=10?'':'passedLevel'))))"  class='grade-item'>
+                      <div flex="main:center cross:center box:mean" class="cur10 img-box" >
+                        <img ng-src="{{imgBaseURL}}img/HeadImage10.png" class='img-item1'>
+                        <img ng-if="order==10" class="shineStar1 img-item2" ng-src="{{imgBaseURL}}img/star1.png">
+                        <img ng-if="order==10" class="shineStar2 img-item3" ng-src="{{imgBaseURL}}img/star2.png">
+                        <img ng-if="order==10" class="shineStar3 img-item4" ng-src="{{imgBaseURL}}img/star3.png">
+                      </div>
+                      <p class="userName" class="userName">司令</p>
+                      <p class="font-size-12" ng-if="order<10&&order!=9" class='hei20'> </p>
+                      <p style="min-width: 80px" class="font-size-10" ng-if="order==9" class='hei20'>成长值：{{levelGrowArr[9].creditNum}}</p>
+                      <p style="min-width: 80px" class="font-size-10" ng-if="order==9" class='hei20'>网单：{{levelGrowArr[9].orderAmount | currency:'￥'}}</p>
+                      <p class='hei20'></p>
+                      <p ng-if="order>10" class='hei20'></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-scroll>
+          </div>
+          <!--晒战绩 @zyr@star -->
+          <div class='vip-ranking' flex='main:center cross:center'>
+            <div class='rank-info'>有<span class="">{{userRank-1}}</span>个小伙伴超过了你</div>
+            <div class='look-record' ui-sref="competition({taskDestId:'',taskType:7,memberId:xyzMemberId})" flex='main: center cross:center'>
+              <div flex='cross:center'>
+                <img ng-src="{{imgBaseURL}}img/cup@2x.png"  class='cup-img'>
+              </div>
+              <div flex='cross:center' class='look-text'>晒战绩</div>
+              <!-- <i class='icon-look-btn'>&gt;</i> -->
+              <div flex='cross:center'>
+                <img ng-src="{{imgBaseURL}}img/go@2x.png" class='icon-look' alt="go">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 权益区 @zyr star-->
+        <div class="vip-box">
+          <div class='vip-con-title'>
+            <p class='vip-title-text'><i class='icon-grade'></i><span class='equity-text'><img ng-src='{{imgBaseURL}}img/equity@2x.png'>权益区</span></p>
+          </div>
+          <div class="vip-equity" flex="cross:center box:mean">
+            <div class='equity-info'>
+              <div class='equity-img' ui-sref='goldgame({gameId: gameId})'>
+                <img ng-src="{{imgBaseURL}}img/goldgame@2x.png" alt="金币游戏">
+              </div>
+              <h5>金币游戏</h5>
+              <p>适用全级别</p>
+            </div>
+            <div class='equity-info'>
+              <div class="equity-img" ng-click='showPopup()'>
+                <!-- <img src="img/applymengzhu@2x.png" alt="申请盟主">
+                <img src="img/dismengzhu@2x.png" alt="申请盟主"> -->
+                <img ng-src='{{applyIcon}}' alt="申请盟主">
+              </div>
+              <h5><span ng-show='applyStatus==3'>已是</span><span ng-show='!(applyStatus==3)'>申请</span>{{applyName}}</h5>
+              <p>
+                <span>{{applyText}}</span>
+                <!-- <span>已通过</span> -->
+              </p>
+            </div>
+            <div class='equity-info'></div>
+          </div>
+          <!-- @zyr dele -->
+          <!-- <div style="background: #FFFFFF;border: 1px solid #E4E4E4;border-radius: 22px;width:89%;height:34px;text-align:center;line-height:34px;margin:30px auto 10px;">点击1次消耗5个金币，已抽{{chouCount}}次</div>
+          <div style="width:94%;margin:0 auto;" ng-class="{true:'',false:'game-no-bkg-color'}[hasBkgColor]">
+            遮罩层
+            <div style="width: 100%;height: 100%;background-color: transparent;position: fixed;z-index: 101;" ng-if="isAdmin&&isAdmin==1"></div>
+          
+            <div style="text-align:center;overflow:hidden;" ng-if="prizeList.length>11">若返回奖品格子少于12个不显示
+              <div class="con_top" style="margin-top:8px;">
+          
+                <div id="random_1" ng-model="prizeList[0]" ng-class="{true: 'cur-pos', false: ''}[0 === curP ]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-1"><img
+                  ng-src="{{prizeList[0].image? prizeList[0].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+                <div id="random_2" ng-model="prizeList[1]" ng-class="{true: 'cur-pos', false: ''}[1 === curP ]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-2"><img
+                  ng-src="{{prizeList[1].image ? prizeList[1].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}"></div>
+                <div id="random_3" ng-model="prizeList[2]" ng-class="{true: 'cur-pos', false: ''}[2 === curP ]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-3"><img
+                  ng-src="{{prizeList[2].image? prizeList[2].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+                <div id="random_4" ng-model="prizeList[3]" ng-class="{true: 'cur-pos', false: ''}[3 === curP ]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-4"><img
+                  ng-src="{{prizeList[3].image? prizeList[3].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+          
+              </div>
+              <div style="margin-top: 2px">
+                <div class="sg-game-middle-left">
+                  <div id="random_12" ng-model="prizeList[11]" ng-class="{true: 'cur-pos', false: ''}[11 === curP]"
+                       ng-style="gridHeight"
+                       class="sg-game-color-3"><img ng-src="{{prizeList[11].image? prizeList[11].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+                  <div id="random_11" ng-model="prizeList[10]" ng-class="{true: 'cur-pos', false: ''}[10 === curP]"
+                       ng-style="gridHeight"
+                       style="margin-top: 8px;" class="sg-game-color-4"><img
+                    ng-src="{{prizeList[10].image? prizeList[10].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+                </div>
+                <div class="sg-game-middle" ng-click="clickChou()">
+                  <img class="imgBtn" ng-src="img/game_click.png">
+                </div>
+                <div class="sg-game-middle-right" ng-style="gridHeightMiddle">
+                  <div id="random_5" ng-model="prizeList[4]" ng-class="{true: 'cur-pos', false: ''}[4=== curP]"
+                       ng-style="gridHeight"
+                       class="sg-game-color-1"><img ng-src="{{prizeList[4].image? prizeList[4].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+                  <div id="random_6" ng-model="prizeList[5]" ng-class="{true: 'cur-pos', false: ''}[5 === curP]"
+                       ng-style="gridHeight"
+                       class="sg-game-color-3" style="margin-top: 8px;"><img
+                    ng-src="{{prizeList[5].image? prizeList[5].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+                </div>
+              </div>
+              <div class="con_top" style="margin-top: 2px">
+                <div id="random_10" ng-model="prizeList[9]" ng-class="{true: 'cur-pos', false: ''}[9 === curP]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre " style="background: #453C84;"><img
+                  ng-src="{{prizeList[9].image? prizeList[9].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}"></div>
+                <div id="random_9" ng-model="prizeList[8]" ng-class="{true: 'cur-pos', false: ''}[8 === curP]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-3"><img
+                  ng-src="{{prizeList[8].image? prizeList[8].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}"></div>
+                <div id="random_8" ng-model="prizeList[7]" ng-class="{true: 'cur-pos', false: ''}[7 === curP]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre sg-game-color-2"><img
+                  ng-src="{{prizeList[7].image? prizeList[7].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}"></div>
+                <div id="random_7" ng-model="prizeList[6]" ng-class="{true: 'cur-pos', false: ''}[6 === curP]"
+                     ng-style="gridHeight"
+                     class="sg-game-squre " style="background: #F18D00;"><img
+                  ng-src="{{prizeList[6].image? prizeList[6].image :'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}"></div>
+              </div>
+            </div>
+          
+          
+            抽到奖品后填写 邮寄地址
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

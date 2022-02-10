@@ -1,0 +1,37 @@
+<!--评价-->
+<ion-view view-title={{thisTitleName}} hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">{{thisTitleName}}</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="criticalSuccess">
+    <div class="topDiv bg-background">感谢您为其他小伙伴购物决策提供线索</div>
+    <div class="shareDiv" ng-if="isMeOrder==0&&isStore==1">
+      <div class="shareDivLine"></div>
+      <span class="shareDivText">邀请用户评价</span>
+    </div>
+    <div class="platformShare" flex="cross:center dir:left" ng-if="isMeOrder==0&&isStore==1">
+      <div class="platformShareList" ng-repeat="shareOne in shareList" flex="dir:top" ng-click="shareToPlatform($index)">
+        <img ng-src={{shareOne.img}}>
+        <span>{{shareOne.text}}</span>
+      </div>
+    </div>
+    <div class="shareDiv" ng-if="noCriticalOrderList.length>0&&noCriticalOrderList!=null">
+      <div class="shareDivLine"></div>
+      <span class="shareDivText">您还可以评价</span>
+    </div>
+    <div class="productArr" flex="dir:left box:last cross:center" ng-repeat="prt in noCriticalOrderList">
+      <div class="productleft" flex="dir:left box:first cross:center">
+        <img ng-src={{prt.productImgUrl}}>
+        <span>{{prt.productName}}</span>
+      </div>
+      <div class="productSay" ui-sref="publicationEvaluation({cOrderSn:prt.cOrderSn})">去评价</div>
+    </div>
+    <div class="bottomDiv"></div>
+  </ion-content>
+</ion-view>

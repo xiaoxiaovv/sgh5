@@ -1,0 +1,257 @@
+<ion-view view-title="兴趣圈讨论组" hide-nav-bar="true">
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom">
+        <button class="color-text-l button-clear" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h3 class="title" ng-click="shareShow()">兴趣圈讨论组</h3>
+        <!--右上角圆点-->
+        <div ng-class="{false:'sg-top-right-btn-hide',true:'sg-top-right-btn'}[isDisplay]" ng-click="isClick()"> <!--toMemberList() -->
+           <img class="sg-chat-twoperson" ng-src="{{imgBaseURL}}img/quanzi/twoperson.png" />
+        </div>
+    </ion-header-bar>
+
+    <ion-content scrollbar-y="false" on-scroll-complete="" delegate-handle="cdScroll" on-release="" style="background: #eee;" id="message-detail-content-cd">
+        <!--<ion-refresher class="margin-top-10" pulling-text="获得历史消息"  refreshing-text="正在获得"  on-refresh="getMsgByMun()" ng-if="!noMoreHistory"></ion-refresher>-->
+        <!--<div style="position: absolute; right:18px; top:-4px;height: 22px;display: inline-block; background-color:#88c9fd;color:#ffffff;border-radius: 10px 0 0 10px; " ng-click="isClick()">-->
+            <!--<div style="display: inline-block;height: 22px;width: 20px;border-right: solid 1px #ffffff;line-height: 22px;"> &lt;&lt;</div>-->
+            <!--<div style="display: inline-block;height: 22px;width: 60px;line-height: 22px;padding-left: 4px;">200人</div>-->
+            <!--<div style="display: inline-block;height: 22px;width: 30px;">-->
+                <!--<div style="display: inline-block;height: 22px;width: 44px;font-size: 12px;background-color: #0076fd;color:#FFFFFF;text-align: center;position: relative;top:-1px;border-radius: 10px;line-height: 22px;" >讨论区</div>-->
+            <!--</div>-->
+        <!--</div>-->
+      <div style="width: 100%;height: 35px;" ng-if="isSchool"></div>
+      <div class="wrap-sg-fenqu"  ng-if="isSchool">
+        <div style="position: absolute; right:18px; top:8px;height: 22px;display: inline-block; background-color:#88c9fd;color:#ffffff;border-radius: 10px 0 0 10px; " ng-if=" sgdMode == 0" ><!-- 学习区的panel 到讨论区 -->
+          <div style="display: inline-block;height: 22px;width: 20px;border-right: solid 1px #ffffff;line-height: 22px;"> &lt;&lt;</div>
+          <div style="display: inline-block;height: 22px;width: 60px;line-height: 22px;padding-left: 4px;">200人</div>
+          <div style="display: inline-block;height: 22px;width: 30px;">
+            <div style="display: inline-block;height: 22px;width: 44px;font-size: 12px;background-color:
+                  #0076fd;color:#FFFFFF;text-align: center;position: relative;top:-1px;border-radius: 10px;line-height: 22px;" ng-click="toggleMode(1)">讨论区</div>
+          </div>
+        </div>
+        <div style="position: absolute;  top:8px;height: 22px; border-radius: 10px 10px 10px 10px; width: 100%;text-align: center;" ng-if=" sgdMode == 1" ><!-- 学习区的panel 到讨论区 -->
+          <div style="display: inline-block;width: 230px;background-color:#88c9fd;color:#ffffff;    border-radius: 10px;">
+            <div style="display: inline;width: 115px;text-align: center;font-size: 13px;padding-right: 20px;border-right: solid 1px #4c5250;" ng-click="toggleMode(2)">
+              查看所有
+            </div>
+            <div style="display: inline;width: 115px;text-align: center;font-size:13px;padding-left: 20px; " ng-click="toggleMode(0)">
+              返回学习区
+            </div>
+          </div>
+        </div>
+        <div style="position: absolute;  top:8px;height: 22px; border-radius: 10px 10px 10px 10px; width: 100%;text-align: center;" ng-if=" sgdMode == 2" ><!-- 学习区的panel 到讨论区 -->
+          <div ng-click="toggleMode(0)" style="display: inline-block;width: 110px;background-color:#88c9fd;color:#ffffff;    border-radius: 10px;">
+            返回学习区
+          </div>
+        </div>
+      </div>
+        <div class="margin-top-10" ng-repeat="item in messages"><!--  注意 群聊判端 头像左右端 与 客服单聊相反-->
+            <div class="sg-chat-msg-datatime text-align-c" style="display: none;"><span style="background-color: #c3bba0;color:#ffffff;">20:10</span></div>
+            <div class="sg-no-share-mode" ng-show="!isShareMode&&((item.idCate!=0 && sgdMode==0)||(item.idCate==0&& sgdMode ==1)||(sgdMode==2))"><!--  正常模式 -->
+                <div class="sg-customer-cvsation-lr position-r" style="text-align: center;">
+                    <img ng-if="item.groupMsgUserId != csId" ng-src="{{imgBaseURL}}img/share_default.png" class="sg-group-cvsation-img"/>
+                    <span ng-if="item.groupMsgUserId != csId" style="text-align: center;left: 30px;top: 34px;right: auto;" class="sg-discuss-setting-zhu">主</span>
+                </div>
+                <div class="sg-group-cvsation-mr position-r" ng-if="!item.fileType" ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                    <div class="width-100 sg-group-discuss-name" style="">{{item.groupMsgUserName}}</div>
+                    <span class="sg-customer-cvsation-leftArrow" ng-if="item.groupMsgUserId != csId">◄</span><span  ng-if="item.groupMsgUserId == csId" class="sg-customer-cvsation-rightArrow">►</span>
+                    <div class="sg-customer-cvsation-mr-inside" ng-class="{true:'sg-margin-left-6',false:'sg-margin-right-6'}[item.groupMsgUserId != csId]" ng-bind-html="item.groupMsg" style="margin-top:5px;"></div>
+                </div>
+                <div class="sg-group-cvsation-mr position-r" ng-if="item.fileType=='.wav'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                    <div class="width-100 sg-group-discuss-name" style="">{{item.groupMsgUserName}}</div>
+                    <play-sound url="{{item.imageUrl}}" is-new="true" side="{{item.groupMsgUserId != csId?'left':'right'}}"></play-sound>
+                </div>
+                <div class="sg-group-cvsation-mr position-r" ng-if="item.fileType=='.jpg'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                    <div class="width-100 sg-group-discuss-name" style="">{{item.groupMsgUserName}}</div>
+                    <img style="width: 50%;margin-top:5px;" ng-src="{{item.imageUrl}}"  />
+                </div>
+                <div class="sg-group-cvsation-mr position-r" ng-if="item.fileType=='share'" ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]" ng-click="toShareListPage(item)">
+                    <div class="width-100 sg-group-discuss-name" style="">{{item.groupMsgUserName}}</div>
+                    <shared-msgs-list></shared-msgs-list>
+                </div>
+
+                <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                    <img ng-if="item.groupMsgUserId == csId" ng-src="http://cdn21test.ehaier.com:8080/file/586dfbdd2461dec1b9191318.png" class="sg-group-cvsation-img"/>
+                </div>
+            </div>
+            <div class="sg-share-mode" ng-show="isShareMode&&((item.idCate!=0 && sgdMode==0)||(item.idCate==0&& sgdMode ==1)||(sgdMode==2))"><!--   分享模式 -->
+                <div ng-if="item.groupMsgUserId != csId"><!-- 左侧头像式 -->
+                    <div style="padding: 0px;display: inline-block;width: 10%; vertical-align: top; padding-top: 10px; color: #0076fd; padding-left: 8px;" ng-click="chooseOne(item)">
+                        <i class="icon ion-ios-circle-filled font-size-20 " ng-if="item.isSelected"></i>
+                        <i class="icon ion-ios-circle-outline font-size-20 "  ng-if="!item.isSelected"></i>
+                    </div>
+                    <div class="sg-customer-cvsation-lr position-r" style="text-align: center;">
+                        <img ng-src="{{imgBaseURL}}img/share_default.png" class="sg-group-cvsation-img"/>
+                        <span style="text-align: center;left: 30px;top: 34px;right: auto;" class="sg-discuss-setting-zhu">主</span>
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" ng-if="!item.fileType" ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <span class="sg-customer-cvsation-leftArrow" ng-if="item.groupMsgUserId != csId">◄</span><span  ng-if="item.groupMsgUserId == csId" class="sg-customer-cvsation-rightArrow">►</span>
+                        <div class="sg-customer-cvsation-mr-inside" ng-class="{true:'sg-margin-left-6',false:'sg-margin-right-6'}[item.groupMsgUserId != csId]" ng-bind-html="item.groupMsg" style="margin-top:5px;"></div>
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" ng-if="item.fileType=='.wav'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <play-sound url="{{item.imageUrl}}" is-new="true" side="{{item.groupMsgUserId != csId?'left':'right'}}"></play-sound>
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" ng-if="item.fileType=='.jpg'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <img style="width: 50%" ng-src="{{item.imageUrl}}" style="margin-top:5px;" />
+                    </div>
+                </div>
+                <div ng-if="item.groupMsgUserId == csId"><!-- 右侧头像式 -->
+                    <div style="padding: 0px;display: inline-block;width: 10%; vertical-align: top; padding-top: 10px;color: #0076fd;padding-left: 8px;" ng-click="chooseOne(item)">
+                        <i class="icon ion-ios-circle-filled font-size-20 " ng-if="item.isSelected"></i>
+                        <i class="icon ion-ios-circle-outline font-size-20  "  ng-if="!item.isSelected"></i>
+                    </div>
+                    <div style="padding: 0px;display: inline-block;width: 5%; vertical-align: top; padding-top: 10px;">
+
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" style="width: 66%" ng-if="!item.fileType" ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <span class="sg-customer-cvsation-leftArrow" ng-if="item.groupMsgUserId != csId">◄</span><span  ng-if="item.groupMsgUserId == csId" class="sg-customer-cvsation-rightArrow">►</span>
+                        <div class="sg-customer-cvsation-mr-inside" ng-class="{true:'sg-margin-left-6',false:'sg-margin-right-6'}[item.groupMsgUserId != csId]" ng-bind-html="item.message" style="margin-top:5px;"></div>
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" style="width: 66%" ng-if="item.fileType=='.wav'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <play-sound url="{{item.imageUrl}}" is-new="true" side="{{item.groupMsgUserId != csId?'left':'right'}}"></play-sound>
+                    </div>
+                    <div class="sg-group-cvsation-mr position-r" style="width: 66%" ng-if="item.fileType=='.jpg'"  ng-class="{true:'sg-gcm-right',false:''}[item.groupMsgUserId == csId]">
+                        <div class="width-100 sg-group-discuss-name" style="">{{item.userName}}</div>
+                        <img style="width: 50%" ng-src="{{item.imageUrl}}" style="margin-top:5px;" />
+                    </div>
+                    <div class="sg-customer-cvsation-rr" style="text-align: center;">
+                        <img ng-src="http://cdn22.ehaier.com/file/5872f927b702c4e3398315da.png" class="sg-group-cvsation-img"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </ion-content>
+    <ion-footer-bar ng-style="footerStyle" align-title="left" class="bar-light" resize-foot-barcd ng-if="!isShareMode">
+        <!-- <div class="buttons rj-footer-buttons-left">
+            <button class="button button-icon icon ion-ios-mic-outline">
+            </button>
+        </div> -->
+        <div style="width:10%;display: inline-block;position:relative; " ng-click="showMoreInput(0);">
+            <img style="width: 80%;position: absolute;bottom: 6px;left:14%;" ng-src="{{imgBaseURL}}img/microSchool/sgshequnmic.png"  >
+        </div>
+        <label class="item item-input" style="margin:0; display: inline-block;width: 69%;padding-left: 4px;border-bottom: none !important;top:2px;">
+            <textarea msd-elastic placeholder="说点什么" ng-model="CustumerParam.msg" id="content" style="background-color: #ddd;padding: 10px;border-radius: 4px;height:30px;"></textarea>
+            <!--<div class="buttons">-->
+            <!--<button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>-->
+            <!--</div>-->
+        </label>
+
+        <div ng-click="showMoreInput(1);"  style="width:10%;display: inline-block;padding: 0;position: relative;">
+            <img ng-src="{{imgBaseURL}}img/microSchool/sgshequnface.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" >
+        </div>
+        <div  style="width:10%;display: inline-block;padding: 0;position: relative;">
+            <img ng-src="{{imgBaseURL}}img/quanzi/sgshequnadd.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" ng-if="!CustumerParam.msg"  ng-click="showMoreInput(2);">
+            <img ng-src="{{imgBaseURL}}img/quanzi/sgshequnsend.png" style="width: 80%;position: absolute;bottom: 6px;left: 14%;" ng-if="CustumerParam.msg" ng-click="sendMsg()">
+        </div>
+
+    </ion-footer-bar>
+    <ion-footer-bar class="bar-light"  ng-if="isShareMode">
+        <!-- 分享 模式 的 操作按钮 面板-->
+            <div class="row text-align-c" style="color: #0076fd;font-weight: bold;">
+                <div class="col col-50"><span style="font-size: 16px;" >删除</span><img ng-src="{{imgBaseURL}}img/quanzi/deletemsg.png"  style="width: 18px;height: 18px;margin-left: 6px;vertical-align: sub;" /></div>
+                <div class="col col-50" ng-click="shareToGroup();"><span style="font-size: 16px;" >分享</span><img ng-src="{{imgBaseURL}}img/quanzi/sharemsg.png"  style="width: 18px;height: 18px;margin-left: 6px;vertical-align: sub;" /></div>
+            </div>
+    </ion-footer-bar>
+    <div class="bar sg-chat-emo-div" style="padding: 0px;" ng-if="isShowMoreInput && !isShareMode" ng-style="emoDivStyle" >
+        <div ng-if="isShowEmo">
+            <div class="row">
+                <div class="col col-10" ng-click="insertEmo(1)"><img class="width-100" ng-src="{{imgBaseURL}}img/sgemo/01.png"></div>
+                <div class="col col-10" ng-click="insertEmo(2)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/02.png"></div>
+                <div class="col col-10" ng-click="insertEmo(3)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/03.png"></div>
+                <div class="col col-10" ng-click="insertEmo(4)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/04.png"></div>
+                <div class="col col-10" ng-click="insertEmo(5)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/05.png"></div>
+                <div class="col col-10" ng-click="insertEmo(6)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/06.png"></div>
+                <div class="col col-10" ng-click="insertEmo(7)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/07.png"></div>
+                <div class="col col-10" ng-click="insertEmo(8)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/08.png"></div>
+                <div class="col col-10" ng-click="insertEmo(9)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/09.png"></div>
+                <div class="col col-10" ng-click="insertEmo(10)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/10.png"></div>
+            </div>
+            <div class="row">
+                <div class="col col-10" ng-click="insertEmo(11)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/11.png"></div>
+                <div class="col col-10" ng-click="insertEmo(12)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/12.png"></div>
+                <div class="col col-10" ng-click="insertEmo(13)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/13.png"></div>
+                <div class="col col-10" ng-click="insertEmo(14)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/14.png"></div>
+                <div class="col col-10" ng-click="insertEmo(15)"><img class="width-100"  ng-src="{{imgBaseURL}}img/sgemo/15.png"></div>
+            </div>
+            <div style="text-align: center;margin-top: 20px;">
+                <button class="button" style="width: 60px;background-color:#0079ff;color: white;" ng-click="hideMoreInput();"> 取消</button>
+            </div>
+
+        </div>
+        <div ng-if="isShowPicture" style="padding: 15px;">
+            <div style=" display: inline-block;width: 64px;height: 64px;" ng-click="getImg(1)"><img class="width-100" ng-src="{{imgBaseURL}}img/microSchool/sgsequnpicture.png"></div>
+            <div style=" display: inline-block;width: 64px;height: 64px;" ng-click="getImg(0)"><img class="width-100" ng-src="{{imgBaseURL}}img/microSchool/sgshequnpaizhao.png"></div>
+        </div>
+        <div ng-if="isShowRecord" class="width-100" >
+            <!--<button class="button" ng-click="startRecord();">录音</button>-->
+            <!--<button class="button">结束录音</button>-->
+            <!--<button class="button" ng-click="play()">播放 </button>-->
+            <!--<button class="button" ng-click="transfer();">发送 </button>-->
+            <audio-panel hold-func = "hold" release-func="release">
+
+            </audio-panel>
+        </div>
+        <audio controls id="audioInCD"  style="display:none">
+            <source id="sourceInCD" type="audio/wav">
+            您的浏览器不支持 audio 元素。
+        </audio>
+    </div>
+    <!--消息弹窗-->
+    <div ng-if="isDisplay" class="pop-news" ng-class="{true:'iOStop'}[isIOS]" style="height: 200px;">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div ng-click="getMsg()" class="float-l pop-news-text">接收消息</div>
+            <!--消息数量-->
+            <div class="float-r pop-news-amount">
+                <!--假数据99+-->
+                <span>99+</span>
+                <!--单向绑定数据messageNum，使用过滤器-->
+                <!--<span ng-bind="messageNum|Num2Filter"></span>-->
+            </div>
+        </div>
+        <!--分享-->
+        <div class="pop-news-item" ng-click = "sendMsg();">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">发送消息</div>
+        </div>
+        <!--删除贴子-->
+        <!--<div class="pop-news-item" ng-click="loginCs()">-->
+            <!--<div class="float-l text-align-c pop-news-icon">-->
+                <!--<i class="icon ion-ios-trash-outline"></i></div>-->
+            <!--<div class="float-l pop-news-text">登录</div>-->
+        <!--</div>-->
+
+        <div class="pop-news-item" ng-click="changeAudioS()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">音源</div>
+        </div>
+        <div class="pop-news-item" ng-click="loopGetMsg()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">开始循环</div>
+        </div>
+        <div class="pop-news-item" ng-click="killTimer()">
+            <div class="float-l text-align-c pop-news-icon">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/top.png"/>
+            </div>
+            <div class="float-l pop-news-text">结束循环</div>
+        </div>
+    </div>
+</ion-view>

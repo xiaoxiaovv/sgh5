@@ -1,0 +1,35 @@
+<!--手机号管理-->
+<ion-view class="background" view-title="手机号管理" hide-nav-bar="true" hide-back-button="true">
+    <!--判断是否是ios设备-->
+    <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+    <header flex="main:center cross:center box:first" class="header-top-height">
+        <div><img ng-click="$ionicGoBack();" class="goback-img" ng-src="{{GoBackImgUrl}}"></div>
+        <div class="text-c title-text">手机号管理</div>
+    </header>
+
+    <ion-content class="content-head-top background-fff" scrollbar-y="false">
+        <!--判断是否是ios设备-->
+        <div ng-class="{true:'ios-header-top'}[isIosApp]"></div>
+        <div class="text-c">
+            <img ng-src="{{ResultImgUrl}}" class="result-img">
+            <p class="text-phone mt-35">现在绑定的手机 {{ Phone | encryptPhone}}</p>
+            <button ng-click="isUsers()" class="btn-send-Phone mt-30 active-send-phone">更换手机号</button>
+        </div>
+    </ion-content>
+  <!--<div class="authenticationPopup authenticationPopupNot" ng-if="isUser">-->
+    <!--<div class=" authenticationPopup_bg_not homepage_login_success popup_btn">-->
+      <!--<span ng-click="closePopup()" style="position: absolute;top: -50px;right: 0px; width: 28px;height: 28px;"> <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/hisClose@2x.png"> <i style="width: 1px;height: 40px;background: #fff;position: absolute;right: 13px;top: 28px;"></i> </span>-->
+      <!--<p style="margin-bottom: 0; text-align: center;" >亲，升级微店主才可变更手机号。</p>-->
+      <!--<div class="authenticationPopup_bg_not_ok" ng-click="goUpgrade()">升级微店主</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isUser">
+    <div class=" authenticationPopup_bg_not homepage_login_success" style="position: relative;overflow: visible;">
+      <span ng-click="closePopup()" style="position: absolute;top: -50px;right: 0px; width: 28px;height: 28px;"> <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/hisClose@2x.png"> <i style="width: 1px;height: 40px;background: #fff;position: absolute;right: 13px;top: 28px;"></i> </span>
+      <p style="margin-bottom: 0; text-align: center;" >亲，升级微店主才可变更手机号。</p>
+      <div class="authenticationPopup_bg_not_ok" ng-click="goUpgrade()">升级微店主</div>
+    </div>
+  </div>
+
+</ion-view>

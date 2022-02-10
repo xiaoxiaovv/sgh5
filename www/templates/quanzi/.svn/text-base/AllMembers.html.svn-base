@@ -1,0 +1,142 @@
+<ion-view view-title="圈子成员"hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <!--ng-if="isAdmin=='true'||isHost=='true'"-->
+    <!--<button ng-click="yes();" class="button-clear" style="color:#999999;">确定</button>-->
+    <!--<button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+      <img src="img/share2.png" class="block" style="width: 20px;height: 20px">
+    </button>-->
+    <button ng-click="isClick()" class="button-clear" style="opacity: 1 !important;">
+      <img ng-src="./img/dot3.png" class="block" style="width: 20px;height: 20px">
+    </button>
+  </ion-nav-buttons>
+  <div class="jd-bg-hui-e margin-left-right-5 padding-top-5"
+      ng-class="{true:'iosTopMargin',false:'androidTopMargin'}[isIOS]"
+         style="width: 96%;height: 32px;color: #999">
+      <i class=" ion-ios-search font-size-18 jd-color-hui-a margin-left-15 position-a" style="margin-top: 1px"></i>
+      <form class="no-border jd-bg-hui-e inline-block margin-left-10"style="width: 95%;">
+        <input class="no-border jd-bg-hui-e " style="padding-left: 24px;width:100%;"
+               placeholder="搜索" ng-model="input.isinput" ng-keypress="($event.which === 13)?search($event):0">
+      </form>
+  </div>
+  <ion-content delegate-handle="mainScroll" style="margin-top:40px;" overflow-scroll="true" on-tap="noDisplay()">
+    <!-- 楼主 管理员-->
+    <div class="  font-size-12  border-bottom  "
+         style="background-color: #fafafa;height:30px;color: #777;">
+      <div class="float-l" style="width: 5px;height:30px;background-color: #e652f1;"></div>
+      <div class="padding-top-5">
+        <i class="margin-left-10">圈主</i>
+        <span>/</span>
+        <span>管理员</span>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+    <!-- 楼主 遍历内容-->
+    <div style="width:100%;" ng-repeat="item in mainuserlist">
+      <div class="padding-15 border-bottom" ng-click="inPersonalPage(item.memberId)">
+        <div class="inline-block position-r">
+          <img ng-src="{{item.img | ImageUserFilter}}" class="vertical-middle block"
+               onerror="this.src='img/quanzi/user.jpg'"
+               style="width: 40px;height: 40px;border-radius: 4px;">
+          <div class="position-a text-center font-bold color-white"
+               style="bottom: -3px;right: -6px;font-size: 8px;height: 12px;line-height: 12px">
+            <div class="float-l width-100"
+                 style="background: #2979ff;border-bottom-left-radius: 6px;border-top-left-radius: 6px;
+                             border-bottom-right-radius: 6px;border-top-right-radius: 6px;padding-right: 5px;padding-left: 5px">
+              主
+            </div>
+          </div>
+        </div>
+        <div class="inline-block position-r margin-left-10"
+             style="top: -16px;" ng-bind="item.userName">
+          烟花易冷
+        </div>
+      </div>
+    </div>
+    <div style="width:100%;" ng-repeat="item in mainuser2list">
+      <div class="padding-15 border-bottom" ng-click="inPersonalPage(item.id)">
+        <div class="inline-block position-r">
+          <img ng-src="{{item.img | ImageUserFilter}}" class="vertical-middle block"
+               onerror="this.src='img/quanzi/user.jpg'"
+               style="width: 40px;height: 40px;border-radius: 4px;">
+          <div class="position-a text-center font-bold color-white"
+               style="bottom: -3px;right: -6px;font-size: 8px;height: 12px;line-height: 12px">
+            <div class="float-l width-100"
+                 style="background: #ff4400;border-bottom-left-radius: 6px;border-top-left-radius: 6px;
+                             border-bottom-right-radius: 6px;border-top-right-radius: 6px;padding-right: 5px;padding-left: 5px">
+              管
+            </div>
+          </div>
+        </div>
+        <div class="inline-block position-r margin-left-10"
+             style="top: -16px;" ng-bind="item.userName">
+          烟花易冷
+        </div>
+        <span ng-if="item.isgag==1" class=" position-r margin-left-10" style="top: -16px;display:inline-block;width:55px;text-align:center;height:16px;background:#999;color:#fff;font-size:12px;line-height:16px;border-radius:8px;">禁言中</span>
+      </div>
+    </div>
+    <!--成员-->
+    <div class="  font-size-12  border-bottom  "
+         style="background-color: #fafafa;height:30px;color: #777;">
+      <div class="float-l" style="width: 5px;height:30px;background-color: #0076ff;"></div>
+      <div class="padding-top-5">
+        <i class="margin-left-10">圈子成员</i>
+        <span class="margin-left-10">(</span>
+        <span ng-bind="userNum">/</span>
+        <span>)</span>
+        <!--<span class="float-r margin-right-10">按照最新加入排序</span>-->
+      </div>
+    </div>
+    <!-- 成员遍历内容-->
+    <div ng-repeat="item in userlist">
+      <!--<div class="border-bottom" style="height:24px;line-height:24px;background:#fafafa;padding-left:15px;" ng-bind="{true:'#',false:param.categoryName}[param.categoryName=='toOther']" id="{{param.categoryName}}"></div>-->
+      <!--<div style="width: 100%;" ng-repeat="item in param" ng-click="inPersonalPage(item.id)">-->
+        <div class="padding-15 border-bottom" ng-click="inPersonalPage(item.id)">
+          <div class="inline-block">
+            <img ng-src="{{item.userImg | ImageUserFilter}}" class="vertical-middle"
+                onerror="this.src='img/quanzi/user.jpg'"
+                style="width: 40px;height: 40px;border-radius: 4px;">
+          </div>
+          <span class="inline-block margin-left-10"
+                style="line-height: 35px;height: 35px;padding-right:10px;" ng-bind="item.userName">
+                      烟花易冷
+                  </span>
+          <span ng-if="item.isgag==1" style="display:inline-block;width:55px;text-align:center;height:16px;background:#999;color:#fff;font-size:12px;line-height:16px;border-radius:8px;">禁言中</span>
+        </div>
+      <!--</div>-->
+    </div>
+    
+    <!--上拉加载-->
+    <ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMoreMember()"
+                         distance="1%"></ion-infinite-scroll>
+  </ion-content>
+  <!--<div style="position:fixed;width:20px;height:432px;right:5px;top:20%;">
+      <a ng-repeat="item in aList" ng-bind="item" href="" ng-click="toAnchor(item)" style="display:block;color:#000;height:16px;font-size:12px;line-height:12px;text-align:center;"></a>
+  </div>-->
+  <!--消息弹框-->
+    <div ng-if="isDisplay" class="pop-news border-radius"
+         style="background: black;opacity: 0.8;color: white;height:auto;"
+         ng-class="{'ios-margin-top-20':isIOS}">
+        <!--小箭头-->
+        <div class="top-arrow" style="top: -6px !important;background: black;color: white"></div>
+        <!--ng-if="isAdmin=='true'||isHost=='true'"-->
+        
+        <div class="pop-news-item" ng-click="toManageUser()">
+          <!--ng-if="isAdmin=='true'"-->
+            <div class="float-l pop-news-icon">
+                <img src="img/quanzi/set.png" alt="">
+            </div>
+            <div class="float-l pop-news-text">管理成员</div>
+        </div>
+        <div class="pop-news-item" ng-click="toSetAdmin()">
+          <!-- ng-if="isHost=='true'"-->
+            <div class="float-l pop-news-icon">
+                <img src="img/quanzi/setprogess.png">
+            </div>
+            <div class="float-l pop-news-text">设管理员</div>
+        </div>
+
+    </div>
+</ion-view>

@@ -1,0 +1,76 @@
+@mixin ShopAppSCommon{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex
+}
+.ShopApplaySuccess{
+  background: #eee;
+  @include ShopAppSCommon();
+  div:nth-child(1){
+    text-align:center;
+    height:186px;
+    padding-top:56px;
+    img{
+      width:110px;
+      height:110px;
+    }
+  }
+  div:nth-child(2){
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 0;
+  }
+  div:nth-child(3){
+    line-height: 20px;
+    padding:0 56px;
+    margin:12px 0 50px 0;
+    font-size: 14px;
+    color: #666;
+    span:nth-child(1){
+      font-size: 14px;
+      color: #ff4400;
+    }
+  }
+  div:nth-child(4){
+    margin:0 auto;
+    width:88px;
+    height:88px;
+    img{
+      height:100%;
+      width:100%;
+    }
+  }
+  div:nth-child(5){
+    margin:16px auto 20px;
+    font-size: 12px;
+    color: #999;
+  }
+  div:nth-child(6){
+    margin:0 auto;
+    width:264px;
+    height:44px;
+    background: #2979FF;
+    box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);
+    border-radius: 100px;
+    text-align: center;
+    span{
+      line-height: 44px;
+      font-size: 17px;
+      color: #fff;
+    }
+  }
+  div:nth-child(7){
+    margin:20px auto;
+    width:264px;
+    height:44px;
+    background: #e4e4e4;
+    border-radius: 100px;
+    text-align: center;
+    span{
+      line-height: 44px;
+      font-size: 17px;
+      color: #000;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+<!--顺逛众筹  选择档位页 -->
+<ion-view  class="background"  view-title="选择档位">
+  <div ng-class="{true:'iosTopcss',false:'androidTopcss'}[isIos]" class="mess-tip" style="display:none;color:#fff;text-align:center;width:70%;height:35px;line-height:35px;background:#000;opacity:0.9;position:absolute;left:8px;z-index:99;border-radius:5px;font-size:12px;"></div>
+  <!--选择档位 内容区域-->
+  <ion-content  scrollbar-y="false" delegate-handle="scrollSelection">
+    <div style="width: 100%;background: #fff;font-family: PingFangSC-Regular;position: relative;">
+      <div class="crowd_funding_hot_redound" ng-repeat="item in hotRedoundList.zstallsSinglePageViews track by $index">
+        <!--1.显示支持资金 点击按钮 是否是可点击状态-->
+        <div class="crowd_funding_hot_state">
+           <!--1.1 显示图片和信息-->
+           <dl style="display: flex;display: -webkit-flex;">
+            <dt style="width: 44px;height: 44px; margin-right: 8px;margin-top: 20px;" ng-if="item.returnUrl!=''">
+              <img style="width: 100%;height: 100%;"  ng-src="{{item.returnUrl}}">
+            </dt>
+            <dd class="crowd_funding_earn_money" style="flex: 1;padding-top: 20px;width: 100%;white-space: nowrap;line-height: 1;">
+              <strong class="crowd_funding_hot_money" style="color: #FF4400;">￥<span style="font-size: 20px;">{{item.amount}}</span></strong>
+              <strong ng-if="!item.isLottery && isBuyer==1 && settingsList[0].checked" class="crowd_funding_hot_money" style="padding-left: 4px;">
+                <em class="crowd_funding_more_earn"><i class="crowd_funding_more_earn_text">赚</i></em>
+                <i style="color: #FF4400;">￥{{item.commissionRate*item.amount|number:2}}</i>
+              </strong>
+              <span style="clear: both;" class="crowd_home_new_loading_state crowd_funding_details_state crowd_funding_hot_prize" ng-if="item.isLottery">抽奖档</span>
+            </dd>
+          </dl>
+           <!--1.2 按钮-->
+           <div style="display: inline-block;" class="crowd_funding_hot_go" ng-if="isStatus">
+             <span class="crowd_funding_hot_go_go" ng-if="item.remainingNum==-1 || item.remainingNum>=1" ng-click="goSupport(item.id,item.amount,item.returnUrl,item.returnTime,item.freight,item.remainingNum,item.commissionRate,item.isLottery)">去支持</span>
+             <!--限额已满-->
+             <span class="crowd_funding_hot_no" ng-if="item.remainingNum==0">限额已满</span>
+           </div>
+
+          <!--预热中状态-->
+          <div style="display: inline-block;" class="crowd_funding_hot_go" ng-if="isStars">
+            <span class="crowd_funding_hot_no" ng-if="isFull">敬请期待</span>
+          </div>
+          <!--结束状态-->
+          <div style="display: inline-block;" class="crowd_funding_hot_go" ng-if="isEnd">
+            <span class="crowd_funding_hot_no" ng-if="isFull">已结束</span>
+          </div>
+        </div>
+        <!--2.显示支持商品的介绍-->
+        <div class="crowd_funding_hot_msg">
+          {{item.returnContent}}
+        </div>
+        <!--3.显示配送的费用和时间-->
+        <div style="margin-top: 10px;" class="crowd_funding_hot_tim">
+           <div>
+              配送费用: <span>{{item.freight==0?'免运费':item.freight+'元'}}</span>
+           </div>
+           <div>
+              预计回报发放时间: <span>项目众筹成功后{{item.returnTime}}天内</span>
+           </div>
+        </div>
+        <!--4.显示 已有多少人在支持 剩余的份数-->
+        <div style="margin-top: 10px;padding-bottom: 20px;border-bottom: 1px solid #e4e4e4;">
+            <span class="crowd_funding_hot_time">
+              <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/History_time@2x.png" alt="倒计时">
+            </span>
+            <div class="crowd_funding_hot_time_msg">
+               <span>已有{{item.supportNum}}人支持</span>
+               <span>剩余份数：{{item.remainingNum==-1?'无限额':item.remainingNum}}</span>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+  <!--点击按钮弹出框-->
+  <div class="crowd_funding_hot_load_popup" ng-if="isHotPopup">
+      <div style="width: 100%;height: 50%;background: #fff;position: absolute;bottom: 0; ">
+        <!--关闭按钮-->
+        <span class="crowd_funding_hot_close" ng-click="hot_close()">
+          <img ng-src="{{imgBaseURL}}img/cross.png" alt="">
+        </span>
+        <div style="width: 100%;height: 100%;margin: 0px 16px;">
+          <!--支持的钱数-->
+          <div class="crowd_funding_hot_popup_msg">
+            <!--1.1 显示图片和信息-->
+            <dl>
+              <dt  ng-if="hotImg!=''" style="width: 44px;height: 44px; margin-right: 8px;">
+                <img style="width: 100%;height: 100%;" ng-src="{{hotImg}}">
+              </dt>
+              <dd style="flex: 1;padding-top: 10px;">
+
+              <strong  style="color: #FF4400;">￥<span style="font-size: 20px;">{{hotAmounts}}</span></strong>
+              <strong ng-if="!isLottery && isBuyer==1 && settingsList[0].checked"  style="padding-left: 4px;">
+                  <em class="crowd_funding_more_earn"><i class="crowd_funding_more_earn_text">赚</i></em>
+                  <i style="color: #FF4400;">￥{{commissionRate*hotAmounts|number:2}}</i>
+                </strong>
+
+              </dd>
+            </dl>
+          </div>
+          <!--配送方案-->
+          <div  class="crowd_funding_hot_tim crowd_funding_hot_freight">
+            <div>
+              配送费用: <span>{{freight==0?'免运费':freight+'元'}}</span>
+            </div>
+            <div>
+              预计回报发放时间: <span>项目众筹成功后{{returnTime}}天内</span>
+            </div>
+          </div>
+          <!--支持的份数 点击 + - -->
+          <div style="margin-top: 6px;">
+            <p> 支持数量 <span ng-if="!isFind">(单人限购数量{{hotNumber.limit}})</span></p>
+            <!--点击加减-->
+            <div class="col col-40 bg-white border border-radius padding-0" style="height: 40px">
+              <div class="row text-align-c">
+                <div class="ion-ios-minus-empty font-size-26 col-20" ng-click="nus()"></div>
+                <div class="col-60 row row-no-padding">
+                  <div class="border-left-right margin-left-right-5 padding-top-3 width-100" ng-bind="hotPopupNum"></div>
+                </div>
+                <div class="ion-ios-plus-empty font-size-26 col-20" ng-click="plus()"></div>
+              </div>
+            </div>
+            <!--超过限额提醒-->
+            <div class="crowd_funding_hot_excess" ng-if="isExcess">
+                    您已达到购买的限购数量!
+            </div>
+          </div>
+
+        </div>
+        <!--按钮 去支持-->
+        <div ng-if="isGo" ng-click="goPostData()" style="width: 100%;height: 48px;line-height:48px;background: #2979FF;color: #fff;font-size: 16px;text-align: center;position: absolute;bottom: 0;" >去支持</div>
+        <div ng-if="notGo" style="width: 100%;height: 48px;line-height:48px;background: #B3B3B3;color: #fff;font-size: 16px;text-align: center;position: absolute;bottom: 0;" >去支持</div>
+      </div>
+  </div>
+</ion-view>

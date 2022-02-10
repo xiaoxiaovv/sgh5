@@ -1,0 +1,141 @@
+<!--模板-->
+<ion-view style="background: #1B355F;" hide-nav-bar="true" title="会员竞争力">
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+  </div>
+  <ion-content scrollbar-y="false">
+    <div class='competition'>
+      <div flex="box:justify" class='com-nav-box' ng-style="paddingtopClass">
+        <div flex="main:left cross:center" class='back-img' ng-click="goBack()">
+          <img ng-src='{{imgBaseURL}}img/vipLeftArrow.png' alt="back" />
+        </div>
+        <div class='nav-title'>会员竞争力</div>
+        <div flex="main:center cross:center" class='nav-share' ng-click="share()">
+          <img ng-src="{{imgBaseURL}}img/Sharetrick.png" alt="" />
+        </div>
+      </div>
+      <div flex="main:justify cross:center" class='com-result'>
+        <div flex='main:left cross:center' class='result-left'>
+          <div class="head-l avat-img">
+            <img ng-src={{competition.avatarImageFileId}} alt="" />
+          </div>
+          <div class='avat-info'>
+            <span class='store-name'>{{competition.storeName}}</span>
+            <div flex='main:left cross:center' class='star-con'>
+              <div class='star-text' flex='main:justify cross:center dir:left box:mean' ng-click='toRules()'>
+                <div class='vip-icon' flex='main:center cross:center'>
+                  <div class='vip-icon-img' flex='main:center cross:center'>
+                    <img ng-src="{{imgBaseURL}}img/V@2x.png" alt="V">
+                  </div>
+                  <div class='vip-icon-text'>{{competition.order}}</div>
+                </div>
+                <div class='vip-text'>{{competition.name}}</div>
+              </div>
+              <div class='star-small'>
+                <div flex="main:center cross:center" class='vip-store-star' ng-if="storeCreditWithLevel">
+                  <img ng-repeat="item in levelArray track by $index" ng-src={{item}}>
+                  <p>{{starName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div flex="main:center cross:center dir:top" class='result-right'>
+          <span class='title-text'>综合竞争力排名</span>
+          <span class='com-num'>{{competition.userRank}}</span>
+        </div>
+      </div>
+      <!-- progress @zyr dele-->
+      <!-- <div  style="height:24px;width:100%;position:relative;box-sizing:border-box;">
+        <div class='appxyz apponexyz' style="background:url('img/wave-mid.png') repeat-x;background-position:0 bottom;background-size:50% 12px;"></div>
+        <div class='appxyz apptwoxyz' style="background:url('img/wave-bot.png') repeat-x;background-position:0 bottom;background-size:50% 12px;"></div>
+        <div class='appxyz' style="background:url('img/wave-top.png') repeat-x;background-position:0 bottom;background-size:50% 12px;"></div>
+      </div> -->
+      <div flex="main:center cross:center" class='com-map-box'>
+          <div class='radar-map' id="radarMap">
+            <canvas id="radarMapCanvas"></canvas>
+            <img ng-src="{{imgBaseURL}}img/Analysis@2x_empty.png" alt="" />
+          </div>
+          <div class='community-inter'>
+            <div class="xyzCompete1">社区互动</div>
+            <div class="xyzCompete2">{{competition.comunityCount}}<span class="xyzCompete1">次</span></div>
+          </div>
+          <div class='shop-order-num'>
+            <div class="xyzCompete1">店铺单数</div>
+            <div class="xyzCompete2">{{competition.ordersCount}}<span class="xyzCompete1">单</span></div>
+          </div>
+          <div class='meeting-friends'>
+            <div class="xyzCompete1">招募结识了</div>
+            <div class="xyzCompete2">{{competition.partner}}<span class="xyzCompete1">个伙伴</span></div>
+          </div>
+          <div class='evaluate'>
+            <div class="xyzCompete1">进行评价</div>
+            <div class="xyzCompete2">{{competition.accessCount}}<span class="xyzCompete1">次</span></div>
+          </div>
+          <div class='share-map'>
+            <div class="xyzCompete1">分享</div>
+            <div class="xyzCompete2">{{competition.sharesCount}}<span class="xyzCompete1">次</span></div>
+          </div>
+          <div class='login-map'>
+            <div class="xyzCompete1">登录</div>
+            <div class="xyzCompete2">{{competition.loginsCount}}<span class="xyzCompete1">次</span></div>
+          </div>
+      </div>
+      <div flex="main:justify cross:center" class='total-income'>
+        <div class='income-cont'>
+          <span class='income-text'>总收入：</span>
+          <span class='income-num' ng-bind='competition.myInCome | currency:""'></span>
+        </div>
+        <div class='goto-store' ui-sref="myStore({storeId:xyzMemberId,shareStoreId:xyzMemberId})">进入店铺</div>
+      </div>
+      <!-- @zyr dele -->
+      <!-- <div flex="main:center cross:center dir:top">
+        <img style="height:73px;width:73px;"
+        ng-src="img/HeadImage{{userCurrentLevelId}}.png"/>
+        <span style="margin-top:10px;font-size:15px;color: #ffec00;letter-spacing:0.19px;line-height:24px;">我已经是一名顺逛{{competition.name}}</span>
+        <span style="margin-bottom:69px;font-size:15px;color: #ffec00;letter-spacing:0.19px;line-height:24px;">我为顺逛代言！</span>
+      </div> -->
+      <div class='footer'>
+        <div class='foot-list'>
+          <ion-slide-box auto-play="true" slide-interval=3000 show-pager="false" does-continue='true'>
+            <ion-slide ng-repeat='foot in userList'>
+              <div class='foot-item'>
+                <div class='item-box'  flex="main:justify cross:center">
+                  <div class='item-info' flex="main:justify cross:center">
+                    <div class='foot-img'>
+                      <img ng-src="{{foot.src}}" alt="user">
+                    </div>
+                    <div class='other-income'><span class='other-name'>{{foot.allName}}</span>收入了￥<span>{{foot.money}}</span></div>
+                  </div>
+                  <div class='other-time'>{{foot.time}}分钟前</div>
+                </div>
+              </div>
+            </ion-slide>
+          </ion-slide-box>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+<!-- position:absolute;top:0;left:0; -->

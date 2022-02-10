@@ -1,0 +1,33 @@
+<ion-view class="background" view-title="{{name.length>12?(name.substring(0,12)+'...'):name}}">
+  <ion-content scrollbar-y="false" overflow-scroll="true">
+      <ion-slide-box auto-play="true"  does-continue="true" delegate-handle="exStoreDetail_slide">
+          <ion-slide ng-repeat='item in pageData.imageUrls'>
+            <img class="selection_banner" ng-src='{{item}}' width='100%'/>
+          </ion-slide>  
+    </ion-slide-box>
+    <div class='exStoreaddress'>
+      <div>{{pageData.typeValue}}</div>
+      <div>{{pageData.name}}</div>
+      <div>{{pageData.address}}</div>
+      <div>
+        <img src='{{imgBaseURL}}img/linshi/location@2x.png'/>
+      {{pageData.distance}}</div>
+    </div>
+    <div class="zjlist">
+       <div class='housetitle'>
+          <div></div>
+          <div>体验店简介</div>
+      </div>
+      <div class="tydjianjie" ng-bind-html='pageData.introduction | bluetext'>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="zjfootercrb" flex='main:center cross:center'>
+      <div style='border-right: 1px solid #E4E4E4;' ui-sref="myStore({'storeId':pageData.storeId?pageData.storeId:'20219251'})">官方微店</div>
+      <div style='border-right: 1px solid #E4E4E4;' ng-click='callphone()'>预约联系</div>
+      <div ng-click='openmap()'>导航到店</div>
+    </div>
+  </ion-footer-bar>
+  
+</ion-view>

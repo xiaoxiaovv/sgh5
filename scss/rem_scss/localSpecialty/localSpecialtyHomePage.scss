@@ -1,0 +1,232 @@
+.shareStyleddd{
+  display: inline-block;
+  width: 4px;/*no*/
+  height: 4px;/*no*/
+  background: #999;
+  border-radius: 100%;
+}
+.local_specialty_food_name{
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden;  /** 隐藏超出的内容 **/
+}
+.local_specialty_province>dl>dt{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.local_specialty_province>dl{
+    &:nth-child(1){
+      dt{
+        background-image: -webkit-linear-gradient(-180deg, #FFE330 7%, #FFC701 93%);
+        background-image: linear-gradient(-180deg, #FFE330 7%, #FFC701 93%);
+      }
+
+    }
+    &:nth-child(2){
+      dt{
+        background-image: -webkit-linear-gradient(-180deg, #F89B61 0%, #F0661A 100%);
+        background-image: linear-gradient(-180deg, #F89B61 0%, #F0661A 100%);
+      }
+
+    }
+    &:nth-child(3){
+      dt{
+        background-image: -webkit-linear-gradient(-180deg, #9DE224 13%, #5AD726 92%);
+        background-image: linear-gradient(-180deg, #9DE224 13%, #5AD726 92%);
+      }
+
+    }
+}
+.local_specialty_province>dl>dd{
+  color: #666;
+  font-size: 12px;/*no*/
+  width: 95%;
+  height: 14px;/*no*/
+  line-height: 14px;/*no*/
+  text-align: center;
+  overflow: hidden;
+}
+/*分类下划线*/
+.local_specialty_color{
+  color: #2979FF;
+}
+.inactive{
+  color: #333;
+  display: inline-block;
+  background: #fff;
+}
+.local_specialty_line{
+  height: 2px;/*no*/
+  background: #2979FF;
+  width: 60px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+ // border-bottom: 2px solid #2979FF;
+ // color: #2979FF;
+}
+/*分类*/
+.moreYouLike{
+  font-size: 14px;
+  color: #666;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-top: 8px;
+  background: #fff;
+}
+.guest_say{
+  width: 100%;
+  margin-top: 8px;
+  padding-bottom: 18px;
+  position: relative;
+  background-size: contain;
+  background: url(http://cdn09.ehaier.com/shunguang/H5/www/img/gkbg@2x.png) left top no-repeat #fff;
+}
+.local_specialty_you_like{
+   width: 48%;
+   //height: 200px;
+   background: #fff;
+   margin:5px 0 0 5px;
+   float: left;
+   position: relative;
+}
+.local_specialty_you_like_pic{
+   margin: 10px;
+   padding: 5px;
+}
+.local_specialty_you_like_pic>img{
+   width: 100%;
+}
+.local_specialty_you_like_title{
+   margin:12px 16px;
+   font-size: 14px;/*no*/
+   color: #333;
+   height: 40px;/*no*/
+   word-break: break-all;
+   text-overflow: ellipsis;
+   display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+   -webkit-line-clamp: 2; /** 显示的行数 **/
+   overflow: hidden;  /** 隐藏超出的内容 **/
+}
+/*价钱*/
+.local_specialty_you_like_price{
+   color: #FF4400;
+   margin-left: 16px;
+   margin-bottom: 2px;
+   font-size: 14px;/*no*/
+}
+/*赚*/
+.local_specialty_you_like_money{
+  background: url('http://cdn09.ehaier.com/shunguang/H5/www/img/zhuan@2x.png') center/100% no-repeat;
+  width: 81px;
+  height: 20px;
+  padding: 4px 0 0 15px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+/*购物车*/
+.CommonShoppingCar{
+  position: fixed;
+  right: 10px;/*no*/
+  bottom: 80px;/*no*/
+}
+.CommonShoppingCar_num{
+  width: 50px;
+  height: 50px;
+  background: #faf0e4;
+  border-radius: 100%;
+  opacity: 0.9;
+  position: relative;
+    div:nth-child(1){
+      color: #fff;
+      text-align:center;
+      background: #FF4400;
+      position: absolute;
+      right: 5px;
+      top: 6px;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      border-radius: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    div:nth-child(2){
+      position: absolute;
+      left: -8px;
+      right: 8px;
+      bottom: -5px;
+      z-index: -1;
+    }
+}
+.all_local{
+  background: #eee;
+  height: 100%;
+  &>p{
+    color: #666;
+    font-size: 14px;/*no*/
+    padding: 10px 0 4px 24px;
+  }
+}
+.allSpecialty_local{
+  margin: 0 8px 0 8px;/*no*/
+}
+.allSpecialty_local>ul{
+   flex-wrap: wrap;
+   &>li{
+     color: #333;
+     display: inline-block;
+     padding: 6px 19px;/*no*/
+     background: #fff;
+     border-radius: 6px;
+     margin:8px 6px 0 0px;/*no*/
+     text-align: center;
+   }
+}
+/*省级馆高亮*/
+.local_specialty_high{
+  color: #fff !important;
+  background: #2979FF !important;
+}
+
+/*倒计时style*/
+.time_style{
+  &>div{
+    color: #FF3000 !important;
+  }
+
+}
+
+
+
+
+@media (width: 375px) {
+  .allSpecialty_local>ul{
+    &>li{
+      padding: 6px 16px;/*no*/
+    }
+  }
+}
+@media  (width: 360px) {
+  .allSpecialty_local>ul{
+    &>li{
+      padding: 6px 14px;/*no*/
+    }
+  }
+}

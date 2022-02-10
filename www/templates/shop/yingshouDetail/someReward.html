@@ -1,0 +1,14 @@
+ <ion-view class='background' view-title="{{title}}" hide-back-button="true" style="background-color: $color-theme;color:#000;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<div class='xvv-month xvv-qita' ng-repeat='i in someList'>
+			<div><span>月份:&nbsp;</span>{{i.nodeUpdateTime|date:'yyyy-MM'}}</div>
+			<div></div>
+			<div ng-if='i.netActualPrice'><span>金&emsp;&emsp;额:&nbsp;</span>{{i.netActualPrice|currency:"&yen"}}</div>
+			<div ng-if='i.brokerageDeductAmount'><span>奖&emsp;&emsp;励:&nbsp;</span>{{i.brokerageDeductAmount|currency:"&yen"}}</div>
+			<div ng-if='i.sgDeductionDetails&&(i.sgDeductionDetails.length>0)'><span>抵扣金额:&nbsp;</span><span>{{i.deductionAmount|currency:"&yen"}}</span><span ng-click='lookReward(i)'>查看抵扣金额</span></div>
+		</div>
+	</ion-content>
+</ion-view>

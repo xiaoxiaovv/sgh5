@@ -1,0 +1,796 @@
+<ion-view class="background" view-title="商品详情" hide-nav-bar="true">
+  <!-- 电话提醒的蒙版开始 -->
+  <div ng-if="remindSuccess" style="height:100%;position:fixed;width:100%;z-index:97;" flex="main:center cross:center">
+    <!-- 电话提醒成功提示开始 -->
+    <div ng-if="remindSuccess" style="width:81%;height:100px;background:#000;border-radius:8px;opacity:0.7;text-align:center;padding:16px 0 19px;">
+      <div style="height:30px;width:27px;margin:0 auto 15px;">
+        <img style="width:100%;height:100%;" ng-src="{{imgBaseURL}}img/queren@2x.png" />
+      </div>
+      <div style="font-size:14px;color:#333;color:#fff;">{{message}}</div>
+    </div>
+    <!-- 电话提醒成功提示结束 -->
+  </div>
+  <!-- 电话提醒的蒙版结束 -->
+
+  <!-- 新增优惠券弹出开始 -->
+  <div class="modal-backdrop active" ng-if="getcoupons">
+    <div class="modal-backdrop-bg"></div>
+    <!--模板-->
+    <ion-modal-view class="background modal slide-in-up ng-enter active ng-enter-active" view-title="" hide-nav-bar="true" style="position: fixed;top: 132px;left: 0;background:#eee;">
+      <div style="height:44px;text-align:center;line-height:44px;font-size:17px;position:relative;">
+        <span>优惠券</span>
+        <div ng-click="closeCoupons()" style="position:absolute;height:24px;width:24px;right:9px;;top:9px;"><img style="width:100%;height:100%;margin-bottom:5px;" ng-src="{{imgBaseURL}}img/x@2x.png" /></div>
+      </div>
+      <div style="height:40px;margin-left:16px;line-height:40px;font-size:14px;color:rgba(51,51,51,0.87);">可领优惠券</div>
+      <ion-content scrollbar-y="false" style="top:84px;" delegate-handle="mainScroll" class="scroll-content ionic-scroll">
+        <div style="height:90px;margin:0 16px 8px;position:relative;" flex="box:last" ng-repeat="shopCoupon in shopCoupons">
+          <div style="height:90px;background:#fff;" flex="box:first">
+            <div>
+              <div ng-repeat="dstrl in divStrl" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;left:-3px;top:{{dstrl}}px;"></div>
+              <div ng-repeat="dstrl in divStrl" style="background:#eee;border-radius:50%;width:6px;height:6px;position:absolute;right:-3px;top:{{dstrl}}px;"></div>
+              <div ng-repeat="dstrm in divStrm" style="background:#eee;border-radius:3px;width:2px;height:8px;position:absolute;top:{{dstrm}}px;right:69px;"></div>
+              <div ng-repeat="dstrt in divStrt" style="background:#eee;border-radius:16px;width:16px;height:16px;position:absolute;top:{{dstrt}}px;right:63px;"></div>
+              <div style="width:100px;line-height:90px;text-align:left;padding-left:12px;color:#f56767;letter-spacing:-2px;">
+                <span style="font-size:16px;opacity:0.87;">￥</span>
+                <span style="font-size:32px;font-weight:600;">{{shopCoupon.couponValue}}</span>
+              </div>
+            </div>
+            <div style="font-size:12px;padding:13px 0 11px 0;">
+              <div style="color:#F56767;" flex="">
+                <div style="line-height:17px;">{{shopCoupon.minAmountDoc}}</div>
+              </div>
+              <div style="color: rgba(51,51,51,0.87);line-height:20px;margin:9px 0 3px 0;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{shopCoupon.limitProductDoc}}</div>
+              <div style="color: rgba(102,102,102,0.87);line-height:17px;">{{shopCoupon.timeDoc}}</div>
+            </div>
+          </div>
+          <div style="height:90px;width:69px;background:#F56767;color:rgba(255,255,255,0.87);font-size:14px;" flex="main:center cross:center">
+            <div style="line-height:18px;" ng-if="shopCoupon.displayType == 1" ng-click="getNewCoupons(shopCoupon.id)">
+              <div>点击</div>
+              <div>领取</div>
+            </div>
+            <div style="height:66px;width:66px;" ng-if="shopCoupon.displayType == 2">
+              <img style="width:100%;height:100%;" ng-src="{{imgBaseURL}}img/quan-yl2@2x.png" />
+            </div>
+          </div>
+        </div>
+        <div style="height:132px;"></div>
+        <ion-infinite-scroll ng-if="hasMoreCoupons" on-infinite="logConpous()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+      </ion-content>
+    </ion-modal-view>
+  </div>
+  <!-- 新增优惠券弹出结束 -->
+
+  <!--选择规格数量-弹出层-Start-->
+  <div class="modal-backdrop active SpecNumberModal" ng-class="OpenAndClose">
+    <div class="modal-backdrop-bg" ng-click="closeSpecNumber()"></div>
+    <!--模板-->
+    <ion-modal-view class="background modal slide-in-up ng-enter active ng-enter-active SpecNumber-view" view-title="" hide-nav-bar="true" >
+      <!--头部-->
+      <div  class="SpecNumber-top">
+        <div class="SpecNumber-top-imgs">
+            <img ng-src="{{ picAttr }}" ng-if="isAllAttr" ng-click="seeBigPic('attr')" >
+            <img ng-src="{{ picAttr }}" ng-if="!isAllAttr" ng-click="seeBigPic(1)" >
+        </div>
+        <div class="SpecNumber-top-text">
+            <div class="Price">￥{{StoreAttributePrice}}
+              <span ng-if="(isApp && (isBuyer==1)&&(userId==storeId)&&isCommission&&commission!=null&&commission!=undefined)" class="border-circular">赚</span>
+              <span ng-if="(isApp && (isBuyer==1)&&(userId==storeId)&&isCommission&&commission!=null&&commission!=undefined)" class="color-text-red margin-right-15 ">¥{{StoreAttributePrice*commissionRate|keepInt}}{{StoreAttributePrice*commissionRate|keepFloat}}</span>
+            </div>
+            <!-- <div class="texts"><span>{{StoreAttributNumber}}</span></div> -->
+            <div class="texts"  ng-if="StoreAttributeActiveList.length == 0">请选择参数</div>
+            <div class="texts"  ng-if="StoreAttributeActiveList.length != 0">
+                已选<span ng-repeat="itemstext in StoreAttributeActiveList">“{{itemstext}}”</span>
+            </div>
+        </div>
+        <div ng-click="closeSpecNumber()" style="position:absolute;height:24px;width:24px;right:9px;;top:9px;">
+          <img style="width:100%;height:100%;margin-bottom:5px;" ng-src="{{imgBaseURL}}img/x@2x.png" />
+        </div>
+      </div>
+      <!--内容-->
+      <ion-content scrollbar-y="false"  delegate-handle="mainScroll" class="scroll-content ionic-scroll SpecNumber-content">
+        <div class="border-h-1" ></div>
+        <ul class="SpecNumber-list">
+          <li ng-repeat="item in StoreAttribute track by $index">
+              <div class="title">{{item[0].attrName}}</div>
+              <div>
+                <span ng-class="{'0':'','1':'active','2':'no-sku'}[items.active]" ng-repeat="items in item track by $index" ng-click="SpecNumberActive(items,item)">{{ items.sgAttribute.attrValueName}}</span>
+              </div>
+          </li>
+          <!-- <li>
+              <div class="title">颜色分类</div>
+              <div>
+                <span class="active">玫瑰红</span>
+                <span>玫瑰金</span>
+                <span>复古灰</span>
+                <span>黄色</span>
+                <span>蓝色</span>
+                <span class="no-sku">白色</span>
+                <span>玫瑰红</span>
+                <span>玫瑰金</span>
+                <span>复古灰</span>
+                <span>黄色</span>
+                <span>蓝色</span>
+                <span>白色</span>
+              </div>
+          </li>
+          <li>
+            <div class="title">尺码</div>
+            <div>
+              <span class="active">22</span>
+              <span>23</span>
+              <span>24</span>
+              <span>25</span>
+            </div>
+          </li> -->
+          <li class="cl">
+            <div class="title fl add-sub-namber-l">购买数量</div>
+            <div class="bg-white border border-radius padding-0 fr add-sub-namber">
+                <div class="row text-align-c">
+                  <div class="ion-ios-minus-empty font-size-26 col-20"  ng-if="productModel.product.productAttribute == 0 || productModel.product.productAttribute ==1"  ng-click="nus()"></div>
+                  <div class="ion-ios-minus-empty font-size-26 col-20"  ng-if="productModel.product.productAttribute == 2 || productModel.product.productAttribute ==3" style="color: #999;" ></div>
+                  <div class="col-60 row row-no-padding">
+                    <div class="border-left-right margin-left-right-5 padding-top-3 width-100 ng-binding" ng-bind="productCount">1</div>
+                  </div>
+                  <div class="ion-ios-plus-empty font-size-26 col-20"  ng-if="productModel.product.productAttribute == 0 || productModel.product.productAttribute ==1"  ng-click="plus()"></div>
+                  <div class="ion-ios-plus-empty font-size-26 col-20"  ng-if="productModel.product.productAttribute == 2 || productModel.product.productAttribute ==3" style="color: #999;" ></div>
+                </div>
+              </div>
+          </li>
+        </ul>
+      </ion-content>
+    </ion-modal-view>
+    <!--底部-->
+    <div class="SpecNumber-footer" ng-click="closeConfirmModel()">
+      <div class="btn-list-1">确定</div>
+    </div>
+  </div>
+  <!--选择规格数量-弹出层-End-->
+  <div ng-class="{true:'iosTopcss',false:'androidTopcss'}[isIos]" class="mess-tip" style="display:none;color:#fff;text-align:center;width:70%;height:35px;line-height:35px;background:#000;opacity:0.9;position:absolute;left:8px;z-index:99;border-radius:5px;font-size:12px;"></div>
+
+  <!-- *********************分享标签－whiteBird start********************* -->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <!-- 服务说明 -->
+  <div style="z-index: 99;position: fixed;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7)" ng-show="isShowService">
+    <div style="background:white;width:100%;height:300px;position:absolute;z-index:110;left:0;bottom:0;right:0;margin:auto;border-radius:8px;">
+      <div style='height: 40px;line-height: 40px;margin-left: 19px;font-size: 20px;text-align: center; border-bottom: 1px solid #eee;margin-right: 14px;'>服务说明</div>
+      <img ng-src="{{imgBaseURL}}img/x@2x.png" style="width:32px;position:absolute;top:4px;right:7px;" ng-click="closeRule()">
+      <ion-scroll style="overflow:hidden;width:100%;height:264px;position:absolute;background:#ffffff;padding-left: 10px;padding-right: 10px;font-size: 14px;color: #333;letter-spacing: -0.41px;margin-top: 2px">
+        <div ng-repeat='i in serviceDetail' style='display: flex;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;'>
+          <img ng-src={{i.m}} style='width: 36px;height: 36px; margin-top: 2px;' />
+          <div>
+            <h4 style='font-size: 17px;font-weight: normal;margin:10px 0'>{{i.n}}</h4>
+            <p style='color: #666;margin-bottom: 10px'>{{i.s}}</p>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+  </div>
+  <!--<div ng-class="{true:'iosTopcss',false:'androidTopcss'}[isIos]" id="mess-tip" style="display:none;color:#fff;text-align:center;width:70%;height:35px;line-height:35px;background:#000;opacity:0.5;position:absolute;left:8px;z-index:99;border-radius:5px;font-size:12px;"></div>-->
+  <!--分享二维码保存背景蒙版-->
+  <div style="z-index: 99;position: fixed;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7)" ng-show="showQRimg">
+    <div style="width: 90%;height: 70%;position: absolute;right:5%;top:10%;background-color: #FFFFFF;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;padding: 5px;">
+      <img ng-src="{{qrcodeImageUrl}}" style="width: 100%;height: 85%;" />
+      <div ng-click="saveImg();" style="width: 80%;height: 40px;margin-left:9%;position:absolute;bottom:10px;background-color: #F8F8F8;text-align: center;border:1px solid #d2d2d2;line-height: 40px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;">
+        <img ng-src="{{imgBaseURL}}img/ic_download_qrcode.png" style="width: 14px;height: 14px;margin-top:-2px;" /><span style="color:#333;">保存图片到本地相册</span>
+      </div>
+    </div>
+    <div ng-click="hideQRImg();">
+      <img ng-src="{{imgBaseURL}}img/ic_erweima_close.png" style="width: 30px;position: absolute;right: 46%;top: 84%;" />
+    </div>
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div ng-if="(isApp && (isBuyer==1)&&(userId==storeId))" style="color:#7EC0EE;background: white;font-size: 12px;text-align:center;padding-top:10px;">您的好友通过分享购买，您将赚到不菲的佣金哦</div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <!-- 轮播图 大图 -->
+
+
+  <!-- 轮播图 大图 -->
+  <div flex="main:center cross:center" style="width:100%;height:100%;background:#ffffff;position:absolute;z-index:100;" ng-if="isShowBigPic">
+
+    <div style="position:absolute;top:20px;left:0;text-align:center;width:100%;height:40px;line-height:40px;color:#000000;font-size:14px;">
+      <span style="font-size:16px;font-weight:bold;">{{activeSlide+b}}</span>/{{productModel.swiperImgs.length+a}}
+    </div>
+
+    <ion-slide-box class="bg-white" active-slide="activeSlide" show-pager="false" on-slide-changed="slideHasChanged($index)"
+      style="width:100%;height:90%;margin-top:40px;background:transparent;">
+      <ion-slide ng-if="flagMp4" class="text-align-c">
+        <div flex="main:center cross:center" style="height:500px;">
+          <video width="100%" height="300" ng-src="{{Mp41}}" poster="{{Png41}}" preload="Metadata" controls="controls" preload="auto"></video>
+        </div>
+      </ion-slide>
+
+      <ion-slide ng-repeat="imgUrl in productModel.swiperImgs track by $index" class="text-align-c">
+        <div flex="main:center cross:center" id="pinchZoomBigPic-{{$index}}" style="height:500px;width:100%;">
+          <img ng-src={{imgUrl|ImageFilter}} class="height-min-100" style="width:100%;" />
+        </div>
+      </ion-slide>
+
+    </ion-slide-box>
+  </div>
+
+  <!--规格参数轮播图-->
+  <div flex="main:center cross:center" style="width:100%;height:100%;background:#ffffff;position:absolute;z-index:100;" ng-if="isAllAttrpic">
+    <!--规格参数轮播和外面轮播 isAllAttr等于true 规格参数全选-->
+    <div style="position:absolute;top:20px;left:0;text-align:center;width:100%;height:40px;line-height:40px;color:#000000;font-size:14px;">
+      <span style="font-size:16px;font-weight:bold;">{{activeSlide+b}}</span>/{{AttrswiperImgs.length+a}}
+    </div>
+
+    <ion-slide-box class="bg-white" active-slide="activeSlide" show-pager="false" on-slide-changed="slideHasChanged($index)"
+      style="width:100%;height:90%;margin-top:40px;background:transparent;">
+
+      <!--规格参数轮播和外面轮播 isAllAttr等于true 规格参数全选-->
+      <ion-slide  ng-repeat="imgUrl in AttrswiperImgs track by $index" class="text-align-c">
+        <div flex="main:center cross:center" id="pinchZoomBigPic-{{$index}}" style="height:500px;">
+          <img ng-src={{imgUrl|ImageFilter}} class="height-min-100" style="width:100%;" />
+        </div>
+      </ion-slide>
+
+    </ion-slide-box>
+  </div>
+
+  <!-- 自定义的头部 -->
+  <div flex="main:center cross:center" style="position: relative;padding:0 5px;width: 100%;background: #ffffff;border-bottom: 1px solid #dddddd;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-if="showBackBtn" ng-click="goBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;position: absolute;bottom: 10px;left:5px;"></img>
+    <div style="font-size: 20px;color: #000000;">商品详情</div>
+  </div>
+  <!-- *********************分享标签－whiteBird end********************* -->
+  <!-- <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l" ng-click="goBack()" id='backgrow'>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <img class="button" style="background:transparent;width: 35px;height: 30px;padding-top: 5px;padding-bottom: 3px;" ng-click="share()"
+        ng-if="isApp" ng-src="{{imgBaseURL}}img/ic-share-b.png" />
+    </ion-nav-buttons>
+  </ion-nav-bar> -->
+  <ion-content scrollbar-y="false" ng-class="(isFlashsales || isAcReserve)?'myflre':''" ng-style="{true:iosContentCss,false:otherContentCss}[isIOS]">
+    <div ng-if="iscompleteLoad">
+      <!--商品轮播图-->
+      <div>
+        <ion-slide-box class="bg-white" active-slide="activeSlide" auto-play="true" does-continue="true">
+          <ion-slide ng-if="flagMp4" class="text-align-c" ng-click="seeBigPic($index)">
+            <video width="100%" height="280" ng-src="{{Mp41}}" poster="{{Png41}}" preload="Metadata"></video>
+            <div style="position:absolute;height:305px;width:100%;background:blue;z-index:88;top:0;left:0;opacity:0;">
+            </div>
+            <div style="position:absolute;height:305px;width:100%;z-index:89;top:0;left:0;">
+              <img style="height:50px;margin-top:108px;" ng-src="{{imgBaseURL}}img/bofang.png" alt="" />
+            </div>
+          </ion-slide>
+          <ion-slide ng-repeat="imgUrl in productModel.swiperImgs track by $index" class="text-align-c" ng-click="seeBigPic($index+1)">
+            <img ng-src={{imgUrl|ImageFilter}} class="height-min-100" style="max-width: 100%;height: 300px;" />
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <!--商品名称-->
+      <div class="row bg-white" on-hold="showCopyButton()">
+        <div class="text-align-l color-text-l padding-top-10 padding-left-10 font-size-15 col col-80 position-r">
+          <div ng-bind="productModel.product.productFullName"></div>
+          <button ng-if="isShowCopyButton" ng-click="copeText(copyText);" class="position-a top-10 button-clear border color-text-l"
+            style="font-size:12px;right:-34px;padding:0 5px;">复制商品信息
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 尾款支付倒计时xyz -->
+      <div class="bg-white" ng-if="productModel.isActivityProduct" style="padding-bottom:12px;">
+      <div flex="dir:left" style="background:#ef2765;width:222px;margin-left:16px;">
+        <span flex="main:center cross:center" style="width:30px;"><img style="width:20px;padding:2px;" ng-src="{{imgBaseURL}}img/clock.png" alt="" /></span>
+        <span style="font-size:13px;color:#fff;line-height:20px;">距离活动结束还有{{endTt}}天{{endTh}}:{{endTm}}:{{endTs}}</span>
+      </div>
+    </div>
+
+
+      <div class="bg-white" ng-if="productModel.productActivityDeposit" style="padding-bottom:12px;">
+      <div flex="dir:left" style="background:#ef2765;width:222px;margin-left:16px;">
+        <span flex="main:center cross:center" style="width:30px;"><img style="width:20px;padding:2px;" ng-src="{{imgBaseURL}}img/clock.png" alt="" /></span>
+        <span style="font-size:13px;color:#fff;line-height:20px;">距离活动开始还有{{startTt}}天{{startTh}}:{{startTm}}:{{startTs}}</span>
+      </div>
+    </div>
+
+
+
+      <!--商品描述-->
+      <div class="text-align-l color-text-l padding-top-0 padding-left-right-15 font-size-14 bg-white" on-hold="showCopyButton()">
+        <span ng-bind="productModel.product.productTitle"></span>
+      </div>
+      <div class="text-align-l color-text-l padding-left-15 padding-top-10 padding-bottom-10 font-size-14 bg-white" ng-if="productModel.isActivityProduct">
+        预付金：
+        <span style="font-size:9px;color:#ef2765;margin-right:-4px;">¥</span>
+        <span ng-bind="actualPrice" class="margin-right-20" style="font-weight:bold;font-size:16px;color:#ef2765;"></span>
+      </div>
+      <!--开店用户佣金显示，未开店不显示 活动产品价格显示-->
+      <div class="text-align-l color-text-l padding-left-15 font-size-14 bg-white" flex="cross:center">
+        <span ng-if="productModel.isActivityProduct" style="font-size:12px;color:#ef2765;margin-top:4px;">¥</span>
+        <span ng-if="productModel.isActivityProduct" ng-bind="finalPrice" class="margin-right-20" style="font-weight:bold;font-size:16px;color:#ef2765;"></span>
+        <span ng-if="!productModel.isActivityProduct&&(isFlashsales || (isAcReserve&&acReserveType==2))">抢购价:</span>
+        <span ng-if="(!productModel.isActivityProduct)&&isAcReserve&&(acReserveType==1)">预约价:</span>
+        <span ng-if="!productModel.isActivityProduct" style="font-size:12px;color:#ef2765;margin-top:4px;">¥</span>
+        <span ng-if="!productModel.isActivityProduct" ng-bind="actualPrice" class="margin-right-20" style="font-weight:bold;font-size:16px;color:#ef2765;"></span>
+        <img ng-if="((isBuyer==1)&&(userId==storeId)&&isCommission&&commission!=null&&commission!=undefined)" ng-src="{{imgBaseURL}}img/zhuan.png"
+          style="width:20px;height:20px;margin-right:6px;">
+        <span ng-if="((isBuyer==1)&&(userId==storeId)&&isCommission&&commission!=null&&commission!=undefined)" style="font-size:12px;color:#ef2765;margin-top:4px;">¥</span>
+        <span ng-if="((isBuyer==1)&&(userId==storeId)&&isCommission&&commission!=null&&commission!=undefined)" ng-bind="commission|cutTwoFilter"
+          style="font-weight:bold;font-size:16px;color:#ef2765;"></span>
+        <span ng-if="(isBuyer==1)&&(userId==storeId)&&isCommission&&commission == null" style="color:#ef2765;">佣金计算中</span>
+        <span style='position:absolute;right:20px;color:black;' ng-if="isAcReserve">已有<span style="color:#ef2765;">{{repurNum}}</span>人{{repur}}</span>
+      </div>
+      <div style='height:30px;width:100%;background:white;text-indent:0.38rem;padding-top: 5px;' ng-if="!productModel.isActivityProduct&&(isFlashsales || isAcReserve)"><span style='font-size: 14px;'>原价:</span><span style="font-size:12px;color:#ef2765;margin-top:4px;">¥</span><span style="font-weight:bold;font-size:16px;color:#ef2765;">{{originalPrice}}</span></div>
+      <div class="row bg-white padding-left-15 color-text-theme" ng-bind="productModel.product.productActivityInfo">公司
+      </div>
+
+
+
+      <!--<div class="row bg-white padding-left-15 color-text-s" ng-if="productModel.o2oType!=0" ng-bind="O2OStoreName"></div>-->
+
+      <!--赠品信息展示-->
+      <div ng-if="giftInfo" style="background-color:#FFFFFF;margin: 5px 0;">
+        <div class="padding-left-15" style="padding-top: 10px;">商家备注</div>
+        <div class="padding-left-15" style="padding-top: 10px;" ng-bind="giftInfo"></div>
+      </div>
+
+      <!-- 新增优惠券需求 ng-if="couponList"这是判断条件-->
+      <div style="height:48px;background:#fff;padding:0 16px;" flex="cross:center box:justify" ng-click="openCoupons()" ng-if="couponListNew">
+        <span style="line-height:20px;font-size:14px;color:#666;">领券</span>
+        <div style="height:100%;margin-right:3px; flex-wrap:wrap;-webkit-flex-wrap: wrap;overflow:hidden;" flex="cross:center">
+          <div style="color:#fff;font-size:13px;height:48px;margin-left:6px;" flex="cross:center" ng-repeat="couponListNewone in couponListNew track by $index">
+            <div style="height:18px;">
+              <img style="height:100%;" ng-src="{{imgBaseURL}}img/quan--small@2x_l.png" alt="">
+            </div>
+            <div style="background:#f40;height:18px;" flex="cross:center"><span>{{couponListNewone}}</span></div>
+            <div style="height:18px;">
+              <img style="height:100%;" ng-src="{{imgBaseURL}}img/quan--small@2x_r.png" alt="">
+            </div>
+          </div>
+        </div>
+        <span style="width:24px;height:24px;">
+          <img style="width:100%;height:24px;" ng-src="{{imgBaseURL}}img/more@2x.png" alt="">
+        </span>
+      </div>
+      <!--规格数量-->
+      <div style="height:48px;background:#fff;padding:0 16px;" flex="cross:center box:last" ng-click="openSpecNumber(1)" ng-if="IsShowAttribute && (hasStock && !productModel.isActivityProduct && !isPackage) && (!isAcReserve)">
+        <div style="height:100%;margin-right:3px; flex-wrap:wrap;overflow:hidden;" flex="cross:center" ng-if="StoreAttributeActiveList.length == 0">
+          <span  style="line-height:20px;font-size:14px;color:#666;">选择规格数量</span>
+        </div>
+        <div style="height:100%;margin-right:3px; flex-wrap:wrap;overflow:hidden;" flex="cross:center" ng-if="StoreAttributeActiveList.length > 0">
+          已选<span ng-repeat="itemstext in StoreAttributeActiveList">“{{itemstext}}”</span>
+        </div>
+        <span style="width:24px;height:24px;">
+          <img style="width:100%;height:24px;" ng-src="{{imgBaseURL}}img/more@2x.png" alt="">
+        </span>
+      </div>
+      <!--服务信息展示-->
+      <!--<div style="background-color:#FFFFFF;color:#f00;margin: 5px 0;" ng-if="storeServiceList">-->
+        <!--<div class="padding-left-15" style="padding-top: 10px;">店铺服务信息</div>-->
+        <!--<div flex="" style="padding-left: 5px;flex-wrap: wrap;-webkit-flex-wrap: wrap;">-->
+          <!--<div ng-repeat="item in storeServiceList track by $index">-->
+            <!--<div style="padding: 2px 10px" ng-bind="item"></div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--数量编辑区-->
+      <div class="text-align-l color-text-l padding-left-10 padding-top-5 font-size-12 bg-white" ng-if="!IsShowAttribute">
+        <div class="row">
+          <div class="col col-10 padding-0 text-align-l padding-top-10">
+            <span class="">数量:</span>
+          </div>
+          <div class="col col-40 bg-white border border-radius padding-0" style="height: 40px">
+            <div class="row text-align-c">
+              <div class="ion-ios-minus-empty font-size-26 col-20" ng-if="productModel.product.productAttribute == 0 || productModel.product.productAttribute ==1" ng-click="nus()"></div>
+              <div class="ion-ios-minus-empty font-size-26 col-20" ng-if="productModel.product.productAttribute == 2 || productModel.product.productAttribute ==3" style="color: #999;"></div>
+              <div class="col-60 row row-no-padding">
+                <div class="border-left-right margin-left-right-5 padding-top-3 width-100" ng-bind="productCount"></div>
+              </div>
+              <div class="ion-ios-plus-empty font-size-26 col-20" ng-if="productModel.product.productAttribute == 0 || productModel.product.productAttribute ==1" ng-click="plus()"></div>
+              <div class="ion-ios-plus-empty font-size-26 col-20" ng-if="productModel.product.productAttribute == 2 || productModel.product.productAttribute ==3" style="color: #999;"></div>
+            </div>
+          </div>
+          <div class="col col-50" style="padding: 8px 20px 0 0;color:#808595;text-align: right;" ng-if="stockNumber&&stockNumber!=0">
+            <span>库存：</span><span ng-bind="stockNumber"></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="text-align-l color-text-l padding-left-10 padding-top-5 font-size-12 bg-white">
+        <div class="row">
+          <div class="col col-10 padding-0 text-align-l padding-top-10">
+            <span class="">送至:</span>
+          </div>
+          <div class="col col-75 bg-white border border-radius padding-0" ng-click="addressTop()">
+            <div class="row text-align-c">
+              <div class="col col-90 padding-top-3 width-100 text-align-l" ng-bind="productModel.pcrName"></div>
+              <i class="col col-10 ion-chevron-down font-size-16 padding-5"></i>
+            </div>
+          </div>
+          <span class="color-text-red margin-left-5 padding-top-10 col col-15" ng-if="hasStock===true">有货</span>
+          <span class="color-text-red margin-left-5 padding-top-10 col col-15" ng-if="hasStock===false">无货</span>
+        </div>
+        <div ng-bind="expectTime" ng-if="hasStock&&!productModel.isB2C && !productModel.isActivityProduct&&bigActivity&&productModel.product.productAttribute!=2" style="margin-left: 11%;"></div>
+        <div ng-if="hasStock&&productModel.isB2C&&!productModel.isActivityProduct&&!productModel.product.bookable&&bigActivity&&productModel.product.productAttribute!=2" style="margin-left: 11%;">以第三方配送时间为准
+        </div>
+        <div class="text-color-light-red" ng-if="productModel.product.bookable&&!hasStock&&bigActivity&&productModel.product.productAttribute!=2" style="margin-left: 11%;">
+          可预订，预计到货时间{{expectTime}}工作日，不支持货到付款
+        </div>
+        <div style="margin-left: 9%;margin-top:-2px;padding-bottom:10px;color:#C2830A;" ng-if='serviceProm.length!=0'>
+          <span ng-click="openRule()" ng-repeat='i in serviceProm'><img ng-src="{{i.m}}"
+                                           style="width:24px;position: relative;top:8px;"><span>{{i.n}}&nbsp;</span></span>
+        </div>
+      </div>
+        <!--<div class="padding padding-bottom-16 bg-white font-size-13 text-color-light-black">-->
+          <!--分期付:&nbsp;&nbsp;建行信用卡分期-->
+        <!--</div>-->
+      </div>
+      <!--2.硬装 3.软装-->
+      <!--硬装提货门店信息 ng-if="productModel.product.productAttribute == 2"-->
+      <div ng-if="productModel.product.productAttribute == 2" flex="main:justify" style="overflow:hidden;background: #ffffff;margin:1px 0 10px 0;padding:0 15px; line-height:42px;" ng-click="hardLoading(productModel.o2OStoreInfo.storeCode)">
+        <span>提货门店信息</span> <span style="color: #999;font-size: 12px;">您可选择附近的任意门店使用特权码</span>
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      </div>
+      <div ng-if="hasProgram==1" style="overflow:hidden;background: #ffffff;margin:8px 0 0;padding:0 15px; line-height:42px;margin-bottom: 10px;"
+        ng-click="hasProgarmClick()">
+        [成套购买] 设计师推荐方案
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      </div>
+       <!-- 白条有关 -->
+      <div style="overflow:hidden;background: #ffffff;margin:8px 0 0;padding:0 15px; line-height:42px;margin-bottom: 10px;" ng-click="showWhiteShows()">
+         [白条支付]{{whiteShowsMsg}}
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      </div>
+
+
+
+    <!--商店店铺入口-->
+    <div ng-if="showO2OMsg&&productModel.product.productAttribute!=2" style="overflow:hidden;background: #ffffff;margin:5px 0;position:relative;">
+      <div flex="main:left cross:center box:justify" style="margin-top:22px;">
+        <!--<div class="row">-->
+        <img ng-src="{{avatarImageFileId}}" style="width:48px;height:48px;border-radius: 24px;margin:0 10px 0 16px;">
+        <div style="font-size: 17px;color: #030303;letter-spacing: -0.41px;display:inline-block;" ng-bind="O2OStoreName"></div>
+        <!--</div>-->
+         <div style="font-size: 13px;color: #666666;margin:  0 16px 0 10px;">
+            <div>商品描述 {{productGrade}}</div>
+            <div>卖家服务 {{serviceGrade}}</div>
+            <div>物流服务 {{logisticalGrade}}</div>
+          </div>
+      </div>
+      <div flex="main:center cross:center" style="margin:15px 0;">
+        <div style="margin-right:10px;width:80px;height:26px;border-radius:13px;border:1px solid #EF2765;color:#EF2765;text-align: center;line-height: 26px;" ui-sref="myStore({storeId:o2oStoreId,shareStoreId:shareId})">进店逛逛</div>
+        <div ng-if="showPhoneCall" style="margin-left:10px;width:80px;height:26px;border-radius:13px;border:1px solid #EF2765;color:#EF2765;text-align: center;line-height: 26px;"
+          ng-click="makeACall()">拨打电话</div>
+      </div>
+    </div>
+    <!--3D体验-->
+    <div ng-if="productModel.product.vrUrl" class="padding padding-left-15 padding-right-15 bg-white border-bottom border-top"
+         ng-click="open3d()">
+      3D体验
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div>
+    <!--图文详情-->
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom"
+        ui-sref="imageAndWord({'productId':productModel.product.productId})">
+      图文详情
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div>
+      <!--规格参数-->
+      <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="specifications({'productId':productModel.product.productId})">
+        规格参数
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+      <!--商品评价-->
+      <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="productRated({'productId':productModel.product.productId})">
+        商品评价
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20" ng-if="totalNum!=0">{{totalNum}}条评价,好评率{{positiveRate}}%</span>
+      <span class="float-r margin-right-20" ng-if="totalNum==0">暂无评价</span>
+      </div>
+
+
+    <!--查看非自己店铺特有模块 -->
+    <!--<div style="margin-top: 10px;" ng-if="!(storeId==userId)">
+        <div class="store-entrance">
+            <div>
+              <img ng-src="{{productModel.avatarImageFileId}}"/>
+            </div>
+            <div class="store-name">
+              <span ng-bind="productModel.storeName"></span><span ng-bind="productModel.suffix"></span>
+            </div>
+          <div class="btn-entrance" ui-sref="myStore({storeId:storeId,shareStoreId:storeId})">进店逛逛</div>
+        </div>-->
+    <!-- <div class="row padding-0">
+          <div class="col col-10 padding-0 text-align-c" ng-click="customerServe()">
+            <ul class="" style="height: 40px;">
+              <li class="padding-top-3"><img ng-src="{{imgBaseURL}}img/ic_kf.png" width="25"></li>
+              <li class="font-size-10 position-r top--5">客服</li>
+            </ul>
+          </div>
+          <div class="col col-90 padding-0" style="height: 50px">
+            <div class="row padding-0 text-align-c font-size-14 color-text-white">
+              <div class="col col-50 padding-top-15" style="height: 50px;background:#3ba0fa;" ng-click="addToCart()"
+                   ng-if="hasStock && !productModel.isActivityProduct">
+                <span>加入购物车</span>
+              </div>
+              <div class="col col-50 padding-top-15" style="height: 50px;background: gray;"
+                   ng-if="!hasStock ||productModel.isActivityProduct">
+                <span>加入购物车</span>
+              </div>
+              <div class="col col-50 bg-pink padding-top-15" style="height: 50px" ng-click="buyNow()" ng-if="hasStock">
+                <span>立即购买</span>
+              </div>
+              <div class="col col-50 padding-top-15" style="height: 50px; background: #f02864" ng-click="buyNow('1')"
+                   ng-if="!hasStock&&productModel.product.bookable">
+                <span>马上预订</span>
+              </div>
+              <div class="col col-50 padding-top-15" style="height: 50px; background: #f02864" ng-click="toNotice()"
+                   ng-if="!hasStock&&!productModel.product.bookable">
+                <span>到货通知</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      <div style="width: 100%;height: 50px;"></div>
+
+  </ion-content>
+  <!--弹框-->
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+
+  <div style="color:white;width: 100%;position: absolute;bottom:50px; background:#ff4400;height: 1.06rem;text-align: center;line-height: 1.01rem;font-size: 16px;opacity: 0.8;"
+    ng-if='isAcReserve&&acReserveType==1&&state1'>距预约结束:{{showtime}}</div>
+  <div style="color:white;width: 100%;position: absolute;bottom:50px; background:#ff4400;height: 1.06rem;text-align: center;line-height: 1.01rem;font-size: 16px;opacity: 0.8;"
+    ng-if='hasStock&&isAcReserve&&acReserveType==2&&state1'>距抢购结束:{{showtime}}</div>
+  <div style="color:white;width: 100%;position: absolute;bottom:50px; background:#ff4400;height: 1.06rem;text-align: center;line-height: 1.01rem;font-size: 16px;opacity: 0.8;"
+    ng-if='isFlashsales&&state'>距抢购结束:{{showtime1}}</div>
+  <!--未登录-->
+  <div class="row padding-0"  ng-if="storeId!=userId" ng-class="{true:'isOpenBottomY',false:'isOpenBottomN'}[isOpenBottom]" style="position:fixed;bottom:0;left:0;background:#fff;border-top: 1px solid #e4e4e4;">
+    <div class="col col-40 padding-0 text-align-c"  flex="box:mean" style=" height: 50px;" style="background:#ffffff;">
+      <!--客服-->
+      <ul ng-click="customerServe()">
+        <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/ic_kf.png" width="22"></li>
+        <li class="font-size-10 position-r top--5">客服</li>
+      </ul>
+      <!--购物车-->
+      <ul style="position: relative;" ui-sref="cart"  ng-if="productModel.product.productAttribute==0||productModel.product.productAttribute==1">
+        <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/car2x.png" width="22" ></li>
+        <li class="font-size-10 position-r top--5">购物车</li>
+        <span ng-if="BottomCartNum != 0" style="position: absolute;top: 2px;right: 6px;border-radius: 8px;background: #FF4400;color: #fff;padding: 0 3px;font-size: 12px;  height: 16px;line-height: 16px;">{{ BottomCartNum }}</span>
+      </ul>
+      <!--收藏-->
+      <div >
+        <div ng-click="tianJiaShouCang()" ng-if="!productModel.isCollected">
+          <ul>
+            <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/shoucang@2x.png" width="22"></li>
+            <li class="font-size-10 position-r top--5">收藏</li>
+          </ul>
+        </div>
+        <div ng-click="quXiaoShouCang()" ng-if="productModel.isCollected">
+          <ul>
+            <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/shoucang x@2x.png" width="22"></li>
+            <li class="font-size-10 position-r top--5">收藏</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col col-60 padding-0"  style="height: 50px" >
+      <div  ng-if="productModel.product.productAttribute==0||productModel.product.productAttribute==1"  class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean">
+        <div class="col col-50 padding-top-15" style="height: 50px;background:#fff;color: #333333;border-left: 1px solid #e4e4e4;" ng-click="openSpecNumber(2)"  ng-if="(hasStock && !productModel.isActivityProduct && !isPackage) && (!isAcReserve)">
+          <span>加入购物车</span>
+        </div>
+        <!-- <div class="col col-50 padding-top-15" style="height: 50px;background:#fff;color: #333333;border-left: 1px solid #e4e4e4;" ng-if="!hasStock ||productModel.isActivityProduct||isPackage||isAcReserve">
+          <span>加入购物车</span>
+        </div> -->
+        <div class="col padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px;background: #f02864;" ng-click="openSpecNumber(4)" ng-if="hasStock&&!productModel.productActivityDeposit&&isFlashsales">
+          <span>立即抢购</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(5)" ng-if="!hasStock&&productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>马上预订</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(7)" ng-if="productModel.productActivityDeposit">
+          <span>开抢通知</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(8)" ng-if="isAcReserve&&acReserveType==1&&!productModel.productActivityDeposit">
+          <span>立即预约</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(9)" ng-if="hasStock&&isAcReserve&&acReserveType==2&&!productModel.productActivityDeposit">
+          <span>马上抢购</span>
+        </div>
+      </div>
+      <!--硬装 立即购买-->
+      <div ng-if="productModel.product.productAttribute==2" class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean">
+        <div class="col padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+      </div>
+      <!--软装 立即购买 立即预订-->
+      <div ng-if="productModel.product.productAttribute==3" class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean">
+        <div class="col padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(5)" ng-if="!hasStock&&productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>立即预订</span>
+        </div>
+        <div class="col padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--已登录-->
+  <div class="row padding-0" ng-if="storeId==userId"  ng-class="{true:'isOpenBottomY',false:'isOpenBottomN'}[isOpenBottom]" style="position:fixed;bottom:0;left:0;background:#fff;border-top: 1px solid #e4e4e4;">
+    <div class="col col-40 padding-0 text-align-c" flex="box:mean" style=" height: 50px;" >
+      <!--客服-->
+      <ul ng-click="customerServe()">
+        <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/ic_kf.png" width="22"></li>
+        <li class="font-size-10 position-r top--5">客服</li>
+      </ul>
+      <!--购物车-->
+      <ul ng-if="productModel.product.productAttribute==0||productModel.product.productAttribute==1" style="position: relative;" ui-sref="cart">
+        <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/car2x.png" width="22" ></li>
+        <li class="font-size-10 position-r top--5">购物车</li>
+        <span ng-if="BottomCartNum != 0" style="position: absolute;top: 2px;right: 6px;border-radius: 8px;background: #FF4400;color: #fff;padding: 0 3px;font-size: 12px;  height: 16px;line-height: 16px;">{{BottomCartNum}}</span>
+      </ul>
+      <!--收藏-->
+      <div >
+        <div ng-click="tianJiaShouCang()" ng-if="!productModel.isCollected">
+          <ul>
+            <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/shoucang@2x.png" width="22"></li>
+            <li class="font-size-10 position-r top--5">收藏</li>
+          </ul>
+        </div>
+        <div ng-click="quXiaoShouCang()" ng-if="productModel.isCollected">
+          <ul>
+            <li class="padding-top-5"><img ng-src="{{imgBaseURL}}img/shoucang x@2x.png" width="22"></li>
+            <li class="font-size-10 position-r top--5">收藏</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col col-60 padding-0" style="height: 50px">
+      <div  ng-if="productModel.product.productAttribute==0||productModel.product.productAttribute==1"  class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean" >
+        <!--<div class="col col-33 bg-theme padding-top-15" style="height: 50px;" ng-if="productModel.onShelf==0" ng-click="changeState(1)">-->
+          <!--<span>上架至店铺</span>-->
+        <!--</div>-->
+        <!--<div class="col col-33 bg-theme padding-top-15" style="height: 50px;" ng-if="productModel.onShelf==1" ng-click="changeState(0)">-->
+          <!--<span>从店铺下架</span>-->
+        <!--</div>-->
+        <div class=" padding-top-15" style="height: 50px;background:#fff;color: #333333;border-left: 1px solid #e4e4e4;" ng-click="openSpecNumber(2)" ng-if="(hasStock && !productModel.isActivityProduct&&!isPackage)&&!isAcReserve">
+          <span>加入购物车</span>
+        </div>
+        <!-- <div class="padding-top-15" style="height: 50px;background: #fff;color: #333333;border-left: 1px solid #e4e4e4;" ng-if="!hasStock ||productModel.isActivityProduct||isPackage||isAcReserve">
+          <span>加入购物车</span>
+        </div> -->
+        <div class="padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px;background: #f02864" ng-click="openSpecNumber(4)" ng-if="hasStock&&!productModel.productActivityDeposit&&isFlashsales">
+          <span>立即抢购</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(5)" ng-if="!hasStock&&productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>马上预订</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(7)" ng-if="productModel.productActivityDeposit">
+          <span>开抢通知</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(8)" ng-if="isAcReserve&&acReserveType==1">
+          <span>立即预约</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #f02864;" ng-click="openSpecNumber(9)" ng-if="hasStock&&isAcReserve&&acReserveType==2">
+          <span>马上抢购</span>
+        </div>
+      </div>
+      <!--硬装 立即购买-->
+      <div ng-if="productModel.product.productAttribute==2" class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean">
+        <div class="padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+      </div>
+      <!--软装 立即购买 立即预订-->
+      <div ng-if="productModel.product.productAttribute==3" class="row padding-0 text-align-c font-size-14 color-text-white" flex="box:mean">
+        <div class="padding-top-15" style="height: 50px;background: #FF4400;" ng-click="openSpecNumber(3)" ng-if="hasStock&&!productModel.productActivityDeposit&&!isFlashsales&&!isAcReserve">
+          <span>立即购买</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #f02864" ng-click="openSpecNumber(5)" ng-if="!hasStock&&productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>立即预订</span>
+        </div>
+        <div class="padding-top-15" style="height: 50px; background: #FFB300;" ng-click="openSpecNumber(6)" ng-if="!hasStock&&!productModel.product.bookable&&!productModel.productActivityDeposit&&(!(isAcReserve&&acReserveType==1))">
+          <span>到货通知</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="icon ion-ios-arrow-left mystore-back-btn color-text-l" ng-click="showBigPic()" style="position: absolute;z-index: 120;width: 24px;font-size: 38px !important;left:10px;top:20px;"
+    ng-if="isShowLeftArrow"></div>
+
+  <!--规格参数轮播图返回按钮-->
+  <div class="icon ion-ios-arrow-left mystore-back-btn color-text-l" ng-click="showBigPicAttr()" style="position: absolute;z-index: 120;width: 24px;font-size: 38px !important;left:10px;top:20px;"
+    ng-if="isShowAttrLeftArrow"></div>
+  <!--购物车移动到底部-->
+    <!-- <img style="position: fixed;z-index: 7;right: 10px;width: 11.25%;bottom: 155px;" ng-src="img/ic-cart.png" ui-sref="cart"
+  /> -->
+  <!-- 白条蒙板111 -->
+  <div ng-show="isWhiteShows" style='position:fixed;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,0.5);z-index:100'ng-click='hideWhiteShows()'>
+    <div style='position:absolute;bottom:0;left:0;right:0;background-color:rgb(255,255,255);height:450px;' ng-click='$event.stopPropagation()'>
+      <div style='height:60px;border-top:1px gray solid;position:absoulte;top:0;'>
+          <div style='text-align:center;padding-top:11px;line-height:20px;height:30px;'>
+            <img style='width:18px;height:17px;margin-top:1px' ng-src="{{imgBaseURL}}img/Group-4.png" alt="">
+            <span style='vertical-align: top;font-size:14px;display:inline-block;height:20px;margin-left:2px;'>{{whiteShowsTit}}</span>
+            <img ng-click="hideWhiteShows()" style='position:absolute;top:5px;right:5px;width:30px;height:30px;' ng-src="{{imgBaseURL}}img/x@2x.png" alt="">
+          </div>
+          <p style='text-align:center;margin-top:2px;padding:0;color:#999;font-size:12px;line-height:17px;'>打白条请到支付页</p>
+          <hr style='opacity: 0.1;background-color:#000;margin-top:10px;'>
+        </div>
+      <ion-scroll style='height:340px;'>
+
+        <ul>
+          <li style='height:60px;'>
+            <p style='padding-left:15px;line-height:20px;font-size:14px;margin:11px 0 0 0'>不分期</p>
+            <p style='padding-left:15px;margin-top:5px;font-size:12px;line-height:17px;color:#666;'>先用后付，无服务费</p>
+            <hr style='opacity: 0.1;background-color:#000;margin-top:10px;'>
+          </li>
+          <li style='height:60px;' ng-repeat='costOne in costInfo track by $index'>
+            <p style='padding-left:15px;line-height:20px;font-size:14px;margin:11px 0 0 0'>￥{{costOne.eachPrinAndFee}} X {{costOne.num}}期</p>
+            <p style='padding-left:15px;margin-top:5px;font-size:12px;line-height:17px;color:#666;'>含服务费：每期￥{{costOne.fee}}，费率：{{costOne.rate}}%</p>
+            <hr style='opacity: 0.1;background-color:#000;margin-top:10px;'>
+          </li>
+        </ul>
+
+      </ion-scroll>
+      <div ng-if='whiteShowsState==2 || whiteShowsState==3' style="position:fixed;bottom:0;width:100%;height:45px; line-height:46px; font-size:16px;background-color:#2979FF;text-align:center;color:#fff" ng-click='clickWhiteShows()'>
+          申请激活
+      </div>
+      <div ng-if='whiteShowsState==0' style="position:fixed;bottom:0;width:100%;height:45px; line-height:46px; font-size:16px;background-color:#2979FF;text-align:center;color:#fff" ng-click='clickWhiteShows()'>
+          申请中
+      </div>
+      <div ng-if='whiteShowsState==1' style="position:fixed;bottom:0;width:100%;height:45px; line-height:46px; font-size:16px;background-color:#E9F1FF;text-align:center;color:#2979FF" ng-click='clickWhiteShows()'>
+          可用额度：{{whiteShowsCount}}
+      </div>
+    </div>
+  </div>
+  <div class="text-center" ng-if="teamUrl" style="position:fixed;bottom:55px;right:15px;z-index:99;height:60px;">
+    <a href="{{teamUrl}}&openType=h5"><img src="{{imgBaseURL}}img/quanzi/compare.png" style="width: 60px;border-radius:50%;"></a>
+  </div>
+</ion-view>

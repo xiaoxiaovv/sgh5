@@ -1,0 +1,24 @@
+<!--我的->绑定结果-->
+<ion-view class="background" view-title="快捷通信息">
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="text-align-c">
+      <div class="font-size-12 padding-5 color-text-m">
+        快捷通账户：
+        <span ng-bind="mobile"></span>
+      </div>
+      <div class="font-size-12 padding-5 color-text-m">
+        姓名：
+        <span ng-bind="account"></span>
+      </div>
+      <div class="font-size-12 padding-5 color-text-m">
+        身份证号：
+        <span ng-bind="personId"></span>
+      </div>
+      <div class="font-size-12 padding-5 color-text-m">
+        快捷通官网 http://www.kjtpay.com
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

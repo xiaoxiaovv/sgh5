@@ -1,0 +1,42 @@
+ <ion-view class='background' view-title="新品预约" hide-back-button="true" style="background-color: $color-theme;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+		<div style="position:absolute;right:0;top: 0;margin: .06rem .426667rem 0 .266667rem;">
+			<div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+			    <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+			</div>
+		</div>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+	<ion-list>
+	<div ng-repeat="value in newprodlist" ng-if='newprodlist.length!=0'>
+		<div class="newbuysay" style="margin-top: 0.426rem;height:4.8rem;" ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">
+			<div class="new-zhong" style="height:4.8rem;">
+			<img ng-src="{{value.imageUrl}}">
+				<div>
+					<span>剩余时间：</span><span>{{Timetotal[$index]}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="yuyuepro">
+			<p ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">{{value.productName}}</p>
+			<p>{{value.productTitle}}</p>
+			<p><span>预约价：</span><span ng-if='isWd'>¥{{value.price}}</span><span ng-if='!isWd' style='font-size: 24px;'>¥{{value.price}}</span><span ng-if='isWd&&isCommission'>.00</span><img ng-src="{{imgBaseURL}}img/zhuan2.png" alt="赚" ng-if='isWd&&isCommission'><span ng-if='isWd&&isCommission'>¥{{value.commission|keepInt}}</span><span ng-if='isWd&&isCommission'>{{value.commission|keepFloat}}</span>
+			</p>
+			<p>
+			已预约：{{value.reserveNum}}人
+			</p>
+			<div ui-sref="productDetail({'productId':value.productId,'storeId':storeId})">
+				立即预约
+			</div>
+		</div>
+	</div>
+	</ion-list>
+	<div class='cui-nullss' ng-if='newprodlist.length==0'>
+		暂时还没有预约活动~
+	</div>
+	<ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+   <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+   <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+</ion-view>

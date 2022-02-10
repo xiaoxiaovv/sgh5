@@ -1,0 +1,53 @@
+<!--模板-->
+<ion-view class="bg-white" view-title="花呗分期" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-left" style="font-size: 30px; width: 30px; height: 30px;text-align:center;"
+       ng-click="goBack()"></i>
+  </ion-nav-buttons>
+ 
+  <ion-content class="background">
+    <div class="row border-bottom padding-5" style="height:44px;">
+      <span class="col col-70">应付金额</span>
+      <div class="col col-30 ng-binding" style="color:#f02864;text-align:right;">￥{{totalFee|number:2}}</div>
+    </div>
+    <div class="row border-bottom padding-5" style="height:40px;">
+      <div class="col-50 col-center font-size-13 col-offset-50" style="color:#32beff;text-align:right;" ng-click="showDetail()">什么是花呗分期?</div>
+    </div>
+    <div class="padding-10 margin-bottom-10" style="background: rgb(50, 190, 255); opacity: 0.7;" ng-if="isShowDet?1:0">
+      <div class="stable">
+       花呗分期是阿里集团旗下蚂蚁小贷提供的先消费后分期还款的网购服务，您将进入支付宝的页面，完成最后的支付。
+      </div>
+    </div>
+
+    <div class="border-bottom" ng-click="changeFenqiNum(item.number)" ng-repeat="item in payList" style="padding:5px 0 0 0;">
+      <div class="row">
+          <div class="col-20 col-center row position-r">
+            <img ng-if="item.number == number" class="col-6" ng-src="{{imgBaseURL}}img/ic_select.png" style="height:20px;">
+            <img ng-if="item.number != number" class="col-6" ng-src="{{imgBaseURL}}img/ic_check.png" style="height:20px;">
+            
+            <!-- <div ng-if="item.isFree" class="position-a stable text-align-c" style="width:32px;background:#f02864;border-radius:4px;top:4px;right:5px;" ng-style="androidOrIosStyle">推荐</div> -->
+          </div>
+          <div class="col-66">
+            <div class="padding-0 padding-top-bottom-5">
+              ¥{{item.prinAndFee|number:2}}×{{item.number}}期
+            </div>
+            <div ng-if="item.isFree" class="padding-0 padding-top-bottom-5">
+             分期免息，无手续费
+            </div>
+            <div ng-if="!item.isFree" class="padding-0 padding-top-bottom-5">
+             含服务费：每期¥{{item.eachFee|number:2}}，费率{{item.feeRate}}%
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="button button-assertive font-size-15 text-align-c stable"
+    style="background: #3dbffc;
+box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);
+margin-left:5%;width:90%;height:39px;margin-top: 20px;"
+    ng-click="toPay()">立即支付</button>
+
+
+  </ion-content>
+</ion-view>

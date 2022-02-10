@@ -1,0 +1,27 @@
+<!--模板-->
+<ion-modal-view class="background" view-title="{{title}}" hide-nav-bar="true" style="position: fixed;top: 250px;left: 0;">
+  <!--<div align-title="center" style="height: 44px;background: #FFFFFF;padding: 10px;text-align: center;border-bottom: 1px solid #ddd;">-->
+    <!--<h1 class="title" style="font-size: 20px;">{{addressTitle}}</h1>-->
+    <!--<span class="ion-ios-close-empty" ng-click="closeAddressModal()" style="font-size: 32px;position: absolute;top: 6px;right: 5px;padding: 0 10px;"></span>-->
+    <!--&lt;!&ndash;<div class="icon ion-ios-arrow-left mystore-back-btn location-back-btn" ng-click="closeAddressModal()"></div>&ndash;&gt;-->
+  <!--</div>-->
+
+  <!--&&(flag!='PRODUCT_DETAIL_LOCATION'&&flag !='CHANGEADDRESS_LOCATION')-->
+  <!--<div class="item" ng-if="globalConstant.positionStatus" ng-click="getPosition()" style="padding: 10px;"><img ng-src="img/address-icon.png" width="22" style="vertical-align:middle;margin-right:5px;">定位地址({{globalConstant.autoPosition}})</div>-->
+  <!--<div class="item" ng-if="!globalConstant.positionStatus" ng-click="getPosition()" style="padding: 10px;"><img ng-src="img/address-icon.png" width="22" style="vertical-align:middle;margin-right:5px;">定位地址(定位失败，默认定位到崂山区/中韩街道)</div>-->
+  <!--<div style="background: #FFFFFF;height: 42px;line-height: 42px;padding: 0 10px;">-->
+    <!--<span ng-click="provinceSel()" ng-if="provinceDis" ng-style="{true:bottomBorder,false:''}[provinceFlag]" style="height:42px;display:inline-block;padding: 0;margin-right: 30px;max-width : 23%;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;float: left;"> {{selectProvince}}</span>-->
+    <!--<span ng-click="citySel()" ng-if="cityDis" ng-style="{true:bottomBorder,false:''}[cityFlag]" style="height:42px;display:inline-block;padding: 0;margin-right: 30px;max-width : 23%;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;float: left;"> {{selectCity}}</span>-->
+    <!--<span ng-click="areaSel()" ng-if="areaDis" ng-style="{true:bottomBorder,false:''}[areaFlag]" style="height:42px;display:inline-block;padding: 0;margin-right: 30px;max-width : 23%;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;float: left;"> {{selectArea}}</span>-->
+    <!--<span style="height:42px;display:inline-block;color: red;padding: 0;" ng-style="{true:bottomBorder,false:''}[selectFlag]">请选择</span>-->
+  <!--</div>-->
+
+  <ion-content scrollbar-y="false" ng-style="contentHeightStreet" style="top: 0px;" delegate-handle="mainScroll">
+    <ul class="list">
+      <li ng-style="nowLevelIndex[nowLevel]==$index?{'color':'red'}:{}" class="item" ng-repeat="item in dataAddStreet track by $index" ng-click="goSelectStreet($index,item)" style="padding: 10px;font-size: 14px;">
+        <span ng-bind="item.text"></span>
+      </li>
+    </ul>
+  </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,147 @@
+/**
+访客浏览记录  @zhangyr --start/08/02
+**/
+//nav 导航
+.visi-nav {
+  height: 44px; 
+  background: #fafafa; 
+  padding-top: 0px;
+  border-bottom: 1px solid #b2b2b2;
+  position: relative;
+  z-index: 1;
+  .nav-back {
+    width:40px;
+    height:44px;
+    padding-left:16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    .img-box {
+      width:34px;
+      height:24px;
+      img {
+        height:100%;
+      }
+    }
+  }
+  .nav-title {
+    height:44px;
+    font-size: 17px;
+    letter-spacing: 0px;
+    text-align:center;
+    line-height:44px;
+    color: #030303;
+  }
+}
+// head部分
+.scroll-visi {
+  padding: 17px 16px 14px 21px;
+  .visi-info {
+    .visi-img-box {
+      .visi-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        overflow:hidden;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        img {
+          width: 30px;
+        }
+        .visi-name {
+          font-size: 15px;
+          color: #333;
+        }
+      }
+    }
+    .visi-from {
+      font-size: 12px;
+      color: #999;
+      .from-time {
+
+      }
+      .from-where {
+        width: 100%;
+        text-align: right;
+      }
+    }
+  }
+}
+//列表加载
+.visi-list-box {
+  padding: 5px 20px;
+  background: #fff;
+  border-bottom: 1px solid #e4e4e4;
+  .list-title {
+    font-size: 12px;
+    color: #999;
+  }
+  .list-left {
+    .list-item-img {
+      width: 90px;
+      height: 90px;
+      img {
+        width: 90px;
+      }
+    }
+  }
+  .list-right {
+    padding: 10px 0 10px 10px;
+    .list-info {
+      .info-title {
+        text-align: justify;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis; // Opera 9-10 
+        font-size: 15px;
+        color: #333;
+      }
+      .info-price {
+        color: #f40;
+        margin: 11px 0 8px 0;
+        .def-pri {
+          font-size: 14px;
+          margin-right: 15px;
+          .def-pri-last {
+            font-size: 11px;
+          }
+        }
+        .earn-pri {
+          .earn-icon {
+            width: 18px;
+            height: 18px;
+            overflow: hidden;
+            img {
+              width: 18px;
+            }
+          }
+          .earn-mon {
+            font-size: 14px;
+            .earn-mon-last {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+      .info-inve {
+        font-size: 12px;
+        color: #2979FF;
+        .inve-text {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  &:last-child {
+    border: none;
+  }
+  &+.visi-list-box {
+    margin-top: 0;
+    padding-top: 5px;
+  }
+}
+.warn-text {
+  text-align: center;
+}

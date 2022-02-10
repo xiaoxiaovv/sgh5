@@ -1,0 +1,46 @@
+<ion-view class="background" view-title="顺逛微学堂" hide-nav-bar="true">
+  <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+    <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="$ionicGoBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">顺逛微学堂</div>
+    <div style="position:absolute;right:0;top: 0;margin: .1rem .3rem 0 .266667rem;">
+      <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+        <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+    </div>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <ion-scroll direction="x" scrollbar-x="false" zooming="false" class="border-top-bottom" style="overflow:hidden;">
+      <div class="row row-no-padding">
+        <div class="col col-30 border-right" ng-click="tabChange(0,8);" style="font-size: 13px">
+          <div class="sg-ws-button">产品知识</div>
+        </div>
+        <div class="col col-30 border-right" ng-click="tabChange(1,9);" style="font-size: 13px">
+          <div class="sg-ws-button">售后服务</div>
+        </div>
+        <div class="col col-30 border-right" ng-click="tabChange(2,25);" style="font-size: 13px">
+          <div class="sg-ws-button">销售分享</div>
+        </div>
+        <div class="col col-30 border-right" ng-click="tabChange(3,41);" style="font-size: 13px">
+          <div class="sg-ws-button">行业资讯</div>
+        </div>
+        <div class="col col-30 border-right" ng-click="tabChange(4,55);" style="font-size: 13px">
+          <div class="sg-ws-button">顺逛动态</div>
+        </div>
+      </div>
+    </ion-scroll>
+    <div ng-repeat="item in microSchoolInfo" ui-sref="commonPageView({'title':item.title,'content':item.context})">
+      <div class="bg-white border-bottom row margin-top-0 padding-top-bottom-15 row-no-padding margin-top-0">
+        <div class="col col-25 padding-left-10 col-center text-align-c">
+          <img ng-src="{{item.thumbnail}}" alt="产品图片" class="ms-thumbnail"/>
+        </div>
+        <div class="col col-75 col-center" style="padding-left: 40px;padding-right: 10px">
+          <div class="" ng-bind="item.title"></div>
+          <div class="color-text-s sg-ms-content padding-bottom-20" ng-bind="item.subhead"></div>
+          <div class="font-size-12" ng-bind="item.updateTime|date:'yyyy-MM-dd'"></div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

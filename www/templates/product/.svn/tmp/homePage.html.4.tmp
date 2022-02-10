@@ -1,0 +1,333 @@
+<ion-view class="background" view-title="首页" hide-back-button="true" hide-nav-bar="true">
+  <div flex="main:center cross:center box:justify" class="selection_top homePage_top" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]" ng-style="changeOpacity">
+    <div class="address" flex="main:center cross:center" ng-click="addressTop()">
+      <div ng-style="changeColor">{{region}}</div>
+      <img ng-src="{{locationImgUrl}}">
+    </div>
+    <div class="search" flex="cross:center" ng-style="searchBg" ui-sref="goodsSearch({front:1})">
+      <img ng-src="{{imgBaseURL}}img/searchIcon@2x.png">
+      <div>{{hot_word}}</div>
+    </div>
+    <div class="message" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+      <img ng-src="{{messageImgUrl}}">
+      <div ng-style="changeColor">消息</div>
+    </div>
+  </div>
+  <go-top delegate-handle="scrollSelection" offset="65"></go-top>
+  <ion-content lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide homePageContent'>
+
+
+    <!--Swiper轮播1-->
+    <!-- <div class="swiper-container swipers-box" id="swpcontainer-home-1" ng-style="definedHeight1" >
+      <ul class="swiper-wrapper" style="height:auto;">
+        <li class="swiper-slide" ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+          <a  href="{{item.imageUrl}}" style="height:auto;"><img ng-src="{{imageItem.pic}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" alt="" style="height:auto; width:100%;"/></a>
+        </li>
+      </ul>
+      <div class="swiper-pagination" id="swppagination-home-1"></div>
+    </div> -->
+    <ion-slide-box  delegate-handle="homePage_slider" does-continue="true" auto-play="true">
+      <ion-slide ng-repeat="imageItem in bannerList track by $index">
+        <img class="selection_banner" ng-src="{{imageItem.pic}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" data-growing-idx="{{$index+1}}"/>
+      </ion-slide>
+    </ion-slide-box>
+    <div class="activityImgTop" ng-click="bannerClick(homePageActivityBg1.linkType,homePageActivityBg1.link,homePageActivityBg1.relationId)" ng-if="homePageActivityBg1">
+      <img ng-src="{{homePageActivityBg1.pic}}" data-growing-idx="1"/>
+    </div>
+    <div class="type_entry_box" ng-style="homePageActivityBg2Img">
+      <div flex="" >
+        <div flex="dir:top main:right cross:center" class="type_entry" ui-sref="electricalMall" data-growing-idx="1">
+          <img ng-src={{nowImgIcon.jydq}}>
+          <div ng-style="{'color':activityColor.jydqFontColor}">家用电器</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry" ui-sref="furnish" data-growing-idx="2">
+          <img ng-src={{nowImgIcon.jjjz}}>
+          <div ng-style="{'color':activityColor.jjjzFontColor}">家居家装</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry" ui-sref="superMarket" data-growing-idx="3">
+          <img ng-src={{nowImgIcon.bhcs}}>
+          <div ng-style="{'color':activityColor.bhcsFontColor}">百货超市</div>
+        </div>
+
+
+        <!--暂时把生活服务注释-->
+       <!-- <div flex="dir:top main:right cross:center" class="type_entry" ng-click="goToEmc()">
+          <img ng-src={{nowImgIcon.shfw}}>
+          <div ng-style="{'color':activityColor.shfwFontColor}">特产惠</div>
+        </div>-->
+
+        <div flex="dir:top main:right cross:center" class="type_entry" ui-sref="localSpecialtyHomePage" data-growing-idx="4">
+          <img ng-src={{nowImgIcon.shfw}}>
+          <div ng-style="{'color':activityColor.shfwFontColor}">特产汇</div>
+        </div>
+      </div>
+      <div flex="">
+        <div flex="dir:top main:right cross:center" class="type_entry" ng-click="gotoMyStore(isWdHost)" data-growing-idx="5">
+          <img ng-src={{nowImgIcon.wddp}}>
+          <div ng-style="{'color':activityColor.wddpFontColor}">{{isWdHost==1?'我的店铺':'我要开店'}}</div> <!--isWdHost==1?'我的店铺':'我要开店'  这个是对的 记得改回来-->
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry" ng-click="goToLiving()" data-growing-idx="6">
+          <img ng-src={{nowImgIcon.jrlc}}>
+          <div ng-style="{'color':activityColor.jrlcFontColor}">充值缴费</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry" ui-sref="seeMore" data-growing-idx="8">
+          <img ng-src={{nowImgIcon.xpzc}}>
+          <div ng-style="{'color':activityColor.gdFontColor}">更多</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry new_product" ui-sref="branchType">
+          <img ng-src={{nowImgIcon.gd}}>
+          <!--<div class="new_tips">New</div>-->
+          <div ng-style="{'color':activityColor.xpzcFontColor}">分类</div>
+        </div>
+      </div>
+    </div>
+    <div class="activityImgBottom" ng-click="bannerClick(homePageActivityBg3.linkType,homePageActivityBg3.link,homePageActivityBg3.relationId)" ng-if="homePageActivityBg3" data-growing-idx="1">
+      <img ng-src="{{homePageActivityBg3.pic}}">
+    </div>
+    <div flex="cross:center" class="sg_notice" ui-sref="ClassifyMessageCenter" data-growing-idx="1">
+      <div class="sg_notice_title" flex="main:center cross:center">
+        <img ng-src="{{imgBaseURL}}img/affiche@2x.png">
+      </div>
+      <div class="sg_notice_content">{{msg}}</div>
+    </div>
+    <div class="picFour">
+      <!-- <img ng-click="race()" src="http://cdn09.ehaier.com/shunguang/H5/www/img/race/small.png" alt="争霸赛" data-growing-idx="4"> -->
+      <img ng-src="{{good.pic|addImgURLPostfix:400:200}}" ng-click="bannerClick(good.linkType,good.link,good.relationId)" data-growing-idx="1">
+      <img ng-src="{{askEvery.pic|addImgURLPostfix:400:200}}" ng-click="bannerClick(askEvery.linkType,askEvery.link,askEvery.relationId)" data-growing-idx="2">
+      <img ng-src="{{mustBuy.pic|addImgURLPostfix:400:200}}" ng-click="bannerClick(mustBuy.linkType,mustBuy.link,mustBuy.relationId)" data-growing-idx="3">
+      <img ng-src="{{wiki.pic|addImgURLPostfix:400:200}}" ui-sref="microSchool" data-growing-idx="4">
+    </div>
+    <!--限时抢购-->
+    <div class="sg_timeSale1" ng-if='flashProductList&&flashProductList.length!=0'>
+      <div flex="main:center cross:center" class='cuigengduo' ui-sref="flashsale">
+          <div>更多</div>
+          <img ng-src="{{imgBaseURL}}img/newvision/more.png">
+      </div>
+      <div class="timeSale_top" flex="main:left cross:center" ui-sref="flashsale">
+        <div flex="main:center cross:center">
+          <img ng-src="{{imgBaseURL}}img/deadline@2x.png">
+          <div>限时抢购</div>
+        </div>
+      </div>
+      <div class="timeSale_countDown">
+        <div flex="main:justify cross:center" class="timeSale_tabs" ng-style='flashProductList.length<4?{"justify-content":"center"}:""'>
+          <div flex='dir:top' ng-repeat='i in flashProductList' ng-click='chooseTimer($index)' ng-class='clickFlag==$index?"timeSale_tabclick":"timeSale_tab"' ng-style='flashProductList.length<4?{"margin-right":"15px"}:""'>
+                <div>{{i.timeStr}}</div>
+                <div ng-if='systemTime>=i.startTime&&systemTime<=i.endTime'>正在疯抢</div>  
+                <div ng-if='systemTime<i.startTime'>即将开抢</div> 
+          </div>
+        </div>
+      </div>
+      <div class="scrollX-container">
+        <div class='scrollX-box' lazy-container>
+            <div  ng-repeat="item in flashProductList[clickFlag].products track by $index" ng-click="goProductDetail(item.productId)" class='timeSale_list_item'>
+              <img lazy-src="{{item.imageUrl|addImgURLPostfix:200:200}}" animate-visible="true" animate-speed="1s">
+              <div>{{item.productName}}</div>
+              <div><span>¥{{dealPrice(item.flashsalePrice).priceInt||'--'}}</span><span>.{{dealPrice(item.flashsalePrice).priceFloat||'--'}}</span></div>
+              <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+                <i>¥&nbsp;{{item.commission|keepInt}}</i><span>{{item.commission|keepFloat}}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+    <!--逛客怎么说-->
+    <div class="sg_judge" ng-if="midCommList">
+      <!--<img src="img/gkbg@2x.png" class="gkbg">-->
+      <div class="judge_top" flex="main:center cross:center">
+        <div></div>
+        <div>逛客怎么说</div>
+        <div></div>
+      </div>
+      <div class="judge_more" flex="main:center cross:center" ui-sref="topic.qhot" data-growing-idx="1">
+        <div>更多</div>
+        <img ng-src="{{imgBaseURL}}img/toSeeMore@2x.png">
+      </div>
+      <div class="judge_content" flex="main:center cross:center">
+        <div ng-repeat="item in midCommList | limitTo :2" ng-click="bannerClick(item.linkType,item.link,item.relationId)" data-growing-idx="{{$index+2}}">
+          <img lazy-src="{{item.pic|addImgURLPostfix:360:200}}" animate-visible="true" animate-speed="1s">
+          <div>{{item.title}}</div>
+          <!--<div>10小时高清屏iPAD，食</div>-->
+        </div>
+      </div>
+      <div class="judge_footer" flex="main:center cross:center">
+        <div flex="main:justify cross:center" ng-repeat="item in midCommList | limitTo :2">
+          <div flex="cross:center">
+            <img lazy-src="{{item.avatar}}" animate-visible="true" animate-speed="1s">
+            <div>{{item.storeName}}</div>
+
+          </div>
+          <!--只有已关注  点击进入TA的主页-->
+          <div flex="main:center cross:center" ng-click="goPersonalHome(item.memberId)"><img ng-src="{{imgBaseURL}}img/follow@2x.png" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <!--优惠推荐-->
+    <div class="fav_recommond" ng-if="midActivtyList&&midActivtyList.length!=0">
+      <div class="fr__top" flex="main:center cross:center">
+        <div></div>
+        <div>优惠推荐</div>
+        <div></div>
+      </div>
+      <div class="fav_pic" flex="main:justify">
+        <!--Swiper轮播2-->
+        <!-- <div class="swiper-container swipers-box" id="swpcontainer-home-2" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in midActivtyList track by $index" style="height:auto;">
+                <img ng-repeat="item in imageItem | limitTo:3" ng-src="{{item.pic|addImgURLPostfix:400:600}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(item.linkType,item.link,item.relationId)"/>
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swppagination-home-2"></div>
+        </div> -->
+        <ion-slide-box delegate-handle="fav_recommond_slider" auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in midActivtyList track by $index" ng-init="wrapIndex=$index">
+                <img ng-repeat="item in imageItem | limitTo:3" ng-src="{{item.pic|addImgURLPostfix:400:600}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(item.linkType,item.link,item.relationId)" data-growing-idx="{{wrapIndex*3+$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+    </div>
+    </div>
+    <!--主题特色-->
+    <div class="topic_feature" ng-if="midBannerList&&crowdFunding&&midBannerList.length!=0&&crowdFunding.length!=0">
+      <div class="tf__top" flex="main:center cross:center">
+        <div></div>
+        <div>主题特色</div>
+        <div></div>
+      </div>
+      <div class="tf_middle">
+        <!--Swiper轮播3-->
+        <!-- <div class="swiper-container swipers-box" id="swpcontainer-home-3" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in midBannerList track by $index" style="height:auto;">
+                <img class="topic_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:320}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)"/>
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swppagination-home-3"></div>
+        </div> -->
+        <ion-slide-box  delegate-handle="topic_slider" auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in midBannerList track by $index">
+            <img class="topic_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:320}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" data-growing-idx="{{$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <div class="tf_footer" flex="main:center cross:center">
+        <div ng-repeat="crowdFundingItem in crowdFunding">
+          <img lazy-src="{{crowdFundingItem.pic|addImgURLPostfix:240:280}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(crowdFundingItem.linkType,crowdFundingItem.link,crowdFundingItem.relationId)" width="100%" data-growing-idx="{{$index+1}}"/>
+          </div>
+        </div>
+    </div>
+    <!--家用电器-->
+    <div class="ele_equipment" ng-repeat = "floor in floors" ng-class="'module' + $index">
+      <div class="ee__top" flex="main:center cross:center">
+        <div></div>
+        <div>{{floor.title}}</div>
+        <div></div>
+      </div>
+      <div class="ee_middle">
+        <!--Swiper轮播4-->
+        <!-- <div class="swiper-container swipers-box" id="swpcontainer-home-4-{{ $index }}" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in floor.bannerList track by $index" style="height:auto;">
+              <img class="ele_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:320}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)"/>
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swppagination-home-4-{{ $index }}"></div>
+        </div> -->
+        <ion-slide-box  delegate-handle="ele_slider" auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in floor.bannerList track by $index">
+            <img class="ele_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:320}}" animate-visible="true" animate-speed="1s" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" data-growing-idx="{{$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <div class="scrollX-container">
+        <div class='scrollX-box'>
+          <div ng-repeat="item in floor.productList track by $index" ng-click="goProductDetail(item.relationId)" class='timeSale_list_item' data-growing-idx="{{$index+1}}">
+            <img ng-src="{{item.pic|addImgURLPostfix:200:200}}"/>
+            <div>{{item.productName}}</div>
+            <div>¥{{dealPrice(item.price).priceInt||'--'}}<span>.{{dealPrice(item.price).priceFloat||'--'}}</span></div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+              ¥&nbsp;{{item.commission|keepInt}}<span>{{item.commission|keepFloat}}</span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!--家居家装-->
+     <!--百货超市-->
+    <!--逛客那些事-->
+    <div class="sg_somethings" ng-if="fCommunity&&fCommunity.length!=0">
+      <div class="ss_top" flex="main:center cross:center">
+        <div></div>
+        <div>逛客那些事</div>
+        <div></div>
+      </div>
+      <div class="otherMsg">
+        <div flex="" class='cui-hideS cui-hidesth'>
+            <div flex-box="0" ng-repeat="item in fCommunity track by $index" ng-click="bannerClick(item.linkType,item.link,item.relationId)">
+              <img ng-src="{{item.pic|addImgURLPostfix:500:300}}">
+              <div>{{item.title}}</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!--猜你喜欢-->
+    <div class="guess_interesting">
+      <div class="gi_top" flex="main:center cross:center">
+        <div></div>
+        <div>猜你喜欢</div>
+        <div></div>
+      </div>
+      <div class="lcj-like" >
+        <div ui-sref="productDetail({'productId':data.firstVo.productId,'o2oType':data.firstVo.o2oType,'fromType':data.firstVo.fromType,'storeId':storeId})" data-growing-idx="1">
+          <img lazy-src="{{data.firstVo.defaultImageUrl|addImgURLPostfix:360:360}}" animate-visible="true" animate-speed="1s">
+          <div>{{data.firstVo.productFullName}}</div>
+          <div>
+            <div>
+              <span>{{data.firstVo.finalPrice | currency:'￥'}}</span>
+              <!-- <span ng-if="!data.firstVo.finalPrice">获取中</span> -->
+            </div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (data.firstVo.commission !== undefined)" flex="main:center cross:top"><div>赚</div><div>¥{{data.firstVo.commission|keepInt}}<span>{{data.firstVo.commission|keepFloat}}</span></div></div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (data.firstVo.commission == undefined)" flex="main:center cross:top">佣金计算中</div>
+            <div ng-class="{true:'wdHost',false:'notWdHost'}[isWdHost==1 && settingsList[0].checked]">{{data.firstVo.hasStock}}</div>
+          </div>
+        </div>
+        <div ng-repeat="product in data.secondList"
+        ui-sref="productDetail({'productId':product.productId,
+                'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId})"  data-growing-idx="{{$index+2}}" class="second_List">
+          <img lazy-src="{{product.defaultImageUrl|addImgURLPostfix:360:360}}" animate-visible="true" animate-speed="1s">
+          <div>{{product.productFullName}}</div>
+          <div>
+            <div>
+              <span>{{product.finalPrice | currency:'￥'}}</span>
+              <!-- <span ng-if="!product.finalPrice">获取中</span> -->
+            </div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (product.commission !== undefined)" flex="main:center cross:top"><div>赚</div><div>¥{{product.commission|keepInt}}<span>{{product.commission|keepFloat}}</span></div></div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (product.commission == undefined)" flex="main:center cross:top">佣金计算中</div>
+            <div ng-class="{true:'wdHost',false:'notWdHost'}[isWdHost==1 && settingsList[0].checked]">{{product.hasStock}}</div>
+          </div>
+        </div>
+        <div ng-repeat="product in data.normalList"
+        ui-sref="productDetail({'productId':product.productId,
+                'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId})" data-growing-idx="{{$index+2}}" class="normal_List">
+          <img lazy-src="{{product.defaultImageUrl|addImgURLPostfix:360:360}}" animate-visible="true" animate-speed="1s">
+          <div>{{product.productFullName}}</div>
+          <div>
+            <div>
+              <span>{{product.finalPrice | currency:'￥'}}</span>
+              <!-- <span ng-if="!product.finalPrice">获取中</span> -->
+            </div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (product.commission !== undefined)" flex="main:center cross:top"><div>赚</div><div>¥{{product.commission|keepInt}}<span>{{product.commission|keepFloat}}</span></div></div>
+            <div ng-if="isWdHost==1 && settingsList[0].checked && (product.commission == undefined)" flex="main:center cross:top">佣金计算中</div>
+            <div ng-class="{true:'wdHost',false:'notWdHost'}[isWdHost==1 && settingsList[0].checked]">{{product.hasStock}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </ion-content>
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+<ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

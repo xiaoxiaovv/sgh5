@@ -1,0 +1,178 @@
+<!--模板-->
+<ion-view hide-nav-bar="true" view-title={{information.gameTitle}}>
+  <!-- 分享蒙版 -->
+  <div class="helpStaffBg0 helpStaffBg" ng-if="showShare" ng-click="hideblackCover()"></div>
+  <!-- 蒙版 -->
+  <div ng-if="isShowForm" class="helpStaffBg0 helpStaffBg"></div>
+  <!-- 抽奖机会用完提示 -->
+  <div ng-if="prizeData.prizeType ==-1&&isShowForm" class="helpStaffBg1 helpStaffBg" flex="main:center cross:center">
+    <div class="helpStaffBg11">
+      <div class="helpStaffBg12">
+        <img ng-src="{{imgBaseURL}}img/newhuodongg.png">
+        <span>{{prizeData.message}}</span>
+        <div ng-if="prizeData.canTakeMoreChance==1" class="goodStartBgH">分享活动,朋友助力加油,可额外获得抽奖机会哦！</div>
+      </div>
+      <div class="helpStaffBg13" flex="cross:center main:center">
+        <div ng-if="prizeData.canTakeMoreChance==0" ng-click="hideForm()">确定</div>
+        <div ng-if="prizeData.canTakeMoreChance==1" ng-click="isShowShare()">去分享</div>
+      </div>
+    </div>
+  </div>
+  <!-- 未中奖提示 -->
+  <div ng-if="prizeData.prizeType==3&&isShowForm" class="helpStaffBg1 helpStaffBg" flex="main:center cross:center">
+    <div class="helpStaffBg11">
+      <div class="helpStaffBg12">
+        <img ng-src="{{imgBaseURL}}img/newhuodongf.png">
+        <span>{{prizeData.message}}</span>
+      </div>
+      <div class="helpStaffBg13" flex="cross:center main:center">
+        <div ng-click="hideForm()">确定</div>
+      </div>
+    </div>
+  </div>
+  <!-- 中奖提示 -->
+  <div ng-if="prizeData.prizeType!=3&&prizeData.prizeType!=-1&&isShowForm" class="helpStaffBg goodStartBg">
+    <div class="goodStartBg1">
+      <div class="goodStartBg11">恭喜抽中</div>
+      <div class="goodStartBg12">{{prizeData.prizeName}}</div>
+      <img ng-src="{{imgBaseURL}}img/lpHave.png" />
+    </div>
+    <div class="goodStartBg2" style="color:#FFF202;font-size:14px;">小手一抖，奖品拿走，快截图分享一下吧。</div>
+    <div class="goodStartBg2" ng-if="prizeData.prizeType==1">请点击下一步填写收货信息！</div>
+    <div class="goodStartBg2" ng-if="prizeData.prizeType==2">请到“个人中心--优惠券”查看</div>
+    <div class="goodStartBg2" ng-if="prizeData.prizeType==5">我们会尽快和您联系，请耐心等待。</div>
+    <div class="goodStartBg3" flex="main:center cross:center">
+      <div ng-if="prizeData.prizeType==1" ng-click="hideForm()" ui-sref="AddPrizeAddress({gameId:gameId,uuid:prizeData.uuid,prizeId:prizeData.gamePrizeId})">下一步</div>
+      <div ng-if="prizeData.prizeType!=1" ng-click="hideForm()">确 认</div>
+    </div>
+  </div>
+  <!-- 头部标题 -->
+  <div style="height:44px;z-index:92;position:relative;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/ic_back_white.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;color:#fff;">{{information.gameTitle}}</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center">
+    </div>
+  </div>
+  <!-- 分享 -->
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_weixin.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_friend.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_qq.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_zone.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_weibo.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" src="{{imgBaseURL}}img/btn_link.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+
+  <ion-content scrollbar-y="false" class="goodStart">
+    <div class="top" ng-style="paddingtopClasscontent" style="background: url({{imgBaseURL}}img/goodStartTop.png) no-repeat;background-size:100%;">
+      <div class="top1" flex="main:center cross:center">您还有{{surplusChance}}次抽奖机会</div>
+      <div class="top2" ng-click="isShowShare()">分享助力</div>
+      <div class="top3">好友助力，最多额外获得{{information.sgGameChanceSetting.rewardTimesLimit}}次机会</div>
+      <div class="top4 top41"></div>
+      <div class="top4 top42"></div>
+      <div class="top4 top43"></div>
+      <div class="top4 top44"></div>
+    </div>
+    <div class="content" style="background: url({{imgBaseURL}}img/changeGame.png) no-repeat;background-size:100%;">
+      <div class="contentDiv1" flex="box:mean">
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="0==curP"></div>
+          <img ng-src="{{picLists[0].image?picLists[0].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="1==curP"></div>
+          <img ng-src="{{picLists[1].image?picLists[1].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="2==curP"></div>
+          <img ng-src="{{picLists[2].image?picLists[2].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="3==curP"></div>
+          <img ng-src="{{picLists[3].image?picLists[3].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}">
+        </div>
+      </div>
+      <div class="contentDiv1" flex="box:mean">
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="11==curP"></div>
+          <img ng-src="{{picLists[11].image?picLists[11].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center" style="height:0px;">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center" style="height:0px;">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="4==curP"></div>
+          <img ng-src="{{picLists[4].image?picLists[4].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}">
+        </div>
+      </div>
+      <div class="contentDiv1" flex="box:mean">
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="10==curP"></div>
+          <img ng-src="{{picLists[10].image?picLists[10].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center" style="height:0px;">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center" style="height:0px;">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="5==curP"></div>
+          <img ng-src="{{picLists[5].image?picLists[5].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}">
+        </div>
+      </div>
+      <div class="contentDiv1" flex="box:mean">
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="9==curP"></div>
+          <img ng-src="{{picLists[9].image?picLists[9].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico1.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="8==curP"></div>
+          <img ng-src="{{picLists[8].image?picLists[8].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico3.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="7==curP"></div>
+          <img ng-src="{{picLists[7].image?picLists[7].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/face.png'}}">
+        </div>
+        <div class="contentDiv11" flex="main:center cross:center">
+          <div class="blackDiv" ng-if="6==curP"></div>
+          <img ng-src="{{picLists[6].image?picLists[6].image:'http://www.ehaier.com/mstatic/wd/v2/img/game/ico2.png'}}">
+        </div>
+      </div>
+      <div class="contentDiv2" ng-click="gameButton()"></div>
+    </div>
+    <div class="ruleDiv" ng-click="toRules()">查看活动规则</div>
+    <div class="bottomDiv" style="background: url({{imgBaseURL}}img/housePic.png) no-repeat;background-size:100%;">
+      <div class="bottomDiv1">中奖公示</div>
+      <div class="bottomDiv2 record_list">
+        <p flex="box:first" ng-repeat="prize in prizeLists track by $index">
+          <span class="span1">{{prize.mobile}}</span>
+          <span>{{prize.prizeName}}</span>
+        </p>
+      </div>
+    </div>
+    <div style="height:39px;"></div>
+  </ion-content>
+</ion-view>

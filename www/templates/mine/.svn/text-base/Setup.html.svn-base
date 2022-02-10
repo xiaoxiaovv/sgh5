@@ -1,0 +1,67 @@
+<ion-view class="background" view-title="设置">
+  <ion-content scrollbar-y="true">
+    <div class="margin-bottom-20">
+    </div>
+    <!--佣金 提现通知 金币雨 开关-->
+    <div ng-repeat="item in settingsList track by $index" ng-style="{true:borderBottom,false:''}[$index<2]">
+      <li class="item item-toggle" style="font-size:14px;padding:13px 15px 10px 15px;border:0;"
+         >{{item.name}}
+        <label class="toggle toggle-balanced" style="top:6px;" ng-click="switchState($index)">
+          <input type="checkbox" ng-checked=item.checked>
+
+          <div class="track" ng-style="item.checked?switchOn:switchOff">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+    </div>
+
+
+
+    <div class="margin-bottom-20">
+    </div>
+    <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="newHand">
+      <span>顺逛帮助</span>
+      <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      <span class="float-r margin-right-10"></span>
+    </div>
+    <!-- <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="competition">
+      <span>会员竞争力</span>
+      <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      <span class="float-r margin-right-10"></span>
+    </div> -->
+    <!-- <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="messageCenter">
+      消息中心
+      <span  ng-if="unreadMessage>0" style="display: inline-block;background-color: #f00;color:#fff;border-radius: 10px;height: 20px;width:20px;text-align: center;margin-left: 10px" >{{unreadMessage>99?99:unreadMessage}}</span>
+
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div> -->
+    <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="aboutUs">
+      <span>关于我们</span>
+      <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      <span class="float-r margin-right-10"></span>
+    </div>
+
+    <div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white border-bottom" ng-click="goToScore()">
+      <span>评分</span>
+      <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      <span class="float-r margin-right-10"></span>
+    </div>
+
+    <!--<div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white" ui-sref="feedbackPlus">-->
+      <!--<span>功能反馈</span>-->
+      <!--<i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>-->
+      <!--<span class="float-r margin-right-10"></span>-->
+    <!--</div>-->
+
+    <div class="margin-bottom-20">
+    </div>
+
+    <!--<div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ng-click="goToDelete()">
+      <span>退出</span>
+    </div>-->
+
+    <div style="margin-bottom:5px;"></div>
+  </ion-content>
+</ion-view>

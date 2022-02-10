@@ -1,0 +1,39 @@
+<div class="mystore-title3">
+  <div>
+    <img ng-src="{{avatarImage}}" class="title3-avatar">
+  </div>
+  <div class="title3-user" style="width:220px;">
+    <span style="float:left;font-size: 14px;max-width: 150px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+      <span ng-bind="myStoreInfo.storeName"></span>
+    </span>
+    <!-- <span ng-bind="myStoreInfo.storeTypeName" style="float:left;font-size: 12px;"></span> -->
+
+    <div style="position:absolute;top:20px;left:0;display: -webkit-box;display:flex;-webkit-box-pack:flex-start;justify-content:flex-start;-webkit-box-align:center;align-items:center;">
+      <img ng-src="{{imgBaseURL}}img/Official.png" err-src="" style="width: 12px;"/><span>官方认证</span>
+
+      <!-- <span ng-if="storeLevelName">
+          <img ng-src="{{imgBaseURL}}img/icon_store_rank.png" err-src="" style="width: 15px;"/>
+                <span
+                  style="background-color: #e68977;padding: 0 5px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;"><span
+                  style="font-size: 12px;color: white">LV.<span ng-bind="storeLevelName"></span></span></span>
+        </span>
+        <span ng-if="userCurrentLevelId">
+           <img ng-src="{{imgBaseURL}}img/icon_designation.png" err-src="" style="width: 12px;"/>
+           <span ng-bind="userCurrentLevelId"></span>
+        </span> -->
+      <div style="display: -webkit-box;display:flex;-webkit-box-pack:start;justify-content:flex-start;-webkit-box-align:center;align-items:center;position:relative;">
+        <div style="display: -webkit-box;display:flex;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;height:18px;border-radius: 8px;padding:0 6px;">
+          <img ng-if="userName!='盟主'" ng-src="{{imgBaseURL}}img/Rank Icon{{userCurrentLevelId}}@2x.png"style="width:11px;margin-right:1px;">
+          <img ng-if="userName=='盟主'" ng-src="{{imgBaseURL}}img/Rank Icon mengzhu@2x.png"style="width:11px;margin-right:1px;">
+          <span style="font-size: 12px;letter-spacing: 0.32px;line-height: 12px;">{{userName}}</span>
+        </div>
+
+        <img ng-if="storeCreditWithLevel" ng-repeat="item in levelArray track by $index" ng-src="{{item}}" style="width:11px;margin-top:-2px;">
+      </div>
+    </div>
+  </div>
+  <img ng-src="{{imgBaseURL}}img/ic-share-b.png" alt="分享按钮" class="title3-share-btn" ng-click="share()" ng-if="isApp"
+       style="width: 17px;height: 20px;"/>
+  <img ng-src="{{imgBaseURL}}img/ic-erweima-b.png" alt="二维码按钮" class="title3-qrcode-btn" ng-click="openQrcode() "
+       style="width: 20px;height: 20px;"/>
+</div>

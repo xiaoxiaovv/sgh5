@@ -1,0 +1,22 @@
+<!--模板-->
+<ion-view class="scroll bg-white" view-title="{{whereName}}支付" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-left" style="font-size: 30px; width: 30px; height: 30px;text-align:center;"
+       ng-click="goBack()"></i>
+  </ion-nav-buttons>
+  
+  <ion-content class="background">
+    <div class="border-bottom bg-white text-align-c" style="padding-top:11px;padding-bottom:14px;">
+      <p class="font-size-13 margin-bottom-12 margin-top-2 margin-left-10 margin-right-10" style='text-align:left;'>应付金额 <span class='float-r text-color-light-red'>¥1111</span></p>
+
+      <p class="font-size-13 margin-bottom-0 margin-left-10 margin-right-10 margin-top-10 text-align-l">优惠金额：￥111<span class="text-color-light-red float-r">实付金额：¥1000</span></p>
+    </div>
+    
+
+    <button class="button font-size-15 text-align-c "
+    style="background: #3dbffc;
+box-shadow: 0 1px 2px 0 rgba(41,121,255,0.50);
+width:90%;height:39px; position:fixed;bottom:60px;margin-left:5%;"
+    ng-click="toPay()">立即支付</button>
+  </ion-content>
+</ion-view>

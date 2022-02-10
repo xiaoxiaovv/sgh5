@@ -1,0 +1,264 @@
+/**
+会员竞争力  @zhangyr --star7.26
+**/
+.competition {
+  .com-nav-box {
+    height:44px;
+    .back-img {
+      height:44px;
+      padding-left:16px;
+      img {
+        width:30px;
+      }
+    }
+    .nav-title {
+      height:44px;
+      font-size: 17px;
+      color: #fff;
+      letter-spacing: -0.41px;
+      text-align:center;
+      line-height:44px;
+    }
+    .nav-share {
+      width:34px;
+      height:44px;
+      padding-right:16px;
+      img {
+        width:22px;
+      }
+    }
+  }
+  .com-result {
+    padding: 0 10px;
+    height: 105px;
+    .result-left{
+      .avat-img {
+        width:52px;
+        height:52px;
+        border-radius:100%;
+        overflow:hidden;
+        img {
+          width:52px;
+        }
+      }
+      .avat-info {
+        .store-name {
+          font-size:15px;
+          color:#fff;
+          letter-spacing:0px;
+          margin-left:13px;
+        }
+        .star-con {
+          position: relative;
+          .star-text {
+            width: 68px;
+            height: 20px;
+            border: 1px solid #fff;
+            border-radius: 2px;
+            margin-left:13px;
+            .vip-icon {
+              display: inline-block;
+              height: 100%;
+              background: rgba(255, 255, 255, .4);
+              border-top-left-radius: 2px; /* 左上角 */
+              border-top-right-radius: 0px; /* 右上角 */
+              border-bottom-right-radius: 0px; /* 右下角 */
+              border-bottom-left-radius: 2px; /* 左下角 */
+              border-radius: 2px 0 0 2px;
+
+              div {
+                float: left;
+                width: 50%;
+                height: 100%;
+                text-align: center;
+                &.vip-icon-img {
+                  img {
+                    width: 10px;
+                  }
+                }
+                &.vip-icon-text {
+                  color: #fff;
+                  font-size: 13px;
+                  line-height: 18px;
+                }
+              }
+            }
+            .vip-text {
+              height: 100%;
+              line-height: 18px;
+              color: #fff;
+              font-size: 12px;
+              text-align: center;
+            }
+          }
+          .star-small {
+            margin-left: 3px;
+            .vip-store-star {
+              height:20px;
+              background: #FFDF9C;
+              border: 1px solid rgba(255,255,255,0.60);
+              border-radius: 0 19px 19px 0;
+              img {
+                width:16px;
+                margin-left:6px;
+              }
+              p {
+                font-size: 12px;
+                color: #D69A1F;
+                letter-spacing: -0.34px;
+                margin:0 4px;
+                line-height: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .result-right {
+      text-align: left;
+      .title-text {
+        font-size:13px;
+        color:#fff;
+      }
+      .com-num {
+        font-size:15px;
+        color:#FFF400;
+        letter-spacing:0.65px;
+        display:inline-block;
+        width: 100%;
+      }
+    }
+  }
+  .com-map-box {
+    position:relative;
+    .radar-map {
+      width:49%;
+      margin:75px 0;
+      position:relative;
+      img {
+        width:100%;
+        position:relative;
+        z-index: 300;
+      }
+    }
+    .community-inter {
+      position:absolute;
+      top:30px;
+      text-align:center;
+      left:50%;
+      margin-left:-26px;
+    }
+    .shop-order-num {
+      position:absolute;
+      top:34.3%;
+      left:76%;
+      text-align:center;
+    }
+    .meeting-friends {
+      position:absolute;
+      bottom:33%;
+      left:76%;
+      text-align:center;
+    }
+    .evaluate {
+      position:absolute;
+      bottom:30px;
+      text-align:center;
+      left:50%;
+      margin-left:-26px;
+    }
+    .share-map {
+      position:absolute;
+      bottom:33%;
+      right:76%;
+      text-align:center;
+    }
+    .login-map {
+      position:absolute;
+      top:34.3%;
+      right:76%;
+      text-align:center;
+    }
+  }
+  .total-income {
+    padding: 0 20px;
+    width:100%;
+    position: absolute;
+    bottom: 50px;
+    left:0;
+    .income-cont {
+      .income-text {
+        font-size:17px;
+        color:#fff400;
+        line-height:15px;
+      }
+      .income-num {
+        font-size:17px;
+        color:#fff400;
+        letter-spacing:0.39px;
+        line-height:30px;
+        margin:10px 0 24px 10px;
+      }
+    }
+    .goto-store {
+      border-radius:15px;
+      height:30px;
+      width:85px;
+      text-align:center;
+      line-height:28px;
+      letter-spacing:-0.44px;
+      border-top-left-radius: 15px; /* 左上角 */
+      border-top-right-radius: 15px; /* 右上角 */
+      border-bottom-right-radius: 15px; /* 右下角 */
+      border-bottom-left-radius: 15px; /* 左下角 */
+      border-radius:15px;
+      font-size:15px;
+      color:#fff400;
+      border:1px solid #fff400;
+    }
+  }
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 44px;
+    width: 100%;
+    background: rgba(74,74,74,.3);
+    .foot-list {
+      padding: 0 20px 0 10px;
+      .foot-item {
+        .item-box {
+          height: 44px;
+          padding: 0 5px;
+          .item-info{
+            .foot-img {
+              width: 30px;
+              height: 30px;
+              border-radius: 100%;
+              img {
+                width: 30px;
+              }
+            }
+            .other-income {
+              line-height: 16px;
+              font-size: 16px;
+              color: #fff;
+              letter-spacing: 0.7px;
+              margin-left: 10px;
+            }
+          }
+          .other-time {
+            height: 44px;
+            line-height: 44px;
+            font-size: 13px;
+            color: #fff;
+            letter-spacing: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.padtop44 {
+  padding-top:44px;
+}

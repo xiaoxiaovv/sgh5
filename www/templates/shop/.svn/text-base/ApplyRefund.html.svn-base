@@ -1,0 +1,35 @@
+<!--申请退款-->
+<ion-view view-title="申请退款" class="background">
+  <ion-content>
+    <div class="padding-10 bg-white">
+      <i class="padding-right-5 icon ion-ios-bell-outline"></i>
+      退货完成后，系统将自动扣减佣金
+    </div>
+    <div class="padding-10">
+      退款类型
+      <img ng-src="{{imgBaseURL}}img/ic_asterisk.png">
+    </div>
+    <div ng-bind="repairType" class="padding-15 color-text-s bg-white"></div>
+    <div class="padding-10">
+      退款原因
+      <img ng-src="{{imgBaseURL}}img/ic_asterisk.png">
+    </div>
+    <div ng-click="openSelect();" class="padding-15 color-text-s bg-white position-r">
+      <span ng-bind="applyRefundType"></span>
+      <i class="icon ion-chevron-down position-a right-10 font-size-14"></i>
+    </div>
+    <div class="padding-10">
+      退款金额
+      <img ng-src="{{imgBaseURL}}img/ic_asterisk.png">
+    </div>
+    <div ng-bind="refundData.orderAmount | currency:'&yen;'" class="padding-15 color-text-s bg-white"></div>
+    <div class="padding-10">退款说明（选填）</div>
+    <div class="bg-white padding-10">
+      <textarea ng-model="applyRefund.reason" class="width-100 border" rows="6" maxlength="50" placeholder="请输入退款说明"></textarea>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="padding-left-right-10 padding-top-bottom-5 sg-feedback-footer-bar">
+    <button ng-click="submitRefund();" class="width-100 sg-feedback-submit color-text-white">提交</button>
+  </ion-footer-bar>
+</ion-view>
+

@@ -1,0 +1,12 @@
+<!--模板-->
+<ion-view class="background" view-title="联盟分类">
+  <ion-content scrollbar-y="false">
+    <ul class="list">
+      <li class="item" ng-repeat="item in dataUnion track by $index" ng-click="goSelect(item,$index)">
+        <img width="7%" class="vertical-middle" ng-src="{{item.imgSelect}}" ng-if="item.isSelect">
+        <img width="7%" class="vertical-middle" ng-src="{{item.imgUnselect}}" ng-if="!item.isSelect">
+        <span class="vertical-middle" ng-bind="item.text"></span>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

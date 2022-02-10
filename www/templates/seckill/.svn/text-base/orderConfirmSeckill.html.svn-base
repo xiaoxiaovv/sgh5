@@ -1,0 +1,127 @@
+<!--模板-->
+<ion-view class="background" view-title="填写订单">
+  <ion-content scrollbar-y="false">
+    <div ng-if="isEnd" class="padding-10" style="color: #f00">秒杀活动已结束！</div>
+    <div ng-if="unSale" class="padding-10" style="color: #f00">该商品已下架！</div>
+    <!--收货信息-->
+    <div class="bg-white margin-top-25 border-bottom" ui-sref="address({'comeFromOrder':'YES'})">
+      <div class="row">
+        <div class="col col-90">
+          <div class="row">
+            <!--收货人-->
+            <div class="col col-50">
+              <span class="font-size-15">收货人：</span>
+              <span class="font-size-15" ng-bind="orderConfirmMessage.ordersCommitWrapM.order.consignee"></span>
+            </div>
+            <!--电话-->
+            <div class="col col-50 text-align-r">
+              <span class="font-size-15" ng-bind="orderConfirmMessage.ordersCommitWrapM.order.mobile"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="margin-top-10">
+              <i class="icon ion-ios-location-outline"></i>
+              <span class="font-size-12">收货地址：</span>
+              <span class="font-size-12" ng-bind="orderConfirmMessage.ordersCommitWrapM.order.regionName"></span>
+              <span class="font-size-12" ng-bind="orderConfirmMessage.ordersCommitWrapM.order.address"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-10 position-r text-align-c">
+          <i class="icon ion-chevron-right position-a" style="top: 40%;"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-background" style="height: 10px"></div>
+    <!--商品信息-->
+
+    <div ng-repeat="product in orderConfirmMessage.ordersCommitWrapM.orderProductList" class="bg-white">
+      <div class="row padding-left-15" ng-bind="orderConfirmMessage.o2oStore[product.productId]">公司</div>
+      <div class="row border-top">
+        <div class="col col-20 text-align-c">
+          <img ng-src={{orderConfirmMessage.imgMap[product.productId]}} style="height: 60px">
+        </div>
+        <div class="col col-80">
+          <span ng-bind="product.productName" class="font-size-11"></span>
+
+          <p ng-bind="product.price | currency :'￥'" class="font-size-11 margin-bottom-0"></p>
+
+          <div class="padding-top-5 bg-white">
+            <li class="border-top li-no-style"></li>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              ×<span ng-bind="product.number" class="font-size-11"></span>
+            </div>
+            <div class="col col-50 float-r">
+              <span class="font-size-11 ">小计：</span>
+
+              <div class="float-r">
+                <div ng-bind="product.productAmount | currency :'￥'" class="font-size-11"
+                     ng-class="{true:'text-line',false:''}[product.couponCodeValue != null]"></div>
+                <div ng-if="product.couponCodeValue"
+                     ng-bind="product.productAmount-product.couponCodeValue | currency :'￥'" class="font-size-11"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="padding-top-5 bg-white">
+        <li class="border-top li-no-style"></li>
+      </div>
+      <div class="bg-background" style="height: 10px"></div>
+    </div>
+
+    <!--支付方式-->
+    <div class="bg-white margin-top-25 padding-5 border-bottom" ng-click="toPayment()">
+      <div class="row">
+        <span class="col col-50 font-size-13">支付方式</span>
+
+        <div class="col col-40 font-size-13 text-align-r"
+             ng-bind="orderConfirmMessage.ordersCommitWrapM.order.paymentName"></div>
+        <div class="col col-10">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+    <!--发票选择-->
+    <div class="bg-white margin-top-25 padding-5 border-bottom"
+         ng-click="toInvoice(orderConfirmMessage.ordersCommitWrapM.invoiceType);">
+      <div class="row">
+        <span class="col col-30 font-size-13">发票信息</span>
+
+        <div class="col col-60 font-size-13 text-align-r"
+             style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"
+             ng-bind="orderConfirmMessage.ordersCommitWrapM.invoiceType==2?'电子发票'+' '+invoiceHead:'增值税发票'+' '+zzsInvoice">
+        </div>
+        <div class="col col-10">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-background" style="height: 50px">
+
+    </div>
+
+  </ion-content>
+  <div class="bar bar-footer row" style="position: fixed;bottom: 49px">
+    <div class="col col-75 padding-top-15">
+      <div class="float-l">合计：</div>
+      <div class="float-l" ng-bind="orderConfirmMessage.ordersCommitWrapM.order.orderAmount | currency :'￥'"
+           ng-class="{true:'text-line',false:''}[couponsPrice!=0]"></div>
+      <div ng-if="couponsPrice!=0" class="float-l margin-left-5"
+           ng-bind="orderConfirmMessage.ordersCommitWrapM.order.orderAmount-couponsPrice | currency :'￥'"></div>
+    </div>
+
+    <button class="button button-assertive col col-25" ng-click="toSubmit()">
+      提交订单
+    </button>
+  </div>
+
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

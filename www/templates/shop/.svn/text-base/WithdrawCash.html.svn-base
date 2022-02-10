@@ -1,0 +1,27 @@
+<ion-view class="background" view-title="收入提现">
+  <ion-content scrollbar-y="false">
+    <div class="border-top-bottom wc-content" style="padding-bottom: 80px;">
+      <div class="row padding-10">
+        <div class="col-30 padding-top-bottom-10">快捷通账号</div>
+        <div class="col-70 padding-10" ng-bind="account"></div>
+      </div>
+      <div class="row padding-10 border-top">
+        <div class="col-30 padding-top-bottom-10">金额 （元）</div>
+        <div class="col-70 bg-line width-100 padding-10">本次可提现<span ng-bind="canAmount">0</span>元</div>
+      </div>
+    </div>
+    <div class="text-align-c width-100 padding" ng-if="!canGetCash&&loadFinish">
+      <div class="text-align-c color-text-white padding unload-background-gray">您暂无提现金额</div>
+    </div>
+    <div class="text-align-c width-100 padding" ng-if="canGetCash&&loadFinish">
+      <div class="text-align-c color-text-white padding unload-background" ng-click="getCashNow()">提现</div>
+    </div>
+    <div style="width: 100%;padding: 0 10px;">
+      <span style="display: inline-block;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #CBCBCB;width: 15px;height: 15px;text-align: center;position: relative;top: 2px;color: #666;">&#8730;</span>
+      <span style="color:#666;">同意将佣金提现到天天聚理财</span>
+      <span ng-click="toRules(855,'天天聚服务协议')" style="color: #241AC2;">《天天聚服务协议》</span>
+      <span ng-click="toRules(857,'余额转入天天聚协议')" style="color: #241AC2;">《余额转入天天聚协议》</span>
+    </div>
+  </ion-content>
+</ion-view>
+

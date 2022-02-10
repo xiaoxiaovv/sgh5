@@ -1,0 +1,17 @@
+<!--历史微店主实名认证-->
+<div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="loginIsAuthentication">
+  <div class=" authenticationPopup_bg_not history_popup" style="position: relative;overflow: visible;">
+    <span ng-if="!isCloseBtn" ng-click="closePopup()" style="position: absolute;top: -50px;right: 0px; width: 28px;height: 28px;"> <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/hisClose@2x.png"> <i style="width: 1px;height: 40px;background: #fff;position: absolute;right: 13px;top: 28px;"></i> </span>
+    <p style="font-size: 14px;">
+      亲，为了遵守相关法律法规，配合监管要求，确保您享有安全，便捷的平台服务，信息不全的微店主，统一要求完成身份认证，系统会进行提示和引导。
+    </p>
+    <p style="font-size: 14px;">未认证的微店主无法正常使用App，谢谢配合！</p>
+    <p style="color: #2979FF; font-size: 14px;text-align: center;margin-top: 8px;" ng-click="goMechanismDescription()">顺逛机制</p> <!--ui-sref="MechanismDescription" -->
+    <p  ng-if="isCloseBtn" style="color: #2979FF; font-size: 14px;text-align: center;margin-top: 8px;" ng-click="signOut()" >退出</p>
+    <div flex="box:mean">
+      <div style="background: #eee;color: #000;width: 40%;" class="authenticationPopup_bg_not_ok" ng-click="goChangePhoneNum()">变更手机号</div>
+      <div class="authenticationPopup_bg_not_ok" style="width: 40%;" ng-click="goAuthentication()">开始认证</div>
+    </div>
+
+  </div>
+</div>

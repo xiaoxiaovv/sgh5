@@ -1,0 +1,193 @@
+<ion-view class="background" view-title="{{hashtitle}}" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack()" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+      <img ng-src="{{imgBaseURL}}img/share2.png" class="block" style="width: 20px;height: 20px">
+    </button>
+  </ion-nav-buttons>
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <!--分享界面 -->
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="showWeChat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="showWeChat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="showQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="showQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png" />
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <go-top delegate-handle="scrollSelection" offset="{{isBuyer == '0'? 15:65}}"></go-top>
+  <ion-content scrollbar-y="false" overflow-scroll="true">
+    <div class='customxvv_content'>
+      <div ng-repeat='i in moduleList' ng-init='outerIndex = $index'>
+        <div ng-if="i.modualType=='CUSTOM'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div ng-bind-html='i.content | bluetext' style='padding-top:0.133rem;'>
+          </div>
+        </div>
+        <ion-slide-box delegate-handle="CustomPage_slide{{$index}}" does-continue="true" auto-play="true" ng-if="i.modualType=='SWITCH'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <ion-slide ng-repeat='imageItem in i.imageList'>
+            <img class="selection_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.linkType,imageItem.param,imageItem.relationId)" />
+          </ion-slide>
+        </ion-slide-box>
+        <!-- 优惠卷位置 -->
+        <div ng-if='i.bannerImage&&i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.couponList' class='customxvv_header_image' ng-style="{'background-color':'{{i.backgroundColor}}'}">
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage&&i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.couponList' ng-style="{'background-color':'{{i.backgroundColor}}'}">{{i.title}}</div>
+        <div flex="main:center cross:center" class='showyhj' ng-if='i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.couponList' ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-repeat='m in i.couponList'>
+            <img ng-src="{{imgBaseURL}}img/homepage/im-quan.png" alt="" width=100% height=100%>
+            <div><span>¥</span><span>{{couponMap[m.couponId].couponValue}}</span></div>
+            <div>{{couponMap[m.couponId].couponName}}</div>
+            <div ng-click='getjuan(m.couponId,$index)'><span>立即领取</span></div>
+            <img ng-if='!juankeling[m.couponId]' ng-src='{{imgBaseURL}}img/homepage/im-yl.png' class='showyhjimg'>
+            <img ng-if='juanqiangwan[m.couponId]' ng-src='{{imgBaseURL}}img/homepage/juanyqw.png' class='showyhjimg'>
+          </div>
+        </div>
+        <!-- 优惠卷位置 -->
+        <!-- 菜单 -->
+        <div ng-if='i.bannerImage&&i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.tabList' class='customxvv_header_image' ng-style="{'background-color':'{{i.backgroundColor}}'}">
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage&&i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.tabList' ng-style="{'background-color':'{{i.backgroundColor}}'}">{{i.title}}</div>
+            <div flex="" ng-if='i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.tabList' class="custom_list">
+              <div ng-click='changestyle($index,outerIndex)' ng-repeat='x in i.tabList'>
+                <span ng-class="($index==index[outerIndex])?'showblue':''">{{x.title}}</span>
+              </div>
+            </div>
+        <div flex="main:center cross:center" class='showyhj' ng-if='i.modualType=="TABLE"&&i.itemType=="COUPON"&&i.tabList' ng-style="{'background-color':'{{i.backgroundColor}}'}">
+
+          <div ng-repeat='m in i.tabList[index[outerIndex]].couponList'>
+            <img ng-src="{{imgBaseURL}}img/homepage/im-quan.png" alt="" width=100% height=100%>
+            <div><span>¥</span><span>{{couponMap[m.couponId].couponValue}}</span></div>
+            <div>{{couponMap[m.couponId].couponName}}</div>
+            <div ng-click='getjuan(m.couponId,$index)'><span>立即领取</span></div>
+            <img ng-if='!juankeling[m.couponId]' ng-src='{{imgBaseURL}}img/homepage/im-yl.png' class='showyhjimg'>
+            <img ng-if='juanqiangwan[m.couponId]' ng-src='{{imgBaseURL}}img/homepage/juanyqw.png' class='showyhjimg'>
+          </div>
+        </div>
+        <!-- 超过4列,滑动 -->
+        <div ng-if="i.modualType=='TABLE'&&i.col>=4&&i.itemType=='SKU'" ng-style="{'background-color':'{{i.backgroundColor}}'}" style='padding-bottom: 5px'>
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div class='overcol4'>
+            <div>
+              <div ng-repeat='m in i.skuList' ui-sref="productDetail({'productId':skuMap[m.sku].productId,'o2oType':skuMap[m.sku].o2oType,'fromType':skuMap[m.sku].fromType,'storeId':storeId})">
+                <img ng-src="{{skuMap[m.sku].defaultImageUrl}}">
+                <div>{{skuMap[m.sku].productFullName}}</div>
+                <div><span>¥{{skuMap[m.sku].finalPrice | keepInt}}</span>{{skuMap[m.sku].finalPrice|keepFloat}}</div>
+                <div ng-style="{'border-color':'{{m.tagColor}}','color':'{{m.tagColor}}'}" ng-if='m.tagColor&&m.tagName'>{{m.tagName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 点击切换tab模块 2列的-->
+        <div ng-if="i.modualType=='TABLE'&&i.col==2&&i.tabList&&i.itemType=='SKU'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div class='tabqiehuan'>
+            <!-- 菜单 -->
+            <div flex="">
+              <div ng-click='changestyle($index,outerIndex)' ng-repeat='x in i.tabList'>
+                <span ng-class="($index==index[outerIndex])?'showblue':''">{{x.title}}</span>
+              </div>
+            </div>
+            <!-- 2列的 -->
+            <div class='colis2'>
+              <div ng-repeat='n in i.tabList[index[outerIndex]].skuList' ui-sref="productDetail({'productId':skuMap[n.sku].productId,'o2oType':skuMap[n.sku].o2oType,'fromType':skuMap[n.sku].fromType,'storeId':storeId})">
+                <img ng-src="{{skuMap[n.sku].defaultImageUrl}}">
+                <div>{{skuMap[n.sku].productFullName}}</div>
+                <div><span>¥{{skuMap[n.sku].finalPrice | keepInt}}</span>{{skuMap[n.sku].finalPrice|keepFloat}}</div>
+                <div ng-style="{'border-color':'{{n.tagColor}}','color':'{{n.tagColor}}'}" ng-if='n.tagColor&&n.tagName'>{{n.tagName}}</div>
+              </div>
+              <div style='clear: both;'></div>
+            </div>
+          </div>
+        </div>
+        <!-- 点击切换tab模块 3列的-->
+        <div ng-if="i.modualType=='TABLE'&&i.col==3&&i.tabList&&i.itemType=='SKU'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div class='tabqiehuan'>
+            <!-- 菜单 -->
+            <div flex="">
+              <div ng-click='changestyle($index,outerIndex)' ng-repeat='x in i.tabList'>
+                <span ng-class="($index==index[outerIndex])?'showblue':''">{{x.title}}</span>
+              </div>
+            </div>
+            <!-- 3列的 -->
+            <div flex="main:justify" class='colis3'>
+              <div ng-repeat='n in i.tabList[index[outerIndex]].skuList' ui-sref="productDetail({'productId':skuMap[n.sku].productId,'o2oType':skuMap[n.sku].o2oType,'fromType':skuMap[n.sku].fromType,'storeId':storeId})">
+                <img ng-src="{{skuMap[n.sku].defaultImageUrl}}">
+                <div>{{skuMap[n.sku].productFullName}}</div>
+                <div><span>¥{{skuMap[n.sku].finalPrice | keepInt}}</span>{{skuMap[n.sku].finalPrice|keepFloat}}</div>
+                <div ng-style="{'border-color':'{{n.tagColor}}','color':'{{n.tagColor}}'}" ng-if='n.tagColor&&n.tagName'>{{n.tagName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 3列的 用flex-->
+        <div ng-if="i.modualType=='TABLE'&&i.col==3&&!i.tabList&&i.itemType=='SKU'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div flex="main:justify" class='colis3'>
+            <div ng-repeat='x in i.skuList' ui-sref="productDetail({'productId':skuMap[x.sku].productId,'o2oType':skuMap[x.sku].o2oType,'fromType':skuMap[x.sku].fromType,'storeId':storeId})">
+              <img ng-src="{{skuMap[x.sku].defaultImageUrl}}">
+              <div>{{skuMap[x.sku].productFullName}}</div>
+              <div><span>¥{{skuMap[x.sku].finalPrice | keepInt}}</span>{{skuMap[x.sku].finalPrice|keepFloat}}</div>
+              <div ng-style="{'border-color':'{{x.tagColor}}','color':'{{x.tagColor}}'}" ng-if='x.tagColor&&x.tagName'>{{x.tagName}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- 2列的 用float-->
+        <div ng-if="i.modualType=='TABLE'&&i.col==2&&!i.tabList&&i.itemType=='SKU'" ng-style="{'background-color':'{{i.backgroundColor}}'}">
+          <div ng-if='i.bannerImage' class='customxvv_header_image'>
+            <img ng-src="{{i.bannerImage}}">
+          </div>
+          <div class='customxvv_header' ng-if='i.title&&!i.bannerImage'>{{i.title}}</div>
+          <div class='colis2'>
+            <div ng-repeat='x in i.skuList' ui-sref="productDetail({'productId':skuMap[x.sku].productId,'o2oType':skuMap[x.sku].o2oType,'fromType':skuMap[x.sku].fromType,'storeId':storeId})">
+              <img ng-src="{{skuMap[x.sku].defaultImageUrl}}">
+              <div>{{skuMap[x.sku].productFullName}}</div>
+              <div><span>¥{{skuMap[x.sku].finalPrice | keepInt}}</span>{{skuMap[x.sku].finalPrice|keepFloat}}</div>
+              <div ng-style="{'border-color':'{{x.tagColor}}','color':'{{x.tagColor}}'}" ng-if='x.tagColor&&x.tagName'>{{x.tagName}}</div>
+            </div>
+            <div style='clear: both;'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

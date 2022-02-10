@@ -1,0 +1,29 @@
+<!--新手必看-->
+<ion-view view-title="顺逛帮助" class="bg-background" hide-nav-bar="true">
+  <div flex="main:center cross:center" style="position: relative;padding:0 5px;width: 100%;background: #f8f8f8;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-click="$ionicGoBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;position: absolute;bottom: 10px;left:5px;"></img>
+    <div style="font-size: 20px;color: #444444;">顺逛帮助</div>
+  </div>
+  <ion-content style="height: 92%;" ng-class="{true:'iosContentCss',false:'otherContentCss'}[isIOS]">
+    <div class="list">
+      <div class="item padding-0 bg-background" ng-repeat="item in helpData">
+        <div ng-bind="item.secondName" class="padding-10 background"></div>
+        <div ng-click="goHelpDetail(detail.id,detail.name);" class="item color-text-m padding-10 bg-white" ng-repeat="detail in item.thirdLevel">
+          <span ng-bind="detail.name"></span>
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+    <!--<div class="margin-10">联系我们</div>-->
+    <!--<div class="color-text-m margin-left-10">-->
+      <!--1、电话：<a href="tel:4006-999-999" class="sg-rank-text ">4006-999-999</a>-->
+    <!--</div>-->
+    <!--<div class="color-text-m margin-left-10">-->
+      <!--2、微信公众号：<span>顺逛微店</span>-->
+    <!--</div>-->
+    <!--<div style="height: 50px"></div>-->
+  </ion-content>
+  <!--<div class="text-align-c width-100 padding down-side">-->
+    <!--<div class="text-align-c color-text-white padding unload-background" ui-sref="feedback">问题反馈</div>-->
+  <!--</div>-->
+</ion-view>

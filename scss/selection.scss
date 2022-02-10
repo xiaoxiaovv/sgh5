@@ -1,0 +1,104 @@
+$color-pink: #ef2765;
+$color-text-red: #e72d2e;
+$color-text-pink: #ef2765;
+$font-size-26: 26px;
+$font-size-6: 6px;
+$margin-7: 7px;
+$margin-3: 3px;
+.select-button {
+  margin: auto;
+  text-align: center;
+}
+.font-size-6 {
+  font-size: $font-size-6 !important;
+}
+.font-size-26 {
+  font-size: $font-size-26 !important;
+}
+
+
+.select-button.default {
+  margin: 0;
+  text-align: center;
+  border-bottom: 2px solid #2577e3;
+  color: #2577e3;
+}
+.bg-pink {
+  background: $color-pink !important;
+}
+.color-text-red {
+  color: $color-text-red !important;
+}
+.color-text-pink {
+  color: $color-text-pink !important;
+}
+.padding-top-7 {
+  padding-top: $margin-7 !important;
+}
+.selectionButtonMain{
+  //background-color:#33FF66;
+  width:40px;
+  height:40px;
+  position:fixed;
+  right:10px;
+  bottom:70px;
+}
+.selectionButton1{
+  //background-color:#33FF66;
+  width:40px;
+  height:40px;
+  position:fixed;
+  right:11px;
+  bottom:133px;
+}
+.selectionButton2{
+  //background-color:#33FF66;
+  width:40px;
+  height:40px;
+  position:fixed;
+  right:63px;
+  bottom:106px;
+}
+
+.selectionButton3{
+  //background-color:#33FF66;
+  width:40px;
+  height:40px;
+  position:fixed;
+  right:75px;
+  bottom:50px;
+}
+.padding-top-3 {
+  padding-top: $margin-3 !important;
+}
+
+.jieSuanBar{
+  position:fixed;
+  bottom:49px;
+}
+.pd-popup{
+  color: red;
+}
+.selection-tap{
+  padding: 10px 0 !important;
+  border-top: 1px solid #ccc;
+}
+.find-abnormal{
+  display: inline-block;
+  width: 49%;
+}
+.tab-on{
+  color: #2577e3;
+}
+.tab-off{
+  color: gray;
+}
+.filter-selected{
+  background: #fff;
+  border: 1px solid #2979FF;
+  border-radius: 4px;
+}
+.filter-unselected{
+  background-color:#F5F5F5;
+  border-radius: 4px;
+}

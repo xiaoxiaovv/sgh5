@@ -1,0 +1,221 @@
+<!--shantao.wang on 2016/10/17 Mon-->
+<ion-view class="background" hide-nav-bar="true">
+    <!-- *********************分享标签－whiteBird start********************* -->
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3"
+         ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0;left: 0;background: white;" ng-if="showShare">
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1,shareType)"
+           ng-if="hasWechat">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2,shareType)"
+           ng-if="hasWechat">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3,shareType)"
+           ng-if="hasQQ">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4,shareType)"
+           ng-if="hasQQ">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0,shareType)">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5,shareType)">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+      </div>
+    </div>
+    <!-- *********************分享标签－whiteBird end********************* -->
+    <!--覆盖标题栏背景色；注释掉回退按钮，手动添加-->
+    <!--回退按钮-->
+    <!--dele by @zyr-->
+    <!-- <ion-nav-buttons side="left">
+      <button ng-click="$ionicGoBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;"></button>
+    </ion-nav-buttons> -->
+    <!--消息按钮-->
+    <!--消息按钮-->
+    <!-- <ion-nav-buttons side="right">
+      <div ng-click="share(0)" ng-if="isApp" class="news-button">
+        <img ng-src="./img/share2.png" alt="" class="share-img"/>
+      </div>
+      <div ng-click="show()" ng-if="isApp" class="news-button">
+        <img ng-src="./img/dot3.png" alt=""/>
+      </div>
+    </ion-nav-buttons> -->
+    <!--内容区域-->
+    <ion-content scrollbar-y="false">
+      <!--上拉刷新-->
+      <ion-refresher pulling-text="下拉刷新" refreshing-text="正在刷新"
+                     on-refresh="downRefresh(selectedIndex)"></ion-refresher>
+      <div class='head-area' ng-style='contentHeight'>
+        <div class='head-bg' ng-style='contentHeight'>
+          <div class='bg-img'>
+            <img ng-style='contentHeight' ng-src="{{imgBaseURL}}img/homepageCenterBg.png" alt="头像" alt="">
+          </div>
+          <!-- <div class="bg-mark" ng-style='contentHeight'></div> -->
+        </div>
+        <div class='head-info'>
+          <div class='head-title' flex="main:justify cross:center" ng-style="paddingtopClass">
+            <img ng-src="{{imgBaseURL}}img/vipLeftArrow.png" class='go-back' ng-click="goBack()">
+            <div  class='title'><!-- TA的主页 --></div>
+            <div class='head-share' flex="main:center cross:center">
+              <div ng-click="share(0)" ng-if="isApp" class="news-button">
+                <img ng-src="{{imgBaseURL}}img/homepage/shareto@2x.png" alt="" class="share-img"/>
+              </div>
+              <!--消息按钮 去掉@zyr-->
+              <!-- <div ng-click="show()" ng-if="true" class="news-button">
+                <img ng-src="./img/dot3.png" alt=""/>
+              </div> -->
+            </div>
+          </div>
+          <div class='head-content' flex="dir:top main:center">
+            <div class='head-userimg' flex="main:center">
+              <img ng-src="{{hisInfo.img|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="">
+            </div>
+            <div class='head-name'>{{hisInfo.userName}}</div>
+            <div class='head-grade' flex="main:left box:mean">
+              <div class='icon-v-img' flex="main:center cross:center">
+                <div class="vip-icon-img" flex='main:center cross:center'>
+                  <img ng-src="{{imgBaseURL}}img/v-b@2x.png" alt="V">
+                </div>
+                <div class="vip-icon-text" flex='main:center cross:center'>{{hisInfo.gride}}</div>
+              </div>
+              <div class='icon-v-text' flex='main:center cross:center'>{{hisInfo.grideName}}</div>
+            </div>
+            <div class='follow-fans' flex="main:center">
+              <div class="head-foll" ng-click="follows()">关注&nbsp;{{hisInfo.following|Num4Filter}}</div>
+              <div class='head-fans' ng-click="fans()">粉丝&nbsp;{{hisInfo.praise|Num4Filter}}</div>
+            </div>
+            <div class='follow-box' flex="main:center" ng-click="follow(!!hisInfo.isFollow);" ng-class="{true:'gray-follow'}[!!hisInfo.isFollow]">
+              <div class='follow-btn' flex='cross:center' ng-bind="hisInfo.isFollow?'已关注':'+ 关注'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--发布,评论,原创 tabs-->
+      <div class='homepage-tabs'>
+        <div class='tabs-btns' flex="main:justify cross:center">
+          <div class='tabs-issue' ng-click='ToIssue("issue","his",othersId)'>
+            <div class='tabs-img' flex="main:center cross:center">
+              <img ng-src="{{imgBaseURL}}img/homepage/Group@2x.png" alt="">
+            </div>
+            <div>TA的发布({{userData2.storyCount}})</div>
+          </div>
+          <div class='tabs-comment' ng-click='ToIssue("comment","his",othersId)'>
+            <div class='tabs-img'  flex="main:center cross:center">
+              <img ng-src="{{imgBaseURL}}img/homepage/Group2@2x.png" alt="">
+            </div>
+            <div>TA的评论({{userData2.commentCount}})</div>
+          </div>
+          <div class='tabs-original' ng-click='ToIssue("quanzi","his",othersId)'>
+            <div class='tabs-img' flex="main:center cross:center">
+              <img ng-src="{{imgBaseURL}}img/homepage/quanzi2x.png" alt="">
+            </div>
+            <div>TA的圈子({{userData2.topicCount}})</div>
+          </div>
+        </div>
+      </div>
+      <!--打赏,圈子,赞,收藏-->
+      <div class='other-lists'>
+        <ul>
+          <li class='item-list' ng-repeat='item in hisLists' flex="main:left cross:center" ng-click='ToIssue(item.title,"his",othersId)'>
+            <div class='item-box' flex="main:justify cross:center">
+              <div class='item-left' flex="main:left cross:center">
+                <div class='item-img' flex="cross:center">
+                  <img ng-src="{{item.icon}}" alt="">
+                </div>
+                <div class='item-tit' ng-if='item.text=="TA的打赏"'>{{item.text}}({{userData3.tipCount}})</div>
+                <div class='item-tit' ng-if='item.text=="TA的赞"'>{{item.text}}({{userData3.praiseCount}})</div>
+                <div class='item-tit' ng-if='item.text=="TA的收藏"'>{{item.text}}({{userData3.collectionCount}})</div>
+              </div>
+              <div class='item-go'>
+                <img ng-src="{{item.goIcon}}" alt="">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ion-content>
+    <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+    <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+
+  <!--消息弹窗-->
+  <div ng-if="isDisplay" class="pop-news" ng-class="{'ios-margin-top-20':isIOS}">
+    <!--<div class="triangle"></div>-->
+    <!--小箭头-->
+    <div class="top-arrow"></div>
+    <!--栏目-->
+    <div ng-click="jumpMsg()" class="pop-news-item">
+      <div class="float-l text-align-c pop-news-icon">
+        <!--<i class="icon ion-ios-chatbubble-outline"></i>-->
+        <img ng-src="{{imgBaseURL}}img/news.png" alt="消息"/>
+      </div>
+      <div class="float-l pop-news-text">消息</div>
+      <!--消息数量-->
+      <div ng-if="ifRed" class="float-r pop-news-amount">
+        <span ng-bind="messageNum|Num2Filter"></span>
+      </div>
+    </div>
+    <!--栏目-->
+    <div class="pop-news-item" ng-click="viewShop()">
+      <div class="float-l text-align-c pop-news-icon">
+        <!--<i class="icon ion-share position-r" style="left:1px;"></i>-->
+        <img ng-src="{{imgBaseURL}}img/whightshop.png" alt="小店"/>
+      </div>
+      <div class="float-l pop-news-text">小店</div>
+    </div>
+    <!--栏目-->
+    <div class="pop-news-item" ui-sref="cart">
+      <div class="float-l text-align-c pop-news-icon">
+        <!--<i class="icon ion-ionic position-r" style="left:-1px;"></i>-->
+        <img ng-src="{{imgBaseURL}}img/circleIcon/itemcart.png" alt="购物车"/>
+      </div>
+      <div class="float-l pop-news-text">购物车</div>
+    </div>
+    <!--栏目-->
+    <div class="pop-news-item" ui-sref="mine">
+      <div class="float-l text-align-c pop-news-icon">
+        <!--<img src="img/circleIcon/top.png"/>-->
+        <img ng-src="{{imgBaseURL}}img/personal.png" alt="我的"/>
+      </div>
+      <div class="float-l pop-news-text">我</div>
+    </div>
+  </div>
+  <!--弹窗背景-->
+  <div ng-if="isDisplay" ng-click="disappear()" class="blank-area"></div>
+  <!--引导下载浮层-->
+<!--  <div ng-if="byShareLink" class="download-sg">
+    &lt;!&ndash;关闭&ndash;&gt;
+    <div ng-click="hideDownload()" class="close">
+      <img ng-src="./img/white-x.png" alt="">
+    </div>
+    &lt;!&ndash;Logo&ndash;&gt;
+    <img src="./img/ic_aboutUS_9.png" alt="" onerror="this.src='img/quanzi/user.jpg'" class="logo">
+    &lt;!&ndash;广告&ndash;&gt;
+    <div class="advertise">一键开店赚30<br>零风险赚佣金&nbsp;&nbsp;&nbsp;无资金货源开店</div>
+    &lt;!&ndash;下载&ndash;&gt;
+    <div ng-click="downloadSg()" class="download-btn">马上下载</div>
+  </div>-->
+  <!--轻通知-->
+  <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="alreadyFollow">
+    <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+         style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+      <span>恭喜你多了一个新朋友</span>
+    </div>
+  </div>
+  <div ng-include="'templates/common/CommonLoginPopup3.html'"></div>
+  <!--添加footer @zyr-->
+    <ion-footer-bar>
+      <div ng-include="'templates/common/Tabs.html'"></div>
+    </ion-footer-bar>
+</ion-view>

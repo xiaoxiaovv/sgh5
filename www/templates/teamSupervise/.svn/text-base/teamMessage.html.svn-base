@@ -1,0 +1,192 @@
+<!--二级管理-->
+<ion-view view-title="合伙人详细信息" class="background" hide-nav-bar="true">
+  <div>
+    <!--合伙人头部 合伙人详细信息-->
+    <div class="team_message_box"  style="position:relative; background:#2979FF;">
+      <!--head-->
+      <div ng-style="paddingtopClass" style="height:44px;background:#2979FF;" flex="box:justify">
+        <div style="width:34px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+          <div style="height:16px;width:16px;">
+            <img style="height:100%;" ng-src="{{imgBaseURL}}img/connectionBack@2x.png" />
+          </div>
+        </div>
+        <div  ng-style="androidClass" style="height:44px;font-size: 16px;color:#ffffff;letter-spacing: -0.41px;text-align:center;">{{typeTeam==0?'合伙人':'团队成员'}}基本信息</div>
+        <div ui-sref="homePage" style="width:44px;padding-right:6px;color: #fff;" flex="main:center cross:center">首页</div>
+      </div>
+      <!--头像-->
+      <div style="height:74px;position: absolute;left: 28px;top: 33%;">
+        <img ng-src="{{productList.avatarImageFileId}}" style="width:74px;height:74px;border-radius:37px;border:3px solid rgba(255,255,255,0.35);">
+      </div>
+      <div style="position: absolute;left: 120px;top: 34%;color: #fff;">
+        <div>
+          <strong style="font-size: 16px;font-weight: 400;">{{productList.storeName}}</strong>
+        </div>
+        <div style="margin-top: 4px;">
+         <span ng-if="productList.registerTime"> 注册时间：{{timeFun(productList.registerTime)}}</span>
+         <!--<span ng-if="!productList.registerTime"> 注册时间：注册开店吧</span>-->
+        </div>
+        <div style="width: 100%;margin-top: 2px;"  class="team_user_isShows">
+          <span ng-if="productList.installApp">顺逛APP <i  style="width: 8px;height: 12px;display: inline-block;border: 1px solid #fff;border-left: none;border-top: none;transform: rotate(40deg);-webkit-transform: rotate(40deg);position: absolute;left: 54px;right: 0;top: 2px;"></i> </span>
+          <span ng-if="productList.focusWechat">微信公众号 <i  style="left: 68px;width: 8px;height: 12px;display: inline-block;border: 1px solid #fff;border-left: none;border-top: none;transform: rotate(40deg);-webkit-transform: rotate(40deg);position: absolute;right: 0;top: 2px;"></i> </span>
+        </div>
+      </div>
+      <!--合伙人 -->
+      <div flex="main:center cross:center" style="position:absolute;bottom:0;font-size: 16px;color:#ffffff;background:#1465EB;width:100%;height:48px;">
+        <div ng-click="switchCheck(0)" style="position:relative;width:50%;text-align: center;line-height: 48px;" ng-class="{true:'checked',false:'unChecked'}[checkArr[0]]">
+          基本信息
+          <div ng-class="{true:'showTriangle',false:'unShowTriangle'}[checkArr[0]]" style="position:absolute;bottom:0;left:0;top:33px;right:0;margin:auto;width:0;height:0;border:8px solid transparent;border-bottom:8px solid #ffffff;"></div>
+        </div>
+        <div style="width:1px;height:31px;opacity:0.69;background: #ffffff;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"></div>
+        <div ng-click="switchCheck(1)" style="position:relative;width:50%;text-align: center;line-height: 48px;" ng-class="{true:'checked',false:'unChecked'}[checkArr[1]]">
+          TA的订单
+          <div ng-class="{true:'showTriangle',false:'unShowTriangle'}[checkArr[1]]" style="position:absolute;bottom:0;left:0;top:33px;right:0;margin:auto;width:0;height:0;border:8px solid transparent;border-bottom:8px solid #ffffff;"></div>
+        </div>
+      </div>
+
+    </div>
+    <!--基本信息 -->
+    <div ng-if="!isBasics" style="background: #fff;height: 40px;" ui-sref="dataAnalysis({memberId:productList.memberId})">
+       <span class="float-r" style="color: #2979FF;padding-top:8px;border-bottom: 1px solid #2979FF;font-size: 14px;">微店主数据分析</span>
+    </div>
+    <!--订单导航-->
+    <div ng-if="isBasics" flex="box:mean" style="height: 40px;line-height: 40px;text-align: center;font-size: 14px;background: #fff;color: #999;">
+      <div ng-click="orderByList(0)" ng-class="{ 0:'order_list'}[selectedIndex]">
+        全部
+      </div>
+      <div ng-click="orderByList(1)" ng-class="{ 1:'order_list'}[selectedIndex]">
+        待付款
+      </div>
+      <div ng-click="orderByList(2)" ng-class="{ 2:'order_list'}[selectedIndex]">
+        待发货
+      </div>
+      <div ng-click="orderByList(3)" ng-class="{ 3:'order_list'}[selectedIndex]">
+        待收货
+      </div>
+      <div ng-click="orderByList(4)" ng-class="{ 4:'order_list'}[selectedIndex]">
+        待评价
+      </div>
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" class="team_user_content">
+
+    <!--合伙人基本信息-->
+    <div class="team_user_basics" ng-if="!isBasics">
+                 <div style="background: #eee;margin-left:0;height: 8px;"></div>
+                 <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+                   <span>店主ID</span>
+                   <i>{{productList.memberId}}</i>
+                 </div>
+                 <div  flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                   <span>姓名</span>
+                   <i>{{productList.realName}}</i>
+                 </div>
+                 <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                   <span>实名认证</span>
+                   <i>{{productList.isAuthenticated==true?'是':'否'}}</i>
+                 </div>
+                 <div flex="box:mean">
+                   <span>舵主盟主</span>
+                   <i>{{productList.teamLevelName}}</i>
+                 </div>
+                 <div style="background: #eee;margin-left:0;height: 8px;"></div>
+                 <div flex="box:mean" style="position: relative;border-bottom: 1px solid #e4e4e4;">
+                   <span>联系方式</span>
+                   <i> <a href="tel:{{productList.mobile}}"> <img ng-src="{{imgBaseURL}}img/iphone@2x.png" alt="联系方式"></a></i>
+                 </div>
+                 <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                   <span>开店时间</span>
+                   <i>{{timeFun(productList.startTime)}}</i>
+                 </div>
+                 <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                   <span>合伙人</span>
+                   <i>{{productList.subLevelNum}}</i>
+                 </div>
+                 <div flex="box:mean">
+                   <span>团队</span>
+                   <i>{{productList.teamSize}}</i>
+                 </div>
+                 <div style="background: #eee;margin-left:0;height: 8px;"></div>
+                  <div  flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                    <span>本月活跃</span>
+                    <i>{{productList.isActive==true?'是':'否'}}</i>
+                  </div>
+                  <div  flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                    <span>团队活跃度</span>
+                    <i>{{productList.teamVitality}}</i>
+                  </div>
+                  <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                    <span>首单时间</span>
+                    <i ng-if="firstOrderTime">{{timeFun(firstOrderTime)}}</i>
+                    <i ng-if="firstOrderTime==undefined?true:false">无</i>
+                  </div>
+                  <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                    <span>总排名</span>
+                    <i>{{productList.userRank}}</i>
+                  </div>
+                  <div flex="box:mean">
+                    <span>等级</span>
+                    <i>{{productList.levelName}}</i>
+                  </div>
+                  <div style="background: #eee;margin-left:0;height: 8px;"></div>
+                  <div flex="box:mean"  style="border-bottom: 1px solid #e4e4e4;">
+                    <span>所在地</span>
+                    <i>{{productList.regionName}}</i>
+                  </div>
+                  <div flex="box:mean">
+                    <span>最后登录时间</span>
+                    <i ng-if="productList.lastLoginTime">{{timeFun(productList.lastLoginTime)}}</i>
+                  </div>
+                  <div style="background: #eee;margin-left:0;height: 8px;"></div>
+    </div>
+
+    <!--合伙人 订单-->
+    <div ng-if="isBasics">
+
+      <!--内容 start-->
+             <div style="height: 8px;"></div>
+            <div class="team_user_order" ng-repeat="item in orders track by $index">
+                  <div style="margin-top: 10px;">
+                      <!--订单编号-->
+                      <div class="team_user_orderNum" >
+                        <span>订单编号: {{item.orderSn}}</span>
+                        <span class="float-r" style="padding-right: 16px;">{{item.orderStatusName}}</span>
+                      </div>
+                      <!--订单信息-->
+                      <div class="team_user_info" style="border-bottom: 1px solid #e4e4e4;margin-left: 16px;" ng-repeat="i in item.orderProducts track by $index">
+                        <dl flex="">
+                          <dt flex-box="0">
+                            <img ng-src="{{i.defaultImageUrl}}">
+                          </dt>
+                          <dd flex-box="1">
+                            <!--简介-->
+                            <p>
+                              {{i.productFullName}}
+                            </p>
+                            <!--价格 数量-->
+                            <div>
+                              <span style="color: #999;">x{{i.number}}</span>
+                              <i style="color: #333;font-size: 12px;padding-right: 16px;" class="float-r">￥ <em style="font-size: 16px;color: #151515;">{{i.price}}</em> </i>
+                            </div>
+                          </dd>
+                        </dl>
+                      </div>
+                      <!--订单总价-->
+                      <div style="height: 40px;line-height: 40px; ">
+                        <span class="float-r" style="padding-right: 16px;padding-left: 8px;color: #333;"> 合计: <i style="color: #FF4400;font-size: 12px;">￥<em style="font-size: 16px;">{{item.productAmount}}</em></i> </span>
+                        <span class="float-r"> 共{{item.productTotalNo}}件商品</span>
+                      </div>
+                      <div style="height: 8px;"></div>
+                  </div>
+            </div>
+      <!--内容 end-->
+      <!--加载更多-->
+      <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </div>
+
+    <!--如果没有订单 占位图-->
+    <div flex="dir:top main:center cross:center" ng-if="isBasics && orders.length==0">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据!</span>
+    </div>
+  </ion-content>
+</ion-view>

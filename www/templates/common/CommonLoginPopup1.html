@@ -1,0 +1,9 @@
+<!--升级微店主-->
+<div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="loginIsAccord">
+  <div class=" authenticationPopup_bg_not homepage_login_success" style="position: relative;overflow: visible;">
+    <span ng-click="closePopup()" style="position: absolute;top: -60px;right: 0px; width: 28px;height: 28px;"> <img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/hisClose@2x.png"> <i style="width: 1px;height: 40px;background: #fff;position: absolute;right: 13px;top: 28px;"></i> </span>
+    <div class="homepage_login_success_info">登录成功</div>
+    <p style="margin-top: 0; margin-bottom: 0;text-align: center;" >免费升级微店主，可以享受购物佣金、理财收益、社区互动等诸多权益。</p>
+    <div class="authenticationPopup_bg_not_ok" ng-click="goUpgrade()">升级微店主</div>
+  </div>
+</div>

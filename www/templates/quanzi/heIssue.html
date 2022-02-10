@@ -1,0 +1,409 @@
+<ion-view class="background" view-title="TA的发布" hide-nav-bar="true">
+  <div flex="main:justify cross:center" ng-style="paddingtopClass" style="height:44px;background:#fafafa;" class='issue-nav'>
+    <div flex="cross:center" ng-click="goBack()" style="width:34px;height:44px;padding-left:6px;" class='partner-nav-back'>
+      <div flex="cross:center" class='img-box' style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="返回">
+      </div>
+    </div>
+    <div class='partner-nav-title' style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">{{titleStart}}{{titleEnd}}</div>
+    <div class='issue-search' ng-click='gotoqSearch()'>
+      <img ng-if='titleEnd=="的发布"||titleEnd=="的原创"||titleEnd=="的圈子"||titleEnd=="的收藏"' ng-src="{{imgBaseURL}}img/homepage/search@2x.png" alt="搜索">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class='partner-padtop'>
+    <!--TA的发布-->
+    <div class='he-issue' ng-if='titleEnd=="的发布" || titleEnd=="的原创"'>
+      <!--tab切换-->
+      <div class="issue-tab-box" flex='dir:left box:mean cross:center main:left' ng-show='titleEnd=="的发布"'>
+        <div class="tab-item" flex="main:center cross:center" ng-click="chooseTab(0)" ng-class="{0: 'itemSelected',1:'itemUnSelected',2:'itemUnSelected',3:'itemUnSelected'}[chooseIndex]">
+          全部({{issueData.storyNum}})
+        </div>
+        <div class='tab-item' flex="main:center cross:center" ng-click="chooseTab(1)" ng-class="{0: 'itemUnSelected',1:'itemSelected',2:'itemUnSelected',3:'itemUnSelected'}[chooseIndex]">视频({{issueData.storyVideoNum}})</div>
+        <div class='tab-item' flex="main:center cross:center" ng-click="chooseTab(2)" ng-class="{0: 'itemUnSelected',1:'itemUnSelected',2:'itemSelected',3:'itemUnSelected'}[chooseIndex]">悬赏({{issueData.storyRewardNum}})</div>
+        <div class='tab-item' flex="main:center cross:center" ng-click="chooseTab(3)" ng-class="{0: 'itemUnSelected',1:'itemUnSelected',2:'itemUnSelected',3:'itemSelected'}[chooseIndex]">收赏({{issueData.storyTipedNum}})</div>
+      </div>
+      <!--收赏的特殊模块-->
+      <div class='shoushang-banner' ng-show='chooseIndex==3'>
+        <div class='bg-img'>
+          <div class='banner-img'>
+            <img ng-src="{{imgBaseURL}}img/homepage/banner@2x.png" alt="">
+            <div class='banner-text' flex='dir:top box:mean'>
+              <div class='text-title'>累计收赏</div>
+              <div class='text-detail' flex='main:justify'>
+                <div><span>{{issueData.tipedUserNum}}</span>人</div>
+                <div><span>{{issueData.tipedNum}}</span>次</div>
+                <div><span>{{issueData.tipedAmout==null?0:issueData.tipedAmout}}</span>金币</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--列表-->
+      <div class='issue-box'>
+        <div class="item-part" ng-repeat='story in MyStoryList track by $index'>
+          <div class='item-issue-head' flex='main:justify cross:center'>
+            <div class="user-info" flex="dir:left">
+              <div class='user-img'>
+                <img ng-src="{{story.userHead|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="头像">
+              </div>
+              <div class='user-name' flex="dir:top main:justify">
+                <div class='user-title'>{{story.userName}}</div>
+                <div class='user-time'>{{story.createDate1}}</div>
+              </div>
+            </div>
+            <div class="boutique" flex="main:left">
+              <div class='jing' ng-if='story.isChoice'>
+                <img ng-src="{{imgBaseURL}}img/homepage/jing.png" alt="精">
+              </div>
+              <div class='ding' ng-if='story.isTop'>
+                <img ng-src="{{imgBaseURL}}img/homepage/ding.png" alt="顶">
+              </div>
+            </div>
+          </div>
+          <div class='item-issue-cont' flex="dir:right box:first" ng-click='toNoteDetails(story.id,story.isShortStory)'>
+            <div class='issue-right'>
+              <div class='img' ng-if='story.mainImg' style="position:relative;width:125px;height:90px;background:url({{story.mainImg}}) center center no-repeat;background-size:cover;">
+                <!--<img ng-src="{{story.mainImg}}" alt="图片">-->
+                <img ng-if="story.type==6" src="{{imgBaseURL}}img/quanzi/bofang.png" style="position:absolute;width:40px;height:40px;top:25px;left:40px;"/>
+              </div>
+            </div>
+            <div class='issue-left'  flex="dir:top">
+              <div class='issue-tit'>{{story.storyName}}</div>
+              <div class='issue-com'>{{story.storyContentText}}</div>
+            </div>
+          </div>
+          <div class='item-issue-foot' flex="dir:left box:first">
+            <div class='issue-shang' flex="cross:center">
+              <div class='shang-img' flex='cross:center'>
+                <div ng-if='story.tipedAmout' flex='cross:center'>
+                  <img ng-if='story.tipedAmout' ng-src="{{imgBaseURL}}img/homepage/shang@2x.png" alt="">&nbsp;{{story.tipedAmout}}
+                </div>
+                <div ng-if='story.rewardStatus == 0' flex='cross:center'>
+                  <img ng-if='story.rewardAmout' ng-src="{{imgBaseURL}}img/homepage/shang@2x.png" alt="">&nbsp;{{story.rewardAmout}}
+                </div>
+                <div ng-if='story.rewardStatus == 1'  flex='cross:center' class='end-shang'>
+                  <img ng-if='story.rewardAmout' ng-src="{{imgBaseURL}}img/homepage/endshang@2x.png" alt="">&nbsp;{{story.rewardAmout}}
+                </div>
+              </div>
+            </div>
+            <div class='issue-handle' flex="box:mean cross:center">
+              <div class='issue-look' flex="main:right cross:center"><img ng-src="{{imgBaseURL}}img/homepage/liulan@2x.png" alt="">&nbsp;{{story.browserNum}}</div>
+              <div class='issue-ping' ng-click='toNoteDetails(story.id,story.isShortStory)' flex="main:right cross:center"><img ng-src="{{imgBaseURL}}img/homepage/pinglun@2x.png" alt="">&nbsp;{{story.commentNumber}}</div>
+              <div class='issue-zan' ng-click="topicPraise(story.id,$index)" flex="main:right cross:center">
+                <img ng-src="{{imgBaseURL}}img/homepage/no_zan@2x.png" alt="" ng-if='!story.praiseFlag'/><img ng-src="{{imgBaseURL}}img/homepage/yes_zan@2x.png" ng-if="story.praiseFlag"/>&nbsp;{{story.praiseNumber}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="MyStoryList.length==0"
+             style="text-align: center;color: #777;font-size: 15px;line-height:30px;padding-top: 20px;">
+          <div><img ng-src="{{imgBaseURL}}img/null.png" alt="" width="70px"></div>
+          <div style="margin:10px 0;"><span>亲，他比较懒，尚未留下墨宝</span></div>
+          <div ui-sref="allCircle"
+               style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;">全部圈子
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TA的评论-->
+    <div class='he-comment' ng-if='titleEnd=="的评论"'>
+      <!--tab切换-->
+      <div class='comment-tab-box' flex='dir:left box:mean cross:center main:left'>
+        <!-- tabs切换 -->
+        <div class="tab-item" flex="main:center cross:center" ng-click="chooseComTab(0)" ng-class="{0: 'itemSelected',1:'itemUnSelected',2:'itemUnSelected'}[chooseComIndex]">
+          全部({{commentData.commentNum}})
+        </div>
+        <div class="tab-item" flex="main:center cross:center" ng-click="chooseComTab(1)" ng-class="{0: 'itemUnSelected',1:'itemSelected',2:'itemUnSelected'}[chooseComIndex]">
+          被采纳({{commentData.rewardedCommentNum}})
+        </div>
+        <div class="tab-item" flex="main:center cross:center" ng-click="chooseComTab(2)" ng-class="{0: 'itemUnSelected',1:'itemUnSelected',2:'itemSelected'}[chooseComIndex]">
+          被打赏({{commentData.tipedCommentNum}})
+        </div>
+      </div>
+      <!-- 列表 -->
+      <div class='comment-box'>
+        <div class='item-part' flex='dir:left box:first' ng-repeat='comment in commentList'>
+          <div class='item-left'>
+            <div class='user-img'>
+              <img ng-src="{{comment.userHead|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="头像">
+            </div>
+          </div>
+          <div class='item-right' flex='dir:top'>
+            <div class='item-info' flex='main:justify'>
+              <div class='info-left' flex='main:left cross:center'>
+                <div class='user-name'>{{comment.userName}}</div>
+                <!-- <div class='user-grade' flex='main:center cross:center'>
+                  <div class='grade-icon'>
+                    <img src="../../img/v-b@2x.png" alt="vip">10
+                  </div>
+                </div> -->
+              </div>
+              <div class='info-right'>{{comment.commentTime}}</div>
+            </div>
+            <div class='item-comment' flex='dir:right box:first'>
+              <!-- <div class='com-money' ng-class='{true:"default-width",false:""}[comment.tipAmount?true:false]' ng-if='true'>
+                +{{comment.tipAmount}}金币
+              </div> -->
+              <div class='com-money'>
+                <div class='monney-num' ng-if='comment.rewardAmout'>+{{comment.rewardAmout}}金币</div><div class='monney-num' ng-if='comment.tipAmount'>+{{comment.tipAmount}}金币</div>
+              </div>
+              <div class='com-text' flex="dir:right box:last">
+                
+                <div class='com-info'>
+                  <div class='info-text'>{{titleStart}}回复贴主：{{comment.comment}}</div>
+                  <div class='info-img' ng-if='comment.commentImgs'>
+                    <img ng-repeat='src in comment.commentImgs|commentArrImg' ng-src='{{src}}' alt="">
+                  </div>
+                </div>
+                <div class='com-accept'>
+                  <div class='accept-btn' ng-if='comment.rewardId'>采纳</div>
+                </div>
+              </div>
+            </div>
+            <div class='item-postbar' flex='dir:left box:first' href="#{{comment.id}}" ng-click='CommentDetails(comment)'>
+              <div class='postbar-img' ng-if='comment.mainImg'>
+                <img ng-src="{{comment.mainImg}}" alt="">
+              </div>
+              <div class='postbar-text'>
+                {{comment.storyContent}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='comment-empty' ng-if='commentList.length == 0'>
+          <div class='empty-img'>
+            <img ng-src="{{imgBaseURL}}img/homepage/comment_empty@2x.png" alt="">
+          </div>
+          <div class='empty-text'>字写出来才可值千金</div>
+          <div ui-sref="allCircle" style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;color:#777;line-height: 28px;" href="#/allCircle">全部圈子
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TA的打赏-->
+    <div class='he-dashang' ng-if='titleEnd=="的打赏"'>
+      <!-- banner 特殊模块 -->
+      <div class='shoushang-banner'>
+        <div class='bg-img'>
+          <div class='banner-img'>
+            <img ng-src="{{imgBaseURL}}img/homepage/banner@2x.png" alt="">
+            <div class='banner-text' flex='dir:top box:mean'>
+              <div class='text-title'>累计打赏</div>
+              <div class='text-detail' flex='box:mean'>
+                <div><span>{{DaShangData.totalCount==null?0:DaShangData.totalCount}}</span>次</div>
+                <div><span>{{DaShangData.goldTotal==null?0:DaShangData.goldTotal}}</span>金币</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='comment-box'>
+        <div class='item-part' flex='dir:left box:first' ng-repeat='item in DaShangList'>
+          <div class='item-left'>
+            <div class='user-img'>
+              <img ng-src="{{item.userHead|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="头像">
+            </div>
+          </div>
+          <div class='item-right' flex='dir:top'>
+            <div class='item-info' flex='main:justify'>
+              <div class='info-left' flex='main:left cross:center'>
+                <div class='user-name'>{{item.userName}}</div>
+                <!-- <div class='user-grade' flex='main:center cross:center'>
+                  <div class='grade-icon'>
+                    <img src="../../img/v-b@2x.png" alt="vip">10
+                  </div>
+                </div> -->
+              </div>
+              <div class='info-right'>{{item.createDate1}}</div>
+            </div>
+            <div class='item-comment' flex='main:left'>
+              <div class='com-text'>
+                <p>{{titleStart}}的打赏<span>+{{item.tipedAmout}}金币</span></p>
+              </div>
+            </div>
+            <div class='item-postbar' flex='dir:left box:first' ng-click='toNoteDetails(item.id,item.isShortStory)'>
+              <div class='postbar-img' ng-if='item.mainImg'>
+                <img ng-src="{{item.mainImg}}" alt="">
+              </div>
+              <div class="postbar-text" readonly="readonly">{{item.storyContentText}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='comment-empty' ng-if='DaShangList.length == 0'>
+          <div class='empty-img'>
+            <img ng-src="{{imgBaseURL}}img/homepage/comment_empty@2x.png" alt="">
+          </div>
+          <div class='empty-text'>撰文不易，且看且打赏</div>
+          <div ui-sref="allCircle" style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;color:#777;line-height: 28px;" href="#/allCircle">全部圈子
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TA的圈子 -->
+    <div class='he-quanzi' ng-if='titleEnd=="的圈子"'>
+      <div class='quanzi-tabs-box' flex='main:center cross:center'>
+        <div class='quanzi-tabs' flex='box:mean'>
+          <div class="tab-item" flex="main:center cross:center" ng-click="chooseQuanTab(0)" ng-class="{0: 'itemSelected',1:'itemUnSelected'}[chooseQuanIndex]">
+            {{titleStart}}加入的圈子
+          </div>
+          <div class="tab-item" flex="main:center cross:center" ng-click="chooseQuanTab(1)" ng-class="{0: 'itemUnSelected',1:'itemSelected'}[chooseQuanIndex]">
+            {{titleStart}}创建的圈子
+          </div>
+        </div>
+      </div>
+      <!-- 圈子列表 -->
+      <div class='quanzi-box'>
+        <div class='box-title'>已经{{quanziTitle}}了{{myTopicList.length}}个</div>
+        <div class='box-list'>
+          <div class='item-part' ng-click='viewTopic(item.id)' flex='dir:right box:first cross:center' ng-repeat='item in myTopicList'>
+            <div class='item-right'>
+              <div class='go-icon' ng-show='false'>
+                <img ng-src="{{imgBaseURL}}img/homepage/go2@2x.png" alt="go">
+              </div>
+              <div class='item-result' ng-show='!false'>
+                <!-- 0 是审核通过, 1 是审核不通过, 2 是审批中, 3 是草稿 -->
+                <div class='result-btn' ng-if='item.auditStatus!=0&&item.auditStatus!=null' flex='main:center cross:center' ng-class="{3: 'resuGreen',2:'resuBule',1:'resuRed'}[item.auditStatus]" ng-bind='item.auditStatus==0?"已通过":(item.auditStatus==1?"未通过":(item.auditStatus==2?"审批中":(item.auditStatus==3?"草稿":"未知")))'></div>
+              </div>
+            </div>
+            <div class='item-left' flex='main:left cross:center'>
+              <div class='item-img'>
+                <img ng-src="{{item.topicImg}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/quanzi.png'" alt="">
+              </div>
+              <div class='item-info' flex='dir:top main:justify'>
+                <div class='info-title'>{{item.topicName}}</div>
+                <div class='info-text'>{{item.topicDescription}}</div>
+                <div class='info-tip' flex='main:left cross:center'>
+                  <div class='tip-huati'><span>{{item.storyNum|Num4Filter}}</span>个话题</div>
+                  <div class='tip-person'><span>{{item.joinNum|Num4Filter}}</span>个人</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-align-c" style="padding: 34px 20px;background: #f4f4f4;margin: 0 -20px;font-size: 16px;" ng-if="myTopicList.length==0">
+              <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-input-null.png" style="height: 100px;">
+              <div class=" text-align-c " style="color: #777"><p>亲,去加入喜欢的圈子吧,</p></div>
+              <p style="color: #777;margin-bottom: 10px;">获取一手信息</p>
+              <div ui-sref="allCircle" style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;color:#777;line-height: 28px;" href="#/allCircle">全部圈子
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TA的赞 -->
+    <div class='he-zan' ng-if='titleEnd=="的赞"'>
+      <!-- 赞的列表 -->
+      <div class='comment-box'>
+        <div class='item-part' flex='dir:left box:first' ng-repeat='item in UserPraiseList'>
+          <div class='item-left'>
+            <div class='user-img'>
+              <img ng-src="{{item.userHead|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="头像">
+            </div>
+          </div>
+          <div class='item-right' flex='dir:top'>
+            <div class='item-info' flex='main:justify'>
+              <div class='info-left' flex='main:left cross:center'>
+                <div class='user-name'>{{item.userName}}</div>
+                <!-- <div class='user-grade' flex='main:center cross:center'>
+                  <div class='grade-icon'>
+                    <img src="../../img/v-b@2x.png" alt="vip">10
+                  </div>
+                </div> -->
+              </div>
+              <div class='info-right'>{{item.createDate1}}</div>
+            </div>
+            <div class='item-postbar' flex='dir:left box:first' ng-click='viewStory(item)'>
+              <div class='postbar-img' ng-if='item.mainImg'>
+                <img ng-src="{{item.mainImg}}" alt="">
+              </div>
+              <div class='postbar-text'>
+                {{item.storyContentText}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='comment-empty' ng-if='UserPraiseList.length == 0'>
+          <div class='empty-img'>
+            <img ng-src="{{imgBaseURL}}img/homepage/comment_empty@2x.png" alt="">
+          </div>
+          <div class='empty-text'>您的赞就是创作者的冲击钻</div>
+          <div ui-sref="allCircle" style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;color:#777;line-height: 28px;" href="#/allCircle">全部圈子
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TA的收藏 -->
+    <div class='he-shoucang' ng-if='titleEnd=="的收藏"'>
+      <!-- 收藏列表 -->
+      <div class='issue-box'>
+        <div class="item-part"  ng-repeat='item in CollectionList'>
+          <div class='item-issue-head' flex='main:justify cross:center'>
+            <div class="user-info" flex="dir:left">
+              <div class='user-img'>
+                <img ng-src="{{item.userHead|ImageUserFilter}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'" alt="头像">
+              </div>
+              <div class='user-name' flex="dir:top main:justify">
+                <div class='user-title'>{{item.userName}}</div>
+                <div class='user-time'>{{item.createDate1}}</div>
+              </div>
+            </div>
+            <div class="boutique" flex="main:left">
+              <div class='jing' ng-if='item.isChoice'>
+                <img ng-src="{{imgBaseURL}}img/quanzi/jing.png" alt="精">
+              </div>
+              <div class='ding' ng-if='item.isTop'>
+                <img ng-src="{{imgBaseURL}}img/quanzi/ding.png" alt="顶">
+              </div>
+            </div>
+          </div>
+          <div class='item-issue-cont' flex="dir:right box:first" ng-click='viewStory(item)'>
+            <div class='issue-right'>
+              <div style="position:relative;width:125px;height:90px;background:url({{item.mainImg}}) center center no-repeat;background-size:cover;" ng-if="item.mainImg">
+                <img ng-if="item.type==6" src="{{imgBaseURL}}img/quanzi/bofang.png" style="position:absolute;width:40px;height:40px;top:25px;left:40px;"/>
+                <!--<img ng-if="item.mainImg" ng-src="{{item.mainImg}}" alt="" class="main-img">-->
+              </div>
+            </div>
+            <div class='issue-left'  flex="dir:top">
+              <div class='issue-tit'>{{item.storyName}}</div>
+              <div class='issue-com'>{{item.storyContentText}}</div>
+            </div>
+            
+          </div>
+          <div class='item-issue-foot' flex="dir:left box:first">
+            <div class='issue-shang' flex="cross:center">
+              <div class='shang-img' flex='cross:center'>
+                <div ng-if='item.tipedAmout' flex='cross:center'>
+                  <img ng-if='item.tipedAmout' ng-src="{{imgBaseURL}}img/homepage/shang@2x.png" alt="">&nbsp;{{item.tipedAmout}}
+                </div>
+                <div ng-if='item.rewardStatus == 0' flex='cross:center'>
+                  <img ng-if='item.rewardAmout' ng-src="{{imgBaseURL}}img/homepage/shang@2x.png" alt="">&nbsp;{{item.rewardAmout}}
+                </div>
+                <div ng-if='item.rewardStatus == 1'  flex='cross:center' class='end-shang'>
+                  <img ng-if='item.rewardAmout' ng-src="{{imgBaseURL}}img/homepage/endshang@2x.png" alt="">&nbsp;{{item.rewardAmout}}
+                </div>
+              </div>
+            </div>
+            <div class='issue-handle' flex="box:mean cross:center">
+              <div class='issue-look' flex="main:right cross:center">
+                <img ng-src="{{imgBaseURL}}img/homepage/liulan@2x.png" alt="">&nbsp;{{item.browserNum}}
+              </div>
+              <!-- <div class='issue-look' flex='main:right cross:center' ng-if='item.flag==2' ng-click='dealStory(item,4)'>
+                <img src="img/quanzi/shoucang.png" alt="">&nbsp;{{item.collectionNumber}}</div> -->
+              <div class='issue-ping' ng-click='toNoteDetails(item.id,item.isShortStory)' flex="main:right cross:center"><img ng-src="{{imgBaseURL}}img/homepage/pinglun@2x.png" alt="">&nbsp;{{item.commentNumber|Num4Filter}}</div>
+              <div class='issue-zan' ng-click='CollectionPraise(item, $index)' flex="main:right cross:center"><img ng-src="{{imgBaseURL}}img/homepage/no_zan@2x.png" alt="" ng-if='!item.praiseFlag'/><img ng-src="{{imgBaseURL}}img/homepage/yes_zan@2x.png" ng-if="item.praiseFlag"/>&nbsp;{{item.praiseNumber|Num4Filter}}</div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="CollectionList.length==0" style="text-align: center;color: #777;font-size: 15px;line-height:30px;padding-top: 20px;">
+          <div><img ng-src="{{imgBaseURL}}img/kong3.png" alt="" width="70px"></div>
+          <div style="margin:10px 0;"><span>亲，很多有逼格的话题<br>等待你的围观</span></div>
+          <div ui-sref="topic.qhot"
+               style="width:80px;height:30px;border:1px solid #ddd;border-radius:4px;margin:0 auto;">返回社区
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;height: 50px"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

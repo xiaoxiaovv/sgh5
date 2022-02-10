@@ -1,0 +1,110 @@
+<ion-view class="background " view-title="我的">
+	<!--右侧按钮的消息中心-->
+	<ion-nav-buttons side="right">
+		<div style='height:24px;width:24px;margin-top:5px;margin-right:3px;' ui-sref="ClassifyMessageCenter">
+			<img style="height:24px;width:24px;width:100%;height:100%;" ng-src="{{imgBaseURL}}img/Message@2x.png" alt="消息中心" />
+			<span ng-class="{true:'tab-red-point',false:''}[flagNum]"></span>
+		</div>
+	</ion-nav-buttons>
+
+	<ion-content scrollbar-y="false">
+		<div class="user">
+			<div class="logo">
+				<img ng-src="{{imgBaseURL}}img/logo.jpg" alt="" style="width:64px;height:64px;background:green;border:none;" />
+			</div>
+			<div class="userInfo">
+				<div class="userInfo-left">
+					<p class="p1">夏洋洋的小店</p>
+					<p class="p2">金币:200</p>
+				</div>
+				<div class="userInfo-right">
+					<a href="#">
+						<img src="" alt="" />
+					</a>
+					<i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+					<span class="float-r margin-right-10 color-text-s" ng-bind="account" style="color:#2196F3 !important;"></span>
+				</div>
+			</div>
+		</div>
+		
+		<!--店铺信息-->
+		<div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="shopMessage">
+        <img ng-src="{{imgBaseURL}}img/store@2x.png" style="height:20px;position:absolute;" alt="店铺信息" />
+        <span style="margin-left:30px;">店铺信息</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10 text-align-c color-text-white "
+              ng-bind="accreditation" style="color:#2196F3 !important;"></span>
+              
+      </div>
+      
+      <div style="margin-bottom:1.3%;"></div>
+      
+      
+      
+      
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ng-click="goMemberCenter()">
+        <img ng-src="{{imgBaseURL}}img/Member@2x.png" style="height:20px;position:absolute;" alt="店铺装修" />
+        <span style="margin-left:30px;">会员中心</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      <div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white" ui-sref="easyConnect">
+
+        <img ng-src="{{imgBaseURL}}img/Card@2x.png" style="height:20px;position:absolute;" alt="提现设置" />
+        <span style="margin-left:30px;">提现设置</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      
+      	
+      	<div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="allOrder">
+
+        <img ng-src="{{imgBaseURL}}img/Address@2x.png" style="height:20px;position:absolute;" alt="收货地址" />
+        <span style="margin-left:30px;">收货地址</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      
+      <div style="margin-bottom:1.3%;"></div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="orderWrite">
+
+        <img ng-src="{{imgBaseURL}}img/padnote@2x.png" style="height:20px;position:absolute;" alt="我的订单" />
+        <span style="margin-left:30px;">我的订单</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Order}}</span>
+      </div>
+
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="myRaiseNo">
+        <img ng-src="{{imgBaseURL}}img/Fitment@2x.png" style="height:20px;position:absolute;" alt="店铺装修" />
+        <span style="margin-left:30px;">我的众筹</span>
+
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10"></span>
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class="bg-white border-bottom" ui-sref="collection">
+  
+        <img ng-src="{{imgBaseURL}}img/star@2x.png" style="height:20px;position:absolute;" alt="商品收藏" />
+        <span style="margin-left:30px;">商品收藏</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Collection}}</span>
+      </div>
+      <div style="position:relative;padding:13px 15px 11px 15px;" class="bg-white" ui-sref="myCouponsList">
+
+        <img ng-src="{{imgBaseURL}}img/Discount@2x.png" style="height:20px;position:absolute;" alt="我的优惠券" />
+        <span style="margin-left:30px;">我的优惠券</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+        <span class="float-r margin-right-10" style="opacity:0.38;">{{Coupon}}</span>
+      </div>
+      <div class="margin-bottom-20">
+      </div>
+      <div style="position:relative;padding:13px 15px 10px 15px;" class=" bg-white border-bottom"  ui-sref="Setup">
+        <img ng-src="{{imgBaseURL}}img/set@2x.png" style="height:20px;position:absolute;" alt="账号信息" />
+        <span style="margin-left:30px;">设置</span>
+        <i class="icon ion-chevron-right float-r margin-right-3" style="color:#C7C7CC;"></i>
+      </div>
+      <div style="margin-bottom:5px;">
+      </div>
+	</ion-content>
+</ion-view>

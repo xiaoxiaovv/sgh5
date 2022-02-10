@@ -1,0 +1,68 @@
+<ion-view class="background" view-title="访客浏览记录" hide-nav-bar="true">
+  <div flex="main:left cross:center dir:left box:first" style="height:44px;background:#fafafa;" ng-style="paddingtopClass" class='visi-nav'>
+    <div flex="cross:center" ng-click="goBack()" class='nav-back' style="width:34px;height:44px;padding-left:6px;">
+      <div flex="cross:center" class='img-box' style="height:24px;width:24px;">
+        <img ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="返回" style="height:100%;">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;" class='nav-title'>访客浏览记录</div>
+  </div>
+  <ion-content scrollbar-y="false" delegate-handle="scrollSelection" ng-style="paddingtopClasscontent" class='partner-padtop store-team-con'>
+    <div class="scroll-visi">
+      <!--访客信息-->
+      <div flex="main:justify cross:center" class='visi-info'>
+        <div flex="main:justify cross:center" class='visi-img-box'>
+          <div class='visi-img'>
+            <img ng-src="{{userInfo.img}}" alt="头像">
+          </div>
+          <div class='visi-name'>{{userInfo.name}}</div>
+        </div>
+        <!-- <div flex="main:center cross:center dir:top" class='visi-from'>
+          <div class='from-time'>
+            <span>{{userInfo.time}}</span>
+          </div>
+          <div class='from-where'>来自{{userInfo.where}}</div>
+        </div> -->
+      </div>
+    </div>
+    <div class='row row-no-padding visi-list-box' flex='dir:top' ng-repeat='item in productList' ui-sref='productDetail({productId: item.productId, o2oType:0, fromType: 0, userId: item.userId})'>
+      <div flex='main:justify cross:center' class='list-title'>
+        <div>{{item.browseTime}}</div>
+        <div>来自{{item.source}}</div>
+      </div>
+      <div flex='main:center cross:center'>
+        <div class="col col-30 list-left">
+          <div class='list-item-img'>
+            <img ng-src="{{item.defaultImageUrl}}" alt="商品">
+          </div>
+        </div>
+        <div class='col col-70 list-right'>
+          <div class='list-info'>
+            <div class='info-title'>{{item.productFullName}}</div>
+            <div class='info-price' flex='main:left cross:center'>
+              <div class='def-pri'>￥{{item.finalPrice | number:2}}<span class='def-pri-last'></span></div>
+              <div class='earn-pri' flex='main:center cross:center'>
+                <div class='earn-icon'>
+                  <img src="{{imgBaseURL}}img/icon-earn.png" alt="赚钱">
+                </div>
+                <div class='earn-mon'>￥{{item.commission | number:2}}<span class='earn-mon-last'></span></div>
+              </div>
+            </div>
+            <div class='info-inve'>
+              <span class='inve-text'>{{item.hasStock}}</span>
+              <span class='inve-buy'>({{item.purchased}})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='empty-box' ng-show='productList.length == 0' flex='main:center cross:center dir:top'>
+      <div class='empty-img'>
+        <img ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="暂无数据">
+      </div>
+      <div>你的宝贝无人问津，加油分享哦！</div>
+    </div>
+    <div style="width: 100%;height: 50px"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

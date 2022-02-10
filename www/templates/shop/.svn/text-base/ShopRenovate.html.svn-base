@@ -1,0 +1,13 @@
+<ion-view class="background" view-title="店铺装修">
+  <ion-content scrollbar-y="false">
+    <div class="padding-left-20 padding-top-bottom-10 bg-white border-top-bottom" style="height: 76px;" ui-sref="chooseShopTemplate">
+     <div style="padding-top: 18px;width: 50%"> 店铺模版</div>
+      <i class="icon ion-chevron-right float-r margin-right-10" style="margin-top: -20px"></i>
+    </div>
+    <div class="bg-white border-bottom position-r sr-shop-cover" ui-sref="setShopCover">
+      <span>店铺封面</span>
+      <img style="padding-top: 5px" ng-src="{{shopCoverUrl}}" alt="封面缩略图"/>
+      <i class="icon ion-chevron-right margin-right-10"></i>
+    </div>
+  </ion-content>
+</ion-view>

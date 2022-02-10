@@ -1,0 +1,134 @@
+<ion-view class="background" view-title="团队" hide-nav-bar="true">
+  <div flex="main:left cross:center dir:left box:first" ng-style="paddingtopClass" class='partner-nav'>
+    <div flex="cross:center" ng-click="goBack()" class='partner-nav-back'>
+      <div flex="cross:center" class='img-box'>
+        <img ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="返回">
+      </div>
+    </div>
+    <div class='partner-nav-title'>团队</div>
+  </div>
+  <ion-content scrollbar-y="false" delegate-handle="scrollSelection" class='partner-padtop'>
+    <!--tab 切换-->
+    <div class="part-tab-box" flex='dir:left box:mean cross:center main:left'>
+      <!--tab切换-->
+      <div class="open-time tab-item" flex="main:center cross:center" ng-click="chooseTab(0)" ng-class="{0: 'partnerSelected',1:'partnerUnSelected',2:'partnerUnSelected'}[chooseIndex]">
+        <span>开店时间</span>
+        <img ng-src="{{arrowState[openStoreTime_index]}}" alt="排序">
+      </div>
+      <div class='real-name-auth tab-item' flex="main:center cross:center" ng-click="chooseTab(1)" ng-click="chooseTab(0)" ng-class="{0: 'partnerUnSelected',1:'partnerSelected',2:'partnerUnSelected'}[chooseIndex]">实名认证</div>
+      <div class='leader-add-jim tab-item' flex="main:center cross:center" ng-click="chooseTab(2)" ng-class="{0: 'partnerUnSelected',1:'partnerUnSelected',2:'partnerSelected'}[chooseIndex]">盟主舵主</div>
+    </div>
+    <!--已认证和未认证 显示-->
+    <div class='auth-box' flex="main:left cross:center">
+      <div class='auth-yes' flex="main:left cross:center">
+        <div class='auth-img'>
+          <img ng-src="{{imgBaseURL}}img/authYes@2x.png" alt="已认证">
+        </div>
+        <div class='auth-data'>已认证<span>4,555</span>人</div>
+      </div>
+      <div class='auth-no' flex="main:left cross:center">
+        <div class='auth-img'>
+          <img ng-src="{{imgBaseURL}}img/authNo@2x.png" alt="未认证">
+        </div>
+        <div class='auth-data'>未认证<span>6,555</span>人</div>
+      </div>
+    </div>
+    <div class="row row-no-padding bg-white margin-0" ng-repeat="goods in productList" ng-if="!isFind">
+      <div class="col col-25 border-top">
+        <span class="font-size-10 bg-pink color-text-white position-a margin-top-10 text-align-c" style="padding-left: 3px;padding-right: 4px" ng-if="goods.recommend">推荐</span>
+        <div class="text-align-c" ui-sref="productDetail({'productId':goods.productId,
+        'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+          <img class="margin-bottom-10 margin-top-15 margin-left-5" ng-src="{{goods.defaultImageUrl}}" err-src=""
+               style="width: 82px"/>
+        </div>
+      </div>
+      <div class="col col-75 border-top padding-top-5 padding-left-right-10">
+        <div ui-sref="productDetail({'productId':goods.productId,
+        'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+          <div class="font-size-12 font-bold">
+            <span>{{goods.productFirstName}}</span>
+          </div>
+          <span class="font-size-12 font-bold"
+            >{{goods.productSecondName}}</span>
+        </div>
+        <div class="margin-bottom-5  font-size-10">
+          <div ui-sref="productDetail({'productId':goods.productId,
+        'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+            <div style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;">
+              <span>{{goods.productTitle}}</span>
+            </div>
+            <div class="row padding-0 margin-bottom-5" ng-if="goods.showFinalPrice">
+              <span class="">价格:</span>
+              <span class="">￥{{goods.saleGuidePrice}}</span>
+            </div>
+            <div class="row padding-0">
+              <span class=""></span>
+              <span class="color-text-red">￥{{goods.finalPrice}}</span>
+            </div>
+          </div>
+          <div class="margin-right-10">
+            <div ui-sref="productDetail({'productId':goods.productId,
+        'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+              <span ng-if="isBuyer==1&&isApp&&isCommission&&goods.commission">赚:</span>
+              <span ng-if="isBuyer==1&&isApp&&isCommission&&goods.commission" class="color-text-red margin-right-10">￥{{goods.commission|cutTwoFilter}}</span>
+              <span ng-if="isBuyer==1&&isApp&&isCommission&&goods.commission==null" class="color-text-red">佣金计算中</span>
+              <span class="color-text-theme" ng-bind="goods.hasStock" ng-if="isBuyer==1&&goods.hasStock=='有货'"></span>
+              <span class="color-text-red" ng-bind="goods.hasStock" ng-if="isBuyer==1&&goods.hasStock!='有货'"></span>
+              <span class="color-text-theme" ng-bind="goods.hasStock" ng-if="isBuyer==0&&goods.hasStock=='有货'"></span>
+              <span class="color-text-red" ng-bind="goods.hasStock" ng-if="isBuyer==0&&goods.hasStock!='有货'"></span>
+            </div>
+            <div class="position-r">
+              <div class="float-r position-a right-0 bottom-0">
+                <i class="icon ion-ios-checkmark-outline color-text-theme font-size-26 "
+                   ng-click="changeState(goods.productId,0,$index);"
+                   style="width: 20px" ng-if="goods.onShelf&&isBuyer == '1'"></i>
+                <i class="icon ion-ios-plus-outline color-text-theme font-size-26"
+                   ng-click="changeState(goods.productId,1,$index);"
+                   style="width: 20px" ng-if="!goods.onShelf&&isBuyer == '1'"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='partner-box'>
+      <div class='row row-no-padding part-list-box' flex='main:justify cross:bottom'>
+        <div class="list-left" flex='main:center cross:center'>
+          <div class='list-item-img'>
+            <img ng-src="{{imgBaseURL}}img/touxiang@2x.png" alt="头像">
+          </div>
+          <div class='list-item-info'>
+            <div class='item-title'>冰洗空旗舰店微店</div>
+            <div class='item-icon' flex='main:left cross:center'>
+              <div class='icon-v-box' flex='main:left'>
+                <div class='icon-v' flex='main:justify cross:center'>
+                  <div class='vip-icon-img'>
+                    <img ng-src="{{imgBaseURL}}img/V@2x.png" alt="V">
+                  </div>
+                  <div class='vip-icon-text'>10</div>
+                </div>
+                <div class='icon-v-text'>司令</div>
+              </div>
+              <div class='icon-a-box' flex='main:left'>
+                <div class='icon-a' flex='main:justify cross:center'>
+                  <div class='a-icon-img'>
+                    <img ng-src="{{imgBaseURL}}img/auth@2x.png" alt="认证">
+                  </div>
+                  <div class='icon-a-text'>认证</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='list-right'>
+          <div class='list-info'>
+            <div class='info-title'>最近一次购买：<span>2017/08/03</span></div>
+          </div>
+        </div>
+      </div>
+      <div class='border-bot'></div>
+    </div>
+    <div style="width: 100%;height: 50px"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

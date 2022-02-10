@@ -1,0 +1,347 @@
+<ion-view class="background" hide-back-button="true" hide-nav-bar="true">
+    <div ng-class="{true:'iosTopcss',false:'androidTopcss'}[isIos]" class="mess-tip" style="display:none;color:#fff;text-align:center;width:70%;height:35px;line-height:35px;background:#000;opacity:0.9;position:absolute;left:8px;z-index:99;border-radius:5px;font-size:12px;"></div>
+
+<ion-header-bar align-title="left" style="background-color:#f8f8f8;top: 0 !important;">
+  <div class="row row-no-padding">
+    <div style="width:28px;">
+      <div class="button icon ion-ios-location-outline font-size-24" style="padding:0 3px;" ng-click="addressTop()">
+      </div>
+    </div>
+    <div class="font-size-14 padding-top-7 text-align-l" ng-click="addressTop()" style="width : 42px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;margin-right:6px;" ng-style="{true:iosCss,false:''}[isIos1]" ng-bind="region">
+    </div>
+    <div ui-sref="goodsSearch({front:1})" class="border border-radius inline-block col" style="background-color:#dfdfdf;line-height: 34px;height:34px;padding:0;overflow:hidden;">
+      <div class="font-size-14 tab-off text-align-l">
+        <div class="inline-block" style="height:24px;width:24px;margin-left:8px;vertical-align:middle;">
+          <img style="height:20px;width:20px;" ng-src="{{imgBaseURL}}img/search@2x.png" alt="搜索">
+        </div>
+        <span>{{gsPlaceholder}}</span>
+      </div>
+    </div>
+    <div style='height:24px;width:24px;margin:5px 3px 0 6px;' ui-sref="ClassifyMessageCenter">
+      <img style="height:24px;width:24px;width:100%;height:100%;" ng-src="{{imgBaseURL}}img/Message@2x.png" alt="消息中心" />
+      <span ng-if="!isIos1" ng-style="{true:rightC,false:''}[flagNum]"></span>
+      <span ng-if="isIos1" ng-style="{true:rightCd,false:''}[flagNum]"></span>
+    </div>
+  </div>
+
+</ion-header-bar>
+
+  <!--<ion-header-bar>-->
+    <!--<div style="width: 100%;background-color: #eee;border: solid 1px #eee;border-radius: 5px;" ui-sref="goodsSearch({front:1})">-->
+      <!--<input type="text" placeholder="" readonly style="display: inline-block;width: 80%;background-color: #f8f8f8;"/>-->
+      <!--<span>搜索</span>-->
+    <!--</div>-->
+    <!--<div class="font-size-14 padding-top-7 text-align-r"-->
+         <!--ui-sref="commonLocation({'flag':'SELECTION_LOCATION','title':'选择地区'})"-->
+         <!--style="width : 70px;overflow: hidden;white-space:nowrap; text-overflow:ellipsis;" ng-bind="region"></div>-->
+      <!--<span class="button icon ion-ios-location-outline font-size-24"-->
+            <!--ui-sref="commonLocation({'flag':'SELECTION_LOCATION','title':'选择地区'})"></span>-->
+  <!--</ion-header-bar>-->
+  <go-top delegate-handle="scrollSelection" offset="{{isBuyer == '0'? 15:65}}"></go-top>
+  <!--点击综合的子选项-->
+  <div ng-click="closeComprehensiveSub()" ng-if="showComprehensiveSub" ng-style="comprehensiveSubHeight" style="position:absolute;left:0;width: 100%;background: rgba(0,0,0,0.7);z-index: 999;">
+    <div ng-click="selectComprehensiveSub($index,$event)" ng-repeat="item in comprehensiveSub track by $index" flex="main:justify cross:center" style="height: 40px;background: #ffffff;padding: 0 20px;">
+      <span>{{item}}</span>
+      <img ng-if="selectComprehensiveSubIndex==$index" ng-src="{{imgBaseURL}}img/comprehensive_select.png" style="width: 24px;height: 24px;">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" delegate-handle="scrollSelection">
+    <div class="scroll-view">
+      <!--轮播图-->
+      <div ng-if="showSlideImage">
+        <ion-slide-box delegate-handle="selection_slider" auto-play="true" does-continue="true" class="height-min-100"
+                       style="height: 140px;overflow: hidden;">
+          <ion-slide class="text-align-c height-min-100" ng-repeat="imageItem in slideImage">
+            <img class="height-min-100" ng-src="{{imageItem.imageUrl | addImgURLPostfix:750:320}}" height="140px" width="100%"
+                 ng-click="slideImageClick($index)"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <!--滚动条-->
+      <ion-scroll direction="x" scrollbar-x="false" zooming="false" style="overflow:hidden;">
+        <div class="row text-align-c padding-0">
+          <div class="col col-20 border-right padding-0 selection-tap" ng-if="isFindTab"
+               ng-class="{0: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(0)">发现
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{1: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(1)">全部
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{2: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(2)">冰箱
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{3: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(3)">洗衣机
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{4: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(4)">空调
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{5: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(5)">彩电
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{6: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(6)">热水器
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{7: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(7)">厨房电器
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{8: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(8)">冷柜
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{9: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(9)">智能产品
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{10: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(10)">生活家电
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{11: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(11)">水家电
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{12: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(12)">冰吧酒柜
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{13: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(13)">家庭医疗
+          </div>
+          <div class="col col-30 border-right padding-0 selection-tap"
+               ng-class="{14: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(14)">家用中央空调
+          </div>
+          <!-- <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{15: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(15)">农产品
+          </div> -->
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{15: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(15)">顺逛超市
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{16: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(16)">健康器材
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{17: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(17)">3C数码
+          </div>
+          <div class="col col-20 border-right padding-0 selection-tap"
+               ng-class="{18: 'select-button default'}[selectedIndex]"
+               ng-click="selectTab(18)">生活服务
+          </div>
+        </div>
+      </ion-scroll>
+
+      <!--选项卡-->
+      <div flex="main:justify cross:center" style="padding: 0 12px;" ng-if="isTab" class="selectionOnePixelBorder">
+          <div flex="main:center cross:center" ng-class="{0: 'selectionSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+               ng-click="chooseTab(0)"
+               style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>综合</span>
+            <img ng-src="{{imgBaseURL+comprehensive[comprehensive_index]}}" style="width:6px;height: 4px;margin-left:2px;">
+          </div>
+
+          <div ng-if="isBuyer == '1'" flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+               ng-click="chooseTab(1)"
+               style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>佣金</span>
+            <img ng-src="{{imgBaseURL+arrowState[commission_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+          </div>
+          <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionSelected',4:'selectionUnSelected'}[chooseIndex]"
+               ng-click="chooseTab(3)"
+               style="border-radius: 13px;width: 60px;height: 26px;">
+            销量
+          </div>
+          <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionSelected'}[chooseIndex]"
+               ng-click="chooseTab(4)"
+               style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>价格</span>
+            <img ng-src="{{imgBaseURL+arrowState[price_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+          </div>
+          <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+               ng-click="chooseTab(2)"
+               style="border-radius: 13px;width: 60px;height: 26px;">
+            <span>筛选</span>
+            <img ng-src="{{imgBaseURL+filterState[filter_index]}}" style="width:11px;height: 11px;margin-left: 2px;">
+          </div>
+      </div>
+      <!-- 发现页面商品展示xyz -->
+        <div class="bg-white row row-no-padding row-warp">
+          <div ng-if="isFind && hasFindData" class="col col-50 border-bottom border-right" style="padding:3% 5% 5%;">
+            <div ui-sref="productDetail({'productId':data.firstVo.productId,'o2oType':data.firstVo.o2oType,'fromType':data.firstVo.fromType,'storeId':storeId})">
+              <div class="position-r">
+                <img ng-src="{{data.firstVo.defaultImageUrl | addImgURLPostfix:150:150}}" alt="商品图片" style="padding: 15px;width:100%">
+              </div>
+              <div class="sg-ms-title" ng-bind="data.firstVo.productFirstName"></div>
+              <div class="sg-ms-title  font-size-12" ng-bind="data.firstVo.productSecondName"></div>
+              <div class=" font-size-12">￥<span style="color: #EF4078" ng-bind="data.firstVo.finalPrice"></span>
+                <span ng-if="isBuyer==1&&isApp&&isCommission" style="margin:0 6px 0 2px;color: #EF4078;">
+                  <i style="color:#999;">/&nbsp;&nbsp;</i>赚
+                  <span style="color: #EF4078;font-weight:800;font-size:13px;" ng-bind="data.firstVo.commission|cutTwoFilter"></span>
+                </span>
+              </div>
+            </div>
+            <div class="font-size-12" style="display:flex;justify-content: flex-start;align-items:center;">
+                <i class="icon ion-ios-checkmark-outline color-text-theme font-size-20"
+                   ng-click="changeStateFind(data.firstVo.sku,0,0);"
+                   style="width: 20px;" ng-if="data.firstVo.onShelf&&isBuyer == '1'"></i>
+                <i class="icon ion-ios-plus-outline color-text-theme font-size-20"
+                   ng-click="changeStateFind(data.firstVo.sku,1,0);"
+                   style="width: 20px;" ng-if="!data.firstVo.onShelf&&isBuyer == '1'"></i>
+                <span class="color-text-theme" ng-bind="data.firstVo.hasStock" ng-if="data.firstVo.hasStock=='有货'"></span>
+                <span class="color-text-red" ng-bind="data.firstVo.hasStock" ng-if="data.firstVo.hasStock!='有货'"></span>
+            </div>
+          </div>
+
+          <div ng-if="isFind && hasFindData" class="col col-50 border-bottom border-right" ng-repeat="product in data.secondList" style="padding: 3% 5% 5%;">
+            <div ui-sref="productDetail({'productId':product.productId,
+                'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">
+              <div class="position-r">
+                <img ng-src="{{product.defaultImageUrl | addImgURLPostfix:80:80}}" alt="商品图片" style="padding: 15px;width:100%">
+              </div>
+              <div class="sg-ms-title" ng-bind="product.productFirstName"></div>
+              <div class="sg-ms-title  font-size-12" ng-bind="product.productSecondName"></div>
+              <div class=" font-size-12">￥<span style="color: #EF4078" ng-bind="product.finalPrice|cutTwoFilter"></span>
+                <span ng-if="isBuyer==1&&isApp&&isCommission" style="margin:0 6px 0 2px;color: #EF4078;">
+                  <i style="color:#999;">/&nbsp;&nbsp;</i>赚
+                  <span style="color: #EF4078;font-weight:800;font-size:13px;" ng-bind="product.commission|cutTwoFilter"></span>
+                </span>
+              </div>
+            </div>
+            <div class="font-size-12" style="display:flex;justify-content: flex-start;align-items:center;">
+                <i class="icon ion-ios-checkmark-outline color-text-theme font-size-20"
+                   ng-click="changeStateFind(product.productId,0,($index+1));"
+                   style="width: 20px;" ng-if="product.onShelf&&isBuyer == '1'"></i>
+                <i class="icon ion-ios-plus-outline color-text-theme font-size-20"
+                   ng-click="changeStateFind(product.productId,1,($index+1));"
+                   style="width: 20px;" ng-if="!product.onShelf&&isBuyer == '1'"></i>
+                <span class="color-text-theme" ng-bind="product.hasStock" ng-if="product.hasStock=='有货'"></span>
+                <span class="color-text-red" ng-bind="product.hasStock" ng-if="product.hasStock!='有货'"></span>
+            </div>
+            <!-- <div style="display:flex;justify-content: flex-start;align-items:center;">
+              <i class="icon ion-ios-checkmark-outline color-text-theme font-size-20"
+                 ng-click="changeStateFind(product.productId,0,($index+1));"
+                 style="width: 20px;" ng-if="product.onShelf"></i>
+              <i class="icon ion-ios-plus-outline color-text-theme font-size-20"
+                 ng-click="changeStateFind(product.productId,1,($index+1));"
+                 style="width: 20px;" ng-if="!product.onShelf"></i>
+                 <span ng-if="product.onShelf" class="color-text-theme">在店铺上架</span>
+                 <span ng-if="!product.onShelf">在店铺下架</span>
+            </div> -->
+          </div>
+
+          <div ng-if="isFind" style="padding: 3% 5% 5%;"  class="col col-50 border-bottom border-right mystore-list3" ng-repeat="product in data.normalList">
+            <div ui-sref="productDetail({'productId':product.productId,
+                'o2oType': product.o2oType,'fromType':product.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">
+              <div class="position-r">
+                <div class="list3-recommend" ng-if="product.recommend">推荐</div>
+                <img style="padding: 15px;width:100%" ng-src="{{product.defaultImageUrl | addImgURLPostfix:80:80}}" alt="商品图片">
+              </div>
+              <div class="sg-ms-title" ng-bind="product.productFirstName"></div>
+              <div class="sg-ms-title  font-size-12" ng-bind="product.productSecondName"></div>
+              <div class=" font-size-12">￥<span style="color: #EF4078" ng-bind="product.finalPrice|cutTwoFilter"></span>
+                <span ng-if="isBuyer==1&&isApp&&isCommission" style="margin:0 6px 0 2px;color: #EF4078;">
+                  <i style="color:#999;">/&nbsp;&nbsp;</i>赚
+                  <span style="color: #EF4078;" ng-bind="product.commission|cutTwoFilter"></span>
+                </span>
+              </div>
+            </div>
+            <div class="font-size-12"  style="display:flex;justify-content: flex-start;align-items:center;">
+                <i class="icon ion-ios-checkmark-outline color-text-theme font-size-20"
+                   ng-click="changeStateFindNormal(product.productId,0,$index);"
+                   style="width: 20px;" ng-if="product.onShelf&&isBuyer == '1'"></i>
+                <i class="icon ion-ios-plus-outline color-text-theme font-size-20"
+                   ng-click="changeStateFindNormal(product.productId,1,$index);"
+                   style="width: 20px;" ng-if="!product.onShelf&&isBuyer == '1'"></i>
+                <span class="color-text-theme" ng-bind="product.hasStock" ng-if="product.hasStock=='有货'"></span>
+                <span class="color-text-red" ng-bind="product.hasStock" ng-if="product.hasStock!='有货'"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--非发现页商品展z示-->
+      <div class="row row-no-padding bg-white margin-0" ng-repeat="goods in productList" ng-if="!isFind">
+        <div class="col col-25 border-top">
+            <span class="font-size-10 bg-pink color-text-white position-a margin-top-10 text-align-c"
+                  style="padding-left: 3px;padding-right: 4px" ng-if="goods.recommend">推荐</span>
+
+          <div class="text-align-c" ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+            <img class="margin-bottom-10 margin-top-15 margin-left-5" ng-src="{{goods.defaultImageUrl|addImgURLPostfix:80:80}}" err-src=""
+                 style="width: 82px"/>
+          </div>
+        </div>
+
+        <div class="col col-75 border-top padding-top-5 padding-left-right-10">
+          <div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+            <div class="font-size-12 font-bold">
+              <span>{{goods.productFirstName}}</span>
+            </div>
+            <span class="font-size-12 font-bold"
+              >{{goods.productSecondName}}</span>
+          </div>
+          <div class="margin-bottom-5  font-size-10">
+            <div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+              <div style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;">
+                <span>{{goods.productTitle}}</span>
+              </div>
+              <div class="row padding-0 margin-bottom-5" ng-if="goods.showFinalPrice">
+                <span class="">价格:</span>
+                <span class="">￥{{goods.saleGuidePrice}}</span>
+              </div>
+              <div class="row padding-0">
+                <span class=""></span>
+                <span class="color-text-red">￥{{goods.finalPrice}}</span>
+              </div>
+            </div>
+            <div class="margin-right-10">
+              <div ui-sref="productDetail({'productId':goods.productId,
+          'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId})">
+                <span ng-if="isBuyer==1&&isApp&&isCommission">赚:</span>
+                <span ng-if="isBuyer==1&&isApp&&isCommission" class="color-text-red margin-right-10">￥{{goods.commission|cutTwoFilter}}</span>
+                <span class="color-text-theme" ng-bind="goods.hasStock" ng-if="isBuyer==1&&goods.hasStock=='有货'"></span>
+                <span class="color-text-red" ng-bind="goods.hasStock" ng-if="isBuyer==1&&goods.hasStock!='有货'"></span>
+                <span class="color-text-theme" ng-bind="goods.hasStock" ng-if="isBuyer==0&&goods.hasStock=='有货'"></span>
+                <span class="color-text-red" ng-bind="goods.hasStock" ng-if="isBuyer==0&&goods.hasStock!='有货'"></span>
+              </div>
+              <div class="position-r">
+                <div class="float-r position-a right-0 bottom-0">
+                  <i class="icon ion-ios-checkmark-outline color-text-theme font-size-26 "
+                     ng-click="changeState(goods.productId,0,$index);"
+                     style="width: 20px" ng-if="goods.onShelf&&isBuyer == '1'"></i>
+                  <i class="icon ion-ios-plus-outline color-text-theme font-size-26"
+                     ng-click="changeState(goods.productId,1,$index);"
+                     style="width: 20px" ng-if="!goods.onShelf&&isBuyer == '1'"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%;height: 50px"></div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+
+  <ion-footer-bar ng-if="isBuyer == '1'">
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+
+   <img ng-if="isBuyer == '0'" class="selectionButtonMain" ng-src="{{imgBaseURL}}img/ic-plus.png" alt="" ng-click="isButtonShow()"/>
+   <img ng-if="isBuyer == '0'&&buttonShow" class="selectionButton1" ng-src="{{imgBaseURL}}img/ic-search.png" alt="" ui-sref="goodsSearch({front:1})"/>
+   <img ng-if="isBuyer == '0'&&buttonShow" class="selectionButton2" ng-src="{{imgBaseURL}}img/ic-cart.png" alt="" ui-sref="cart"/>
+  <!-- add by shuang2.wang2dhc.com.cn  ****增加买家中心****-->
+   <img ng-if="isBuyer == '0'&&buttonShow" class="selectionButton3" ng-src="{{imgBaseURL}}img/ic_buyer_user.png" ui-sref="buyerCenter"/>
+</ion-view>

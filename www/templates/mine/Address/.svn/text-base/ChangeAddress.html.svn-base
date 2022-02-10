@@ -1,0 +1,41 @@
+<!--我的->地址管理-->
+<ion-view class="background" view-title="修改收货地址">
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 border-bottom bg-white">
+      <form>
+        <input class="width-100 input-style"  ng-model="address.acceptor" placeholder="收货人"
+               value={{acceptor}}>
+      </form>
+    </div>
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 border-bottom bg-white">
+      <form>
+        <input class="width-100 input-style"  ng-model="address.mobile" placeholder="手机号码"
+               value={{mobile}}>
+      </form>
+    </div>
+    <!--<div class="padding-left-5 padding-top-5 padding-bottom-5 border-bottom bg-white">-->
+      <div class="padding  bg-white border-bottom" ng-click="addressTop()">
+        <span class="padding-left-5" ng-bind="address.regionName" ></span>
+        <i class="icon ion-chevron-right float-r"></i>
+      </div>
+    <!--</div>-->
+    <div class="padding padding-top-5 padding-bottom-5 padding-left-15 bg-white">
+      <form>
+        <input class="width-100 input-style"  ng-model="address.detailAds" placeholder="详细地址"
+               value={{detailAds}}>
+      </form>
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+  <div style="width:100%;height:90px;position: fixed;bottom:0px;background: #f4f4f4;" ng-click="setDefault()">
+    <div style="width:91%;height:44px;margin:23px auto;background: #2979FF;border-radius: 50px;line-height:44px;text-align: center;color: #ffffff;font-size: 17px;">设为默认收货地址</div>
+  </div>
+</ion-view>

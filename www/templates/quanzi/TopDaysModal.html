@@ -1,0 +1,55 @@
+<ion-modal-view style="background: none;height: 100%;width: 100%">
+    <div class="position-r border-radius bg-white padding-10" style="margin-top: 50%;margin-left: auto;margin-right: auto;width: 80%">
+        <div class="width-100">
+            <div class="padding-top-bottom-5 float-l font-bold" style="width: 70px;color: #787878">开始时间:</div>
+            <div class="width-100" style="height: 30px;padding-left: 70px">
+                <div class="border height-100 border-radius float-l" style="width: 65%">
+                    <div class="float-r padding-5" ng-click="firstDatePicker()">
+                        <i class="icon ion-ios-calendar-outline" style="font-size: 20px;color: #cccccc"></i>
+                    </div>
+                    <div class="width-100 padding-5 text-align-r padding-left-0" style="padding-right: 30px" ng-bind="dateOne | date:'yyyy-MM-dd'"></div>
+                </div>
+                <div class="border height-100 border-radius float-r padding-top-bottom-5 text-center" style="width: 30%" ng-click="oneTimePicker()">
+                    <span ng-bind="applyDiscussionData.startHour"></span>
+                    <span ng-if="applyDiscussionData.startHour">:</span>
+                    <span ng-bind="applyDiscussionData.startMin"></span>
+                </div>
+            </div>
+        </div>
+        <div class="width-100 margin-top-10">
+            <div class="padding-top-bottom-5 float-l font-bold" style="width: 70px;color: #787878">结束时间:</div>
+            <div class="width-100" style="height: 30px;padding-left: 70px">
+                <div class="border height-100 border-radius float-l" style="width: 65%">
+                    <div class="float-r padding-5" ng-click="secondDatePicker()">
+                        <i class="icon ion-ios-calendar-outline" style="font-size: 20px;color: #cccccc"></i>
+                    </div>
+                    <div class="width-100 padding-5 text-align-r padding-left-0" style="padding-right: 30px" ng-bind="dateTwo | date:'yyyy-MM-dd'">12312321</div>
+                </div>
+                <div class="border height-100 border-radius float-r padding-top-bottom-5 text-center" style="width: 30%" ng-click="twoTimePicker()">
+                    <span ng-bind="applyDiscussionData.endHour"></span>
+                    <span ng-if="applyDiscussionData.endMin">:</span>
+                    <span ng-bind="applyDiscussionData.endMin"></span>
+                </div>
+            </div>
+        </div>
+        <div class="width-100 margin-top-10">
+            <div class="padding-top-bottom-5 float-l font-bold" style="width: 70px;color: #787878">申请理由:</div>
+            <div class="width-100" style="height: 86px;padding-left: 70px">
+                <div class="border width-100 height-100 border-radius padding-5">
+                    <textarea class="width-100" rows="4" style="resize: none" ng-model="applyDiscussionData.entryReason"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="width-100 margin-top-15 font-bold" style="font-size: 14px">
+            <div class="row row-no-padding">
+                <div class="col padding-right-5" ng-click="applyDiscussion()">
+                    <div class="padding-top-bottom-5 padding-left-right-10 text-center border-radius"
+                         style="color: #fe605c;border: 1px solid #fe605c">确认</div>
+                </div>
+                <div class="col padding-left-5">
+                    <div class="padding-top-bottom-5 padding-left-right-10 text-center border border-radius" style="color: #9a9a9a " ng-click="hideModal()">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-modal-view>

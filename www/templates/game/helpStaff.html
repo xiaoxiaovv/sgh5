@@ -1,0 +1,54 @@
+<ion-view class='background' view-title="大转盘抽奖游戏助力加油" hide-nav-bar="true" style="background-color: $color-theme;color:#000;">
+  <!-- 蒙版样式在anAuspiciousStart.scss中 -->
+  <div ng-if="showBg" class="helpStaffBg0 helpStaffBg"></div>
+  <div ng-if="showBg" class="helpStaffBg1 helpStaffBg" flex="main:center cross:center">
+    <div class="helpStaffBg11">
+      <div class="helpStaffBg12">
+        <img ng-if="codeNum==200" ng-src="{{imgBaseURL}}img/newhuodongq.png">
+        <img ng-if="codeNum==202" ng-src="{{imgBaseURL}}img/newhuodongw.png">
+        <img ng-if="codeNum==201" ng-src="{{imgBaseURL}}img/newhuodonge.png">
+        <span ng-if="codeNum==200">助力成功！</span>
+        <span ng-if="codeNum==202">您已助力
+每人最多助力一次哦！</span>
+        <span ng-if="codeNum==201">额外获得{{numberInit.chance}}次机会
+感谢您的助力！</span>
+      </div>
+      <div class="helpStaffBg13" flex="cross:center main:center">
+        <div ng-click="closeShow()">确定</div>
+      </div>
+    </div>
+  </div>
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="height:44px;padding-left:16px;" flex="main:center cross:center">
+      <div style="height:24px;width:24px;">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">大转盘抽奖游戏助力加油</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+    <img src='{{imgBaseURL}}img/yuangongyear.png' width=100%/>
+    <div class='newyearAc'>
+      <img src='{{imgBaseURL}}img/newyeartiao.png' class="newyeartiao" />
+      <div class='actdescri'>活动说明</div>
+      <div ng-bind-html="numberInit.helpDesc"></div>
+    </div>
+    <div class="zhulijiayou" ng-click='zhuli()'>助力加油</div>
+    <div class='zhulimiaoshu'>好友助力，将额外获得最多<span>{{numberInit.chance}}</span>次抽奖机会!</div>
+    <div class='hemgxian'></div>
+    <div class='zhulizhanshi'>好友助力实时展示</div>
+    <div class="zhulirenshu">助力人数:</div>
+    <div class="choujiangjihui">抽奖机会:</div>
+    <div class='zhulizhanshitu'>
+      <img src='{{imgBaseURL}}img/meiyouzhuli.png' />
+      <div ng-style="{'width':numberColor}">
+        <img src='{{imgBaseURL}}img/zhulichenggong.png' />
+      </div>
+      <div ng-style="{'left':renshuColor}">{{number}}人</div>
+    </div>
+    <div ng-if="numberInit.hasChanceNum < numberInit.chance" class='dibu-miaoshu'>已获得<span>{{numberInit.hasChanceNum}}</span>次机会，还差<span>{{numberInit.needHelpedNum}}</span>人助力即可再获得<span>1</span>次！</div>
+    <div ng-if="numberInit.hasChanceNum >= numberInit.chance" class='dibu-miaoshu'>你已获得额外的<span>{{numberInit.hasChanceNum}}</span>次机会，感谢你的参与！</div>
+    <div style="height:16px;"></div>
+  </ion-content>
+</ion-view>

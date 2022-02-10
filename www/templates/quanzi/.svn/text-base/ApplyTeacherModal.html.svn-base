@@ -1,0 +1,46 @@
+<ion-modal-view class="height-100 width-100" style="background: none">
+    <!--讲师正在审理中-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="applyStatus == 1">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/circleIcon/coldFace.png" class="width-height-50" alt="">
+        </div>
+        <div>讲师申请正在审理中，请耐心等待</div>
+        <div class="border-radius border margin-top-5" style="width: 60px;margin: 0 auto" ng-click="hideApplyModal()">确认</div>
+    </div>
+    <!--放弃申请-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="applyStatus == 3">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/circleIcon/coldFace.png" class="width-height-50" alt="">
+        </div>
+        <div>确定要放弃本次申请吗？</div>
+        <div class="padding-top-bottom-5 margin-top-5" style="padding: 0 40px">
+            <div class="text-center font-bold float-l" style="width: 70px;color: red" >
+                <div class="border-radius" style="line-height: 30px;border: 1px solid red" ng-click="hideApplyModal()">再想想</div>
+            </div>
+            <div class="text-center font-bold float-r" style="width: 70px;color: #0c60ee" ng-click="apply()">
+                <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee">放弃</div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+    <!--放弃申请-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white padding-20" ng-if="applyStatus == 2">
+        <div class="text-center">
+            <img ng-src="{{imgBaseURL}}img/circleIcon/hardFace.png" class="width-height-50" alt="">
+        </div>
+        <div>非常抱歉，您的申请讲师没通过</div>
+        <div>
+            <span>原因可能：</span>
+            <span ng-bind="message">填写不规范</span>
+        </div>
+        <div class="padding-top-bottom-5 margin-top-5" style="padding: 0 20px">
+            <div class="text-center font-bold float-l" style="width: 80px;color: red"ng-click="applyStatus3()">
+                <div class="border-radius" style="line-height: 30px;border: 1px solid red">放弃申请</div>
+            </div>
+            <div class="text-center font-bold float-r" style="width: 80px;color: #0c60ee">
+                <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee"  ng-click="editApply()">修改申请</div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>顺逛微店</title>
+  <style>
+    *{ margin: 0; padding: 0;}
+    .error-Prompt{ text-align: center; display: none;}
+    .error-Prompt img{ width: 110px; height: 110px; margin-top: 66px;}
+    .error-Prompt p{ font-size: 17px;color: #666666; text-align: center; margin-top: 28px;}
+  </style>
+</head>
+<body ng-app="starter">
+<div class="error-Prompt">
+    <img src="http://cdn09.ehaier.com/shunguang/H5/www/img/noRes_placeholder.png">
+    <p>系统开小差去了～<br/>
+    休息一下，等会儿再来！</p>
+</div>
+<script src="http://cdn09.ehaier.com/shunguang/H5/www/lib/artEditor/jquery-1.11.2.js"></script>
+<script>
+  //option :  0 正式环境  ,1 测试环境
+  var option = 0;
+  //顺逛正式环境和测试环境
+  var BASEURL = [
+    'http://m.ehaier.com',
+    'http://mobiletest.ehaier.com:38080'
+  ];
+  //用户中心测试环境和正式环境
+  var URLUserLogin = [
+    'http://account.haier.com/oauth/authorize',
+    'http://taccount.haier.com/oauth/authorize',
+  ];
+  //顺逛接口url
+  var URLJSON = {
+      'appServiceHomeUrl':BASEURL[option]+'/sg/h5/web/auth/appServiceHomeUrl.html', //get-第三方接入顺逛h5端流程中 通过code获取用户信息的授权接口-优佳
+      'OTHER_LOGIN':BASEURL[option]+'/v3/platform/web/member/getMember.json',//post-其他渠道登录
+      'IS_HAS_STORE':BASEURL[option]+'/v3/platform/web/app/is_has_store',//get-判断是否开店
+      'getToken':BASEURL[option]+'/v3/platform/web/token/getToken.json',//获取Token
+    };
+</script>
+<script type="text/javascript">
+  //优家免登
+  $(function(){
+
+    //URL转json
+    function urlToJson(url) {
+      url = url == null ? window.location.href : url;
+      var search = url.substring(url.lastIndexOf("?") + 1);
+      var obj = {};
+      var reg = /([^?&=]+)=([^?&=]*)/g;
+      search.replace(reg, function (rs, $1, $2) {
+          var name = decodeURIComponent($1);
+          var val = decodeURIComponent($2);
+          val = String(val);
+          obj[name] = val;
+          return rs;
+      });
+      return obj;
+    }
+
+    //通过mid获取用户信息；
+    function getUsers(mid){
+      $.ajax({
+              url: URLJSON.OTHER_LOGIN,
+              headers: {
+                TokenAuthorization: Token
+              },
+              type: "POST",
+              contentType:"application/x-www-form-urlencoded",
+              data: {
+                token:mid,
+              },
+              dataType: "json",
+              success: function(data){
+                if(data.success){
+                  //设置用户基本信息到本地
+                  setUserLocal(data);
+                  //判断是否开店
+                  var memberId = data.data.mid;
+                  getIsShop(memberId);
+                }else{
+                  //通过mid获取用户信息失败
+                  err();
+                }
+              }
+            })
+    }
+
+    //设置用户信息到本地
+    function setUserLocal(data){
+      var userObj = data.data;
+      var user = {};
+          user.mobile = userObj.mobile;
+          user.rankName = userObj.rankName;
+          user.cartNumber = userObj.cartNumber;
+          user.sessionKey = userObj.sessionKey;
+          user.userId = userObj.userId;
+          user.ucId = userObj.ucId;
+          user.token = userObj.token;
+          user.userName = userObj.userName;
+          user.mid = userObj.mid;
+          user.avatarImageFileId = userObj.avatarImageFileId;
+          user.nickName = userObj.nickName;
+          user.gender = userObj.gender;
+          user.email = userObj.email;
+          user.birthday = userObj.birthday;
+          user.sessionValue = userObj.sessionValue;
+          user.loginName = userObj.loginName;
+          user.accessToken = userObj.accessToken;
+          user = JSON.stringify(user);
+      //把用户信息存储本地
+      window.localStorage.USER_CACHE_KEY = user;
+      window.localStorage.loginMemberId = userObj.mid;
+      window.localStorage.isLogin = true;
+      window.localStorage.sg_login_token_secret = Token;
+    }
+
+    //判断用户是否开店
+    function getIsShop(memberId){
+      $.ajax({
+              url: URLJSON.IS_HAS_STORE,
+              headers: {
+                TokenAuthorization: Token
+              },
+              type: "get",
+              contentType:"application/x-www-form-urlencoded",
+              data: {
+                memberId:memberId,
+              },
+              dataType: "json",
+              success: function(data){
+                if(!data.data){
+                  window.localStorage.ROLE_INFO = 0;
+                }else{
+                  window.localStorage.ROLE_INFO = 1;
+                }
+
+                //跳转到优佳真实访问的页面
+                //alert('跳转到顺逛真实页面地址：'+redirect_url);
+                window.location.replace(redirect_url);
+              }
+            })
+    }
+
+    //加密
+    function setStrCode(str){
+      var arr=[];
+      for (var i=0; i<str.length; i++)
+      {
+        if(i == str.length-1  ){
+          var n=str.charCodeAt(i);
+        }else{
+          var n=str.charCodeAt(i)+',';
+        }
+        arr.push(n);
+      }
+      return arr.join('');
+    }
+
+    //解密
+    function getStrCode(str){
+      var arr=[];
+      var strArr = str.split(',');
+      for (var i=0; i<strArr.length; i++)
+      {
+        var str2=String.fromCharCode(strArr[i]);
+        arr.push(str2);
+      }
+      return arr.join('');
+    }
+    
+    //错误处理
+    function err(){
+      $('.error-Prompt').show();
+    }
+    
+    var Data = urlToJson(); //获取url数据
+    var redirect_url = Data.redirect_url; //获取redirect_url-加密;
+    var Token = '';
+
+    if(typeof Data.code != "undefined" && typeof Data.redirect_url != 'undefined'){
+      //用户中心访问本页面
+      var code = Data.code; //获取code；
+      redirect_url = getStrCode(Data.redirect_url); //获取redirect_url-解密;
+
+      //获取getToken
+      $.ajax({
+        url: URLJSON.getToken,
+        type: "GET",
+        contentType:"application/x-www-form-urlencoded",
+        dataType: "json",
+        success: function(data){
+          if(data.success){
+            //先获取Token 后面的请求都带上Token
+            Token = "Bearer"+data.data;
+            $.ajax({
+              url: URLJSON.appServiceHomeUrl,
+              headers: {
+                TokenAuthorization: Token
+              },
+              type: "GET",
+              contentType:"application/x-www-form-urlencoded",
+              data: {
+                code,
+              },
+              dataType: "json",
+              success: function(data){
+                if(data.success){
+                  var mid= data.data.mId;
+                  //通过mid获取用户信息；
+                  getUsers(mid)
+                }else{
+                  //获取mid失败
+                  err();
+                }
+              }
+            })
+          }else{
+            //获取Token失败
+            err();
+          }
+        }
+      })
+     
+    }else if(typeof Data.redirect_url != 'undefined'){
+      //优家访问本页面
+      var uri = encodeURIComponent(BASEURL[option]+'/www/oauthLogin.html');
+      redirect_url = setStrCode(Data.redirect_url); //获取redirect_url-加密;
+      var url = URLUserLogin[option]+'?client_id=ehaier&response_type=code&redirect_uri='+uri+'?redirect_url='+redirect_url;
+      //window.location.href = url;
+      window.location.replace(url);
+    }else{
+      //异常
+      err();
+      console.log('redirect_url为空!');
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<!--顺逛帮助详细页面-->
+<ion-view class="background" view-title="{{title}}" hide-nav-bar="false">
+  <div class="height-100" ng-if="!isIos">
+    <iframe src="{{trustSrc(htmlContent)}}" class="width-100 height-100 padding-left-5 padding－right-5">
+  </iframe>
+  </div>
+</ion-view>
+
+

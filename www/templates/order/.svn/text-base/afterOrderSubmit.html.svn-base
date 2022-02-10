@@ -1,0 +1,34 @@
+<!--模板-->
+<ion-view class="background" view-title="提交成功" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back back-btn" ng-click="goBack()" ng-if="!isToStore"></i>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <img ng-src="http://m.ehaier.com/www/img/homebefore.png"
+         style="width: 25px;height: 25px;margin-top: 5px;margin-right: 10px;" ng-click="goToStore()" ng-if="isToStore"
+         err-src=""/>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="padding-top-20 text-center">
+      <img style="height: 30%;width: 30%" src="http://www.ehaier.com/mstatic/wd/v2/img/pages/msg/order.png">
+
+      <div class="color-text-l text-center">订单提交成功</div>
+      <div ng-if="paymentCode!='cod'" class="color-text-s">主人:</div>
+      <div ng-if="paymentCode!='cod'">请您在<span class="color-text-orange">48</span>小时内付款</div>
+      <div ng-if="paymentCode!='cod'">否则订单会自动取消</div>
+      <div class="font-size-10 padding-top-10 text-center">
+        <span>订单编号：</span><span ng-bind="data.os"></span> <br>
+
+        <div class="color-text-orange"><span>宝物金额：￥</span><span ng-bind="data.oa"></span></div>
+      </div>
+    </div>
+    <div class="afterOrder-margin-top-30">
+      <a class="button-full bg-theme text-align-c margin-10 padding-5 border-radius color-white"
+         ng-click="payTest(data.os,data.pyc,data.oa)" ng-if="paymentCode=='online'">立即支付</a>
+
+      <a class="button-full bg-theme text-align-c margin-10 padding-5 border-radius color-white"
+         style="text-decoration: none;" ui-sref="orderManage">查看订单</a>
+    </div>
+    <div ng-click="orderRace()"><img style="display: block;width: 100%;margin-top: 12%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/race/search.jpg" alt="社群争霸赛"></div>
+  </ion-content>
+</ion-view>

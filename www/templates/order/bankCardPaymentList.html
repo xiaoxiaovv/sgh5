@@ -1,0 +1,35 @@
+<!--模板-->
+<ion-view class="scroll bg-white" view-title="银行卡选择" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-left" style="font-size: 30px; width: 30px; height: 30px;text-align:center;"
+       ng-click="goBack()"></i>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <i style='line-height:34px;font-size:16px;' ng-click="goCart()">订单中心</i>
+  </ion-nav-buttons>
+  <ion-content class="background">
+    <div class="border-bottom bg-white text-align-c" style="padding-top:11px;padding-bottom:14px;">
+      <p class="font-size-13 margin-bottom-12 margin-top-2">请在24小时内完成支付， 逾期订单自动取消</p>
+
+      <p class="font-size-13 margin-bottom-0">应付金额：<span class="text-color-light-red">￥{{totalAmount|number:2}}</span></p>
+    </div>
+    
+    <div class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10 fq"
+      ng-click="toPay(card.payTypeCode)" ng-repeat="card in cardsArr track by $index">
+      <div style="height:46px;width:46px;" class="margin margin-right-10 col-15">
+        <img ng-if="card.bankCode == 'CCB'" style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/CCB.png" alt="建行信用卡分期"/>
+        <img ng-if="card.bankCode != 'CCB'" style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/12CEB.png" alt="建行信用卡分期"/>
+      </div>
+      <div class="col col-center col-85">
+        <div style="position:relative;">
+          <span style="position:absolute;top:-10px;">{{card.payTypeName}}</span>
+          <span class="font-size-11 xyz" ng-class="canPayWhiticos?'assertive':''" style="position:absolute;top:10px;color:#ff4400;">{{card.changeInformation}}</span>
+        </div>
+        <i class="icon ion-chevron-right float-r margin-right-10 arrow" style=""></i>
+      </div> 
+          
+    </div>
+
+
+  </ion-content>
+</ion-view>

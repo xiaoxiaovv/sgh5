@@ -1,0 +1,60 @@
+<ion-view view-title="管理群成员" hide-nav-bar="true">
+  <ion-header-bar align-title="center" style="top:0;" class="border-bottom">
+    <button class="color-text-l button-clear" ng-click="goBack()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h3 class="title">管理群成员</h3>
+    <!--右上角圆点-->
+  </ion-header-bar>
+  <ion-content>
+    <!--搜索框-->
+    <div class="bg-background padding-top-bottom-5 padding-left-right-10">
+      <form>
+        <input type="search" class="border text-align-c input_text padding-left-10" style="width: 96%;border-radius: 20px;height: 15px;" ng-focus="inputIconHide()" ng-blur="inputIconIfShow()" placeholder="搜索"
+               ng-model="input.isInput" ng-keypress="($event.which === 13)?search($event):0">
+      </form>
+      <i ng-if="iconShow" class="icon ion-ios-search position-a font-size-20" style="top: 6px;left: 41%;color: #6a6a6a"></i>
+    </div>
+    <div class="list">
+      <div class="item" style="height: 60px;padding-left: 5px;" ng-repeat="item in members" ng-hide="item.hidden">
+        <div class="row" ng-click="chooseOne(item)">
+          <div class="col col-10" style="padding: 0;padding-right: 8px;color: #0076fd;" ng-click="">
+            <i class="icon ion-ios-circle-filled font-size-20 float-r " ng-if="item.isSelected"></i>
+            <i class="icon ion-ios-circle-outline font-size-20 float-r "  ng-if="!item.isSelected"></i>
+          </div>
+          <div class="col col-25 position-r" style="padding-left: 0">
+            <img  ng-src="{{item.imageFile}}" style="position: absolute;left: 0;width: 42px;height: 42px;top: -12px;border-radius: 4px;"/>
+            <div ng-if="item.userGag == 1" class="sg-jinyan" style="top:-12px;display: inline-block;position: absolute;text-align: center;height: 42px;width: 42px;background-color:#000;opacity: 0.5;border-radius: 4px;z-index:50;" ng-style="jinyanHover">
+              <img ng-src="{{imgBaseURL}}img/quanzi/jinyan.png" style="width: 100%;height: 100%;">
+            </div>
+            <span style="text-align: center;left: 30px;top: 18px;right: auto;" class="sg-discuss-setting-zhu">主</span>
+          </div>
+          <div class="col " style="position: relative;left: -15px;top: -5px;">{{item.nickName}}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar style="height: 60px;">
+    <div class="row" style="padding-left: 10px;margin-top:10px;">
+      <div class="col col-10" style="padding: 0;padding-right: 8px;padding-top: 6px;color: #0076fd;"  ng-click="chooseAll()">
+        <i class="icon ion-ios-circle-filled font-size-20 float-r" ng-if="isAllSelected"></i>
+        <i class="icon ion-ios-circle-outline font-size-20 float-r" ng-if="!isAllSelected"></i>
+      </div>
+      <div class="col col-25 font-size-14" style="color: #0076fd;font-weight: bold;">
+        <span >全部选中</span>
+      </div>
+      <div class="col text-align-r">
+        <div class="inline-block  font-size-14 padding-top-5 sg-group-setting-footbtn" style="border-radius: 6px 0 0 6px;    background-color: #0076fd !important;color: #ffffff !important;"
+             ng-click="gagOrNo(1)" ng-class="{'bg-positive-on':buttonshowl,'bg-positive-off':!buttonshowl}">
+          禁言
+        </div>
+        <div class="inline-block  font-size-14 padding-top-5 sg-group-setting-footbtn" style="border-radius: 0px 6px 6px 0;color: #0076fd !important;"
+             ng-click="gagOrNo(0)" ng-class="{'bg-light-on':!buttonshowr,'bg-light-off':buttonshowr}">
+          解除
+        </div>
+      </div>
+
+    </div>
+
+  </ion-footer-bar>
+</ion-view>

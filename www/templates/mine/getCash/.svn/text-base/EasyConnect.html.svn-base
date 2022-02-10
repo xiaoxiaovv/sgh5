@@ -1,0 +1,26 @@
+<!--我的->快捷通-->
+<ion-view class="background" view-title="快捷通" hide-nav-bar="true">
+  <ion-header-bar align-title="center" style="background: #f8f8f8;border-bottom:1px solid #dddddd;top: 0 !important;">
+    <button ng-click="goBack();" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+    <label class="title">
+      <span>快捷通</span>
+    </label>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white text-align-r" ng-if="bindData.status != '0'" ng-click="clickBind()">
+      <span class="color-text-s">请绑定快捷通</span>
+      <i class="icon ion-chevron-right margin-left-10 margin-right-10"></i>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white" ng-if="bindData.status == '0'">
+      <span ng-bind="account"></span>
+      <span ng-bind="mobile" class="padding-left-15 font-size-12" ng-click="goToAccount()"></span>
+      <button class="button-clear border border-radius sg-blue-border float-r" style="color:#32BEFF" ng-click="clickUnBind()">解除绑定</button>
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

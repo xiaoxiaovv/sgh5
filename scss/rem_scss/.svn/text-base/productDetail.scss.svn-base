@@ -1,0 +1,15 @@
+.myduigou{
+  position: absolute;
+  display: inline-block;
+  top: 3px;
+  left: 45%;
+  width:26px;
+  height:26px;
+  font-family:'华文细黑 Bold', '华文细黑';
+  font-weight:700;
+  font-style:normal;
+  color:#FFFFFF;
+}
+.myflre{
+  bottom:40px!important;
+}

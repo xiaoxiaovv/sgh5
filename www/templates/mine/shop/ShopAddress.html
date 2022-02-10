@@ -1,0 +1,25 @@
+<!--我的页面->店铺信息->店铺地址-->
+<ion-view class="background" view-title="地址">
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="margin-top-20 padding padding-left-15 padding-right-15 bg-white border-bottom"
+         ui-sref="commonLocation({'flag':'SHOPADDRESS_LOCATION'})">
+      <span class="color-text-s">所在地区</span>
+      <span class="margin-left-20" ng-bind="address.value"></span>
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+    </div>
+    <div class="padding padding-top-5 padding-left-15 padding-bottom-5 bg-white">
+      <form>
+        <span class="color-text-s">详细地址</span>
+        <input class="margin-left-20 input-style-detail" maxlength="50" ng-model="detailAddress.value" value={{detailAddress.value}}
+               placeholder="">
+      </form>
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

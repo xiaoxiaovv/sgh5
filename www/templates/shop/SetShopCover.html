@@ -1,0 +1,15 @@
+<ion-view class="background" view-title="设置店铺封面">
+  <ion-content scrollbar-y="false">
+    <div class="padding-10 border-top bg-white">
+      <span>选择店铺封面</span>
+
+      <div class="ssc-shop-cover">
+        <div class="position-r" ng-click="chooseCover($index)" ng-repeat="item in shopCoverList">
+          <img ng-src="{{item.coverUrl}}" alt="店铺封面" class="scc-cover-img"/>
+          <img ng-src="{{imgBaseURL}}img/ic_select.png" class="ssc-cover-checkbox" ng-if="item.selected"/>
+          <img ng-src="{{imgBaseURL}}img/ic_check.png" class="ssc-cover-checkbox" ng-if="!item.selected"/>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

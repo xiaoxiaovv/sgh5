@@ -1,0 +1,39 @@
+<ion-view view-title="账号关联" cache-view="false" hide-nav-bar="true">
+    <ion-content scrollbar-y="false">
+      <div style="margin-bottom:43px;background-image: linear-gradient(0deg, #2979FF 8%, #295BFF 98%);width: 100%;height: 139px;">
+        <img src="{{imgBaseURL}}img/newuserBac.png" style="width:100%;"/>
+      </div>
+      <div style="background-color: #fff;">
+        <span ng-if="loginIndex==0" style="width: 85%;height: 44px;display:inline-block;line-height:44px;margin:0 7% 21px;border: 1px solid #E4E4E4;">
+          <input type="text" placeholder="请输入手机号码" style="display: inline;width: 100%;padding: 0 0 3px 5px;" ng-blur="isShowFooter();" ng-focus="isHideFooter ()" ng-model="userInfo.mobile" ng-change="canClickLoginOrNot()">
+        </span>
+        <span ng-if="loginIndex==1" style="width: 85%;height: 44px;display:inline-block;line-height:44px;margin:0 7% 21px;border: 1px solid #E4E4E4;">
+          <input type="text" placeholder="请输入手机号码/邮箱" style="display: inline;width: 100%;padding: 0 0 3px 5px;" ng-blur="isShowFooter();" ng-focus="isHideFooter ()" ng-model="userInfo.userName">
+        </span>
+        <span ng-if="loginIndex==1" style="width: 85%;height: 44px;display:inline-block;line-height:44px;margin:0 7% 19px;border: 1px solid #E4E4E4;position: relative;">
+          <input type="{{pwdArr[eyeIndex]}}" placeholder="请输入密码" style="display: inline;width: 100%;padding: 0 0 3px 5px;" ng-blur="isShowFooter();" ng-focus="isHideFooter()" ng-model="userInfo.password">
+          <img class="showPwd" ng-click="toggleEye()" ng-src="{{eyeArr[eyeIndex]}}" style="width: 24px;height: 24px;position: absolute;top: 12px;right: 8px;" alt="">
+        </span>
+        <span ng-if="loginIndex==0" style="width: 85%;height: 44px;display:inline-block;line-height:44px;margin:0 7% 21px;;border: 1px solid #E4E4E4;">
+          <input type="text" placeholder="请输入验证码" style="display: inline;width: 40%;padding: 0 0 3px 5px;"  ng-model="userInfo.captcha" ng-keypress="directLogin($event)">
+          <img ng-click="setImgCaptchaForPhone();" ng-src="{{identifyCodeImg}}" alt="点击刷新" style="height: 28px;width:82px;margin:8px 5px;vertical-align: middle;float: right;">
+        </span>
+        <span ng-if="loginIndex==0" style="width: 85%;height: 44px;display:inline-block;line-height:44px;margin:0 7% 21px;;border: 1px solid #E4E4E4;">
+          <input type="text" placeholder="请输入短信验证码" style="display: inline;width: 60%;padding: 0 0 3px 5px;" ng-blur="isShowFooter();" ng-focus="isHideFooter ()" ng-model="userInfo.verificationCode" ng-change="canClickLoginOrNot()">
+          <span ng-click="getVCode()" ng-style="VCodeStyle" style="margin-right:5px;display: inline-block;font-size: 14px;float:right;">{{VCodeTips}}</span>
+        </span>
+        <div ng-if="loginIndex==1" style="font-size: 14px;color: #666;margin: 5px 32px 10px;text-align:right;" ui-sref="requestPassword">忘记密码?</div>
+
+      </div>
+      <div ng-click="loginSG()" style="background: #2979FF;box-shadow: 0 2px 4px 0 rgba(41,121,255,0.5);height: 44px;text-align: center;color: #ffffff;vertical-align: middle;margin: 22px 7% 0;line-height: 44px;font-size: 16px;font-weight: bold;">立即关联</div>
+      <div ng-if="loginIndex==0" style="text-align: center;font-size: 14px;margin-top:25px;">若您已有海尔邮箱账号可<span style="font-size: 14px;color: #2979FF;" ng-click="concactID()">关联已有账号</span></div>
+      <div ng-if="loginIndex==1" style="text-align: center;font-size: 14px;margin-top:25px;">您可以绑定新账号<span style="font-size: 14px;color: #2979FF;" ng-click="mobileLogin()">创建新账号</span>或<span style="font-size: 14px;color: #2979FF;" ng-click="mobileLogin()">手机验证码登录</span></div>
+      <div style="font-size:12px;color:#8F8F8F;width:100%;margin:0 auto;text-align:center;margin-top:30px;">补全账号信息可快捷登录顺逛商城，顺逛商城<span style="display:block;">承诺保障您的手机号码及账号隐私安全！</span></div>
+    </ion-content>
+    <div class="width-100 height-100" style="background: rgba(0,0,0,0.3);position:fixed;z-index:12;"
+            ng-if="show"></div>
+    <div style="margin:auto;text-align:center;position:fixed;top:0;bottom:0;left:0;right:0;z-index:13;background:#fff;width:300px;height:60px;line-height:60px;"ng-style="keyboardHeight"ng-if="show">
+      请重新打开页面，获取授权
+    </div>
+  </ion-view>
+  

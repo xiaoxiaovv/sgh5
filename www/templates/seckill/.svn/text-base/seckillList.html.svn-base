@@ -1,0 +1,100 @@
+<!--领券中心-->
+<ion-view class="background" view-title="限时秒杀">
+  <ion-header-bar style="margin-top: 45px;background-color: #f8f8f8;" class="padding-top-0">
+    <div class="padding-top-bottom-5" style="width:100%;background-color: #f8f8f8;height: 40px;font-size: 13px;position: relative;">
+      <span>限时限量，先抢先得!</span>
+      <span style="position:absolute;right: 5px; color: #f00">秒杀商品不能使用购物车结算</span>
+    </div>
+  </ion-header-bar>
+  <ion-nav-buttons side="right">
+    <img class="button" style="background:transparent;width: 35px;height: 30px;padding-top: 5px;padding-bottom: 3px;" ng-click="share()" ng-src="{{imgBaseURL}}img/ic-share-b.png" ng-if="isApp"/>
+  </ion-nav-buttons>
+
+  <ion-content scrollbar-y="false" has-bouncing="false" style="margin-top: 45px !important;">
+    <!-- 下拉刷新-->
+    <ion-refresher on-refresh="doRefresh()"
+                   pulling-text="下拉刷新"
+                   refreshing-text="正在刷新!"
+                   refreshing-icon="ion-loading-b">
+    </ion-refresher>
+
+    <div class="text-center" ng-if="isNull">
+      <img style="margin-top: 124px;max-width: 30%" ng-src="{{imgBaseURL}}img/microSchool/im-wfm.png">
+
+      <div>现在还没有秒杀活动哦！</div>
+      <div>敬请期待吧！</div>
+    </div>
+    <div ng-repeat="act in seckillList track by $index"> <!-- 一个活动 -->
+      <div ng-class="$index==0?'border-top-none':''"
+        style="width: 100%;padding: 10px 15px;position: relative;top:0px;background-color: #f8f8f8;border-top:solid 1px;">
+        <img style="position: absolute;left: 15px;width: 15px;height: 15px;top: 14px;" ng-src="{{imgBaseURL}}img/seckill-clock.png">
+
+        <p style="padding-left: 20px;margin-bottom: 5px;">秒杀时间<br>
+          {{act.beginStr}}至{{act.endStr}}</p>
+      </div>
+      <div style="width:100%;position: relative">
+        <div style="display: inline-block;float: right;padding-right: 10px;" ng-if="act.status===1">
+          <img style="width: 16px;height: 16px;vertical-align: middle;" ng-src="{{imgBaseURL}}img/seckill-sandglass.png">
+          <span style="font-size: 12px;">距离开始</span>
+          <countdown class="sg-countdown" curtime="{{serverMs}}" endtime="{{act.beginTime*1000}}"></countdown>
+        </div>
+        <div style="display: inline-block;float: right;padding-right: 10px;" ng-if="act.status===2">
+          <img style="width: 16px;height: 16px;vertical-align: middle;" ng-src="{{imgBaseURL}}img/seckill-sandglass.png">
+          <span style="font-size: 12px;">距离结束</span>
+          <countdown class="sg-countdown" curtime="{{serverMs}}" endtime="{{act.endTime*1000}}"></countdown>
+        </div>
+        <div style="display: inline-block;float: right;padding-right: 10px;" ng-if="act.status===3">
+          <img style="width: 16px;height: 16px;vertical-align: middle;" ng-src="{{imgBaseURL}}img/seckill-sandglass.png">
+          <span style="font-size: 12px;">活动已经结束</span>
+        </div>
+      </div>
+      <!--  商品列表区 -->
+      <div class="list" style="padding-top:30px;" ng-if="act.status != 3">
+        <div class="item" ng-repeat="product in act.sgSeckillItemFormList track by $index">
+          <div style="display: inline-block;width:30%;position: relative;">
+            <img style="width: 80px;height:80px;margin-left: 5px;" ng-src="{{product.defaultImageUrl}}" alt="">
+
+            <div class="sg-small-label"><span style=" position: relative;top: -4px;"> 秒杀</span></div>
+          </div>
+          <div style="display: inline-block;width:68%;float: right;">
+            <div>
+              {{product.productName}}
+            </div>
+            <div>
+              <img style="width: 25px;height: 25px;" ng-src="{{imgBaseURL}}img/seckill-price.png">
+
+              <div style="display: inline-block;padding:0 4px;border:solid 1px #f00;font-size: 16px;border-radius: 6px;
+              position: relative;
+              right: 12px;color:#f00;">￥{{product.seckillPrice}}
+              </div>
+            </div>
+            <div style="margin-top: 4px;font-size:14px;">
+              <del class="">￥{{product.miniPrice}}</del>
+            </div>
+            <div
+              style="padding:5px 10px;position: absolute;bottom:15px;right:30px;color:#fff;background-color: #f00;border-radius: 5px;"
+              ng-click="toDetail(product,act.status)" ng-if="act.status==2&&product.remainderNum>0">马上抢>
+            </div>
+            <!-- status=4代表商品已抢光-->
+            <div
+              style="padding:5px 10px;position: absolute;bottom:15px;right:30px;color:#fff;background-color: #D9D9D9;border-radius: 5px;"
+              ng-click="toDetail(product,4)"
+              ng-if="act.status==2&&product.remainderNum==0">已抢光
+            </div>
+            <div
+              style="padding:5px 10px;position: absolute;bottom:15px;right:30px;color:#fff;background-color: #f00;border-radius: 5px;"
+              ng-if="act.status==3">已结束
+            </div>
+            <div
+              style="padding:5px 10px;position: absolute;bottom:15px;right:30px;color:#fff;background-color: #ff7139;border-radius: 5px;"
+              ng-click="toDetail(product,act.status)" ng-if="act.status==1">未开始>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-content>
+
+</ion-view>

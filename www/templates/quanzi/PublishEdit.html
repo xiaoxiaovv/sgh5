@@ -1,0 +1,61 @@
+<ion-view view-title="编辑发话题" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <div class="button font-bold font-size-16" style="color: #0277fd" ng-click="publishClick(publishInfo)">
+            发布
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="padding-10" ng-style="contentMarginBottom" style="z-index: -2">
+
+        <div class="row row-warp row-no-padding">
+            <div class="col col-33 padding-5 position-r width-100" ng-style="screenThreeWidth" ng-repeat="item in iconImageData track by $index" ng-style="trendHeight"
+                 ng-if="item.imgUrl">
+                <img src="{{item.imgUrl}}" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/errPlaceholder.png'" ng-click="showLarge(item.imgUrl)" class="width-100 height-100 block border">
+                <!--删除按钮-->
+                <div class="icon ion-close-circled position-a" style="bottom: 90%;left: 90%;"
+                     ng-click="deleteImg($index)"></div>
+            </div>
+            <div class="col col-33 padding-5">
+                <div class="border text-center position-r" style="color: #cccccc;padding-bottom: 99%;"
+                     ng-click="imgPush($index)">
+                    <i class="icon ion-ios-plus-empty block position-a"
+                       style="font-size: 86px;margin-top: -43px;top:50%;left:50%;margin-left: -22px"></i>
+                </div>
+            </div>
+            <!--微妙的方法-->
+            <!--<div clas s="col col-33 padding-5" ng-if="iconImageData.length == 0 || iconImageData.length%3 == 0">
+                <div class="text-center width-100 position-r" style="height: 0;padding-bottom: 100%">
+                </div>
+            </div>-->
+        </div>
+
+
+        <div class="margin-top-10 margin-bottom-25">
+            <textarea class="no-resize width-100" placeholder="此处填写想要发起的话题" ng-model="publishInfo.storyContent" maxlength="500" cols="30"
+                      rows="12"></textarea>
+        </div>
+    </ion-content>
+    <div class="width-100" style="position: fixed;bottom: 10px;z-index: 100" ng-if="publishNotice">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>亲，图片和文字必填一项哦</span>
+        </div>
+    </div>
+    <div style="background: #f2f2f2;color: #999999;border: 1px solid #cccccc;font-size: 13px;position: fixed;bottom: 0" class="text-align-r width-100"
+         ng-style="keyboardHeight">
+        <span>最多允许上传9张，还可以输入</span>
+        <span ng-bind="wordsNum" style="font-size: 16px"></span>
+        <span>个字</span>
+    </div>
+    <!--背景-->
+    <div class="width-100 height-100" style="background: rgba(0,0,0,0.3);" ng-if="showBigImage" ng-click="closeImg()"></div>
+    <!--放大的图片-->
+    <div
+            style="width:90%;display:table-cell;height:80%;text-align:center; vertical-align:middle;background: transparent;position: fixed;top: 10%;left: 5%;z-index:10;"
+            ng-if="showBigImage" ng-click="closeImg()">
+        <i style="display:inline-block; height:100%;vertical-align:middle"></i>
+        <img style="width: 90%;vertical-align: middle;" ng-src="{{Url}}" err-src=""/>
+    </div>
+</ion-view>

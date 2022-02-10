@@ -1,0 +1,246 @@
+<ion-view class="background" view-title="家用电器" hide-nav-bar="true">
+  <!--<ion-nav-bar>-->
+    <!--<ion-nav-back-button class="color-text-l" ng-click="goBack()">-->
+    <!--</ion-nav-back-button>-->
+    <!--<ion-nav-buttons side="right">-->
+      <!--<img class="EMSearchImg" ng-click="goToSearch()" ng-src="img/EMSearch@3x.png" />-->
+    <!--</ion-nav-buttons>-->
+  <!--</ion-nav-bar>-->
+  <div flex="main:justify cross:center" class="ele_header" ng-class="{true:'iosAppFixedTopEle',false:'normalFixedTopEle'}[isIosApp]">
+    <div ng-click="goBack()"><img class="back" src="{{imgBaseURL}}img/ic_back_ios@3x.png" alt=""></div>
+    <div>家用电器</div>
+    <div flex="main:justify cross:center" style="width:auto">
+      <div ng-click="goToSearch()"><img class="search" src="{{imgBaseURL}}img/EMSearch@3x.png" alt=""></div>
+      <div style="margin: .12rem .2rem 0 .1rem;">
+        <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+          <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+      </div>
+      </div>
+    </div>
+  </div>
+  <img ng-src="{{imgBaseURL}}img/icon_toTop.png" class="backToTop" alt="" ng-click="backToTop()" ng-if="showBackToTopImg">
+  <ion-content lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide' ng-class="{true:'iosAppTopEle',false:'normalTopEle'}[isIosApp]">
+    <!--Swiper轮播1-->
+    <!-- <div class="swiper-container swipers-box" id="swpc-Mall-1" style="height:auto;">
+      <ul class="swiper-wrapper" style="height:auto;">
+        <li class="swiper-slide" ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+            <img class="selection_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:400}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" />
+        </li>
+      </ul>
+      <div class="swiper-pagination" id="swpp-Mall-1"></div>
+    </div> -->
+    <ion-slide-box delegate-handle="electricalMall_slider" auto-play="true" does-continue="true">
+      <ion-slide ng-repeat="imageItem in bannerList track by $index" >
+        <img class="selection_banner" ng-src="{{imageItem.pic|addImgURLPostfix:750:400}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)"
+        data-growing-idx="{{$index+1}}"/>
+      </ion-slide>
+    </ion-slide-box>
+    <!--限时抢购-->
+    <div class="sg_timeSale" ng-if='false && showFlashSale'>
+      <div flex="main:center cross:center" class='cuigengduo' ui-sref="flashsale" data-growing-idx="1">
+          <div>更多</div>
+          <img ng-src="{{imgBaseURL}}img/toSeeMoreRed@2x.png">
+      </div>
+      <div class="timeSale_top" flex="main:center cross:center" ui-sref="flashsale">
+        <div></div>
+        <div flex="main:center cross:center">
+          <img ng-src="{{imgBaseURL}}img/deadline@2x.png">
+          <div>限时抢购</div>
+        </div>
+        <div></div>
+      </div>
+      <div class="timeSale_countDown" ui-sref="flashsale">
+        <div flex="main:center cross:center">
+          <div>{{flashHour}}</div>
+          <div>还有</div>
+          <div>{{countTime.hours}}</div><span>时</span>
+          <div>{{countTime.minutes}}</div><span>分</span>
+          <div class='whynodo'>{{countTime.seconds}}</div><span>秒</span>
+          <div>{{flashText}}</div>
+        </div>
+      </div>
+      <div class="scrollX-container">
+        <div class='scrollX-box'>
+          <div ng-repeat="item in flashProductList track by $index" ng-click="goProductDetail(item.productId)" class='timeSale_list_item col-30' data-growing-idx="{{$index+2}}">
+            <img ng-src="{{item.imageUrl|addImgURLPostfix:300:300}}">
+            <div>{{item.productName}}</div>
+            <div><span>¥{{dealPrice(item.flashsalePrice).priceInt||'--'}}</span><span>.{{dealPrice(item.flashsalePrice).priceFloat||'--'}}</span></div>
+            <div ng-if="isWd && settingsList[0].checked" flex="main:center cross:center">
+              <i>¥&nbsp;{{item.commission|keepInt}}</i><span>{{item.commission|keepFloat}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--热门活动-->
+    <div class="fav_recommond" ng-if="midActivtyList.length!=0||!midActivtyList">
+      <div class="fr__top" flex="main:center cross:center">
+        <div></div>
+        <div flex="main:center cross:center"><img ng-src="{{imgBaseURL}}img/Group@3x.png">热门活动</div>
+        <div></div>
+      </div>
+      <div class="fav_pic" flex="main:justify">
+        <!--Swiper轮播2-->
+        <!-- <div class="swiper-container swipers-box" id="swpc-Mall-2" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in midActivtyList track by $index" style="height:auto;">
+                <img ng-repeat="item in imageItem" ng-src="{{item.pic}}" ng-click="bannerClick(item.linkType,item.link,item.relationId)" />
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swpp-Mall-2"></div>
+        </div> -->
+        <ion-slide-box auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in midActivtyList track by $index" ng-init="wrapIndex=$index">
+            <img ng-repeat="item in imageItem" ng-src="{{item.pic}}" ng-click="bannerClick(item.linkType,item.link,item.relationId)"
+            data-growing-idx="{{wrapIndex*3+$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+    </div>
+    <!--夏日清凉节-->
+    <div class="ele_equipment" ng-repeat="floor in floors" ng-class='"module_" + $index'>
+      <div class="ee__top" flex="main:center cross:center">
+        <div></div>
+        <div>{{floor.title}}</div>
+        <div></div>
+      </div>
+      <div class="ee_middle">
+        <!--Swiper轮播3-->
+        <!-- <div class="swiper-container swipers-box" id="swpc-Mall-3-{{ $index }}" style="height:auto;">
+          <ul class="swiper-wrapper" style="height:auto;">
+            <li class="swiper-slide" ng-repeat="imageItem in floor.bannerList track by $index" style="height:auto;">
+                <img class="ele_banner" ng-src="{{imageItem.pic}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)" />
+            </li>
+          </ul>
+          <div class="swiper-pagination" id="swpp-Mall-3-{{ $index }}"></div>
+        </div> -->
+        <ion-slide-box delegate-handle="ele_slider" auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="imageItem in floor.bannerList track by $index">
+            <img class="ele_banner" ng-src="{{imageItem.pic}}" ng-click="bannerClick(imageItem.linkType,imageItem.link,imageItem.relationId)"
+            data-growing-idx="{{$index+1}}"/>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      <div class="scrollX-container">
+        <div class='scrollX-box'>
+            <div ng-repeat="item in floor.productList track by $index" ng-click="goProductDetail(item.relationId)" class='timeSale_list_item col-30' data-growing-idx="{{$index+1}}">
+              <img ng-src="{{item.pic|addImgURLPostfix:200:200}}">
+              <div>{{item.productName}}</div>
+              <div>¥{{dealPrice(item.price).priceInt||'--'}}<span>.{{dealPrice(item.price).priceFloat||'--'}}</span></div>
+              <div ng-if="isWdHost==1 && settingsList[0].checked" flex="main:center cross:center">
+                ¥&nbsp;{{item.commission|keepInt}}<span>{{item.commission|keepFloat}}</span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!--滚动条-->
+    <div class="type_container scrollFixed">
+      <div class="type_box">
+        <div flex-box="0" ng-repeat="item in datatypeNameArr track by $index" class="EM_type_item" ng-class="selectedIndex==$index?'select-button default':''"
+             ng-click="selectTab($index)">
+          {{item.name}}
+        </div>
+      </div>
+    </div>
+      <!--<div flex="" class="swiper-container-type-list cui-tolhide scrollFixed">-->
+          <!--<div flex-box="0" ng-repeat="item in datatypeNameArr track by $index" class="EM_type_item" ng-class="selectedIndex==$index?'select-button default':''"-->
+            <!--ng-click="selectTab($index)">-->
+            <!--{{item.name}}-->
+          <!--</div>-->
+      <!--</div>-->
+    <!--选项卡-->
+    <div>
+      <div flex="main:justify cross:center" style="padding: 0 12px;position: relative;" class="selectionOnePixelBorder">
+        <div flex="main:center cross:center" ng-class="{0: 'selectionSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+          ng-click="chooseTab(0)" style="border-radius: 13px;width: 60px;height: 26px;">
+          <span>综合</span>
+          <img ng-src="{{comprehensive[comprehensive_index]}}" style="width:6px;height: 4px;margin-left:2px;">
+        </div>
+
+        <div ng-if="isBuyer == '1'&& settingsList[0].checked" flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+          ng-click="chooseTab(1)" style="border-radius: 13px;width: 60px;height: 26px;">
+          <span>佣金</span>
+          <img ng-src="{{arrowState[commission_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionSelected',4:'selectionUnSelected'}[chooseIndex]"
+          ng-click="chooseTab(3)" style="border-radius: 13px;width: 60px;height: 26px;">
+          销量
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionUnSelected',3:'selectionUnSelected',4:'selectionSelected'}[chooseIndex]"
+          ng-click="chooseTab(4)" style="border-radius: 13px;width: 60px;height: 26px;">
+          <span>价格</span>
+          <img ng-src="{{arrowState[price_index]}}" style="width: 6px;height: 10px;margin-left:2px;">
+        </div>
+        <div flex="main:center cross:center" ng-class="{0: 'selectionUnSelected',1:'selectionUnSelected',2:'selectionSelected',3:'selectionUnSelected',4:'selectionUnSelected'}[chooseIndex]"
+          ng-click="chooseTab(2)" style="border-radius: 13px;width: 60px;height: 26px;">
+          <span>筛选</span>
+          <img ng-src="{{filterState[filter_index]}}" style="width:11px;height: 11px;margin-left: 2px;">
+        </div>
+
+      </div>
+      <!--点击综合的子选项-->
+      <div ng-click="closeComprehensiveSub()" ng-if="showComprehensiveSub">
+        <div ng-click="selectComprehensiveSub($index,$event)" ng-repeat="item in comprehensiveSub track by $index" flex="main:justify cross:center"
+          style="height: 40px;background: #ffffff;padding: 0 20px;">
+          <span>{{item}}</span>
+          <img ng-if="selectComprehensiveSubIndex==$index" ng-src="{{imgBaseURL}}img/comprehensive_select.png" style="width: 24px;height: 24px;">
+        </div>
+      </div>
+    </div>
+
+
+    <!--筛选类容为空-->
+    <div style="padding:20px 0 20px 0;" ng-if="isListNull">
+      <img ng-src="{{imgBaseURL}}img/Nothing@2x.png" style="height:60px;width:50px;display:block;margin:0 auto 12px;">
+      <div style="font-size:13px;text-align:center;color:#999;line-height:13px;letter-spacing:0;">未查找到搜索商品</div>
+    </div>
+    <!--列表-->
+    <div class="row row-no-padding row-warp bg-white margin-0" ng-repeat="goods in contentDataList">
+      <div class="col col-25 border-top" ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">
+        <span class="font-size-10 bg-pink color-text-white position-a margin-top-10 text-align-c" style="padding-left: 3px;padding-right: 4px"
+          ng-if="goods.recommend">推荐</span>
+        <div class="text-align-c">
+          <img class="margin-bottom-10 margin-top-15 margin-left-5" lazy-src="{{goods.defaultImageUrl|addImgURLPostfix:160:160}}" animate-visible="true" animate-speed="1s"
+            alt="商品图片" style="width: 85px" />
+        </div>
+      </div>
+      <div class="col col-75 border-top padding-top-5 padding-left-right-10">
+        <div class="font-size-12 font-bold" ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">
+          <span>{{goods.productFirstName}}</span>
+        </div>
+        <span class="font-size-12 font-bold" ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">{{goods.productSecondName}}</span>
+        <div class="margin-bottom-5  font-size-10">
+          <div style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"><span ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">{{goods.productTitle}}</span></div>
+          <div class="row padding-top-0 padding-left-0" ng-if="goods.showFinalPrice">
+            <span ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})"
+              ng-if="front==1">价格:</span>
+            <span ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">¥{{goods.saleGuidePrice}}</span>
+          </div>
+          <div class="row padding-0" style='position: relative;'>
+            <span ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})"></span>
+            <span style="display: inline-block;width: 70px;" class="text-color-light-red" ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})">{{goods.finalPrice | currency:'￥'}}</span>
+            <div ui-sref="productDetail({'productId':goods.productId,'o2oType': goods.o2oType,'fromType':goods.fromType,'storeId':storeId,'shareStoreId':shareStoreId})" style='position: absolute;left:71px;'>
+                            <span ng-if="isBuyer==1 && settingsList[0].checked&& (goods.commission!==undefined)" class="border-circular">赚</span>
+            <span ng-if="isBuyer==1 && settingsList[0].checked&& (goods.commission!==undefined)" class="color-text-red margin-right-15" style='position: absolute;left:24px;top:0;'>¥{{goods.commission|cutTwoFilter}}</span>
+            <span ng-if="isBuyer==1 && settingsList[0].checked && (goods.commission==undefined)" class="color-text-red margin-right-15">佣金计算中</span>
+            </div>
+          </div>
+          <div class="margin-right-10">
+            <span class="color-text-theme" ng-if="goods.hasStock=='有货'" ng-bind="goods.hasStock"></span>
+            <span class="color-text-red" ng-if="goods.hasStock!='有货'" ng-bind="goods.hasStock"></span>
+            <div class="float-r position-r top--5" ng-if="!isApp&&(shareStoreId&&userId==shareStoreId)||isApp && (isBuyer==1)||(!isApp&&!shareStoreId&&isBuyer==1)">
+              <i class="icon ion-ios-checkmark-outline color-text-theme font-size-26 " ng-click="changeState(goods.productId,0,$index);"
+                style="width: 20px" ng-if="goods.onShelf"></i>
+              <i class="icon ion-ios-plus-outline color-text-theme font-size-26" ng-click="changeState(goods.productId,1,$index);" style="width: 20px"
+                ng-if="!goods.onShelf"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+  </ion-content>
+
+</ion-view>

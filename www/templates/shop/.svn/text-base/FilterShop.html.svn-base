@@ -1,0 +1,98 @@
+<ion-modal-view class="filter-modal-view">
+  <ion-header-bar class="text-align-c padding-10 border-bottom">
+    <div class="icon ion-ios-arrow-left float-l width-10" ng-click="backToStore()" style="font-size: 28px;"></div>
+    <span class="title">筛选</span>
+
+    <div class="filter-done" ng-click="filterDone()">完成</div>
+  </ion-header-bar>
+  <ion-content>
+    <!--库存筛选-->
+    <div class="border-bottom filter-category padding-top-bottom-10" ng-click="changeFilterOption(0)">
+      <span>库存状态</span>
+      (<span ng-bind="stockName"></span>)
+    </div>
+    <div ng-if="filterCategory[0]">
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="chooseStockState('all')">
+        <span>显示全部货</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="stockState"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="!stockState"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="chooseStockState('hasStock')">
+        <span>仅看有货</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!stockState"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="stockState"/>
+      </div>
+    </div>
+    <!--品牌筛选-->
+    <div class="border-bottom filter-category padding-top-bottom-10" ng-click="changeFilterOption(1)">
+      <span>品牌</span>
+      (<span ng-bind="brandName"></span>)
+    </div>
+    <div ng-if="filterCategory[1]" ng-repeat="item in brandList">
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="brandFilter($index)">
+        <span ng-bind="item.brandName"></span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!brandSelected[$index]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="brandSelected[$index]"/>
+      </div>
+    </div>
+    <!--价格筛选-->
+    <div class="border-bottom filter-category padding-top-bottom-10" ng-click="changeFilterOption(2)">
+      <span>价格区间</span>
+      (<span ng-bind="priceName"></span>)
+    </div>
+    <div ng-if="filterCategory[2]">
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(0)">
+        <span>全部</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[0]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[0]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(1)">
+        <span>0～1000</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[1]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[1]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(2)">
+        <span>1001～2000</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[2]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[2]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(3)">
+        <span>2001～3000</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[3]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[3]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(4)">
+        <span>3001～4000</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[4]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[4]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(5)">
+        <span>4001～5000</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[5]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[5]"/>
+      </div>
+      <div class="border-bottom filter-category-item padding-top-bottom-10" ng-click="priceFilter(6)">
+        <span>5000以上</span>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!priceSelected[6]"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="priceSelected[6]"/>
+      </div>
+    </div>
+    <div ng-repeat="item in otherList">
+      <div class="border-bottom filter-category padding-top-bottom-10" ng-click="changeOther($index)">
+        <span ng-bind="item.attrName"></span>
+        (<span ng-bind="otherName[$index]"></span>)
+      </div>
+      <div ng-if="otherState[$index]">
+        <div ng-repeat="detail in item.lstAttributeOptions">
+          <div class="border-bottom filter-category-item padding-top-bottom-10"
+               ng-click="chooseOtherItem($index,item.lstAttributeOptions.length)">
+            <span ng-bind="detail.optionValue"></span>
+            <img ng-src="{{imgBaseURL}}img/ic_check.png" class="padding-top-bottom-5" ng-if="!isCurrent[$index]"/>
+            <img ng-src="{{imgBaseURL}}img/ic_select.png" class="padding-top-bottom-5" ng-if="isCurrent[$index]"/>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

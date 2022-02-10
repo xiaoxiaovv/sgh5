@@ -1,0 +1,396 @@
+.xvv-popup{
+	.popup{
+	width: 290px;
+    border-radius: 13px;
+    background:transparent;
+    overflow:hidden;
+	}
+	.popup-body{
+		padding:0;
+	}
+	.radiubox{
+		    height: 20px;
+		    overflow: hidden;
+		    position: relative;
+		    margin-top: -1px;/* no */
+    		margin-bottom: -1px;/* no */
+		    i{
+		    	display: inline-block;
+			    position: absolute;
+			    border-bottom: 1px dashed #535353;
+			    left: 9px;
+			    right: 9px;
+			    top: 50%;
+			    z-index: 99;
+			    opacity: 0.15;
+		    }
+		    span:first-of-type{
+					    display: block;
+					    box-sizing: content-box;
+					    width: 20px;
+					    height: 20px;
+					    border-radius: 50%;
+					    border: 193px solid white;
+					    position: absolute;
+					    left: -205px;
+					    top: -193px;
+		    }
+		    span:last-of-type{
+		    	    display: block;
+				    box-sizing: content-box;
+				    width: 20px;
+				    height: 20px;
+				    border-radius: 50%;
+				    border: 119px solid white;
+				    position: absolute;
+				    left: 163px;
+				    top: -119px;
+		    }
+	}
+	.xvv-yongjin{
+    &>div:first-of-type{
+	    text-align: center;
+	    font-size: 19px;
+	    color: #333333;
+	    padding-top: 16px;
+	    background:#fff;
+    }
+    &>div:nth-of-type(2){
+	    text-align: center;
+	    font-size: 13px;
+	    color: #666666;
+	    padding-top: 8px;
+	    background:#fff;
+	    padding-bpttom: 31px;
+	    margin-top:-1px;/* no */
+    }
+    &>div:nth-of-type(3){
+	    float: left;
+	    text-align: start;
+	    width: 182px;
+	    line-height: 30px;
+	    font-size: 16px;
+	    color: #999999;
+	    padding-left: 30px;
+	    background:#fff;
+	    padding-top:10px;
+    }
+    &>div:nth-of-type(4){
+    	font-size: 16px;
+	    color: #000000;
+	    text-align: start;
+	    line-height: 30px;
+	    background:#fff;
+	    padding-bottom:13px;
+	    padding-top:10px;
+    }
+    &>div:last-of-type{
+    	height: 40px;
+	    line-height: 40px;
+	    text-align: center;
+	    font-size: 17px;
+	    color: #2979FF;
+	    border-top: 1px solid #CDCED2;
+	    background:#fff;
+    }
+}
+.xvv-yongjin2{
+    &>div:first-of-type{
+	    text-align: center;
+	    font-size: 19px;
+	    color: #333333;
+	    padding-top: 16px;
+	    background:#fff;
+    }
+    &>div:nth-of-type(2){
+	    text-align: center;
+	    font-size: 13px;
+	    color: #666666;
+	    padding-top: 8px;
+	    background:#fff;
+	    margin-top:-1px;/* no */
+    }
+    &>div:nth-of-type(3){
+    	padding-top:31px;
+    	overflow:auto;
+    	height:289px;
+    	background:#fff;
+    }
+    &>div:nth-of-type(3)>div:nth-of-type(1){
+	    float: left;
+	    text-align: start;
+	    width: 182px;
+	    line-height: 30px;
+	    font-size: 16px;
+	    color: #999999;
+	    padding-left: 30px;
+    }
+    &>div:nth-of-type(3)>div:nth-of-type(2){
+    	font-size: 16px;
+	    color: #000000;
+	    text-align: start;
+	    line-height: 30px;
+    }
+    &>div:nth-of-type(3)>div:nth-of-type(4){
+    	border-top: 1px solid #D9D9D9;
+    }
+    &>div:last-of-type{
+    	height: 40px;
+	    line-height: 40px;
+	    text-align: center;
+	    font-size: 17px;
+	    color: #2979FF;
+	    border-top: 1px solid #CDCED2;
+	    background:#fff;
+    }
+    .xvv-yongjinother{
+    	padding-top: 15px;
+	    background:#fff;
+	    width:242px;
+	    margin:0 auto;
+    }
+    .xvv-yongjinother>div{
+			    text-align: start;
+			    line-height: 18px;
+			    font-size: 13px;
+			    padding-left: 5px;
+	    }
+	    .xvv-yongjinother>div>p>span{
+	    	margin-left:56px;
+	    	font-size: 13px;
+	    	display: inline-block;
+		    width: 110px;
+		    line-height: 18px;
+		    vertical-align: text-top;
+	    }
+}
+}
+.xvv-popupTime{
+	.popup{
+	width: 290px;
+    border-radius: 13px;
+	}
+	.popup-body{
+		padding:0;
+	}
+	.popup-buttons{
+		margin-top:38px;
+		button:first-of-type{
+			    border-radius: 0 0 0 13px;
+		}
+		button:last-of-type{
+			    border-radius: 0 0 13px 0;
+		}
+	}
+	.xvv-Time{
+		div:first-of-type{
+			font-size: 19px;
+		    margin-top: 22px;
+		    color: black;
+		}
+		div:nth-of-type(2){
+			float: left;
+		    margin-top: 32px;
+		    margin-left: 16px;
+		    text-align: start;
+		    font-size:14px;
+		    p:first-of-type{
+		    	color:#999999;
+		    }
+		    p:last-of-type{
+		    	color:#333333;
+		    }
+		}
+		div:nth-of-type(3){
+			float: left;
+			width:13px;
+			height:25px;
+			margin:40px 10px 0 10px;
+			img{
+				width:100%;
+				height:100%;
+			}
+		}
+		div:nth-of-type(4){
+			float: left;
+		    margin-top: 32px;
+		    text-align: start;
+		    font-size:14px;
+		    p:first-of-type{
+		    	color:#999999;
+		    }
+		    p:last-of-type{
+		    	color:#333333;
+		    }
+		}
+	}
+}
+.xvv-month{
+	font-size:15px;
+	width:355px;
+	margin:0 auto;
+	background: white;
+	line-height:28px;
+	border-radius: 13px;
+	padding: 9px 20px 12px;
+	margin-top:10px;
+	div:nth-of-type(2){
+	border-bottom: 1px solid #D9D9D9;
+    margin-top: 8px;
+    margin-bottom: 8px;
+	}
+	span{
+		color: #999999;
+	}
+}
+.xvv-qita{
+	&>div:last-of-type{
+		position:relative;
+		span:nth-of-type(2){
+			color: #FF4400;
+		}
+		span:nth-of-type(3){
+			position: absolute;
+    		right: 0;
+    		color:#999999;
+		}
+	}
+}
+.xvv-popupSome{
+	.popup{
+	width: 290px;
+    border-radius: 13px;
+    background:transparent;
+    overflow:hidden;
+	}
+	.popup-body{
+		padding:0;
+	}
+	.radiubox{
+		    height: 20px;
+		    overflow: hidden;
+		    position: relative;
+		    margin-top: -1px;/* no */
+    		margin-bottom: -1px;/* no */
+		    i{
+		    	display: inline-block;
+			    position: absolute;
+			    border-bottom: 1px dashed #535353;/* no */
+			    left: 9px;
+			    right: 9px;
+			    top: 50%;
+			    z-index: 99;
+			    opacity: 0.15;
+		    }
+		    span:first-of-type{
+					    display: block;
+					    box-sizing: content-box;
+					    width: 20px;
+					    height: 20px;
+					    border-radius: 50%;
+					    border: 193px solid white;
+					    position: absolute;
+					    left: -205px;
+					    top: -193px;
+		    }
+		    span:last-of-type{
+		    	    display: block;
+				    box-sizing: content-box;
+				    width: 20px;
+				    height: 20px;
+				    border-radius: 50%;
+				    border: 119px solid white;
+				    position: absolute;
+				    left: 163px;
+				    top: -119px;
+		    }
+	}
+	.xvv-some{
+		&>div:first-of-type{
+	    	height: 62px;
+		    line-height: 60px;
+		    font-size: 19px;
+		    color: black;
+		    background:#fff;
+    	}
+    	.xvv-overflow{
+    		    height: 222px;
+    			overflow: auto;
+    			background:#fff;
+    			padding-bottom:13px;
+    	}
+    	.xvv-det:not(:first-of-type){
+    		padding-top:20px;
+    	}
+	    .xvv-det>div{
+			    text-align: start;
+			    line-height: 30px;
+			    font-size: 16px;
+			    color: #999999;
+			    padding-left: 28px;
+	    }
+	    .xvv-det>div>p>span{
+	    	margin-left:48px;
+	    	font-size: 16px;
+	    	color:black;
+	    	display: inline-block;
+		    width: 149px;
+		    line-height: 21px;
+		    vertical-align: text-top;
+	    }
+	    &>div:last-of-type{
+	    	height: 40px;
+		    line-height: 40px;
+		    text-align: center;
+		    font-size: 17px;
+		    color: #2979FF;
+		    border-top: 1px solid #CDCED2;
+		    background:#fff;
+	    }
+	}
+}
+.xvv-otherTotal{
+	background: #EEEEEE;
+    height: 50px;
+    padding-left: 16px;
+    font-size: 18px;
+    line-height: 48px;
+    span{
+    position: absolute;
+    right: 16px;
+    font-size: 13px;
+    top: 13px;
+    height: 25px;
+    line-height: 23px;
+    border: 1px solid #BEBEBE;
+    border-radius: 3px;
+    padding: 0 8px;
+    }
+}
+.xvv-otherList{
+		font-size: 16px;
+    padding-left: 16px;
+    position: relative;
+    height: 57px;
+    line-height: 55px;
+    background: white;
+    border-bottom: 1px solid #D9D9D9;
+    span{
+    	position:absolute;
+    	right: 34px;
+    	color:#FF4400;
+    }
+    img{
+    	position:absolute;
+    	    right: 15px;
+		    width: 6px;
+		    height: 11px;
+		    top: 50%;
+    		transform: translateY(-50%);
+    }
+}
+/* #shopRevenueChart{
+	div:first-of-type{
+		background:#f4f4f4;
+	}
+} */

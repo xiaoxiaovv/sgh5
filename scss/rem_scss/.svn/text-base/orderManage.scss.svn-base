@@ -1,0 +1,24 @@
+.ordernav{
+	height:34px;
+	display:flex;
+	justify-content:space-around;
+    line-height:34px;
+    background:white;
+}
+.highlight{
+    border-bottom:2px solid red;
+    padding-bottom:7px;
+    color:red;
+}
+.myorderM .sg-bar-subheader{
+	height:34px;
+}
+.myorderM .bar{
+	padding:0;
+}
+.myorderM .bar .col{
+	padding:0;
+}
+.cui-margin-top{
+	margin-top:40px!important;
+}

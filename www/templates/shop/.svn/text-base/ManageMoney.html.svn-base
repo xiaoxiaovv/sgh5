@@ -1,0 +1,146 @@
+<ion-view view-title="投资" hide-nav-bar="true">
+  <div style="z-index: 99;position: fixed;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7)"
+       ng-show="showAgreement">
+    <div style="background:transparent;width:89%;height:70%;position:absolute;z-index:110;top:0;left:0;bottom:0;right:0;margin:auto;">
+      <img ng-src="{{imgBaseURL}}img/Coin Regulation@2x.png" style="width:26px;position:absolute;top:-20px;right:0;"
+           ng-click="closeAgreement()">
+      <ion-scroll style="overflow:hidden;width:100%;height:100%;position:absolute;top:20px;background:#ffffff;padding:16px 10px 30px;font-size: 14px;color: #333;letter-spacing: -0.41px;border-radius:8px;">
+        <pre>天天聚服务协议
+
+天天聚服务协议（以下简称“本协议”）是快捷通支付服务有限公司（以下简称“本公司”或“快捷通”）与快捷通用户（以下简称“您”或“投资者”）就天天聚服务相关事项所订立的有效合约。投资者通过网络页面点击确认或以其他方式选择接受本协议，即表示投资者与本公司已达成协议并同意接受本协议的全部约定内容以及与本协议有关的各项规则及本公司网站所包含的其他与本协议或本协议项下各项规则的条款和条件有关的各项规定。
+ 
+在接受本协议之前，请您仔细阅读本协议的全部内容（特别是以粗体标注的内容）。如果您不同意本协议的任意内容，或者无法准确理解本公司对条款的解释，请不要进行后续操作。
+ 
+一、定义
+除本协议另有规定外，下列用语具有如下含义：
+1、天天聚服务：指本公司为投资者提供的可以通过本公司系统与金融机构（包括但不限于保险公司、银行、基金公司等）系统相连，通过网上支付系统完成理财资金的划转、支付及在线进行理财产品交易、信息查询等服务。
+2、身份认证要素：指在交易中本公司用于识别投资者身份的信息要素，包括但不限于投资者的快捷通账户、密码、数字证书、短信校验服务、快捷盾、签约时设置的电话号码、手机号码等及本公司认可的其他要素。
+ 
+二、特别提示
+1、本公司有权采取各种必要手段对投资者进行身份验证，并据此决定提供服务的范围及为投资者开放服务种类、范围及进行业务操作的权限。为保障投资者资金安全，本公司有权根据投资者类别、身份认证措施、交易风险度等因素的不同设定不同的安全策略。
+2、身份认证要素是本公司识别投资者的依据，投资者必须妥善保管，不得将身份认证要素提供给任何第三方或交于任何第三方使用。使用上述身份要素所发出的一切指令均视为投资者本人所为，投资者应对此产生的后果负责。对非本公司原因造成的账户、密码等信息被冒用、盗用或非法使用，由此引起的一切风险、责任、损失、费用等应由投资者自行承担。
+3、您知晓并同意，为向您提供天天聚服务，本公司有权将您的个人信息（包括但不限于：姓名、身份证号、手机号、邮箱、联系地址、快捷通帐号等）提供给相应的金融机构。您同意相关金融机构有权将您的个人信息（包括但不限于您在金融机构的账户、交易信息、资产状况等）提供给本公司。
+4、您知晓并同意，您开通天天聚服务的同时即开通快捷通基金理财专户。
+5、您知晓并同意，您网上提交的资金划转委托，以银行系统与本公司系统记录为准；您提交的理财产品交易委托以相应的金融机构的系统记录为准。您在快捷通可以查询到您持有理财产品的净额、收益、交易明细等，但该数据仅供参考用，所有数据应以相应的金融机构系统数据为准。
+6、本公司及其关联公司仅向投资者提供资金支付渠道，本公司及其关联公司并非为理财产品购买协议的参与方，不对理财产品购买协议的协议方的任何口头、书面陈述或者向快捷通网上传的线上信息之真实性、合法性做任何明示或暗示的担保，或对此承担任何连带责任，不对相关金融机构及任何第三方的法定义务和/或契约责任承担任何连带责任。本公司亦无义务参与与理财产品协议交易资金划转及支付环节之外的任何赔偿、纠纷处理等活动。
+7、您授权在您开通天天聚服务的同时，将天天聚增加为快捷通为您提供的各类代扣服务的扣款资金渠道之一，可使用天天聚作为代扣资金渠道的具体代扣服务以快捷通实际向您提供的为准。
+您理解并同意，快捷通有权根据实际情况在提供具体代扣服务时决定天天聚在扣款资金渠道中的顺位，具体以页面提示或快捷通网站的相关规则、解释为准。
+您理解并同意，当您发送代扣指令，且该代扣指令对应的扣款渠道为天天聚时（简称“天天聚代扣”），即会触发天天聚货币基金份额支付的申请。您理解并同意自您发送“天天聚代扣”指令之日起，您将不再承担\享有对应的天天聚货币基金份额的损益。
+8、本公司联合业务合作伙伴一起，向您提供各类消费服务。服务的业务内容将由本公司的业务合作伙伴提供，本公司将配合您的交易操作和业务合作伙伴的业务规定为您完成账务处理。
+ 
+三、服务对象范围
+1、天天聚服务仅向符合中华人民共和国年满18周岁、具有完全民事权利能力和民事行为能力且通过快捷通实名认证账户的大陆居民提供。投资者必须按照本网站的注册要求提供本人真实、准确及完整的信息，并负责对本人信息及时更新。本公司视本网站所有用户已就上述各项条件与要求作出承诺，保证本人身份的合法性，以及所提供信息的真实性、准确性、完整性和非过时性。
+2、若您提供任何不真实、不准确、不完整或过时的身份信息，或者本公司有合理理由怀疑您所提供的信息为不真实、不准确、不完整或过时的，本公司有权中止（或终止）向您提供服务，并拒绝您现在或未来使用本服务之各项服务之全部或部分功能，对此本公司不承担任何责任。同时，因此所产生的任何直接或间接的支出、损失、费用、处罚将由您来承担。 若由于您未及时更新信息，而导致本服务无法提供或本服务的有关流程及操作发生任何错误，您不得以此为由取消交易、拒绝支付交易款项和服务手续费或采取其它不当行为，并将独立承担因此产生的所有责任和后果。
+ 
+四、天天聚服务保障
+若您未违反《快捷通服务协议》及本协议约定且因不能归责于您的原因，造成天天聚资金划转及支付损失的（投资损失及相关金融机构造成的损失除外），您可向快捷通申请补偿。您应在知悉发生损失后及时通知快捷通并按要求提交相关的申请材料和证明文件，快捷通将及时处理您的申请。具体处理方式由快捷通自行选择决定，快捷通承诺不会因此损害您的合法权益。您同意，快捷通在向您支付补偿的同时，即刻取得您可能或确实存在的就前述损失而产生的对第三方的所有债权及其他权利，包括但不限于就上述债权向第三方追偿的权利，且您不再就上述已经让渡给快捷通的债权向该第三方主张任何权利，亦不再就损失向快捷通主张任何权利。
+若您又从其它渠道挽回了损失的，或有新证据证明您涉嫌欺诈的，或者发生您应当自行承担责任的其他情形，您应在第一时间通知快捷通并将返还快捷通已补偿的款项，否则快捷通有权自行或根据保险公司委托采取包括但不限于从您全部或部分快捷通账户（含该账户之关联账户）划扣等方式向您进行追偿。
+ 
+五、通知
+关于本协议条款和其他协议、告示或其他有关您使用天天聚服务的通知，本公司将以电子形式或纸张形式通知您，包括但不限于依据您向本公司提供的电子邮件地址发送电子邮件的方式、依据投资者提供的联系地址寄送挂号信的方式、于本网站或合作伙伴网站上公布、或发送手机短信和电话通知等方式。
+ 
+六、服务费用
+您知晓并同意，本公司保留向您收取服务费的权利。一旦本公司确定收取或调整服务费收取方式及标准，将以在本公司网站发布公告的方式通知您，而不再作个别通知。
+ 
+七、一般规定
+1、本协议与本网站上其他条款和规则的名词解释、意思理解，可互相引用参照，如有不同理解，应以本协议为准。本协议未做规定的，以本公司网站上不时更新的《快捷通服务协议》为准。
+2、如果本协议条款中的部分条款被有管辖权的法院认定为违法，则并不影响其他条款的有效性。
+3、本公司保有制定和单方随时修改包括但不限于上述规则的各项规则。所有规则均构成本协议的有效组成部分。新制定和经修改的规则将在本网站上进行公布，不做逐一通知。新制定和经修改的规则一旦公布则立即生效，且对生效前的投资者同样适用。
+ 
+八、法律适用
+1、因本协议引起的或与本协议有关的争议，均适用中华人民共和国法律。
+2、因本协议引起的或与本协议有关的争议，本公司可与投资者协商解决。协商不成的，任何一方均有权提起诉讼，并以被告住所地人民法院为第一审管辖法院。
+</pre>
+        <p style="height:30px;"></p>
+      </ion-scroll>
+    </div>
+  </div>
+  <ion-header-bar style="background-color: #F8F8F8;">
+    <div style="position: absolute;left: 0;margin: 5px 16px;" ng-click="goBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">投资</div>
+    <!--<div ng-click="skipToTTJ()" style="position: absolute;right: 0;">-->
+      <!--<div style="font-size: 16px;color: #666;margin: 5px 15px">天天聚</div>-->
+    <!--</div>-->
+  </ion-header-bar>
+  <ion-content class="background">
+    <div style="background-color: #fff;">
+      <div class="one-pixel-border" style="width: 100%;height: 50px;text-align: center;line-height: 50px;">
+        <img ng-src="{{imgBaseURL}}img/icon-mm-recommend.png" style="width: 12px;height: 15px;">
+        <span style="font-size: 16px;color:#333;">推荐好友投资返佣金（海融易）</span>
+      </div>
+      <div ng-repeat="item in activityInfo" class="one-pixel-border" style="width: 100%;height: 44px;line-height: 44px;font-size: 12px;color: #333;">
+        <div style="padding: 0 16px;">
+          <span><span>好友</span><span ng-if="item.paymentType==2">累计</span><span ng-if="item.paymentType==1">首笔</span><span>投资：</span><span>￥</span><span ng-bind="item.minPayment"></span><span>-</span><span>￥<span ng-bind="item.maxPayment"></span></span></span>
+          <span style="float: right"><img ng-src="{{imgBaseURL}}img/icon-earn.png" style="width: 18px;height: 18px;position: relative;top: 2px;"><span>￥</span><span ng-bind="item.promoterRewards"></span></span>
+        </div>
+      </div>
+      <div style="padding: 10px 16px;">
+        <div style="font-size: 14px;color: #333;">活动规则</div>
+        <pre style="font-size: 12px;color: #999;margin: 5px 0" ng-bind="activityRule"></pre>
+      </div>
+    </div>
+    <div style="padding: 9px 16px;margin: 8px 0;background-color: #fff;height: 44px;line-height: 26px;">
+      <div style="float:left;"><span style="color: #999;margin-right:5px;">我的推荐码</span><span ng-bind="promoCode"></span></div>
+      <div ng-click="openQRModal()" style="float: right;border: 1px solid #2979FF;border-radius: 29px;height: 26px;line-height: 24px;color: #2979FF;font-size: 12px;width: 90px;text-align: center;">我的二维码</div>
+    </div>
+    <div style="background-color: #fff;">
+      <div class="one-pixel-border" style="height: 44px;line-height: 44px;color: #333;padding: 0 16px;">
+        <span style="float: left">好友七日投资记录</span>
+        <span style="float:right;">我获得的佣金（元）</span>
+      </div>
+      <div ng-repeat="item in promotionList" class="one-pixel-border" style="height: 44px;line-height: 44px;padding: 0 16px;color: #666;">
+        <div style="float: left">
+          <span style="padding-right: 10px;" ng-bind="item.rewardsDate"></span><span ng-bind="item.userName"></span><span>完成投资</span>
+        </div>
+        <div style="float: right;" ng-bind="item.rewardsValue"></div>
+      </div>
+      <div ng-if="hasMoreData" ng-click="getMoreData()" style="height: 44px;line-height: 44px;background-color: #fff;padding: 0 16px;text-align: center;">
+        <span style="color: #333;">查看更多</span>
+        <img ng-src="{{imgBaseURL}}img/icon_lookmore.png" style="width: 16px;height: 16px;position: relative;top:3px;">
+      </div>
+    </div>
+    <!--空间展位div-->
+    <div ng-if="isApp" style="width: 100%;height: 75px;"></div>
+  </ion-content>
+  <!--底部分享按钮-->
+  <div ng-if="isApp" style="background-color: #EEE;position:fixed;z-index: 10;bottom: 0;width: 100%;padding: 15px 0;">
+    <div ng-click="openShareModal()" style="width: 90%;height: 44px;background: #2979FF;box-shadow: 0 3px 6px 0 rgba(41,121,255,0.5);border-radius: 100px;text-align: center;color:#fff;line-height: 44px;margin-left: 5%;font-size: 17px;">分享</div>
+  </div>
+  <!--二维码modal-->
+  <script id="mm-qrcode-modal.html" type="text/ng-template">
+    <div style="width: 100%;height: 267px;background-color: #fff;position: absolute;bottom: 0;z-index: 10;">
+      <div style="text-align: center;font-size: 16px;color: #333;margin: 25px 0 14px;">好友在身边，请他扫一扫</div>
+      <div style="width: 100%;text-align: center;">
+        <div id="createdQrCode"></div>
+      </div>
+      <div class="one-pixel-border" style="text-align: center;">
+        <span style="font-size: 12px;color:#999;">我的推荐码</span>
+        <span style="font-size: 12px;color: #333;" ng-bind="promoCode"></span>
+      </div>
+      <div ng-click="closeQRModal()" style="background-color: #fff;height: 44px;line-height: 50px;font-size: 17px;color:#999;text-align: center;">取消</div>
+    </div>
+  </script>
+  <!--分享modal-->
+  <script id="mm-share-modal.html" type="text/ng-template">
+    <div style="width: 100%;height: 210px;background-color: #fff;position: absolute;bottom: 0;z-index: 10;">
+     <div style="font-size: 12px;text-align: center;margin: 21px 0 24px;">
+       <span>同意</span><span ng-click="openAgreement()" style="color: #4979FF;">《自动开通天天聚服务协议》</span>
+     </div>
+      <div class="one-pixel-border" style="padding: 0 0 25px;height: 100px;">
+        <div class="row">
+          <div ng-click="shareToPlatform(1)" class="col" style="text-align: center;">
+            <img ng-src="{{imgBaseURL}}img/mm-wechat.png" style="width: 45px;height: 45px;">
+            <div style="font-size: 12px;color: #999;">分享给好友</div>
+          </div>
+          <div ng-click="shareToPlatform(2)" class="col" style="text-align: center;">
+            <img ng-src="{{imgBaseURL}}img/mm-moments.png" style="width: 45px;height: 45px;">
+            <div style="font-size: 12px;color: #999;">分享到朋友圈</div>
+          </div>
+        </div>
+      </div>
+      <div ng-click="closeShareModal()" style="background-color: #fff;height: 44px;line-height: 50px;font-size: 17px;color:#999;text-align: center;">取消</div>
+    </div>
+  </script>
+</ion-view>

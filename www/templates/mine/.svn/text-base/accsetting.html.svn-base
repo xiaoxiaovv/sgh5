@@ -1,0 +1,80 @@
+<ion-view class="background" hide-nav-bar="true">
+  <!-- <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l"
+                         ng-click="goBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar> -->
+  <ion-content scrollbar-y="false">
+    <div style="height:20px;" ng-show="isIosApp"> </div>
+    <div class='myaccnav'>
+      <img ng-src="{{imgBaseURL}}img/newfanhui.png" alt="" width="20" height="20" ng-click="goBack()">
+      <div style='font-size: 18px;color:white;'>账户设置</div>
+    </div>
+    <div class='doimg'>
+      <img ng-src={{iconImage}} class="mydoimg"/>
+    </div>
+    <div class='gaimg'>
+      
+    </div>
+
+
+
+
+
+    <div class="text-align-c padding-bottom-10" style='padding-top:0.27rem; '>
+      <img class="head-icon" ng-click="changeIcon()" ng-src={{iconImage}} alt="头像" style='width:1.33rem;height:1.33rem;'/>
+
+      <div ng-bind="accountMessage" class="font-size-12"></div>
+      <!--<input  type="file" multiple accept="image/*" style="width: 70px;height: 50px;opacity: 0;z-index: 10;-->
+    <!--overflow: auto;position: absolute;top:10px;left:39%;}" ngf-select ng-model="userInfo.picTempFile" ng-if="!isPhone">-->
+    </div>
+    <!-- <div class="margin-bottom-20">
+    </div> -->
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom"
+         ui-sref="changeName({'userName':accountMessage,'birthday':accountBirthday,'gender':accountSexValue,'nickName':accountName,'email':accountEmail})">
+      昵称
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" ng-bind="accountName"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom"
+         ui-sref="selectSex({'userName':accountMessage,'birthday':accountBirthday,'gender':accountSexValue,'nickName':accountName,'email':accountEmail})">
+      性别
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" ng-bind="accountSex"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white" ng-click="selectDate()">
+      出生日期
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" ng-bind="accountBirthday"></span>
+    </div>
+    <div class="margin-bottom-10">
+    </div>
+    <div  class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref='accsafe'>
+      账户安全
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="address">
+      收货地址
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" ng-bind="accountEmail"></span>
+    </div>
+    <!-- <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="trueAuthenticationList" ng-if='isWdHost==1'>
+      我的认证
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div> -->
+    <div class="padding padding-left-15 padding-right-15 bg-white" ui-sref="Setup">
+      设置
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20"></span>
+    </div>
+    <div class="margin-bottom-10">
+    </div>
+      <div ng-click="goToDelete()" ng-if='true' class='iwantbye'>退出登录</div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

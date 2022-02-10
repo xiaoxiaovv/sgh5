@@ -1,0 +1,262 @@
+<ion-view class="background" view-title="新品众筹" hide-back-button="true" hide-nav-bar="true">		<div flex="main:center cross:center box:justify" style="background:#fff;border-bottom:1px solid #F4F4F4;" class="selection_top homePage_top" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]">
+				<div class="address" ng-click="addressTop()" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+					<img class="newadd" ng-src="{{locationImgUrl}}">
+					<div style="color:#666;">{{region}}</div>
+				</div>
+				<div class="search" flex="cross:center" style="background:#F4F4F4;" ui-sref="goodsSearch({front:1})">
+					<img src="{{imgBaseURL}}img/searchIcon@2x.png">
+					<div >{{hot_word}}</div>
+				</div>
+				<div class="message" flex="main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+					<img class="newmes" ng-src="{{messageImgUrl}}"style="margin-top:0;">
+					<!-- <div style="color:#666;">消息</div> -->
+				</div>
+			</div>
+		
+			<div class="homeNav" ng-class="{true:'iosAppFixedTopCopy',false:'normalFixedTopCopy'}[isIosApp]">
+				<ion-scroll class="newHomeScroll" direction="x" scrollbar-x="false" zooming="false" style="overflow: hidden;position: relative;">
+				  <div flex="" class="furnish_xScroll">
+					<div flex-box="0" ng-click="chooseType(0,$event)" class="timeSale_list_item">
+					  成套家电
+					</div>
+					<div flex-box="0" ng-click="chooseType(1,$event)" class="timeSale_list_item">
+					  居家定制
+					</div>
+					<div flex-box="0" ng-click="chooseType(2,$event)" class="timeSale_list_item">
+					  众创定制
+					</div>
+					<div flex-box="0" ng-click="chooseType(3,$event)" style="color:#2979FF;" class="timeSale_list_item">
+					  新品众筹
+					</div>
+					<div flex-box="0" ng-click="chooseType(4,$event)" class="timeSale_list_item">
+					  百货超市
+					</div>
+					<div flex-box="0" ng-click="chooseType(5,$event)" class="timeSale_list_item">
+					  生活服务
+					</div>
+					<div flex-box="0" ng-click="chooseType(6,$event)" class="timeSale_list_item">
+                  		体验店
+                	</div>	
+					<div flex-box="0" ng-click="chooseType(-1,$event)" class="timeSale_list_item">
+			  
+					</div>
+					<div class="runningBox"></div>
+				  </div>
+			  
+				</ion-scroll>
+			  </div>
+			<ion-content  lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide homePageContent' ng-class="{true:'iosAppFixedTopCopyHome',false:'normalFixedTopCopyHome'}[isIosApp]">  
+				  
+				<!--Swiper轮播1-->
+				<!-- <div class="swiper-container swipers-box" id="swpc-newsend-1" style="height:auto;" ng-if='bannerList.length!=0'>
+					<ul class="swiper-wrapper" style="height:auto;">
+						<li class="swiper-slide" ng-repeat="imageItem in bannerList track by $index" style="height:auto;">
+								<img  ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)" height=100% width=100%/>
+						</li>
+					</ul>
+					<div class="swiper-pagination" id="swpp-newsend-1"></div>
+				</div> -->
+			<ion-slide-box auto-play="true" delegate-handle="newsend_slide" style='height:4rem' ng-if='bannerList.length!=0'>
+			      <ion-slide ng-repeat="imageItem in bannerList">
+			        <img  ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)" height=100% width=100%/>
+			      </ion-slide>
+		    </ion-slide-box>
+		<div class='row text-align-c' style='background: white;margin-top: -5px;'>
+			<div class="col" ui-sref='newres'>
+				<div style='width:1.227rem;height:1.227rem;margin:0 auto;margin-top: 5px;'><img src="{{imgBaseURL}}img/res.png" alt="" style='width:100%;height:100%;'></div>
+				<p style='margin-top: 8px;'>预约</p>
+			</div>
+			<div class="col" ui-sref='presell'>
+				<div style='width:1.227rem;height:1.227rem;margin:0 auto;margin-top: 5px;'><img src="{{imgBaseURL}}img/resell.png" alt="" style='width:100%;height:100%;'></div>
+				<p style='margin-top: 8px;'>预售</p>
+			</div>
+			<div class="col" ui-sref='crowdFunding'>
+				<div style='width:1.227rem;height:1.227rem;margin:0 auto;margin-top: 5px;'><img src="{{imgBaseURL}}img/getmoney.png" alt="" style='width:100%;height:100%;'></div>
+				<p style='margin-top: 8px;'>众筹</p>
+			</div>
+		</div>
+		<div flex="main:justify" ng-if='others.length!=0' class='newsendyh'>
+			<div ng-repeat="i in others"><img ng-src="{{i.imageUrl}}" alt="{{i.activityName}}" ng-click="bannerClick(i.hyperLinkType,i.hyperLink,i.id)"/></div>
+		</div>
+		<div  class='cui-newnav' ng-if='!(newprod.length==0 || !newprod)'>
+		<h3 class="newbuy newbuy-yue">新╱品╱预╱约</h3>
+		<div class="new-span"></div>
+		<div class="newbuymore" ui-sref="newres">
+		查看更多
+		</div>
+		</div>
+		<div class="newbuysay" ui-sref="productDetail({'productId':newprod.productId,'storeId':storeId})" ng-if='!(newprod.length==0 || !newprod)'>
+			<div style="width:100%;" class="newsone">
+			<img ng-src="{{newprod.imageUrl}}" alt="">
+				<div>
+					<span>剩余时间：</span><span>{{showtime}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="newbuypri" ng-if='!(newprod.length==0 || !newprod)'>
+			<div class="newbuyprione">
+				<p><span>预约价：</span><span ng-if='isWd'>¥{{newprod.price}}</span><span ng-if='!isWd' style='font-size: 24px;'>¥{{newprod.price}}</span><span ng-if='isWd&&isCommission'>.00</span><img src="img/zhuan2.png" alt="赚" ng-if='isWd&&isCommission'><span ng-if='isWd&&isCommission'>¥{{newprod.commission|keepInt}}</span><span ng-if='isWd&&isCommission'>{{newprod.commission|keepFloat}}</span>
+				</p>
+				<p>
+					已预约：{{newprod.reserveNum}}人
+				</p>
+			</div>
+			<div class="newbuypritwo" ui-sref="productDetail({'productId':newprod.productId,'storeId':storeId})">
+				立即预约
+			</div>
+		</div>
+		<div class='cui-newnav'  ng-if='presell.length!=0'>
+		<h3 class="newbuy newbuy-shou">品╱质╱预╱售</h3>
+		<div class="new-span"></div>
+		<div class="newbuymore" ui-sref="presell">
+		查看更多
+		</div>
+		</div>
+		<ul class="yushoutotal" ng-if='presell.length!=0'>
+			<li class="yushoushuju" ng-repeat="i in presell" ui-sref="productDetail({'productId':i.productId,'storeId':storeId})">
+				<div class="yushoushujuleft">
+					<img ng-src="{{i.imageUrl}}" alt="">
+				</div>
+				<div class="yushoushujuright">
+					<p>
+					{{i.productName}}
+					</p>
+					<p class="yssjpri">
+						<span style="font-size: 14px;/*no*/">订金</span>
+						<span style="color:#FF4400;font-size: 14px;/*no*/">¥{{i.advance}}</span>
+						<span style="color:#999999;margin-left: 0.08rem;">商城价：{{i.price}}</span>
+					</p>
+					<p style="color:#666666" ng-if='false'>
+					已预约：3267328人
+					</p>
+					<div class="yushoushujuding">
+						立即预订
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class='cui-newnav'  ng-if='(zcnow.length!=0 && zcnow!=undefined) || (zcpre.length!=0 && zcnow!=undefined) || (zcold.length!=0 && zcnow!=undefined)'>
+		<h3 class="newbuy newbuy-yue">众╱筹</h3>
+		<span class="new-span new-span1"></span>
+		<div class="newbuymore" ui-sref='crowdFunding'>
+		查看更多
+		</div>
+		</div>
+		<div ng-if='zcnow.length!=0 && zcnow' ng-repeat="i in zcnow">
+		<div class="newbuysay">
+			<div class="new-zhong">
+			<img ng-src="{{(i.customImage==null)?(i.imageUrl):(i.customImage)}}">
+				<div>
+					<span>剩余时间：</span><span>{{i.toEndTime}}</span>
+				</div>
+			</div>
+		</div>
+	<div class="newzhichi newsendsurp">
+		<p>{{i.activityName}}</p>
+		<div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+                            <!--显示进度-->
+                            <div class="crowd_home_new_loading_load" style='width:56%;'>
+                              <div  class="crowd_home_new_loading_color" ng-style="{width:(i.raisedAmount/i.targetAmount)*100+'%'}"></div>
+                            </div>
+                            <!--显示文字-->
+                            <span class="cui_num min_w_home">{{i.schedule.slice(0,i.schedule.indexOf('.'))+'%'}}</span>
+                            <!-- <span class="cui_num min_w_home">{{((i.raisedAmount/i.targetAmount)*100).toString.slice(0,2)+'%'}}</span> -->
+                          </div>
+		<div class='absol' ui-sref="crowd_funding_details({'zActivityId':i.id})">立即支持</div>
+	</div>
+	<div class="newsendsurp jineslide">
+		<div>
+			<p>{{i.targetAmount}}</p>
+			<p>目标金额</p>
+		</div>
+		<div>
+			<p>{{i.raisedAmount}}</p>
+			<p>已筹金额</p>
+		</div>
+		<div>
+			<p>{{i.supportNum}}</p>
+			<p>支持人数</p>
+		</div>
+	</div>
+	</div>
+	<div ng-if='zcpre.length!=0 && zcpre' ng-repeat="i in zcpre">
+	<div class="newbuysay" >
+			<div class="new-zhong">
+			<img ng-src="{{(i.customImage==null)?(i.imageUrl):(i.customImage)}}">
+				<div style='background: #02AD58;'>
+					<span>开始倒计时：</span><span>{{i.toStartTime}}</span>
+				</div>
+			</div>
+		</div>
+	<div class="newzhichi newsendsurp">
+		<p>{{i.activityName}}</p>
+		<div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+                            <!--显示进度-->
+                            <div class="crowd_home_new_loading_load" style='width:56%;'>
+                            </div>
+                            <span class="cui_num min_w_home">未开始</span>
+                          </div>
+		<div style="background:#02AD58" class='absol' ui-sref="crowd_funding_details({'zActivityId':i.id})">预热中</div>
+	</div>
+	<div class="newsendsurp jineslide">
+		<div>
+			<p>{{i.targetAmount}}</p>
+			<p>目标金额</p>
+		</div>
+		<div>
+			<p>{{i.raisedAmount}}</p>
+			<p>已筹金额</p>
+		</div>
+		<div>
+			<p>{{i.supportNum}}</p>
+			<p>支持人数</p>
+		</div>
+	</div>
+	</div>
+	<div ng-repeat="item in zcold" ng-if='zcold.length!=0'>
+	<div class="newbuysay">
+			<div class="new-zhong">
+			<img ng-src="{{(item.customImage==null)?(item.imageUrl):(item.customImage)}}">
+			</div>
+		</div>
+	<div class="newzhichi newsendsurp">
+		<p>{{item.activityName}}</p>
+		<div class="crowd_home_new_loading" style='margin-left: 0.32rem;'>
+                            <!--显示进度-->
+                            <div class="crowd_home_new_loading_load" style='width:56%;'>
+                              <div  class="crowd_home_new_loading_color" ng-style="{width:(item.raisedAmount/item.targetAmount)*100+'%'}"></div>
+                            </div>
+                            <!--显示文字-->
+                            <span class="cui_num min_w_home" >{{item.schedule}}</span>
+                            <!-- <span class="cui_num min_w_home">{{((item.raisedAmount/item.targetAmount)*100).toString.slice(0,2)+'%'}}</span> -->
+                          </div>
+
+		<div style="background:#F43531" class='absol' ui-sref="crowd_funding_details({'zActivityId':item.id})">众筹成功</div>
+	</div>
+	<div class="newsendsurp jineslide">
+		<div>
+			<p>{{item.targetAmount}}</p>
+			<p>目标金额</p>
+		</div>
+		<div>
+			<p>{{item.raisedAmount}}</p>
+			<p>已筹金额</p>
+		</div>
+		<div>
+			<p>{{item.supportNum}}</p>
+			<p>支持人数</p>
+		</div>
+	</div>
+	</div>
+	</ion-content>
+	<ion-footer-bar>
+			<div ng-include="'templates/common/Tabs.html'"></div>
+		  </ion-footer-bar>
+</ion-view>
+<!--
+
+http://cdn22.testehaier.com/file/599cf7d46e1ef4f505077c8a.png
+http://cdn22.testehaier.com/file/599cf7d46e1ef4f505077c8a.png
+http://cdn21.testehaier.com/file/599bd37d0ba9f79aeaec0853.png
+
+-->

@@ -1,0 +1,15 @@
+<!--我的->顺逛课堂-->
+<ion-view class="background" view-title="顺逛学院" hide-nav-bar="true">
+  <div flex="main:center cross:center" style="position: relative;padding:0 5px;width: 100%;background: #f8f8f8;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-click="$ionicGoBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;position: absolute;bottom: 10px;left:5px;"></img>
+    <div style="font-size: 20px;color: #444444;">顺逛学院</div>
+  </div>
+  <ion-content style="background: #fff" scrollbar-y="false" ng-class="{true:'iosContentCss',false:'otherContentCss'}[isIOS]">
+    <div style="display: block; width: 100%;margin: 2% 0 20% 0;">
+      <div ui-sref="newHand" style="margin-top: 2%;"><img style="display: block;width: 100%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/competition/four.png" alt="顺逛帮助"></div>
+      <div ui-sref="topic.qwschool" style="margin-top: 2%;"><img style="display: block;width: 100%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/competition/two.png" alt="微店课堂"></div>
+      <div ng-click="goNewHand()" style="margin-top: 2%;"><img style="display: block;width: 100%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/competition/three.png" alt="新手必读"></div>
+      <div ng-click="goLearningHaier()" style="margin-top: 2%;"><img style="display: block;width: 100%;" src="http://cdn09.ehaier.com/shunguang/H5/www/img/competition/one.png" alt="学习进阶"></div>
+    </div>
+  </ion-content>
+</ion-view>

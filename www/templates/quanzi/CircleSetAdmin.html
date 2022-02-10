@@ -1,0 +1,87 @@
+<ion-view view-title="设置管理员"hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+  </ion-nav-buttons>
+  <!--<ion-nav-buttons side="right">-->
+    <!--<button ng-click="yes();" class="button-clear" style="color:#999999;">确定</button>-->
+    <!--<button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;" ng-if="isApp">
+      <img src="img/share2.png" class="block" style="width: 20px;height: 20px">
+    </button>-->
+    <!--<button ng-click="isClick()" class="button-clear" style="opacity: 1 !important;">
+      <img ng-src="./img/dot3.png" class="block" style="width: 20px;height: 20px">
+    </button>
+  </ion-nav-buttons>-->
+  <ion-content delegate-handle="mainScroll" overflow-scroll="true">
+    <!-- 楼主 管理员-->
+    <div class="  font-size-12  border-bottom  "
+         style="background-color: #fafafa;height:30px;color: #777;">
+      <div class="float-l" style="width: 5px;height:30px;background-color: #e652f1;"></div>
+      <div class="padding-top-5">
+        <i class="margin-left-10">圈主</i>
+        <span>/</span>
+        <span>管理员</span>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+    <!-- 楼主 遍历内容-->
+    <div style="width:100%;" ng-repeat="item in mainuser2list">
+      <div class="padding-15 border-bottom position-r">
+        <div class="inline-block position-r" ng-click="inPersonalPage(item.id)">
+          <img ng-src="{{item.img | ImageUserFilter}}" class="vertical-middle block"
+               onerror="this.src='img/quanzi/user.jpg'"
+               style="width: 40px;height: 40px;border-radius: 4px;">
+        </div>
+        <div class="inline-block position-r margin-left-10"ng-click="inPersonalPage(item.id)"
+             style="top: -16px;" ng-bind="item.userName">
+          烟花易冷
+        </div>
+        <div class="inline-block position-a" 
+            style="top: 25px;right:15px;width:50px;height:24px;line-height:24px;border:1px solid rgba(41,121,255,0.87);font-size:12px;color:rgba(41,121,255,0.87);text-align:center;"
+            ng-click="decAdmin(item.userCode)">取消</div>
+      </div>
+    </div>
+    <div style="padding:12px 0 0 16px;">
+        <div style="display:inline-block;margin-right:8px;border:1px solid #dedede;border-radius:5px;width:38px;height:38px;font-size:24px;color:#999;line-height:34px;text-align:center;"
+         ng-click="addAdmin()">+</div>
+        <div style="font-size:14px;color:rgba(102,102,102,0.87);display:inline-block;">
+            <span style="padding-right:10px;">管理员</span>
+            <span>( {{mainuser2list.length}}</span>
+            <span>/</span>
+            <span> 8 )</span>
+        </div>
+    </div>
+    <!--成员-->
+    <!--<div class="  font-size-12  border-bottom  "
+         style="background-color: #fafafa;height:30px;color: #777;">
+      <div class="float-l" style="width: 5px;height:30px;background-color: #0076ff;"></div>
+      <div class="padding-top-5">
+        <i class="margin-left-10">圈子成员</i>
+        <span class="margin-left-10">(</span>
+        <span ng-bind="userNum">/</span>
+        <span>)</span>
+      </div>
+    </div>-->
+    <!-- 成员遍历内容-->
+    <!--<div ng-repeat="param in userlist">
+      <div class="border-bottom" style="height:24px;line-height:24px;background:#fafafa;padding-left:15px;" ng-bind="param.categoryName" id="{{param.categoryName}}"></div>
+      <div style="width: 100%;" ng-repeat="item in param.childList" ng-click="inPersonalPage(item.id)">
+        <div class="padding-15 border-bottom">
+          <div class="inline-block">
+            <img ng-src="{{item.userImg | ImageUserFilter}}" class="vertical-middle"
+                onerror="this.src='img/quanzi/user.jpg'"
+                style="width: 40px;height: 40px;border-radius: 4px;">
+          </div>
+          <span class="inline-block margin-left-10"
+                style="line-height: 35px;height: 35px" ng-bind="item.userName">
+                      烟花易冷
+                  </span>
+        </div>
+      </div>
+    </div>-->
+    
+    <!--上拉加载-->
+    <!--<ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMoreMember()"
+                         distance="1%"></ion-infinite-scroll>-->
+  </ion-content>
+  
+</ion-view>

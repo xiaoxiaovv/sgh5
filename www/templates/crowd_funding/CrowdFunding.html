@@ -1,0 +1,251 @@
+<!--顺逛众筹 首页 -->
+<ion-view  class="background"  view-title="顺逛众筹" cache-view="false" hide-nav-bar="true">
+  <div ng-class="{true:'iosTopcss',false:'androidTopcss'}[isIos]" class="mess-tip" style="display:none;color:#fff;text-align:center;width:70%;height:35px;line-height:35px;background:#000;opacity:0.9;position:absolute;left:8px;z-index:99;border-radius:5px;font-size:12px;"></div>
+  <!--头部右侧点击信息-->
+  <!-- <ion-nav-buttons side="right">
+    <div style='height:24px;width:24px;margin-top:5px;margin-right:3px;'>
+      <img style="height:24px;width:24px;width:100%;height:100%;" ng-src="{{imgBaseURL}}img/Message@2x.png" alt="消息中心"  ui-sref="ClassifyMessageCenter" />
+      <img ng-src="{{imgBaseURL}}img/share grad@2x.png" alt="分享按钮" class="title1-share-btn" ng-click="share()" style="width: 24px;height: 24px;right: 36px;position: absolute;top: 4px;"
+           ng-if="isApp"/>
+      <span ng-class="{true:'tab-red-point',false:''}[flagNum]"></span>
+
+    </div>
+  </ion-nav-buttons> -->
+  <div flex="main:justify cross:center" style="padding:0 5px;width: 100%;background: #f8f8f8;" ng-class="{true:'iosHeaderCss',false:'otherHeaderCss'}[isIOS]">
+    <img ng-click="$ionicGoBack()" ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height:24px;"></img>
+    <div style="font-size: 20px;color: #444444;">顺逛众筹</div>
+    <div style="height:24px;width:24px;">
+      <img style="height:24px;width:24px;" ng-src="{{imgBaseURL}}img/Message@2x.png" alt="消息中心"  ui-sref="ClassifyMessageCenter" />
+      <img ng-src="{{imgBaseURL}}img/share grad@2x.png" alt="分享按钮" class="title1-share-btn" ng-click="share()" style="width: 24px;height: 24px;right: 36px;position: absolute;top: 4px;"
+           ng-if="isApp"/>
+      <span ng-class="{true:'tab-red-point',false:''}[flagNum]"></span>
+
+    </div>
+  </div>
+
+  <!--分享  start-->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div ng-if="(isApp && (isBuyer==1)&&(userId==storeId))" style="color:#7EC0EE;background: white;font-size: 12px;text-align:center;padding-top:10px;">您的好友通过分享购买，您将赚到不菲的佣金哦</div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <!--分享  end-->
+
+
+  <!--内容区域-->
+  <ion-content  scrollbar-y="false" ng-class="{true:'iosContentCss',false:'otherContentCss'}[isIOS]">
+     <div ng-if="isMoreData" class="scroll-view">
+            <!--1.轮播-->
+            <ion-slide-box style="overflow: hidden;"  delegate-handle="crowd_funding_slider" auto-play="true" does-continue="true" >
+               <ion-slide style="min-height: 160px;width: 100%;overflow: hidden;" ng-repeat="item in HomeBanner track by $index" ui-sref="crowd_funding_details({'zActivityId':item.id})">
+                   <img ng-src="{{item.imageUrl}}" alt="商品图片" style="width: 100%;height: 160px;">
+               </ion-slide>
+            </ion-slide-box>
+            <!--2.人气推荐-->
+            <div class="HomeRecommend width-100" style="height: 212px;">
+               <!--人气推荐 头部-->
+               <div class="popularityRecommend">
+                 <i class="crowd_home_line"></i>
+                 <span class="popular_title" style="padding: 0px 16px;">人气推荐</span>
+                 <i class="crowd_home_line"></i>
+               </div>
+               <!--人气推荐 导航部分-->
+               <div class="homeNav width-100">
+                 <!--请求数据-->
+                 <dl class="crowd_home_popular" ng-repeat="item in peopleList" ui-sref="crowd_funding_details({'zActivityId':item.id})">
+                   <dt>
+                       <span class="popular_Pic">
+                            <img ng-src="{{item.imageUrl}}"  alt="商品图片">
+                       </span>
+                   </dt>
+                   <dd>
+                     <p class="popular_name">
+                       {{item.activityName}}
+                     </p>
+                   </dd>
+                 </dl>
+               </div>
+            </div>
+            <!--3.最新上线 即将结束 即将上线 大容器-->
+            <div class="crowd_home_product_container width-100">
+                  <!--3.1 导航条 最新上线 即将结束 即将上线 头部-->
+                  <div class="crowd_home_product_container_title">
+                      <div class="crowd_home_popular_nav">
+                      <div class="crowd_home_popular_nav_xin select-button default"
+                           ng-if="isFindTab"
+                           ng-class="{0: 'select-button default'}[selectedIndex]"
+                           ng-click="crowdTab(0)"
+                      >最新上线
+                      </div>
+                      <div ng-if="endList.length>0" class="crowd_home_popular_nav_end "
+                           ng-class="{1: 'select-button default'}[selectedIndex]"
+                           ng-click="crowdTab(1)"
+                      >即将结束
+                      </div>
+                      <div class="crowd_home_popular_nav_soon "
+                           ng-class="{2: 'select-button default'}[selectedIndex]"
+                           ng-click="crowdTab(2)"
+                      >即将上线
+                      </div>
+                    </div>
+                  </div>
+                   <!--3.2 内容-->
+                  <div class="crowd_home_new" >
+                    <div  class="crowd_home_new_content">
+                                   <!--最新上线-->
+                      <dl  ng-repeat="item in newsList track by $index" ng-if="isFind" ui-sref="crowd_funding_details({'zActivityId':item.id})">
+                        <dt>
+                            <div class="crowd_home_new_pic">
+                                <div>
+                                  <img ng-src="{{item.imageUrl}}" data-ng-init="calculateWH(item.imageUrl,$index)" id="img{{$index}}" alt="商品图片">
+                                </div>
+                            </div>
+                        </dt>
+                        <dd>
+                          <!--名称标题-->
+                          <div class="crowd_home_new_title">
+                            {{item.activityName}}
+                          </div>
+                          <!--进度条插件-->
+                          <div class="crowd_home_new_loading">
+                            <!--显示进度-->
+                            <div class="crowd_home_new_loading_load">
+                              <div  class="crowd_home_new_loading_color" ng-style="{width:(item.raisedAmount/item.targetAmount)*100+'%'}"></div>
+                            </div>
+                            <!--显示文字-->
+                           <!-- <span class="crowd_home_new_loading_num min_w_home">{{item.schedule}}</span>-->
+                            <span class="crowd_home_new_loading_num min_w_home new_crowd_funding_cs">{{Math.ceil((item.raisedAmount/item.targetAmount)*100)+'%'}}</span>
+                          </div>
+                          <!--显示 已筹多少 和 支持的人数-->
+                          <div class="crowd_home_new_count">
+                            <!--已筹资金-->
+                            <p class="crowd_home_new_info crowd_funding_new_number crowd_funding_new_number">
+                              <span>已筹资:</span><i>¥{{item.raisedAmount}}</i>
+                            </p>
+                            <!--已有多少支持人数-->
+                            <p class="crowd_home_new_info crowd_home_new_info_proNum crowd_funding_new_number">
+                              <span>已有</span><em>{{item.supportNum}}</em><span>人支持</span>
+                            </p>
+                          </div>
+                        </dd>
+                      </dl>
+                                    <!--即将结束-->
+                      <dl ng-repeat="item in endList track by $index" ng-if="isFindEnd" ui-sref="crowd_funding_details({'zActivityId':item.id})">
+                        <dt>
+                              <div class="crowd_home_new_pic">
+                                    <div>
+                                          <img ng-src="{{item.imageUrl}}" alt="商品图片">
+                                    </div>
+                              </div>
+                        </dt>
+                        <dd>
+                          <!--名称标题-->
+                          <div class="crowd_home_new_title">
+                            {{item.activityName}}
+                          </div>
+                          <!--进度条插件-->
+                          <div class="crowd_home_new_loading">
+                            <!--显示进度-->
+                            <div class="crowd_home_new_loading_load">
+                              <div  class="crowd_home_new_loading_color" ng-style="{width:(item.raisedAmount/item.targetAmount)*100+'%'}"></div>
+                            </div>
+                            <!--显示文字-->
+                            <span class="crowd_home_new_loading_num new_crowd_funding_cs">{{Math.ceil((item.raisedAmount/item.targetAmount)*100)+'%'}}</span>
+                          </div>
+                          <!--显示 已筹多少 和 支持的人数-->
+                          <div class="crowd_home_new_count">
+                            <!--已筹资金-->
+                            <p class="crowd_home_new_info crowd_funding_new_number crowd_funding_new_number">
+                              <span>已筹资:</span><i>¥{{item.raisedAmount}}</i>
+                            </p>
+                            <!--已有多少支持人数-->
+                            <p class="crowd_home_new_info crowd_home_new_info_proNum crowd_funding_new_number">
+                              <span>已有</span><em>{{item.supportNum}}</em><span>人支持</span>
+                            </p>
+                          </div>
+                        </dd>
+                      </dl>
+                                     <!--即将上线-->
+                      <dl  ng-repeat="item in soonList track by $index" ng-if="isFindSoon" ui-sref="crowd_funding_details({'zActivityId':item.id})">
+                          <dt>
+                              <div class="crowd_home_new_pic">
+                                   <img ng-src="{{item.imageUrl}}" alt="商品图片">
+                              </div>
+                          </dt>
+                        <dd>
+                          <!--名称标题-->
+                          <div class="crowd_home_new_title">
+                            {{item.activityName}}
+                          </div>
+                          <!--显示状态 目标金额-->
+                          <div class="crowd_home_new_loading crowd_home_soon_info">
+                            <!--显示状态-->
+                            <span class="crowd_home_new_loading_state">{{item.isPre==true?"预热中":"众筹中"}}</span>
+                            <i class="crowd_home_new_loading_target">目标金额: ¥{{item.targetAmount}}</i>
+                          </div>
+                          <!--显示距离开始还有多久-->
+                          <div class="crowd_home_new_count crowd_home_soon_money">
+                            <!--已筹资金-->
+                            <p class="crowd_home_new_info">
+                              <span>距离开始还有：</span><i>{{item.toStartTime}}</i>
+                            </p>
+
+                          </div>
+                        </dd>
+                      </dl>
+
+                    </div>
+                  </div>
+
+            </div>
+            <!--4.没有数据时 展示-->
+            <div style="width: 100%;height: 60px;text-align: center;line-height: 60px;" ng-if="!hasmore" >
+              <i class="crowd_home_line" style="padding-right: 10px;"></i>更多顺逛项目敬请期待<i class="crowd_home_line" style="padding-left: 10px;"></i>
+            </div>
+            <!--5.上拉加载-->
+            <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+     </div>
+    <div  ng-if="isHasData" class="scroll-view" style="width: 100%;height: 100%;">
+      <!--中心图-->
+
+        <div class="crowd_funding_index_banner">
+          <img ng-src="{{imgBaseURL}}img/zc@2x.png" alt="商城">
+        </div>
+        <div class="crowd_funding_home_message">
+          众筹即将上线，敬请期待
+        </div>
+
+      <div class="crowd_funding_index_btn" ui-sref="homePage">
+        去首页逛逛吧
+      </div>
+    </div>
+  </ion-content>
+
+
+</ion-view>
+
+

@@ -1,0 +1,11 @@
+ <ion-view class='background' view-title="其他奖励" hide-back-button="true" style="background-color: $color-theme;color:#000;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<div class='xvv-otherTotal'>
+			合计:{{total|currency:'&yen'}}
+		</div>
+		<div class='xvv-otherList' ng-repeat='item in otherList' ui-sref="someReward({'code':type,'title':(item.rewardType | rewardToword),'earningType':earningType,'rewardType':item.rewardType})">{{item.rewardType | rewardToword}}<span ng-bind="item.brokerageDeductAmount|currency:'&yen'"></span><img src='img/goOrder@2x.png'/></div>
+	</ion-content>
+</ion-view>

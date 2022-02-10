@@ -1,0 +1,237 @@
+<ion-view view-title="课堂">
+  <ion-nav-buttons side="right">
+    <button ng-click="goshare()" class="button-clear" style="opacity: 1 !important;">
+      <img ng-src="{{imgBaseURL}}img/share2.png" class="block" style="width: 20px;height: 20px">
+    </button>
+    <button ng-click="isClick()" class="button-clear" style="opacity: 1 !important;">
+      <img ng-src="{{imgBaseURL}}img/dot3.png" class="block" style="width: 20px;height: 20px">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="bg-background" style="">
+    <div style="width: 100%;text-shadow: 0 0 3px black" class="color-white">
+      <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=415487327,3889724488&fm=23&gp=0.jpg"
+           alt="" style="height: 80px;z-index: -1;object-fit: cover" class="position-a">
+      <div class="padding-10 font-size-14 font-bold">
+        <div class="inline-block">课程：</div>
+        <div class="inline-block" ng-bind="classInfo.courseName">微店主营销管理第一期</div>
+      </div>
+      <div class="padding-left-right-10 font-size-12">
+        <div class="inline-block">时间：</div>
+        <div class="inline-block" ng-bind="classInfo.courseStartTime">8月28日上午10：00</div>
+      </div>
+      <div class="padding-left-right-10 font-size-12">
+        <div class="inline-block">讲师：</div>
+        <div class="inline-block" ng-bind="classInfo.teacher">海尔资深讲师 孙某某</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center" ng-class="{'bg-blue-color-white':isClick==0,'bg-white':isClick!=0}"
+           ng-click="click0()"
+           style="border-right: 1px solid gainsboro;border-bottom-left-radius: 15px;border-top-left-radius: 15px">
+        公告
+      </div>
+      <div class="col text-center" ng-class="{'bg-blue-color-white':isClick==1,'bg-white':isClick!=1}"
+           ng-click="click1()"
+           style="border-right: 1px solid gainsboro">课堂
+      </div>
+      <div class="col text-center" ng-class="{'bg-blue-color-white':isClick==2,'bg-white':isClick!=2}"
+           ng-click="click2()"
+           style="border-bottom-right-radius: 15px;border-top-right-radius: 15px">留言板
+      </div>
+    </div>
+
+    <!--公告-->
+    <div class="bg-background margin-top-5" ng-if="isClick==0">
+      <div style="box-sizing: border-box;padding: 10px;background: #e6f0fe">
+        <div class="text-center padding-5 color-white float-r"
+             style="width: 80px;background: cornflowerblue;border-radius: 5px">进入学习区
+        </div>
+        <div class="float-l">
+          <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-30 block" alt="">
+        </div>
+        <div style="line-height: 30px;text-overflow: ellipsis;"
+             class="overflow-hidden padding-left-right-5 white-space-nowrap" ng-bind="classInfo.courseName">
+          海尔官方培训海尔官方
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <div style="padding: 10px" class="bg-white">
+        <div>
+          <div class="inline-block">230人参与</div>
+          <div class="inline-block float-r icon ion-chevron-right"></div>
+          <div style="clear: both"></div>
+        </div>
+        <div ng-repeat="item in membersJoin" class="inline-block">
+          <img src="{{item.userImg | scoleFilter}}" alt="" style="width: 40px;height: 40px;"
+               class="border block">
+        </div>
+      </div>
+      <div class="bg-white margin-top-5 padding-10">
+        <div class="font-bold">时间安排</div>
+        <div>8月28日 10：00-12：00</div>
+      </div>
+      <div class="bg-white margin-top-5 padding-10">
+        <div class="font-bold">课程讲述</div>
+        <div ng-bind="classInfo.courseDescription"></div>
+      </div>
+      <div class="bg-white margin-top-5 padding-10" style="margin-bottom: 42px">
+        <div class="font-bold">讲师介绍</div>
+        <div class="row" ng-repeat="item in teacherList">
+          <div>
+            <img src="{{item.userImg | scoleFilter}}" alt="" class="border-radius width-height-50">
+          </div>
+          <div>
+            <div class="font-bold" ng-bind="item.userName">某某某</div>
+            <div class="font-size-12">海尔资深讲师</div>
+            <div class="font-size-12">顺逛微店资深店主</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--课堂-->
+    <div class="bg-background margin-top-5" ng-if="isClick==1" style="margin-bottom: 42px"
+         delegate-handle="mainScroll">
+      <div style="box-sizing: border-box;padding: 10px;background: #e6f0fe">
+        <div class="text-center padding-5 color-white float-r"
+             style="width: 80px;background: cornflowerblue;border-radius: 5px">进入学习区
+        </div>
+        <div class="float-l">
+          <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-30 block" alt="">
+        </div>
+        <div style="line-height: 30px;text-overflow: ellipsis;"
+             class="overflow-hidden padding-left-right-5 white-space-nowrap" ng-bind="classInfo.courseName">
+          海尔官方培训海尔官方
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <!--课堂资料-->
+      <div style="height: 25px">
+        <div class="float-l" style="background: orange;width: 2px;height: 100%"></div>
+        <div class="padding-left-10" style="line-height: 25px">课堂资料</div>
+      </div>
+      <div class="padding-10 bg-white" ng-repeat="item in classesList">
+        <div class="float-l">
+          <img ng-src="{{imgBaseURL}}img/circleIcon/worc.jpeg" alt="" class="width-height-20">
+        </div>
+        <div ng-bind="item.materialName">点击学习，可以不断温故而知新哦</div>
+        <div style="clear: both"></div>
+      </div>
+      <!--相关话题-->
+      <div style="height: 25px" class="margin-top-5">
+        <div class="float-l" style="background: red;width: 2px;height: 100%"></div>
+        <div class="padding-left-10" style="line-height: 25px">相关话题</div>
+        <div style="clear: both"></div>
+      </div>
+      <div class="padding-10 bg-white" ng-repeat="item in topicList" ng-bind="item.storyName">这些好用的小家电，没用过你就OUT了
+      </div>
+      <!--考试-->
+      <div style="height: 25px" class="margin-top-5">
+        <div class="float-l" style="background: green;width: 2px;height: 100%"></div>
+        <div class="padding-left-10" style="line-height: 25px">考试</div>
+      </div>
+      <div class="bg-white padding-10">
+        <div class="float-r">
+          <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-30 block" alt="">
+        </div>
+        <div class="color-blue-sg font-bold" style="line-height: 30px">本节课试题</div>
+      </div>
+      <!--学员分享-->
+      <div style="height: 25px;" class="margin-top-5">
+        <div class="float-l" style="background: blue;width: 2px;height: 100%"></div>
+        <div class="padding-left-10" style="line-height: 25px">学员分享</div>
+        <div style="clear: both"></div>
+      </div>
+      <div class="padding-10 bg-white overflow-hidden white-space-nowrap" style="text-overflow:ellipsis;"
+           ng-repeat="item in shareList" ng-bind="item.materialName">这些好用的小家电，没用过你就OUT了
+      </div>
+    </div>
+    <!--留言板-->
+    <div class="bg-background margin-top-5" ng-if="isClick==2" style="margin-bottom: 48px">
+      <div class="padding-10 bg-white">
+        <span>关于</span>
+        <span style="color: #0c60ee" ng-bind="classInfo.courseName">海尔官方微店微学堂</span>
+        <span>的</span>
+        <span>9</span>
+        <span>个问题</span>
+      </div>
+
+      <div ng-repeat="item in messageBoardList">
+        <!--用户名，时间-->
+        <div class="margin-top-5 padding-10 bg-white" style="box-sizing: border-box;">
+          <div class="float-l">
+            <img src="{{item.questionUserImg | scoleFilter}}" alt="" class="block"
+                 style="width: 30px;height: 30px">
+          </div>
+          <div class="float-r" style="line-height: 30px" ng-bind="item.questionTime">2016/12/13</div>
+          <div style="line-height: 30px" class="padding-left-5 font-size-12" ng-bind="item.questionUserName">
+            锋芒毕露
+          </div>
+          <div style="clear: both"></div>
+        </div>
+        <!--问-->
+        <div class="padding-left-right-10 bg-white">
+          <div class="float-l width-height-30">
+            问
+          </div>
+          <div class="padding-left font-bold" ng-bind="item.questionContent">什么是微学堂，能举几个例子吗？什么是微学堂，能举几个例子吗？
+          </div>
+          <div style="clear: both"></div>
+        </div>
+        <!--答-->
+        <div class="padding-left-right-10 padding-top-bottom-5 bg-white"
+             style="box-sizing: border-box;height: 40px">
+          <div class="float-l">
+            <img src="{{item.firstAnswerUserImg | scoleFilter}}" alt="" class="block"
+                 style="width: 30px;height: 30px">
+          </div>
+          <div style="line-height: 30px" class="float-l padding-left-5 font-size-12"
+               ng-bind="item.firstAnswerUserName">锋芒毕露
+          </div>
+          <div class="margin-left-5 float-l color-white padding-left-right-5"
+               style="line-height: 16px;height: 16px;background: orange;border-radius: 8px;margin-top: 6px;">师
+          </div>
+          <div style="clear: both"></div>
+        </div>
+        <div class="padding-left-right-10 bg-white">
+          <div class="float-l">
+            <img ng-src="{{imgBaseURL}}img/btn_shop_revenue.png" alt="" class="block width-height-30">
+          </div>
+          <div class="padding-left font-bold color-text-m" ng-bind="item.firstAnswerContent">
+            什么是微学堂，能举几个例子吗？什么是微学堂，能举几个例子吗？
+          </div>
+          <div class="float-r" ng-click="toQuestionDetail(item.firstAnswerId)">查看8个回答</div>
+          <div style="clear: both"></div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div style="position: fixed;bottom: 0;color: #0c60ee" class="text-center bg-white padding-top-bottom-10 width-100" ng-if="ifShowInput"  ng-click="showInput()">
+    <div class="inline-block">
+      <i class="icon ion-compose vertical-middle font-size-20"></i>
+    </div>
+    <div class="inline-block">我要提问</div>
+  </div>
+
+  <!--提交-->
+  <div class="bg-background width-100 padding-10" style="position: fixed;bottom: 0;height: 50px" ng-if="!ifShowInput"
+       ng-style="keyboardHeight">
+    <div class="inline-block position-a border bg-white border-radius"
+         style="height: 30px;left: 10px;right: 80px;padding: 1px">
+      <div class="inline-block" style="z-index: 999">
+        <img ng-src="{{imgBaseURL}}img/circleIcon/editTag.png" class="position-a" style="width: 18px;top: 5px;left:5px" alt="">
+      </div>
+      <div class="inline-block">
+        <input type="search" ng-model="input.input" id="inputId" class="padding-0 padding-left-25 inline-block width-100"
+               placeholder="请输入回答" maxlength="8" style="height: 26px;">
+      </div>
+    </div>
+
+    <div class="inline-block float-r">
+      <div style="width: 60px;height: 30px;color: white;background:#0277fd;line-height: 30px"
+           class="text-center border-radius" ng-click="commitAnswer(namedTags)">
+        提交
+      </div>
+    </div>
+  </div>
+</ion-view>

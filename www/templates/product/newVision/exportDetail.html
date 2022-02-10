@@ -1,0 +1,26 @@
+<ion-view class="background" view-title="解决方案专家">
+  <ion-content scrollbar-y="false" overflow-scroll="true">
+    
+  <div class='exdescript'>
+    <img ng-src='{{pageData.imageUrl?pageData.imageUrl:imgBaseURL+"img/linshi/fazjbj@2x.png"}}'/>
+    <div>
+      <img src='{{pageData.avatar?pageData.avatar:imgBaseURL+"img/quanzi/user.jpg"}}' err-src="{{imgBaseURL}}img/quanzi/user.jpg"/>
+    </div>
+    <div>{{pageData.name}}</div>
+    
+    <div><img src='{{imgBaseURL}}img/linshi/ddddh@2x.png'/>{{pageData.mobile}}</div>
+    <div>{{pageData.introduction}}</div>
+  </div>
+  <div class='zjlist' style='margin-bottom: 0;padding-bottom: 15px;'>
+  <div class='housetitle' ng-if='ajanli.length!=0'>
+    <div></div>
+    <div>成功方案</div>
+  </div>
+  <div class='jjfalist' ng-repeat='i in ajanli' ui-sref="itSoluteDetail({'solutionId':i.id})">
+    <img ng-src='{{i.imageUrl}}'/>
+    <div>{{i.name}}</div>
+  </div>
+</div>
+<ion-infinite-scroll ng-if="hasmore" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

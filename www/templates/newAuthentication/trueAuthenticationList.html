@@ -1,0 +1,42 @@
+<ion-view class="background trueAuthenticationView" hide-nav-bar="true" view-title="我的认证">
+
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">我的认证</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"  ng-click="toRules(915,'实名认证服务协议')">说明</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" >
+    <div class="scroll-view">
+        <div class="trueAuthenticationList_list">
+          <!--身份证认证-->
+          <div ui-sref="trueAuthentication">
+              <img ng-if="!isTrueAuthentication" src="{{imgBaseURL}}img/sfz_false.png">
+              <img ng-if="isTrueAuthentication" src="{{imgBaseURL}}img/sfz_true.png">
+              <div>身份证认证</div>
+          </div>
+          <!--海尔员工认证-->
+          <div ui-sref="haierStaff" >
+              <img ng-if="!isStaff" src="{{imgBaseURL}}img/staff_false.png">
+              <img ng-if="isStaff" src="{{imgBaseURL}}img/staff_true.png">
+              <div>海尔员工认证</div>
+          </div>
+          <!--企业认证-->
+          <!--<div>
+              <img src="img/staff_false.png">
+            <div>企业认证</div>
+          </div>-->
+          <!--海尔服务兵认证-->
+          <!--<div>
+              <img src="img/staff_false.png">
+            <div>海尔服务兵认证</div>
+          </div>-->
+        </div>
+
+    </div>
+  </ion-content>
+
+</ion-view>

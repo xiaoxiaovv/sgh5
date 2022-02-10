@@ -1,0 +1,27 @@
+<ion-modal-view class="filter-modal-view">
+  <ion-header-bar class="text-align-c padding-0 search-header">
+    <span class="title" style="font-size: 18px !important;">全部特产场馆</span>
+    <div class="icon ion-ios-arrow-left float-l width-10" ng-click="closeMoreSpecialty()"></div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" class="search-content" style="background: #eee;margin-top: 0;">
+    <div class="all_local">
+      <p>全国地区</p>
+      <div class="allSpecialty_local">
+        <ul flex style="margin-left: 11px;">
+          <li ng-repeat="(key,item) in allSpecialtyArr track by $index" ng-class="{ {{key}} : 'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue($index,item.regionId)">{{item.regionName}}</li>
+          <!--<li ng-class="{0:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(0)">北京馆</li>-->
+          <!--<li ng-class="{1:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(1)">天津馆</li>-->
+          <!--<li ng-class="{2:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(2)">上海馆</li>-->
+          <!--<li ng-class="{3:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(3)">重庆馆</li>-->
+          <!--<li ng-class="{4:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(4)">山东馆</li>-->
+          <!--<li ng-class="{5:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(5)">山西馆</li>-->
+          <!--<li ng-class="{6:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(6)">内蒙古馆</li>-->
+          <!--<li ng-class="{7:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(7)">四川馆</li>-->
+          <!--<li ng-class="{8:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(8)">辽宁馆</li>-->
+          <!--<li ng-class="{9:'local_specialty_high'}[localSelect]" ng-click="goToSpecialtyVenue(9)">新疆维吾尔馆</li>-->
+        </ul>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-modal-view>

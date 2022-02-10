@@ -1,0 +1,50 @@
+<ion-modal-view class="height-100 width-100" style="background: none" ng-click="hideApplyCircleModal()">
+    <!--讲师正在审理中-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-50" alt="">
+        </div>
+        <div>讲师申请正在审理中，请耐心等待</div>
+        <div class="padding-top-bottom-5 border-radius border" style="width: 60px;margin: 0 auto">确认</div>
+    </div>
+    <!--未通过审核弹框内容-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-50" alt="">
+        </div>
+        <div>您的圈子未通过审核</div>
+        <div style="color: #aaaaaa">
+            <div>
+                <span>您在</span>
+                <span>时间</span>
+                <span>提交的圈子未通过审核，原因如下</span>
+            </div>
+            <div>审批内容</div>
+        </div>
+        <div class="padding-top-bottom-5 border-radius font-bold font-size-14" style="width: 60px;margin: 0 auto;color: #0076fd;border: 1px solid #0076fd;">确认</div>
+    </div>
+
+    <!--修改申请提示弹框-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-50" alt="">
+        </div>
+        <div class="font-size-18">您修改的申请，请决定下？</div>
+        <div class="padding-top-bottom-5">
+            <div class="font-bold inline-block" style="width: 80px;color: red" ng-click="hideCommitPaper()">
+                <div class="border-radius" style="height:25px;line-height: 25px;border: 1px solid red">修改仅保存</div>
+            </div>
+            <div class="font-bold inline-block" style="width: 80px;color: #0c60ee">
+                <div class="border-radius" style="height:25px;line-height: 25px;border: 1px solid #0c60ee">修改并提交</div>
+            </div>
+        </div>
+    </div>
+    <!--正在申请，请耐心等待-->
+    <div style="margin-top: 50%;margin-left: 20px;margin-right: 20px" class="border-radius bg-white text-center padding-20" ng-if="showNum == 1">
+        <div>
+            <img ng-src="{{imgBaseURL}}img/circleIcon/gantan.png" class="width-height-50" alt="">
+        </div>
+        <div class="margin-top-10">您有圈子正在审批中，请耐心等待。</div>
+        <div class="border-radius font-bold font-size-14 margin-top-10" style="width: 60px;margin: 0 auto;color: #0076fd;border: 1px solid #0076fd;" ng-click="hideApplyCircleModal()">确认</div>
+    </div>
+</ion-modal-view>

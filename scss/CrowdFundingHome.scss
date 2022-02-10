@@ -1,0 +1,789 @@
+.HomeBanner{
+  height: 160px;
+}
+.HomeBanner img{
+  width: 100%;
+  height: 100%;
+}
+.popularityRecommend{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.HomeRecommend{
+  background: #fff;
+  margin-top: 8px;
+}
+.popularityRecommend{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #ccc;
+  margin: 0px 16px;
+  position: relative;
+}
+.crowd_home_line{
+  width: 64px;
+  height: 0.5px;
+  background: #999;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.HomeRecommend .homeNav{
+  height: 172px;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.popularityRecommend_Level_left{
+  left: 60px;
+}
+.popularityRecommend_level_right{
+  right: 60px;
+}
+.crowd_home_popular{
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.crowd_home_popular dt{
+  height: 124px;
+  position: relative;
+  padding: 28px;
+}
+
+.crowd_home_popular dd{
+  height: 48px;
+}
+.popular_Pic img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.crowd_home_popular dt .popular_Pic{
+  display: block;
+  height: 68px;
+  width: 68px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.crowd_home_popular dd .popular_name{
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  margin: auto;
+  text-align: center;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden;  /** 隐藏超出的内容 **/
+}
+.popular_title{
+  font-size: 16px;
+}
+.txt_two_show{
+  width: 5.6rem;
+  font-size: 14px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden;  /** 隐藏超出的内容 **/
+}
+/*以下的没有写scss*/
+.crowd_home_product_container{
+  background: #fff;
+  margin-top: 8px;
+}
+
+/*自定义头部*/
+.crowd_home_product_container_title{
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+}
+.crowd_home_popular_nav{
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 1px solid  #E4E4E4;
+  margin: 0px 16px;
+  color: #666;
+}
+.crowd_home_popular_nav div{
+  flex: auto;
+}
+/*最新上线 */
+.crowd_home_new_content dl{
+  height: 120px;
+  border-bottom: 1px solid #e4e4e4;
+  display: flex;
+  display: -webkit-flex;
+  margin: 0px 16px 0px 16px;
+}
+.crowd_home_new_content dl dt {
+  width: 116px;
+  height: 116px;
+  position: relative;
+  margin: auto;
+  /*margin-left: 14px;*/
+}
+.crowd_home_new_content dl dt .crowd_home_new_pic{
+  width: 92px;
+  height: 92px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+}
+.crowd_home_new_pic div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+}
+.crowd_home_new_content dl dt .crowd_home_new_pic img{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.crowd_home_new_content dl dd{
+  flex: 1;
+  font-size: 14px;
+  width: 100%;
+  margin-left: 16px;
+}
+/*进度条*/
+.crowd_home_new_loading{
+  width: 100%;
+  margin-top: 8px;
+  line-height: 10px;
+  position: relative;
+}
+.crowd_home_new_title{
+  margin-top: 14px;
+  font-size: 14px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.crowd_home_new_loading_load{
+  width: 76%;
+  height: 12px;
+  display: inline-block;
+  background: #e4e4e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.crowd_home_new_loading_color{
+  height: 12px;
+  background: #FF4400;
+  border-radius: 8px;
+}
+.crowd_home_new_loading_num{
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  font-size: 12px;
+  width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.crowd_home_new_count{
+  height: 18px;
+  width: 100%;
+  position: relative;
+  margin-top: 12px;
+}
+.crowd_home_new_count .crowd_home_new_info{
+  display: inline-block;
+  margin-bottom: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.crowd_funding_new_number{
+  width: 90%;
+  white-space: nowrap;
+  margin-bottom: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.crowd_home_new_count .crowd_home_new_info span{
+  font-size: 12px;
+  color: #666;
+}
+.crowd_home_new_count .crowd_home_new_info i{
+  font-size: 14px;
+  color: #FF4400;
+
+}
+
+.ion-record{
+  width: 30px;
+  height: 10px;
+}
+
+/*即将上线*/
+.crowd_home_soon_info{
+  position: relative;
+  font-size: 12px;
+}
+.crowd_home_new_loading_state{
+  color: #FF4400;
+  border: 1px solid #FF4400;
+  border-radius: 100px 100px 0 100px;
+  width: 48px;
+  height: 18px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 16px;
+  display: inline-block;
+}
+.crowd_home_new_loading_target{
+
+  color: #666;
+  white-space: nowrap;
+  position: absolute;
+  top: 4px;
+  right: 2px;
+}
+.crowd_home_soon_money{
+  margin-top: 8px !important;
+}
+.new_crowd_funding_cs{
+  text-align: center !important;
+}
+/*单品页*/
+.crowd_funding_details{
+  background: #fff;
+}
+.crowd_funding_details_slide{
+  height: 236px;
+  background: #fff;
+}
+
+.crowd_funding_details_slide .slider-pager{
+  height: 36px;
+  line-height: 36px;
+  bottom: 0px;
+  width: 100%;
+}
+
+.crowd_funding_details_title{
+
+  background: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.crowd_funding_details_state{
+  width: 56px;
+  display: inline-block;
+  height: 18px;
+  font-size: 12px;
+  margin: 10px 10px 10px 16px;
+  text-align: center;
+  line-height: 16px;
+}
+.crowd_funding_details_msg{
+  font-size: 16px;
+  color: #333;
+  overflow: hidden;
+}
+.crowd_funding_details_describe{
+  width: 100%;
+  /*height: 40px;*/
+  background: #fff;
+  overflow: hidden;
+}
+.crowd_funding_details_describe .crowd_funding_details_describe_info{
+  padding: 0px 16px;
+  font-size: 14px;
+  color: #666;
+  margin: 0px;
+}
+.crowd_funding_details_sum{
+  height: 56px;
+  background: #fff;
+  margin-top: 6px;
+}
+.crowd_funding_details_sum .crowd_funding_details_sum_box{
+  margin: 0px 16px;
+  height: 56px;
+  border-top: 0.5px solid #e4e4e4;
+}
+.crowd_funding_details_content{
+  margin-top: 8px;
+}
+.crowd_funding_details_content span{
+  font-size: 12px;
+  color: #666;
+}
+.crowd_funding_details_content span i{
+  font-size: 14px;
+  color: #FF4400;
+}
+.crowd_funding_details_nums{
+  padding-right: 22px;
+}
+.crowd_funding_details_num{
+  padding-right: 4px;
+}
+.crowd_funding_isError{
+    border: 1px solid #999 !important;
+    color: #999 !important;
+}
+
+/*单品页的进度条*/
+.crowd_funding_details_load{
+  margin-top: 10px;
+}
+.crowd_funding_details_loading{
+  width: 84%;
+}
+/*剩余时间 目标资金*/
+.crowd_funding_details_surplus{
+  height: 40px;
+  line-height: 40px;
+  background: #fff;
+}
+
+.crowd_funding_details_surplus_box{
+  margin: 0px 16px;
+}
+.crowd_funding_details_surplus_box span{
+  font-size: 12px;
+  color: #666;
+}
+.crowd_funding_details_surplus_box span i{
+  font-size: 14px;
+  color: #333;
+}
+.crowd_funding_details_surplus_right{
+  float: right;
+}
+/*更多档位*/
+.crowd_funding_more_details{
+  background: #fff;
+  height: 80px;
+  margin-top: 8px;
+}
+.crowd_funding_more_details_box{
+  margin: 0px 16px;
+}
+.crowd_funding_more_money{
+  height: 40px;
+  line-height: 40px;
+}
+.crowd_funding_more_earn{
+  background: #FF4400;
+  border-radius: 51px 0 51px 51px;
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  display: inline-block;
+  transform: rotate(90deg);
+  -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+  position: relative;
+}
+.crowd_funding_more_earn_text{
+  display: inline-block;
+  transform: rotate(-90deg);
+  -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+  color: #fff;
+  font-size: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1px;
+  bottom: 2px;
+}
+.crowd_funding_more_title{
+  padding-top: 10px;
+}
+.crowd_funding_more_support{
+  display: inline-block;
+}
+.crowd_funding_more_money{
+  padding-top: 10px;
+}
+.crowd_funding_more_money span{
+  color: #FF4400;
+  font-size: 14px;
+  //display: inline-block;
+  line-height: 1;
+  overflow: hidden;
+  //float: left;
+  height: 40px;
+  line-height: 40px;
+}
+.crowd_funding_mmoney i{
+  font-size:24px;
+  padding-right: 20px;
+}
+/*项目详情 规格参数*/
+.crowd_funding_project_details{
+  background: #fff;
+  margin-top: 8px;
+}
+.crowd_funding_details_project_keeper dl {
+  display: flex;
+  display: -webkit-flex;
+  margin-bottom: 0;
+}
+.crowd_funding_details_project_keeper dl dt{
+  width:46px;
+  height:46px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin: 10px 12px 0px 16px;
+}
+.crowd_funding_details_project_keeper dl dd{
+  flex: 1;
+  padding-right: 22px;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+/*选择档位*/
+
+.crowd_funding_hot_redound{
+  margin: 0px 16px;
+}
+.crowd_funding_hot_state{
+  display: flex;
+  display: -webkit-flex;
+  position: relative;
+}
+.crowd_funding_hot_title{
+
+}
+.crowd_funding_hot_state dl{
+
+  margin-bottom: 0px;
+}
+.crowd_funding_hot_prize{
+  margin: 4px 0px 2px 0px;
+  display:  block;
+}
+.crowd_funding_hot_go{
+  color: #fff;
+  text-align: center;
+  width: 94px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 14px;
+  overflow: hidden;
+}
+.crowd_funding_hot_go span{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.crowd_funding_hot_go_go{
+  background: #2979FF ;
+}
+.crowd_funding_hot_no{
+  background: #B3B3B3;
+}
+.crowd_funding_hot_msg{
+  margin-top: 12px;
+  font-size: 13px;
+  color: #000000;
+  letter-spacing: -0.31px;
+  line-height: 20px;
+}
+.crowd_funding_hot_tim{
+  font-size: 13px;
+  color: #666666;
+  letter-spacing: -0.31px;
+  line-height: 20px;
+}
+
+.crowd_funding_hot_time{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+}
+.crowd_funding_hot_time_msg{
+  display: inline-block;
+  font-size: 13px;
+  color: #2979FF;
+  margin-bottom: 4px;
+
+}
+.crowd_funding_hot_load_popup{
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  bottom: 0;
+
+}
+.crowd_funding_hot_popup_msg dl{
+  display: flex;
+  display: -webkit-flex;
+  margin-top: 20px;
+}
+.crowd_funding_hot_popup_freight{
+  margin-top: 20px;
+}
+.crowd_funding_details_GoBtn{
+  //flex: 1;
+  //-webkit-flex: 1;
+  overflow: hidden;
+  text-align: center;
+  line-height: 48px;
+  background: #2979FF;
+  color: #fff;
+  font-size: 16px;
+}
+.crowd_funding_details_GoBtn div{
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+}
+.crowd_funding_details_btn{
+  width: 110px;
+  height: 48px;
+  position: relative;
+  float: left;
+}
+.crowd_funding_details_kf{
+  width: 30px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 10px;
+  text-align: center;
+}
+.crowd_funding_details_kf .kefu img{
+  width: 100%;
+  height: 100%;
+}
+
+.crowd_funding_details_kf .kefu{
+  width: 18px;
+  height: 18px;
+  margin: auto;
+}
+.crowd_funding_hot_close{
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  position: absolute;
+  top:6px;
+  right: 10px;
+  text-align: center;
+  line-height: 28px;
+}
+.crowd_funding_hot_close img{
+  width: 100%;
+  height: 100%;
+}
+/*是否超额*/
+.crowd_funding_hot_excess{
+  width: 100%;
+  color: red;
+}
+/*档位信息中的支持钱数*/
+.crowd_funding_hot_money{
+  font-size: 16px;
+  font-weight: 400;
+  /*line-height: 1;*/
+}
+
+/*下划线*/
+.crowd_funding_line{
+  width: 100%;
+  height: 2px;
+  background: #2979FF;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.crowd_funding_hot_project_title{
+  padding-left: 16px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 14px;
+  color: #2979FF;
+  border-bottom: 1px solid #ccc;
+}
+
+/*没上线之前*/
+.crowd_funding_index_banner{
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 56px auto 0px auto;
+}
+.crowd_funding_index_banner img{
+  width: 100%;
+  height: 100%;
+}
+.crowd_funding_index_btn{
+  width: 70%;
+  height: 44px;
+  background: #2979FF ;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 44px;
+  font-size: 16px;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 248px auto 0 auto;
+}
+.crowd_funding_home_message{
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  color: #666;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  text-align: center;
+  bottom: 0px;
+  margin: 200px auto 0 auto;
+}
+
+/*富文本图片*/
+.richTextPic img{
+   width: 100% !important;
+}
+@media  (max-width: 360px){
+  .crowd_funding_earn_money{
+    width: 142px !important;
+  }
+  .crowd_funding_hot_money{
+    float: left;
+    margin-top: 4px;
+  }
+}
+
+@media (width: 375px){
+  .crowd_funding_earn_money{
+    width: 200px !important;
+  }
+  .crowd_funding_hot_money{
+    float: left;
+    margin-top: 4px;
+  }
+}
+@media (width: 320px) {
+
+  .crowd_home_new_loading_load{
+     width: 68%;
+  }
+  .min_w_details{
+     width: 20% !important;
+  }
+  .crowd_funding_details_loading{
+     width: 80% !important;
+  }
+  .crowd_home_new_title{
+      width: 140px;
+      margin-top: 12px;
+      font-size: 14px;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden
+ }
+  .crowd_home_new_count .crowd_home_new_info{
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .crowd_funding_hot_popup_msg dl{
+    display: flex;
+    display: -webkit-flex;
+    margin-top: 10px;
+  }
+  .crowd_funding_hot_popup_freight{
+    margin-top: 10px;
+  }
+  .crowd_home_new_loading_num{
+    width: 30%;
+  }
+}
+@media (width: 375px) {
+  .crowd_funding_details_loading{
+    width: 82% !important;
+  }
+  .crowd_home_new_loading_load{
+    width: 72% ;
+  }
+  .min_w_details{
+    width: 16% !important;
+  }
+  .crowd_funding_hot_popup_msg dl{
+    display: flex;
+    display: -webkit-flex;
+    margin-top: 10px;
+  }
+  .crowd_funding_hot_popup_freight{
+    margin-top: 10px;
+  }
+  .crowd_home_new_loading_num{
+    width: 24%;
+  }
+}
+
+
+

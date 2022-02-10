@@ -1,0 +1,153 @@
+<ion-view view-title="微店主数据分析" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:40px;height:44px;padding-left:16px;" flex="cross:center" ng-click="goBack()">
+      <div style="width:34px;height:24px;" flex="cross:center">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">微店主数据分析</div>
+    <div style="margin-right:9px;height:44px;padding-right:6px;font-size:17px;color:#999;width:40px;letter-spacing: 0;" flex="main:center cross:center" ui-sref="personnalCenter">
+      <img style="width:28px;" ng-src="{{imgBaseURL}}img/tab_ic_user.png" alt="">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="dataAnalysisBackground">
+    <div class="dataAnalysisOne">
+      <div class="dataAnalysisHead">
+        <div class="dataAnalysisDT">最新动态</div>
+        <div flex="box:mean">
+          <div flex="dir:top">
+            <div class="dataAnalysisLBT">
+              <img ng-src="{{imgBaseURL}}img/timeOrder@2x.png">
+              <span>订单时间</span>
+            </div>
+            <div class="dataAnalysisLBB">
+              {{dataUpdateAddTime | date:'yyyy/MM/dd'}}
+            </div>
+          </div>
+          <div flex="dir:top">
+            <div class="dataAnalysisLBT">
+              <img ng-src="{{imgBaseURL}}img/shopClassification@2x.png">
+              <span>商品分类</span>
+            </div>
+            <div class="dataAnalysisLBB">{{dataUpdate.cateName}}</div>
+          </div>
+          <div flex="dir:top">
+            <div class="dataAnalysisLBT">
+              <img ng-src="{{imgBaseURL}}img/orderPrice@2x.png">
+              <span>订单金额</span>
+            </div>
+            <div class="dataAnalysisLBB" ng-if="dataUpdate">￥{{dataUpdate.productAmount}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="pieChartone">
+        <div flex="dir:top main:center cross:center" ng-if="isHasData" class="isHasPieChartone">
+          <img ng-src="{{imgBaseURL}}img/Coupon@2x.png"/>
+          <span>销售:暂无数据，加油开张吧. </span>
+        </div>
+        <div class="pieChartone1" flex="box:justify">
+          <div class="pieChartone11">销售商品分析</div>
+          <div></div>
+          <div class="pieChartone13">
+            <span ng-style="byStyle" ng-click="chooseDate('BY')">本月</span>
+            <span ng-style="lgStyle" ng-click="chooseDate('LG')">累计</span>
+          </div>
+        </div>
+        <div id="container" ng-if="containerPic">
+        </div>
+      </div>
+      <div class="pieChartTwo">
+        <div class="pieChartTwoPadding" flex="box:justify">
+          <div class="pieChartone11">活跃度分析</div>
+          <div></div>
+          <div class="pieChartone13">
+            <span ng-style="byStyleActive" ng-click="chooseActive('BY')">本月</span>
+            <span ng-style="lgStyleActive" ng-click="chooseActive('LG')">累计</span>
+          </div>
+        </div>
+        <div id="activeContenter" ng-if='activeContenterPic'></div>
+        <div class="pieChartTwo1" flex="box:justify">
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/loginNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.LOGIN}}</span>
+              <span class="pieChartTwoP2">登录次数</span>
+            </p>
+          </div>
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/commentNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.ASSESS}}</span>
+              <span class="pieChartTwoP2">评价次数</span>
+            </p>
+          </div>
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/interactiveNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.COMMUNITY}}</span>
+              <span class="pieChartTwoP2">社区互动</span>
+            </p>
+          </div>
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/carryNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.TASK}}</span>
+              <span class="pieChartTwoP2">任务完成</span>
+            </p>
+          </div>
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/shareShopNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.STORE_SHARE}}</span>
+              <span class="pieChartTwoP2">分享店铺</span>
+            </p>
+          </div>
+          <div flex="dir:left main:center">
+            <span class="pieChartTwoImg">
+              <img ng-src="{{imgBaseURL}}img/sahngNum.png" />
+            </span>
+            <p class="pieChartTwoP" flex="dir:top">
+              <span class="pieChartTwoP1">{{dataActivity.PRODUCT_SHARE}}</span>
+              <span class="pieChartTwoP2">分享商品</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pieChartThree">
+        <div class="pieChartThree1" flex="box:justify">
+          <div class="pieChartone11">销售地区分析</div>
+          <div></div>
+          <div class="pieChartone13">
+            <span ng-style="cityByStyle" ng-click="chooseCityDate('BY')">本月</span>
+            <span ng-style="cityLgStyle" ng-click="chooseCityDate('LG')">累计</span>
+          </div>
+        </div>
+        <div class="pieChartThreeOne">
+          <div class="pieChartThreeOne1 border-bottom" ng-repeat="dataReone in dataRegional">
+            <div flex="box:justify">
+              <div class="pieChartThreeOne11">{{dataReone.cateName}}</div>
+              <div></div>
+              <div class="pieChartThreeOne12">
+                <!--<span>{{dataReone.mySaleNum}}台</span>/<span>{{dataReone.totalSaleNum}}台</span>-->
+              </div>
+            </div>
+            <div class="pieChartThreeOne13">
+              <div class="pieChartThreeOne14" style="width:{{PercentageCal(dataReone.mySaleNum,dataReone.totalSaleNum)}};"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottomToptwo"></div>
+  </ion-content>
+</ion-view>

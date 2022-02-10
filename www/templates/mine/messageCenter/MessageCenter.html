@@ -1,0 +1,32 @@
+<!--我的->消息中心-->
+<ion-view class="background" view-title="消息中心" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-small font-size-13" ng-if='!(mesType==4)' ng-click="readAll()">全部已读</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="bg-white margin-10 border-radius" ng-repeat="item in messageList track by $index" ng-click='goDetail(item)'>
+      <div class="row">
+        <div class="col col-66">
+          <div class="border-bottom padding-5">
+            <!--<img class="sg-message-img" ng-src="img/ic_new_message.gif" alt="new" ng-if="messageList[$index].isRead==0">-->
+            <!-- <i class='ic_new_message' style='display:inline-block;width:8px;height:8px;background: red;border-radius: 4px;margin-left: -10px;' ng-if='!messageList[$index].isRead'></i> -->
+            <span class="sg-ms-title font-size-15 bg-white" ng-bind="messageList[$index].title"></span>
+          </div>
+          <div class="font-size-12 padding-5 color-theme" ng-bind="messageList[$index].content"></div>
+        </div>
+        <div class="col position-r">
+          <div class="font-size-12 padding-5 position-a right-10 bottom-5" ng-bind="messageList[$index].date"></div>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="5%">
+    </ion-infinite-scroll>
+  </ion-content>
+  <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+  <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+
+
+</ion-view>

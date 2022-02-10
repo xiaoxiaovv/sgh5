@@ -1,0 +1,111 @@
+<!--二级管理-->
+<ion-view view-title="人脉关系" class="background" hide-nav-bar="true">
+  <!-- *********************分享标签－whiteBird start********************* -->
+  <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare"
+       ng-click="hideblackCover()">
+  </div>
+  <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}/btn_friend.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+    </div>
+    <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+      <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+
+      <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+    </div>
+  </div>
+  <!-- *********************分享标签－whiteBird end********************* -->
+
+  <ion-content scrollbar-y="false">
+    <!--合伙人头部 合伙人详细信息-->
+    <div ng-style="topPadding" style="position:relative;background-image:linear-gradient(-180deg, #ec4a4a 17%, #f77c63 100%);height:320px;">
+      <!--head-->
+      <div flex="main:justify cross:center" style="height:24px;padding:0 12px;">
+        <div ng-click="backToLastView()" style="width:24px;"><img ng-src="{{imgBaseURL}}img/connectionBack@2x.png" style="width:9px;height:16px;"></div>
+        <div style="font-size: 17px;color:#ffffff;">人脉关系</div>
+        <div ui-sref="connectionSearch({searchType:checkArr[0]?1:2})" style="height: 24px;"><img ng-src="{{imgBaseURL}}img/connectionRelation@2x.png" style="width:20px;height:20px;margin-top:2px;"></div>
+      </div>
+      <!--头像-->
+      <div style="height:74px;margin-top:28px;text-align: center;">
+        <img ng-src="{{connectionMsg.owner.avatarImageFileId}}" style="width:74px;height:74px;border-radius:37px;border:3px solid rgba(255,255,255,0.35);">
+      </div>
+      <!--名字-->
+      <div style="margin-top:10px;color:#ffffff;text-align: center;font-size: 18px;">{{connectionMsg.owner.storeName}}的小店</div>
+      <!--排名-->
+      <div flex="main:center cross:center" style="margin:7px 0;font-size:12px;color:#ffffff;letter-spacing:0px;text-align:left;">
+        <div>友圈排名：{{connectionMsg.owner.relationshipRank}}</div>
+        <div style="opacity:0.8;margin-left:10px;">总排名：{{connectionMsg.owner.userRank}}</div>
+      </div>
+      <!--推广码-->
+      <div flex="main:center cross:center" ng-click="share()">
+        <div flex="main:center cross:center" style="background:#ffffff;border-radius:16px;width:179px;height:32px;">
+          <img ng-src="{{imgBaseURL}}img/connectionShare@2x.png" style="width:18px;height:17px;margin-right:4px;">
+          <span style="font-size:14px;color:#f45645;letter-spacing:0px;">我的推广码{{connectionMsg.owner.promotionCode}}</span>
+        </div>
+      </div>
+
+      
+
+      <!--合伙人 人脉-->
+      <div flex="main:center cross:center" style="position:absolute;bottom:0;font-size: 16px;color:#ffffff;background:#f55b4a;width:100%;height:48px;">
+        <div ng-click="switchCheck(0)" style="position:relative;width:50%;text-align: center;line-height: 48px;" ng-class="{true:'checked',false:'unChecked'}[checkArr[0]]">
+          合伙人<span>({{connectionMsg.owner.secondLevelMemberCount}})</span>
+          <div ng-class="{true:'showTriangle',false:'unShowTriangle'}[checkArr[0]]" style="position:absolute;bottom:0;left:0;top:33px;right:0;margin:auto;width:0;height:0;border:8px solid transparent;border-bottom:8px solid #ffffff;"></div>
+          </div>
+        <div style="width:1px;height:31px;opacity:0.69;background: #ffffff;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"></div>
+        <div ng-click="switchCheck(1)" style="position:relative;width:50%;text-align: center;line-height: 48px;" ng-class="{true:'checked',false:'unChecked'}[checkArr[1]]">
+          人脉<span>({{connectionMsg.owner.thirdLevelMemberCount}})</span>
+          <div ng-class="{true:'showTriangle',false:'unShowTriangle'}[checkArr[1]]" style="position:absolute;bottom:0;left:0;top:33px;right:0;margin:auto;width:0;height:0;border:8px solid transparent;border-bottom:8px solid #ffffff;"></div>
+          </div>
+      </div>
+
+    </div>
+    
+
+    <!--合伙人列表 人脉列表-->
+    <div ng-if="connectionMsg.partners">
+      <div ng-class="{true:'marginBottom',false:''}[relationshipType==1]" ng-repeat="item in connectionMsg.partners | orderBy:'relationshipRank'" style="padding:0 12px; background: #ffffff;">
+        <div flex="main:left cross:center" style="height:65px;" ng-click="gotoPartnerDetail(item.memberId,relationshipType)">
+          <img ng-src="{{item.avatarImageFileId}}" style="margin:0 12px 0 4px;width:46px;height:46px;border-radius: 23px;">
+          <div>
+            <div style="font-size:16px;color:#000000;letter-spacing:0px;text-align:left;">{{item.storeName}}</div>
+            <div style="margin-top:9px;opacity:0.87;font-size:14px;color:#030303;letter-spacing:0px;line-height:14px;text-align:left;">{{item.name}},&nbsp;&nbsp;友圈排名：{{item.relationshipRank}},&nbsp;&nbsp;<span style="opacity:0.54;font-size:14px;color:#030303;letter-spacing:0px;text-align:left;">首单：{{item.isComplete}}</span></div>
+          </div>
+        </div>
+        <div class="onePixelLine"></div>
+        <div ng-if="relationshipType==1" flex="main:center cross:center" style="height:40px;" ng-click="gotoSpreadConnection(item.memberId)">
+          <span style="opacity:0.53;font-size:16px;color:#000000;letter-spacing:0px;text-align:left;">展开人脉</span>
+          <img ng-src="{{imgBaseURL}}img/spreadConnection@2x.png" style="margin-left:7px;width:8px;height:13px;">
+        </div>
+      </div>
+      <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </div>
+    <!--如果没有合伙人 或者人脉的 占位图-->
+    <div flex="dir:top main:center cross:center" style="margin-top:20px;"  ng-if="connectionMsg.partners.length==0&&(relationshipType==1||relationshipType==2)">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据，快去分享你的店铺拓展友圈吧！</span>
+    </div>
+  </ion-content>
+</ion-view>

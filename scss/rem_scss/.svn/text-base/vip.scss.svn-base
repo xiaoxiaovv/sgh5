@@ -1,0 +1,625 @@
+/**
+会员中心  @zhangyr --star7.24
+**/
+.myvip {
+  height:100%;
+  background:#fff;
+  .vip-head {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background:#295BFF;
+    background: linear-gradient(0deg, #2979FF 8%, #295BFF 98%);
+    background: -webkit-linear-gradient(90deg, #2979FF 8%, #295BFF 98%);
+    .vip-nav {
+      .go-back {
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        margin-left: 16px;
+      }
+      .title {
+        font-size: 17px;
+        color: #FFF;
+        letter-spacing: -0.41px;
+        margin-left: 16px;
+      }
+      .head-right {
+        .regulation-img {
+          width: 24px;
+        }
+        .more-info {
+          width: 14px;
+          margin:0 12px 0 10px;
+          img{
+            width: 4px;
+          }
+        }
+      }
+    }
+    .vip-info {
+      margin-top: 30px;
+      .vip-user {
+        padding: 0 22px 0 16px;
+        width: 100%;
+        position: relative;
+        overflow: visible;
+        .img {
+          position: relative;
+          width: 42px;
+          height: 42px;
+          border-radius: 100%;
+          display: inline-block;
+          overflow: visible;
+          img {
+            width: 42px;
+            height: 42px;
+            border-radius: 100%;
+          }
+          .title-img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+          }
+          .small-title {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            background: #0c53cc;
+            font-size: 11px;
+            color: #fffc00;
+            border: 1px solid #fffc00;
+            line-height: 17px;
+            border-radius: 100%;
+          }
+        }
+        .shop-name {
+          color: #fff;
+          font-size: 16px;
+          vertical-align: top;
+          margin: 5px 0 0 10px;
+        }
+        .vip-star {
+          border:1px solid #fff;
+          overflow:hidden;
+          position: absolute;
+          right: 20px;
+          top: 10px;
+          padding-left: 5px;
+          height: 20px;
+          border-radius: 10px;
+          .star-item {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            img {
+              width: 100%;
+              vertical-align: top;
+            }
+          }
+        }
+      }
+      .vip-data {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        .data-list {
+          padding: 0 10px;
+          li {
+            height: 38px;
+            text-align: center;
+            line-height: 38px;
+            color: #fff;
+            border-radius: 8px 8px 0 0;
+            background: #0C52CC;
+            font-size: 14px;
+            &:first-child {
+              margin-right: 5px;
+            }
+            &:last-child {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+    }
+    .vip-store-star {
+      position:absolute;
+      right:0;
+      top:85px;
+      height:24px;
+      background: #FFDF9C;
+      border: 1px solid rgba(255,255,255,0.60);
+      border-radius: 19px 0 0 19px;
+      img {
+        width:16px;
+        margin-left:6px;
+      }
+      p {
+        font-size: 14px;
+        color: #D69A1F;
+        letter-spacing: -0.34px;
+        margin:0 4px;
+      }
+    }
+  }
+  .vip-content {
+    background: #eee;
+    overflow: hidden;
+    .vip-box{
+      overflow:hidden;
+      background:#fff;
+      margin-top: 10px;
+      .vip-con-title {
+        padding: 10px 0;
+        .vip-title-text {
+          position: relative;
+          text-align: center;
+          span {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            position: relative;
+            img{
+              vertical-align: middle;
+              width: 15px;
+              margin-right: 8px;
+              margin-top: -2px;
+            }
+            &:before,&:after{
+              content: '';
+              position: absolute;
+              top: 50%;
+              background: #333;
+              width: 9%;
+              height: 1px;
+            }
+            &:before {
+              left: 22%;
+            }
+            &:after {
+              right: 22%;
+            }
+            &.equity-text:before {
+              left: 27%;
+            }
+            &.equity-text{
+              img {
+                margin-top: -4px;
+              }
+            }
+            &.equity-text:after {
+              right: 27%;
+            }
+          }
+        }
+      }
+      .vip-grade-map {
+        position: relative;
+        .grade-scroll-box {
+          margin-top: 20px;
+          .progress-grade {
+            z-index:2;
+            overflow:visible;
+            .item-box {
+              .grade-item {
+                overflow:visible;
+                position:relative;
+                padding-bottom:10px;
+                font-size: 15px;
+                color: #333;
+                letter-spacing: 0px;
+                .img-box {
+                  background:#eee;
+                  margin-bottom:11px;
+                  width:50px;
+                  height:50px;
+                  border-radius:25px;
+                  border:1px solid #e4e4e4;
+                  overflow: visible !important;
+                  .img-item1 {
+                    width:42px;
+                    height:42px;
+                    border-radius:21px;
+                  }
+                  .img-item2 {
+                    width:19px !important;
+                    height:19px !important;
+                    position:absolute;
+                    top:9px;
+                    left:7px;
+                  }
+                  .img-item3 {
+                    width:19px !important;
+                    height:19px !important;
+                    position:absolute;
+                    bottom:4px;
+                    left:21x;
+                  }
+                  .img-item4 {
+                    width:30px !important;
+                    height:30px !important;
+                    position:absolute;
+                    top:9px;
+                    right:10px;
+                  }
+                }
+                .font-size-10 {
+                  font-size: 10px !important;
+                }
+                .hei20 {
+                  height: 20px;
+                }
+                .hei40 {
+                  height: 40px;
+                }
+              }
+            }
+            .martop10 {
+              margin-top: 5px;
+            }
+            .martop35 {
+              margin-top:-40px;
+            }
+          }
+        }
+      }
+      .vip-ranking {
+        border: 1px solid #e4e4e4;
+        border-radius: 12px;
+        height: 24px;
+        padding: 0 20px;
+        margin: 0px auto 20px auto;
+        width: 80%;
+        text-align: center;
+        .rank-info {
+          font-size: 12px;
+          color: #333;
+          letter-spacing: 0px;
+          display: inline-block;
+          line-height: 22px;
+          height: 22px;
+          vertical-align: middle;
+          .rank-num {
+            font-size: 16px;
+            color:#f56767;
+          }
+        }
+        .look-record {
+          border-radius: 2px;
+          margin-left: 6px;
+          height:24px;
+          .cup-img {
+            width: 10px;
+          }
+          .look-text{
+            font-size: 12px;
+            color: #f40;
+            letter-spacing: 0px;
+            line-height: 18px;
+            margin-left:4px;
+            height: 18px;
+            display:inline-block;
+            display: inline-block;
+            margin-right: 8px;
+          }
+          .icon-look{
+            width: 13px;
+
+          }
+          .icon-look-btn {
+            width: 13px;
+            height: 13px;
+            line-height: 10px;
+            display: inline-block;
+            border: 1px solid #333;
+            text-align: center;
+            color: #333;
+            margin-left: 10px;
+            border-radius: 100%;
+          }
+        }
+      }
+      .vip-equity {
+        padding: 0 30px;
+        margin-top: 20px;
+        .equity-info{
+          text-align: center;
+          .equity-img{
+            width: 49px;
+            height: 49px;
+            border-radius: 100%;
+            margin-bottom: 20px;
+            display: inline-block;
+            img {
+              width: 49px;
+            }
+          }
+          h5 {
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #333;
+          }
+          p{
+            font-size: 11px;
+            color: #999;
+            span {
+              width: 60px;
+              text-align: center;
+              border: 1px solid #979797;
+              border-radius: 7px;
+              display: inline-block;
+            }
+          }
+        }
+      }
+      &:last-child {
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+/*弹窗自定义*/
+@mixin max-screen($res){
+  @media only screen and ( max-width: $res )
+  {
+    @content;
+  }
+}
+@mixin min-screen($res){
+  @media only screen and ( min-width: $res )
+  {
+    @content;
+  }
+}
+.leader-popup{
+  .popup-body {
+    background: rgba(252,252,252,0.80);
+    border: 1px solid red;
+  }
+}
+.backdrop {
+  background-color: rgba(0,0,0,.9);
+}
+.cssClass {
+  border: 1px solid red;
+}
+.popup-body {
+  span {
+    font-size: 12px;
+  }
+  .apply-list {
+    margin: -22px;
+    padding: 22px;
+    background: rgb(235,235,235);
+    .form-title {
+      font-size: 15px;
+      color: #000;
+      letter-spacing: -0.41px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .form-info {
+      text-align: left;
+      margin: 15px 0;
+    }
+    .form-content {
+      font-size: 13px;
+      .sub-title {
+        color: #000;
+        line-height: 16px;
+        letter-spacing: 0px;
+      }
+      .input-name {
+        text-align: left;
+        letter-spacing: -0.08px;
+        margin: 12px 0 6px 0;
+        color: #000;
+        .error{
+          color: #f00;
+          margin-left: 10px;
+          font-size: 10px;
+        }
+      }
+      .input-area {
+        input {
+          border: 1px solid rgba(77, 77, 77, .20);
+          padding: 0 5px;
+          &[type='textarea'] {
+            min-height: 40px;
+          }
+        }
+        textarea {
+          resize: none;
+          border: 1px solid rgba(77, 77, 77, .20);
+          padding: 0 5px;
+        }
+      }
+    }
+    .form-button {
+      margin: 10px -22px -22px -22px;
+      border-top: 1px solid rgba(77, 77, 77, .20);
+      overflow: hidden;
+    }
+    .left-btn,.right-btn {
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      font-size: 17px;
+      color: #2979FF;
+      letter-spacing: -0.41px;
+      text-align: center;
+      line-height: 43.5px;
+      height: 43.5px;
+    }
+    .left-btn{
+      border-right: 1px solid rgba(77, 77, 77, 0.20);
+    }
+  }
+}
+@include min-screen(400px) {
+  .popup-container .popup {
+    width: 300px;
+  }
+}
+@include max-screen(325px) {
+  .popup-container .popup {
+    width: 250px;
+  }
+  .popup-body {
+    .apply-list {
+      margin: -24px;
+      padding: 24px;
+      .form-button {
+        margin: 10px -25px -25px -25px;
+        border-top: 1px solid rgba(77, 77, 77, .20);
+      }
+    }
+  }
+}
+.newyeartiao{
+  display:block;
+  width:343px;
+  position: absolute;
+  top: -39px;
+  left: 1px;
+}
+.actdescri{
+  font-size:18px;
+  color:white;
+  position: absolute;
+  top: -29px;
+  left: 137px;
+}
+.newyearAc{
+  width:350px;
+  border: 2px solid #FF7D70;
+  border-radius: 8px;
+  font-size:14px;/* no */
+  margin:0 auto;
+  padding: 30px 12px 18px 12px;
+  position:relative;
+  margin-top:40px;
+}
+.zhulijiayou{
+    width: 212px;
+    height: 40px;
+    line-height: 38px;
+    background:#FE2767;
+    background: -webkit-linear-gradient(0deg, #FF7D3D 0%,#FE2767 100%);
+    background-image: linear-gradient(90deg, #FF7D3D 0%, #FE2767 100%);
+    border-radius: 100px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.zhulimiaoshu{
+    color: #999999;
+    text-align: center;
+    margin-top: 10px;
+    span{
+      color:#ff4400;
+    }
+}
+.hemgxian{
+    width: 351px;
+    opacity: 0.5;
+    border: 1px solid #F84B3B;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.zhulizhanshi{
+      font-size: 16px;
+    color: #F62F12;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: -11px;
+    position: relative;
+    z-index: 99;
+    background: #f4f4f4;
+    padding: 0 10px;
+}
+.zhulirenshu{
+    color:#FF8100;
+    margin-left:12px;
+    margin-top:23px;
+}
+.choujiangjihui{
+    color:#FF4545;
+    margin-left:12px;
+    margin-top:14px;/* no */
+}
+.dibu-miaoshu{
+    color: #999999;
+    margin-left:12px;
+    span{
+      color:#ff4400;
+    }
+}
+.zhulizhanshitu{
+  position:relative;
+  width:274px;
+  height:32px;
+  left: 82px;
+  top: -25px;
+  img{
+    width:274px;
+    height:32px;
+  }
+  div:first-of-type{
+    overflow:hidden;
+    position: absolute;
+    top: 0;
+  }
+  div:last-of-type{
+    position: absolute;
+    width:34px;
+    height:25px;/* no */
+    text-align: center;
+    line-height:23px;/* no */
+    border: 1px solid #FF8C62;
+    top: -33px;/* no */
+    border-radius: 4px;/* no */
+    color:#FF4400;
+  }
+  div:last-of-type:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    top: 23px;/* no */
+    left: 12px;
+    height: 0;
+    border-top: 8px solid red;/* no */
+    border-right: 3px solid transparent;/* no */
+    border-left: 3px solid transparent;/* no */
+  }
+  div:last-of-type:after{
+    content: "";
+    position: absolute;
+    width: 0;
+    top: 23px;/* no */
+    left: 12px;
+    height: 0;
+    border-top: 7px solid #f4f4f4;/* no */
+    border-right: 3px solid transparent;/* no */
+    border-left: 3px solid transparent;/* no */
+  }
+}
+@media (device-height:568px) {
+  .zhulizhanshitu{
+    left:77px;/* no */
+    width:225px;/* no */
+    img{
+    width:225px;/* no */
+  }
+  }
+}

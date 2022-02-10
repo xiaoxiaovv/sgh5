@@ -1,0 +1,177 @@
+<ion-view view-title="全部圈子" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button style="color:#999999 !important;opacity: 1 !important" ng-click="toFilterTagSearch()"
+                class="font-size-10 icon ion-ios-search-strong button-clear ">
+        </button>
+        <button ng-click="isClick()" class="button-clear"  style="opacity: 1 !important;">
+            <img ng-src="{{imgBaseURL}}img/dot3.png" class="block" style="width: 20px;height: 20px">
+        </button>
+    </ion-nav-buttons>
+    <ion-content delegate-handle="allMainScroll" style="background:#f3f3f3;">
+        <div style="margin-top:3px;position:relative;">
+            <div style="position:absolute;top:0;left:0;">
+                <span style="display:block;text-align:center;line-height:50px;font-size:14px;background:#ffffff;border-bottom:1px solid #e4e4e4;width:101px;height:52px;"
+                ng-repeat="item in titleList track by $index"
+                ng-class="{true:'bac',false:''}[item.className=='bac']"
+                ng-click="itemTopicList(item.id,$index)">{{item.categoryName}}</span>
+            </div>
+            <div style="margin-left:110px;padding-top:5px;">
+                <!--<div ng-repeat="item in secondList" style="background:#fff;height:75px;border-top:1px solid #f3f3f3;padding:15px;">
+                    <img ng-src="{{item.topicImg}}" style="float:left;width:40px;height:40px;border-radius:40px;"/>
+                    <div style="margin-left:11px;display:inline-block;float:left;">
+                        <span style="display:block;color:rgba(51,51,51,0.87);font-size:14px;">{{item.topicName}}</span>
+                        <span style="display:block;color:rgba(102,102,102,0.87);font-size:12px;"
+                        ng-bind="{true:item.storyNum+'个话题',false:'9999+个话题'}[item.storyNum>9999]"></span>
+                    </div>
+                </div>-->
+                <div class="list" style="margin-top: -5px">
+                    <div ng-repeat="item in secondList" class="margin-top-5 bg-white">
+                        <div class="row row-no-padding">
+                            <div class="text-center" style="width: 84px;padding:10px">
+                                <img ng-src="{{item.topicImg | scoleFilter}}" style="width: 50px;height: 50px;border-radius: 50%">
+                            </div>
+
+                            <div class="position-a" ng-click="toCirclePage(item.id)"
+                                style="left: 84px;;right:70px;margin-top: 10px">
+                                <div style="padding-top: 3%;font-size: 15px;text-overflow: ellipsis;"
+                                    ng-bind="item.topicName" class="overflow-hidden font-bold white-space-nowrap">
+                                    <span style="color: #333333">海尔官方微店主培训圈</span>
+                                </div>
+                                <!--<div ng-bind="item.topicDescription"
+                                    style="color:#777777;font-size: 12px;text-overflow: ellipsis"
+                                    class="overflow-hidden white-space-nowrap"></div>-->
+                                <div style="color:#a6a6a6;font-size: 10px;line-height: 25px;height:25px;overflow:hidden;text-overflow: ellipsis;">
+                                    <span ng-bind="item.storyNum">2016个话题</span>
+                                    <span>个话题</span>
+                                    <span style="" class="margin-left-10"
+                                        ng-bind="item.joinNum">789个人</span>
+                                    <span>个人</span>
+                                </div>
+                            </div>
+
+                            <div class="padding-right-10 position-a" ng-if="item.isJoin==0"
+                                style="right: 0;margin-top: 32px">
+                                <div class="text-center ifJoinBtn" ng-click="joinCircle(item)">+加入</div>
+                            </div>
+                            <div class="padding-left-30 position-a" ng-if="item.isJoin>=1" ng-click="toCirclePage(item.id)"
+                                style="right: 10px;;line-height: 88px">
+                                <i class="icon ion-ios-arrow-right font-size-20" style="color:#777777;"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<ion-refresher class="margin-top-10" pulling-text="下拉刷新"  refreshing-text="正在刷新"  on-refresh="init()" ></ion-refresher>-->
+        <!--全部标签-->
+        <!--<div style="background-color: #f6f6f6;" class="padding-top-5"
+             ng-class="{true:'all-lines',false:'a-line-tags'}[moreTag]">
+            <div style="width: 90%;" class="inline-block padding-left-5">
+                <div ng-repeat="item in tagsName track by $index" ng-bind="item.name" ng-click="tagsFilter(item.id,$index,item.isChecked)"
+                     style="margin:5px 0;border-radius: 16px;padding: 1px 12px;color: #787878;" ng-class="{true:'bg-blue',false:''}[item.isChecked]"
+                     class="border inline-block bg-white margin-right-5 font-size-12">
+                </div>
+            </div>
+            <div style="display:inline-block;">
+               <span style="color: #777777;font-size: 20px;" class="icon ion-ios-arrow-up downShow"
+                     ng-if="moreTag == true"
+                     ng-click="isMoreTag()"></span>
+               <span style="color: #777777;font-size: 20px;" class="icon ion-ios-arrow-down downShow"
+                     ng-if="moreTag == false"
+                     ng-click="isMoreTag()"></span>
+            </div>
+        </div>-->
+
+        <!--<div class="bg-background">-->
+            <!--共多少圈子行-->
+            <!--<div class="padding-10 bg-white">
+                <span class="font-size-15">共</span>
+                <span class="font-size-15 font-bold" style="color: #0178fa" ng-bind="totalCount">201</span>
+                <span class="font-size-15">个圈子</span>-->
+                <!--<span class="float-r font-bold font-size-15" style="color: #0178fa" ng-click="toApplyCircle(1)">申请创建圈子</span>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<ion-infinite-scroll immediate-check="false" ng-if="hasmore" on-infinite="loadMore()"
+                             distance="1%"></ion-infinite-scroll>-->
+
+    </ion-content>
+    <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+    <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+
+    <!--消息弹框-->
+    <div ng-if="isDisplay" class="pop-news border-radius"
+         style="background: black;opacity: 0.8;color: white;width:150px;height:auto;"
+         ng-class="{'ios-margin-top-20':isIOS}">
+        <!--小箭头-->
+        <div class="top-arrow" style="top: -6px !important;background: black;color: white"></div>
+        <!--消息-->
+        <div class="pop-news-item">
+            <div class="float-l pop-news-icon">
+                <img src="img/circleIcon/noteMessage.png" alt="">
+            </div>
+            <div ng-click="jumpMsgCenter()" class="float-l pop-news-text">消息</div>
+            <!--消息数量-->
+           <!-- <div class="float-r pop-news-amount">
+                &lt;!&ndash;假数据99+&ndash;&gt;
+                <span>99+</span>
+                &lt;!&ndash;单向绑定数据messageNum，使用过滤器&ndash;&gt;
+                &lt;!&ndash;<span ng-bind="messageNum|Num2Filter"></span>&ndash;&gt;
+            </div>-->
+        </div>
+        <!--<div class="pop-news-item" ng-click="toApplyCircle(1)">
+            <div class="float-l pop-news-icon">
+                <img src="img/quanzi/add.png" alt="">
+            </div>
+            <div class="float-l pop-news-text">申请创建圈子</div>
+        </div>-->
+        <!--<div class="pop-news-item" ng-click="goShop()">
+            <div class="float-l pop-news-icon">
+                <img src="img/circleIcon/smallShop.png" alt="">
+            </div>
+            <div class="float-l pop-news-text">小店</div>
+        </div>
+        <div class="pop-news-item" ui-sref="cart">
+            <div class="float-l pop-news-icon">
+                <img src="img/circleIcon/shopping2.png" alt="">
+            </div>
+            <div class="float-l pop-news-text">购物车</div>
+        </div>
+        <div class="pop-news-item" ui-sref="mine">
+            <div class="float-l pop-news-icon">
+                <img src="img/circleIcon/personalPage.png">
+            </div>
+            <div class="float-l pop-news-text">我</div>
+        </div>-->
+
+    </div>
+
+    <!--轻通知-->
+    <!--<div class="padding-left-right-25 padding-top-bottom-5 color-white" ng-if="applyBottomNotice"-->
+         <!--style="border-radius:15px;background-color: rgba(0,0,0,0.7);position: fixed;bottom: 10px;left: 50%;margin-left: -95px">-->
+        <!--申请已提交，等待审核-->
+    <!--</div>-->
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="applyBottomNotice">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>您的申请提交成功，请等待审批。</span>
+        </div>
+    </div>
+
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="inCircle">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>恭喜加入</span>
+            <span ng-bind="itemTopicName"></span>
+            <span>圈子</span>
+        </div>
+    </div>
+    <div ng-include="'templates/common/CommonLoginPopup3.html'"></div>
+</ion-view>

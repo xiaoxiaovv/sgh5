@@ -1,0 +1,57 @@
+<ion-modal-view class="height-100 width-100" style="background: none" ng-click="hideCommitPaper()">
+  <!--是否提交-->
+  <div style="margin-top: 50%" class="bg-white text-center padding-20">
+    <div>
+      <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-50" alt="">
+    </div>
+    <div>确认提交答卷</div>
+    <div>本次共计15道题,未答0道。</div>
+    <div class="padding-top-bottom-5" style="padding: 0 40px">
+      <div class="text-center font-bold float-l" style="width: 80px;color: red" ng-click="hideCommitPaper()">
+        <div class="border-radius" style="line-height: 30px;border: 1px solid red">再看看</div>
+      </div>
+      <div class="text-center font-bold float-r" style="width: 80px;color: #0c60ee" ng-click="submitPaper()">
+        <div class="border-radius" style="line-height: 30px;border: 1px solid #0c60ee">确认提交</div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+  </div>
+  <!--已提交-->
+  <div style="margin-top: 50%" class="bg-white text-center padding-20" ng-if="">
+    <div>
+      <img ng-src="{{imgBaseURL}}img/btn_qq.png" class="width-height-50" alt="">
+    </div>
+    <div class="font-bold font-size-20">答卷已提交</div>
+    <div>本次共计15道题,答错0道。</div>
+    <div class="padding-top-bottom-5 text-center" style="padding: 0 40px">
+      <div class="border-radius text-center font-bold"
+           style="color: #0c60ee;line-height: 30px;width:80px;border: 1px solid #0c60ee;margin-right: auto;margin-left: auto">
+        查看答卷
+      </div>
+    </div>
+  </div>
+  <!--题目概况-->
+  <div class="padding-20 bg-white font-bold" style="margin-top: 100px;color: gray" ng-if="">
+    <div style="border-bottom: 1px solid gray" ng-bind="testResult[0].typeName">单选题</div>
+    <div class="width-100 padding">
+      <div class="float-l margin-right-10 margin-top-5"
+           style="width: 15%;height:15%;padding-bottom: 15%;background: cornflowerblue" ng-class=""
+           ng-repeat="item in testResult[0].listSub" ng-click="jumpQuestionDetail(item.subjectNo)"></div>
+      <div style="clear: both"></div>
+    </div>
+    <div style="border-bottom: 1px solid gray" ng-bind="testResult[1].typeName">多选题</div>
+    <div class="width-100 padding">
+      <div class="float-l margin-right-10 margin-top-5"
+           style="width: 15%;height:15%;padding-bottom: 15%;background: hotpink" ng-class=""
+           ng-repeat="item in testResult[1].listSub" ng-click="jumpQuestionDetail(item.subjectNo)"></div>
+      <div style="clear: both"></div>
+    </div>
+    <div style="border-bottom: 1px solid gray" ng-bind="testResult[2].typeName">判断题</div>
+    <div class="width-100 padding">
+      <div class="float-l margin-right-10 margin-top-5"
+           style="width: 15%;height:15%;padding-bottom: 15%;background: hotpink" ng-class=""
+           ng-repeat="item in testResult[2].listSub" ng-click="jumpQuestionDetail(item.subjectNo)"></div>
+      <div style="clear: both"></div>
+    </div>
+  </div>
+</ion-modal-view>

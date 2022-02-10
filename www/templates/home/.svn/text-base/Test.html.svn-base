@@ -1,0 +1,89 @@
+<!--订单查看-->
+<ion-view class="background" view-title="首页">
+  <ion-content scrollbar-y="false">
+    <!--标题-->
+    <div>
+      <!--右侧按钮-->
+      <div class="text-align-r padding-right-15">
+        <i class="icon ion-network color-theme font-size-18"></i>
+
+        <div class="inline margin-left-15">店铺预览</div>
+      </div>
+      <!--下方照片-->
+      <div class="text-align-c">
+        <img class="width-10" ng-src="{{imgBaseURL}}img/ionic.png" alt="头像"/>
+
+        <div><span class="font-size-18">北辰</span>的顺光小店</div>
+      </div>
+
+    </div>
+    <!--信息-->
+    <div class="row border-top border-bottom margin-top-20">
+      <div class="col col-33 text-align-c color-text-red border-right">
+        <span class="">278.8</span>
+
+        <div class="">累计收益</div>
+      </div>
+      <div class="col col-33 text-align-c">
+        <div class="">83</div>
+        <span class="">今日访问量</span>
+
+      </div>
+      <div class="col col-33 text-align-c">
+        <span class="">0</span>
+
+        <div class="">今日订单</div>
+
+      </div>
+    </div>
+    <!--轮播图-->
+    <div>
+      <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide class="text-align-c padding-top-10">
+          <img ng-src="{{imgBaseURL}}img/ionic.png" alt="轮播图"/>
+        </ion-slide>
+        <ion-slide  class="text-align-c padding-top-10">
+          <img ng-src="{{imgBaseURL}}img/ionic.png" alt="轮播图"/>
+        </ion-slide>
+        <ion-slide  class="text-align-c padding-top-10">
+          <img ng-src="{{imgBaseURL}}img/ionic.png" alt="轮播图"/>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+    <!--按钮菜单-->
+    <div class="row row-warp">
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+      <div class="col col-33 text-align-c border padding">
+        <img class="width-60" ng-src="{{imgBaseURL}}img/ionic.png"/>
+        <div>商品光里</div>
+      </div>
+    </div>
+<div class="text-align-c color-theme margin-bottom-20 padding-top-10">
+ 新手必看
+</div>
+
+  </ion-content>
+</ion-view>

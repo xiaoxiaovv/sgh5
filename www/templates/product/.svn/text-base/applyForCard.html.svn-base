@@ -1,0 +1,39 @@
+<!--模板-->
+<ion-view view-title="联名卡申请">
+   <!-- <ion-nav-buttons side="right"> -->
+     <!-- <button class="button" ng-click="doSomething()">
+       一个在导航栏右侧的按钮！
+     </button> -->
+    <!--  <button style='padding-top:5px;' ng-click=''>
+       <img style='width: 20px;' src="img/help.png" alt="">
+     </button>
+   </ion-nav-buttons> -->
+
+
+  <ion-content class="background"  scrollbar-y="false">
+     <div style='position: relative;'>
+       <img ng-src="{{imgBaseURL}}img/lianminka/lm-background.png" style="width:100%;" alt="">
+
+
+
+       <div style="position: absolute; width: 44%;left: 51%;top:28.5%; overflow: hidden;">
+         <img ng-click="toApplyForCard(1)" style='width:50%;float: left;' ng-src="{{imgBaseURL}}img/lianminka/lm-14@2x.png" alt="">
+         <img ng-click="toApplyForCard(2)" style='width:50%;float: left;' ng-src="{{imgBaseURL}}img/lianminka/lm-15@2x.png" alt="">
+       </div>
+
+      <div style="position: absolute; width: 80%;right: 15%; bottom: 10.8%; height: 5%;">
+        <img ng-click="toApplyForCard(1)" style='width:40%;margin-left: 5%;margin-right: 5%; float: left;' ng-src="{{imgBaseURL}}img/lianminka/lm-11@2x.png" alt="">
+         <img ng-click="toApplyForCard(2)" style='width:40%;margin-left: 5%;margin-right: 5%; float: left;' ng-src="{{imgBaseURL}}img/lianminka/lm-12@2x.png" alt="">
+      </div>
+
+
+      <img ng-click="toApplyForCard(3)" style='position: absolute; width:60%;left: 20%;bottom:5%;' ng-src="{{imgBaseURL}}img/lianminka/lm-13@2x.png" alt="">
+     </div>
+
+
+
+
+
+
+  </ion-content>
+</ion-view>

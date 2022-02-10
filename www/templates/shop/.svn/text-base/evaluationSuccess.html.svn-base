@@ -1,0 +1,14 @@
+<!--评价-->
+<ion-view view-title="评价成功" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center">
+      <div style="height:24px;width:24px;">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">评价成功</div>
+    <div style="width:34px;height:44px;padding-right:16px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="criticalSuccess">
+    <div class="topDiv bg-background">感谢评价,您的心声是我们前进最大的动力！</div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,62 @@
+<ion-view class="background" view-title="首页" hide-back-button="true" hide-nav-bar="true">
+        <div flex="main:center cross:center box:justify" style="background:#fff;border-bottom:1px solid #F4F4F4;" class="selection_top homePage_top" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]">
+            <div class="address" ng-click="addressTop()" flex="main:center cross:center">
+                <img class="newadd" ng-src="{{locationImgUrl}}">
+                <div style="color:#666;">{{region}}</div>
+            </div>
+            <div class="search" flex="cross:center" style="background:#F4F4F4;" ui-sref="goodsSearch({front:1})">
+                <img ng-src="{{imgBaseURL}}img/searchIcon@2x.png">
+                <div >{{hot_word}}</div>
+            </div>
+            <div class="message" flex="main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+                <img class="newmes" ng-src="{{messageImgUrl}}">
+                <!-- <div style="color:#666;">消息</div> -->
+            </div>
+        </div>
+        <div ng-include="'templates/common/scroolBar.html'"></div>
+          <ion-content lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide homePageContent' ng-class="{true:'iosAppFixedTopCopyHome',false:'normalFixedTopCopyHome'}[isIosApp]" style='margin-bottom: 5px;'>
+            <ion-slide-box  delegate-handle="test_slide_box" auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="imageItem in banner track by $index">
+                <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)" width="100%" />
+                </ion-slide>
+            </ion-slide-box>
+            <div flex='main:center' style='padding: 0 0 5px 5px;'>
+                <div ng-repeat='i in types' style='margin-right: 5px;position: relative;' ui-sref='testingStoreList({nearbyType:i.id})'>
+                  <img ng-src='{{i.iconUrl}}' style='width:100%;display: block;'/>
+                  <i style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 0.426rem;color: white;font-weight: 800;">{{i.name}}</i>
+                </div>
+            </div>
+            <div class='housetitle' style="background: #fff">
+              <div></div>
+              <div>附近体验店</div>
+            </div>
+            <img ng-src="{{recently.imageUrl}}" style='width: 100%;display: block;' ng-if='recently' ui-sref='exStoreDetail({nearbyId:recently.id})'/>
+              <div class="bestnearby" ng-if='recently&&recently.length!=0' ui-sref='exStoreDetail({nearbyId:recently.id})'>
+                <div>{{recently.name}}</div>
+                <div>{{recently.address}}<i>{{recently.typeValue}}</i></div>
+                <div><img ng-src='{{imgBaseURL}}img/newvision/location.png'/>{{recently.distance}}</div>
+              </div>
+              <div ng-if='!recently' style="background: #fff;padding-top: 20px;text-align: center;color: #999;padding-bottom: 54px;">
+                <img ng-src="{{imgBaseURL}}img/noStoreMsg.png" style='display: block;margin: 0 auto;width: 134px;'/>
+                <div style="margin-top: 10px;">
+                  对不起，您当前所在城市
+                </div>
+                <div>
+                  尚未有体验店入驻哦请稍后再来
+                </div>
+              </div>
+              <div style="background: #fff;margin-top: 10px;">
+                <div class="bestnearby" ng-repeat='i in nearByList' ng-if='$index!=0' ui-sref='exStoreDetail({nearbyId:i.id})'>
+                <div>{{i.name}}</div>
+                <div>{{i.address}}<i>{{i.typeValue}}</i><img ng-src='{{imgBaseURL}}img/newvision/more.png'/></div>
+                <div><img ng-src='{{imgBaseURL}}img/newvision/location.png'/>{{i.distance}}</div>
+              </div>
+              </div>
+              <div ng-if="!hasmore&&recently&&recently.length!=0" style='text-align: center;font-size: 14px;height: 40px;line-height: 40px;color: #666'><span style="text-decoration: line-through;color: #979797;">&emsp;&emsp;&emsp;&emsp;&emsp;</span>&emsp;没有更多&emsp;<span style="text-decoration: line-through;color: #979797;">&emsp;&emsp;&emsp;&emsp;&emsp;</span></div>
+              <ion-infinite-scroll ng-if="hasmore&&canShow" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+          </ion-content>
+      <ion-footer-bar>
+          <div ng-include="'templates/common/Tabs.html'"></div>
+        </ion-footer-bar>
+      </ion-view>
+      

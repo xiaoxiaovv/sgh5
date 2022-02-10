@@ -1,0 +1,263 @@
+<ion-view class="background" view-title="优惠券详情">
+  <!--<ion-nav-buttons side="right">-->
+  <!--<img class="button" style="width: 35px;height: 30px;padding-top: 5px;padding-bottom: 3px;" ng-click="share()" ng-src="img/ic-share-b.png"/>-->
+  <!--</ion-nav-buttons>-->
+  <ion-content scrollbar-y="false">
+    <div class="padding-left-10 text-color-light-red"
+         ng-if="getCouponSuccess !='' " ng-bind="getCouponSuccess">
+    </div>
+    <div class="list padding-left-right-10" ng-if="status!=2&&status!=3&&!data.coupon.storeId">
+      <div class="item row color-text-white margin-top-10 padding-5 border-radius"
+           ng-class="{true: 'bg-theme', false: 'bg-green'}[data.coupon.useCondition!=4]">
+        <div class="col col-75 padding-5 padding-left-10" ng-class="{true: 'border-right', false:''}[!isUser]">
+          <div>
+            <span class="font-size-22">&yen</span>
+            <span class="font-size-22" ng-bind="data.coupon.amount">10000</span>
+            <span class="font-size-12">{{data.coupon.fullCutPriceDoc}}</span>
+          </div>
+          <div>
+            <div>
+              <span class="font-size-10">{{data.coupon.couponType}}&nbsp;&nbsp;&nbsp;&nbsp;{{data.coupon.amountDoc}}</span>
+            </div>
+            <div>
+              <span class="float-l font-size-10">使用时间：</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.beginDate |date:'yyyy.MM.dd'">2016.03.26</span>
+              <span class="float-l font-size-10">--</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.endDate |date:'yyyy.MM.dd'">2016.04.20</span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-25  font-size-22 coupons-text-center"
+             ng-click="donation(data.coupon.id)" ng-if="!isUser">
+          转赠
+        </div>
+      </div>
+    </div>
+
+    <!--店铺券-->
+    <div class="list padding-left-right-10"
+         ng-if="status!=2&&status!=3&&data.coupon.storeId&&data.cpupon.storeId!=0">
+      <div class="item row color-text-white margin-top-10 padding-5 border-radius"
+           style="background-color: #FF99FF;">
+        <div class="col col-75 padding-5 padding-left-10" ng-class="{true: 'border-right', false:''}[!isUser]">
+          <div>
+            <span class="font-size-22">&yen</span>
+            <span class="font-size-22" ng-bind="data.coupon.amount">10000</span>
+            <span class="font-size-12">{{data.coupon.fullCutPriceDoc}}</span>
+          </div>
+          <div>
+            <div>
+              <span class="font-size-10">{{data.coupon.couponType}}&nbsp;&nbsp;&nbsp;&nbsp;{{data.coupon.amountDoc}}</span>
+            </div>
+            <div>
+              <span class="float-l font-size-10">使用时间：</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.beginDate |date:'yyyy.MM.dd'">2016.03.26</span>
+              <span class="float-l font-size-10">--</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.endDate |date:'yyyy.MM.dd'">2016.04.20</span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-25  font-size-22 coupons-text-center"
+             ng-click="donation(data.coupon.id)" ng-if="!isUser">
+          转赠
+        </div>
+      </div>
+    </div>
+
+
+    <div class="list padding-left-right-10" ng-if="status==2||status==3">
+      <div class="item row color-text-white margin-top-10 padding-5 border-radius bg-line-coupon">
+        <div class="col-75 padding-5 padding-left-10 border-right-white">
+          <div>
+            <span class="font-size-22">&yen</span>
+            <span class="font-size-22" ng-bind="data.coupon.amount">10000</span>
+            <span class="font-size-12">{{data.coupon.fullCutPriceDoc}}</span>
+          </div>
+          <div>
+            <div>
+              <span class="font-size-10">{{data.coupon.couponType}}&nbsp;&nbsp;&nbsp;&nbsp;{{data.coupon.amountDoc}}</span>
+            </div>
+            <div>
+              <span class="float-l font-size-10">使用时间：</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.beginDate |date:'yyyy.MM.dd'">2016.03.26</span>
+              <span class="float-l font-size-10">--</span>
+              <span class="float-l font-size-10" ng-bind="data.coupon.endDate |date:'yyyy.MM.dd'">2016.04.20</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-25  font-size-22 coupons-text-center" ng-if="status==3">
+          已过期
+        </div>
+        <div class="col-25  font-size-22 coupons-text-center" ng-if="status==2">
+          已使用
+        </div>
+      </div>
+    </div>
+
+    <div class="padding-5">
+      <div class="padding-5">
+        <div class="text-align-c padding-5" style="width: 100%"
+             ng-if="status!=2&&status!=3&&!data.coupon.storeId"
+             ng-class="{true: 'bg-green', false: 'bg-theme'}[data.coupon.useCondition==4]">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">使用规则</span>
+        </div>
+        <div class="text-align-c padding-5" style="width: 100%;background-color:#FF99FF;"
+             ng-if="status!=2&&status!=3&&data.coupon.storeId&&data.coupon.storeId!=0">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">使用规则</span>
+        </div>
+        <div class="text-align-c bg-line-coupon padding-5" style="width: 100%"
+             ng-if="status==2||status==3">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">使用规则</span>
+        </div>
+        <!--<span class="color-text-red">使用规则</span>-->
+
+        <div ng-if="data.skuStr" class="padding-5 padding-top-5"
+             style="line-height: 20px;padding-bottom:0;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">该优惠券仅限{{data.skuStr}}使用</div>
+          <div style="clear:both"></div>
+        </div>
+        <!--<#if coupon.useCondition==4>-->
+        <div ng-if="data.coupon.useCondition==4" class="padding-5 padding-top-5"
+             style="line-height: 20px;padding-bottom:0px;"><!--${(coupon.fullCutPrice!0)?c}-->
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">  {{data.coupon.fullCutPriceDoc}}</div>
+          <div style="clear:both"></div>
+        </div>
+        <!--</#if>-->
+
+        <!--<#if coupon.useCondition==2>-->
+        <div ng-if="data.coupon.useCondition==2" class="padding-5 ppadding-top-5"
+             style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">商品单价满足金额要求即可使用</div>
+          <div style="clear:both"></div>
+        </div>
+        <!--</#if>-->
+        <!--<#if coupon.useCondition==3>-->
+        <div ng-if="data.coupon.useCondition==3" class="padding-5 ppadding-top-5"
+             style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">一个订单中同一商品总价满足金额要求即可使用</div>
+          <div style="clear:both"></div>
+        </div>
+        <!--</#if>-->
+
+
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <!--<#if coupon.useCondition==4>-->
+          <div ng-if="data.coupon.useCondition==4" style="float:left;"><i class="dian_i">●</i></div>
+          <div ng-if="data.coupon.useCondition==4" style="display:inline-block;float:right;width:92%">
+            一个订单限使用一张优惠券
+          </div>
+          <div ng-if="data.coupon.useCondition==4" style="clear:both"></div>
+          <!--<#else>-->
+          <div ng-if="data.coupon.useCondition!=4" style="float:left;"><i class="dian_i">●</i></div>
+          <div ng-if="data.coupon.useCondition!=4" style="display:inline-block;float:right;width:92%">
+            一个商品限使用一张优惠券
+          </div>
+          <div ng-if="data.coupon.useCondition!=4" style="clear:both"></div>
+          <!--</#if>-->
+
+        </div>
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">下单立减的活动商品不可以使用优惠券</div>
+          <div style="clear:both"></div>
+        </div>
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <!--<#if coupon.useCondition==4>-->
+          <div ng-if="data.coupon.useCondition==4" style="float:left;"><i class="dian_i">●</i></div>
+          <div ng-if="data.coupon.useCondition==4" style="display:inline-block;float:right;width:92%">
+            通用券仅可单独使用，不可与其他优惠券同时使用（例如：商品券、卡券）
+          </div>
+          <div ng-if="data.coupon.useCondition==4" style="clear:both"></div>
+          <!--<#else>-->
+          <div ng-if="data.coupon.useCondition!=4" style="float:left;"><i class="dian_i">●</i></div>
+          <div ng-if="data.coupon.useCondition!=4" style="display:inline-block;float:right;width:92%">
+            商品券仅可单独使用，不可与其他优惠券同时使用（例如：通用券、卡券）
+          </div>
+          <div ng-if="data.coupon.useCondition!=4" style="clear:both"></div>
+          <!--</#if>-->
+        </div>
+
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">使用优惠券抵扣的金额不开具发票</div>
+          <div style="clear:both"></div>
+        </div>
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">同一商品的总额不能小于优惠券的面值，才可以使用该优惠券，且您最少需要支付1分钱
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">确认使用优惠券形成订单后，如取消该订单或发生退货，优惠券也会相应失效，请谨慎使用
+          </div>
+          <div style="clear:both"></div>
+        </div>
+
+        <div class="padding-5 ppadding-top-5" style="line-height: 20px;padding-bottom:0px;"
+             ng-if="data.coupon.storeName">
+          <div style="float:left;"><i class="dian_i">●</i></div>
+          <div style="display:inline-block;float:right;width:92%">该优惠券适用于<span
+            ng-bind="data.coupon.storeName"></span>所供应的商品
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <!--<div class="padding-5">
+        <span> 本优惠券仅限部分地区部分商品使用，一个订单限使用一张请在商品页根据您的收货地址查看是否可以使用优惠券</span>
+      </div>-->
+      </div>
+
+      <div class="padding-5">
+
+        <div class="text-align-c padding-5 margin-bottom-20"
+             ng-class="{true: 'bg-green', false: 'bg-theme'}[data.coupon.useCondition==4]"
+             ng-if="data.coupon.fullCutPrice == null&&status!=2&&status!=3&&!data.coupon.storeId"
+             style="width: 100%">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">适用商品</span>
+        </div>
+        <div class="text-align-c padding-5 margin-bottom-20"
+             ng-if="data.coupon.fullCutPrice == null&&status!=2&&status!=3&&data.coupon.storeId&&data.coupon.storeId!=0"
+             style="width: 100%;background-color: #FF99FF;">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">适用商品</span>
+        </div>
+        <div class="text-align-c bg-line-coupon padding-5 margin-bottom-20"
+             ng-if="data.coupon.fullCutPrice == null&&(status==2||status==3)"
+             style="width: 100%">
+          <div class="float-l color-text-white" style="font-size: 30px">☞</div>
+          <span class="text-align-c color-text-white" style="margin-left: -15px">适用商品</span>
+        </div>
+
+        <!--<span class="color-text-red" ng-bind="data.sgProductsMap">适用商品</span>-->
+        <div class="margin-top-5" ng-repeat="(key, value) in data.sgProductsMap">
+          <span class="font-size-15  color-text-white border-none" ng-if="status!=2&&status!=3&&!data.coupon.storeId"
+                ng-class="{true: 'bg-green', false: 'bg-theme'}[data.coupon.useCondition==4]"
+                style="padding-left: 10px;padding-right: 15px;border-bottom-right-radius: 10px;border-top-right-radius: 10px"
+                ng-bind="key"></span>
+          <span class="font-size-15  color-text-white border-none" ng-if="status!=2&&status!=3&&data.coupon.storeId&&data.coupon.storeId!=0"
+                style="padding-left: 10px;padding-right: 15px;border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: #FF99FF"
+                ng-bind="key"></span>
+           <span class="font-size-15  color-text-white border-none bg-line-coupon" ng-if="status==2||status==3"
+                 style="padding-left: 10px;padding-right: 15px;border-bottom-right-radius: 10px;border-top-right-radius: 10px"
+                 ng-bind="key"></span>
+
+          <div class="  padding-0 padding-left-5 border-none"
+               ng-repeat="values in data.sgProductsMap[key]">
+            <div class=" font-size-11 padding-5 border-none" ng-bind="values"></div>
+          </div>
+          <!--<div class="item color-text-red padding-0 padding-left-5 border-none" ng-bind="city[city]">沈阳市</div>-->
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

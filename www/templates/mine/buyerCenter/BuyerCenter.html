@@ -1,0 +1,54 @@
+<!--买家中心-->
+<ion-view view-title="买家中心" class="background" hide-nav-bar="true">
+  <ion-content>
+    <div class="position-r bg-white sg-buyer-header">
+      <img class="width-100" ng-src="{{imgBaseURL}}img/bg_buyer_center.jpg">
+      <div class="width-100 sg-buyer-title font-size-16 ">
+        <button ng-click="goBack();" class="button-clear font-size-26 icon ion-ios-arrow-left"></button>
+        <span>买家中心</span>
+      </div>
+      <div class="text-align-c position-a width-100 bottom-40"  style="top: 60px;">
+        <img ng-src="{{avatarImageFileId}}" alt="头像" class="shop-avatar-img" style="width: 80px;"/>
+        <div class="text-align-c font-size-17">会员ID：
+          <span ng-bind="mid"></span>
+        </div>
+      </div>
+    </div>
+    <div ui-sref="accountMessage" class="position-r bg-white padding-10 border-top-bottom margin-top-5">
+      我的资料
+      <i class="icon ion-ios-arrow-forward position-a right-10"></i>
+    </div>
+    <div ui-sref="collection" class="position-r bg-white padding-10 border-top-bottom margin-top-5">
+      我的收藏
+      <i class="icon ion-ios-arrow-forward position-a right-10"></i>
+    </div>
+    <div ui-sref="orderManage" class="position-r bg-white padding-10 border-top-bottom margin-top-5">
+      我的订单
+      <i class="icon ion-ios-arrow-forward position-a right-10"></i>
+    </div>
+    <div ui-sref="myCouponsList" class="position-r bg-white padding-10 border-top-bottom margin-top-5">
+      我的优惠券
+      <i class="icon ion-ios-arrow-forward position-a right-10"></i>
+    </div>
+     <div ui-sref="myWallet" class="position-r bg-white padding-10 border-top-bottom margin-top-5">
+      我的钱包
+      <i class="icon ion-ios-arrow-forward position-a right-10"></i>
+    </div>
+    <div class="row padding-left-right-0 padding-top-20 padding-bottom-10">
+      <div class="col padding-left-right-20 text-align-c">
+        <img class="width-80" ng-src="http://www.ehaier.com/mstatic/wd/v2/img/pages/wdHome/im-erweima2x.png"/>
+        <div>公众号：顺逛微店</div>
+      </div>
+      <div class="col padding-left-right-20 text-align-c">
+        <img class="width-80" ng-click="applyShop()" ng-src="http://www.ehaier.com/mstatic/wd/v2/img/pages/wdHome/im-logo-200.png"/>
+        <div>我要开店</div>
+      </div>
+    </div>
+    <div class="padding-10 padding-top-0">
+      <button ng-click="logOut()" class="sg-feedback-submit width-100 padding-top-bottom-5 color-text-white">
+        退出登录
+      </button>
+    </div>
+  </ion-content>
+</ion-view>
+

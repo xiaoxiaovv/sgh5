@@ -1,0 +1,15 @@
+ <ion-view class='background' view-title="{{title}}" hide-back-button="true" style="background-color: $color-theme;color:#000;">
+	<ion-nav-buttons side="left">
+		<i class="icon ion-ios-arrow-left" id='backhome' ng-click="goBack()"></i>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<div class='xvv-month' ng-repeat="i in monthList">
+			<div><span>月份: </span>{{i.nodeUpdateTime|date:'yyyy-MM'}}</div>
+			<div></div>
+			<div ng-if='i.tallyAmount'><span>符合条件销售额: </span>{{i.tallyAmount|currency:"&yen"}}</div>
+			<div><span>奖励金额: </span>{{i.brokerageDeductAmount|currency:"&yen"}}</div>
+			<div ng-if='i.gapAmount'><span>下一台阶差额: </span>{{i.gapAmount|currency:"&yen"}}</div>
+			<div ng-if='i.nextLevelAmount'><span>下一台阶最低奖励金额: </span>{{i.nextLevelAmount|currency:"&yen"}}</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,71 @@
+需求尚不明确，暂未使用！！！
+需求尚不明确，暂未使用！！！
+需求尚不明确，暂未使用！！！
+<ion-view view-title="消息中心" hide-nav-bar="true">
+<!--    <ion-nav-buttons side="secondary">
+        <div class="button icon ion-navicon-round"></div>
+    </ion-nav-buttons>-->
+
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom" >
+        <button class="color-text-l button-clear" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h3 class="title">消息中心</h3>
+        <div class="position-a" style="right: 2%;" ui-sref="customerConversation">
+            <div class="button">
+                <i class="icon ion-navicon-round"></i>
+            </div>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="bg-background">
+        <!--平台消息-->
+        <div style="" class="bg-white row row-no-padding position-r margin-top-5" ng-repeat="item in platformData">
+            <div class="padding-10" style="width: 60px;">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/messageCenter.png"  class="width-height-40">
+                <span class="message-red-point" ng-bind="item.badge">2</span>
+            </div>
+            <div class="padding-10" ng-click="goDetails()">
+                <div class="font-size-14 font-bold" style="" ng-bind="item.name">平台消息</div>
+                <div class="font-size-12 white-space-nowrap overflow-hidden" style="color: #999999;text-overflow:ellipsis" ng-bind="item.content">因网络问题，顺逛客服暂时无法正常使用公告</div>
+            </div>
+        </div>
+        <!--微学堂信息-->
+        <div style="margin-top: 1px" class="bg-white row row-no-padding position-r" ng-repeat="item in smallClassData">
+            <div class="padding-10" style="width: 60px;">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/classMessage.png"  class="width-height-40">
+                <span class="message-red-point" ng-bind="item.badge">2</span>
+            </div>
+            <div class="padding-10" ng-click="goDetails()">
+                <div class="font-size-14 font-bold" style="">微学堂消息</div>
+                <div class="font-size-12 white-space-nowrap overflow-hidden" style="color: #999999;text-overflow: ellipsis">因网络问题，顺逛客服暂时无法正常使用公告</div>
+            </div>
+        </div>
+        <!--社区消息-->
+        <div style="margin-top: 1px" class="bg-white row row-no-padding position-r" ng-repeat="item in smallClassData">
+            <div class="padding-10" style="width: 60px;">
+                <img ng-src="{{imgBaseURL}}img/circleIcon/socialMessage.png"  class="width-height-40">
+                <span class="message-red-point" ng-bind="item.badge">2</span>
+            </div>
+            <div class="padding-10" ng-click="goDetails()">
+                <div class="font-size-14 font-bold" style="">社区消息</div>
+                <div class="font-size-12 white-space-nowrap overflow-hidden" style="color: #999999;text-overflow: ellipsis">因网络问题，顺逛客服暂时无法正常使用公告</div>
+            </div>
+        </div>
+        <!--其他消息-->
+        <div class="list " >
+            <div style="margin-top: 1px" class="bg-white row row-no-padding position-r" ng-repeat="item in otherData">
+                <div class="padding-10" style="width: 60px;">
+                    <img ng-src="{{imgBaseURL}}img/bg_guide_3.png"  class="width-height-40">
+                    <span class="message-red-point" ng-bind="item.badge">2</span>
+                </div>
+                <div class="padding-10" ng-click="goDetails()">
+                    <div class="font-size-14 font-bold" style="" ng-bind="item.name">店铺客服信息</div>
+                    <div class="font-size-12 white-space-nowrap overflow-hidden" style="color: #999999;text-overflow: ellipsis" ng-bind="item.content">因网络问题，顺逛客服暂时无法正常使用公告</div>
+                </div>
+            </div>
+        </div>
+
+        <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

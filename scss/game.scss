@@ -1,0 +1,140 @@
+.sg-game-wrap{
+    width: 100%;
+    height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.sg-game-back:before{
+  font-size: 32px !important;
+}
+.sg-game-desc-div{
+  position: absolute;
+  top:165px;
+  color:#fff;
+  text-align: center;
+  width:100%;
+}
+.sg-game-watch-div{
+  position: absolute;
+  top:190px;
+  color:#fff;
+  text-align: center;
+  width:100%;
+}
+.sg-game-squre{
+  display: inline-block;
+  width:22%;
+  height:82px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin:0 0.5%;
+  img{
+    width: 100%;
+    height:100%;
+  }
+}
+.sg-game-color-1{
+  background: #F72B6D;
+}
+.sg-game-color-2{
+  background: #0095CD;
+}
+.sg-game-color-3{
+  background: #FCCA2F;
+}
+.sg-game-color-4{
+  background: #0EC0C8;
+}
+
+.sg-game-middle-left{
+  display: inline-block;
+  width: 22%;
+  margin:0 0.5%;
+  div{
+    border-radius: 5px;
+    height:82px;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height:100%;
+    }
+  }
+}
+.sg-game-middle{
+  display: inline-block;
+  width: 46.5%;
+  height:0;
+  padding-bottom: 46.5%;
+  margin:0 0.5%;
+  border-radius: 5px;
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+}
+.sg-game-middle-right{
+  display: inline-block;
+  width: 22%;
+  margin:0 0.5%;
+  div{
+    border-radius: 5px;
+    height:82px;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height:100%;
+    }
+  }
+}
+.cur-pos{
+  box-shadow: 2px 2px 2px 2px #f6fd60;
+}
+@font-face {
+  font-family: LED;
+  src: url("../font/UnidreamLED.ttf"); }
+.sg-countdown {
+  font-family: LED;
+}
+.sg-countdown i{
+  margin: 0 5px;
+  font-size: 1rem;
+  background: url("l") 50% no-repeat;
+  width: 22px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 2px;
+  text-indent: 2px;
+}
+
+.sg-countdown span{
+  font-size: 12px;
+}
+.sg-small-label{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 20px;
+  background-image: url("http://cdn09.ehaier.com/shunguang/H5/www/img/seckill-small-label.png");
+  background-size: 34px;
+  color: #fff;
+  background-repeat: no-repeat;
+  font-size: 13px;
+  padding: 4px;
+}
+.sg-game-form{
+
+    padding-left: 0px !important;
+    label{
+      font-size: 14px;
+    }
+}
+.game-no-bkg-color{
+
+  background-color: #0e0829;
+  img.sg-game-wrap{
+    height:200px !important;
+  }
+
+}

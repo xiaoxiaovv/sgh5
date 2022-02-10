@@ -1,0 +1,74 @@
+<ion-view class="background trueAuthenticationView" hide-nav-bar="true" view-title="输入短信验证码">
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:18px;width:18px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">输入短信验证码</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent">
+    <div class="scroll-view">
+      <!--未认证-->
+      <div>
+        <!--1.信息提示-->
+        <div class="true_authentication_massage">
+          <div>
+            验证码已经发送到{{phoneNum}}
+          </div>
+        </div>
+        <!--2.填写信息-->
+        <div class="new_authentication_info">
+
+          <!--2.2证件号-->
+          <div style="position: relative;">
+            <input ng-change="myFun()" ng-model="obj.numbers" class="new_authentication_input" type="text"  maxlength="6" placeholder="输入短信验证码 ">
+            <i ng-if="captchaFlag"  ng-click="againGet()" class="float-r verificationCodeBtn" style="font-family:PingFangSC-Regular;" ng-bind="paracont" >重新获取</i>
+            <i ng-if="!captchaFlag" class="float-r verificationCodeBtn" style="font-family:PingFangSC-Regular;color: #999;border-color: #999;" ng-bind="paracont" ></i>
+          </div>
+
+          <p ng-click="isReceived()">
+            <i  class="float-r" style="padding:10px 16px 20px 0;color: #999;">收不到验证码?</i>
+          </p>
+
+        </div>
+        <!--4.按钮-->
+        <div class="new_authentication_home_btn">
+          <span style="background: #75A8FF;" ng-if="!isComplete">确定</span>
+          <span style="background: #2464E6;" ng-if="isComplete" ng-click="goAuthentication()">确定</span>
+        </div>
+        <!--介绍-->
+        <div style="width: 100%;text-align: center;color: #999;font-size: 12px;">
+          <span>本服务由海尔海融易服务</span>
+        </div>
+      </div>
+
+
+    </div>
+  </ion-content>
+  <!--收不到验证码 弹框-->
+  <div  flex="cross:center main:center"  class="authenticationPopup authenticationPopupNot" ng-if="isAccord">
+    <div class=" authenticationPopup_bg_not" >
+      <p>银行预留手机号是您在办理该银行卡时所填写的手机号。如忘记、停用或无预留手机号，请拨打银行客服电话 <a href="tel:{{phoneNumber}}">{{phoneNumber}}</a> 更新处理</p>
+      <div class="authenticationPopup_bg_not_ok" ng-click="phoneClose()">确定</div>
+    </div>
+  </div>
+  <!--验证错误-->
+  <div  flex="cross:center main:center"  class="authenticationPopup authenticationPopupNot" ng-if="isOK">
+    <div class=" authenticationPopup_bg_not" >
+      <p style="text-align: center;">  {{message}}</p>
+      <div class="authenticationPopup_bg_not_ok" ng-click="Close()">确定</div>
+    </div>
+  </div>
+  <!--验证成功-->
+  <div  flex="cross:center main:center"  class="authenticationPopup" ng-if="isBindBackOK">
+    <div class="authenticationPopup_bg">
+      <i class="authenticationPopup_ok">
+      </i>
+      <span>恭喜，认证绑卡成功! </span>
+    </div>
+  </div>
+
+
+</ion-view>

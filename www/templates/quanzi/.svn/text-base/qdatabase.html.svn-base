@@ -1,0 +1,91 @@
+<ion-view view-title="资料库" hide-nav-bar="true"  >
+    <ion-header-bar   align-title="center" style="top:0px;border: 3px;">
+        <button class="color-text-l button-clear  " style="position: absolute;left: 2%;" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left" style="color: #999999" ></i>
+        </button>
+        <h3 class="title" style="font-family: Microsoft Yahei;">资料库</h3>
+        <i class="icon ion-ios-search-strong font-size-20" style="color: #999999; position: absolute;right:12%;top: 10px" ng-click="soushow()"></i>
+        <div ng-class="{false:'sg-top-right-btn-hide',true:'sg-top-right-btn'}[xiaoxis]" ng-click="toggleMenu()">
+            <i class="icon ion-android-more-horizontal sg-trb-more" ng-style="iosTopRightStyle"></i>
+        </div>
+        <div class="com-quanzi-dian" ng-if="msgCount && topshow"></div>
+    </ion-header-bar>
+    <!--消息弹窗-->
+    <div ng-if="xiaoxis" class="pop-news" ng-class="{true:'iOStop'}[isIOS]" style="height: 80px;">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div ng-click="gotoxiaoxi()" class="float-l pop-news-text">消息</div>
+            <!--消息数量-->
+            <div class="float-r pop-news-amount">
+                <!--假数据99+-->
+                <!--<span>99+</span>-->
+                <!--单向绑定数据messageNum，使用过滤器-->
+                <span ng-bind="msgCount|Num2Filter"></span>
+            </div>
+        </div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">分享</div>
+        </div>
+    </div>
+ <ion-content scrollbar-y="false" >
+     <ion-refresher class="margin-top-10" pulling-text="下拉刷新" refreshing-text="正在刷新" on-refresh="init()" ></ion-refresher>
+     <!-- 搜索框-->
+     <div class="margin-5">
+     <div class="search-magnifier " ng-if="sshow" style="z-index: 10;background:#f6f6f6;border-radius: 5px;" >
+         <input type="text" class="margin-left-15" placeholder="请输入要搜索的内容" style="display: inline-block;background:#f6f6f6;width:83% "
+                 ng-model="storyName.name">
+         <span class="icon ion-ios-search-strong  " style="color: #999999" ng-click="inputname()"></span>
+     </div>
+     </div>
+ <div  >
+     <!--滚动条-->
+     <ion-scroll direction="x" scrollbar-x="false" class="bg-white padding-top-5" style="height:50px;">
+         <div class="photo text-align-c padding-top-5" collection-repeat="item in quanlist" item-width="25%" item-height="40px"
+              ng-click="inputclass(item)">
+             <div ng-bind="item.fenlei" style="border: 1px solid  #0079ff;border-radius: 5px;"
+                  class="font-size-12 margin-right-5" ></div>
+         </div>
+     </ion-scroll>
+
+     <!-- 内容-->
+             <div class="padding-5 margin-top-5" >
+                 <div class="  list" ng-repeat="item in ziliaolist">
+                     <div class="item no-border" >
+                         <!-- 遍历内容-->
+                         <div  class="inline" >
+                             <div class="float-l" style="width: 70%;" ng-click="gototiezi(item)">
+                                 <div>
+                                     <a class="font-size-14 white-space-normal" style="color: #666;"
+                                        ng-bind="item.storyName">帖子标题帖子标题帖子标题帖子标题帖子标题帖子标题帖子标题</a>
+                                 </div>
+                                 <div class="margin-top-10 font-size-12" style="color: #999;">
+                                     <i class="ion ion-ios-chatbubble-outline margin-left-10"></i>
+                                     <span style="margin-right: 15px;" ng-bind="item.commentNumber">32</span>
+                                     <i class="ion ion-ios-heart-outline"></i>
+                                     <span ng-bind="item.praiseNumber">32</span>
+                                 </div>
+                             </div>
+                             <div class="inline float-r" style="width: 30%;">
+                                 <div class="col text-align-c">
+                                     <img ng-src="{{item.mainImg}}" class="width-height-60" style="border-radius: 30px;"/>
+                                     <p ng-bind="item.createTime"  class="font-size-12" style="color: #999;"> 10-1</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        <div ng-if="!hasMore" class="text-align-c margin-top-10">没有更多了。。。</div>
+          </div>
+     <ion-infinite-scroll on-infinite="loadData()" distance="1%" immediate-check="false"  ng-if="hasMore" >
+     </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

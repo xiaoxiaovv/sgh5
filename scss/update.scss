@@ -1,0 +1,828 @@
+.sg-banner-theme-share {
+  display: inline-block;
+  width: 28px;
+  height: 30px;
+  z-index: 10;
+}
+
+.tab-red-point:after {
+  top: 7px;
+  right: 7%;
+}
+
+/******jiangfeng start******/
+.mystore-more {
+  position: absolute;
+  top: 32px;
+  right: 10px;
+  .jf-triangle {
+    width: 0;
+    height: 0;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+    border-bottom: solid 7px white;
+    position: absolute;
+    right: 5px;
+    top: -7px;
+  }
+  .more-content {
+    position: relative;
+    background-color: white;
+    padding: 10px 5px 5px;
+    width: 70px;
+    font-size: xx-small;
+    z-index: 11;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    img {
+      width: 15px;
+    }
+  }
+}
+.selection-more{
+  position: absolute;
+  top: 32px;
+  right: 10px;
+  .jf-triangle {
+    width: 0;
+    height: 0;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+    border-bottom: solid 7px #555;
+    position: absolute;
+    z-index: 11;
+    right: 7px;
+    top: -7px;
+  }
+  .more-content {
+    position: relative;
+    background-color: #555;
+    color: white;
+    padding: 10px 5px 5px;
+    width: 70px;
+    font-size: xx-small;
+    z-index: 11;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+.unread-point{
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 13px;
+  right: 8px;
+  background-color: red;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.location-popup{
+  .popup{
+    background-color: rgba(255,255,255,0.9);
+    .popup-buttons{
+      .button{
+        background-color: rgba(255,255,255,0.3);
+      }
+    }
+  }
+}
+/******jiangfeng end******/
+/** daba start**/
+.sg-table{
+  border-collapse:collapse;
+  font-size:12px;
+  text-align:center;
+}
+.sg-table,.sg-table td{
+  border:1px solid #000;
+}
+.sg-table td{
+  display:table-cell;
+  vertical-align:middle;
+}
+/* 金币画布 */
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 120;
+}
+//会员中心页面 等级进度 一像素连线
+.levelLineH{
+  height:1px;
+  background:#2979FF;
+  width:90%;
+  z-index:1;
+  top:30px;
+  left:5%;
+}
+.levelLineH-top1,.levelLineH-top2,.levelLineH-top3,.levelLineH-top4,.levelLineH-bottom1,.levelLineH-bottom2,.levelLineH-bottom3,.levelLineH-bottom4
+,.levelLineH-center1,.levelLineH-center2,.levelLineH-center3{
+  height:1px;
+  background:#f5b123;
+}
+.levelLineH-top1{
+  width:30%;
+}
+.levelLineH-top2{
+  width:55%;
+}
+.levelLineH-top3{
+  width:80%;
+}
+.levelLineH-top4{
+  width:90%;
+}
+.levelLineH-center1{
+  width:20%;
+}
+.levelLineH-center2{
+  width:40%;
+}
+.levelLineH-center3{
+  width:60%;
+}
+.levelLineH-bottom1{
+  width:15%;
+}
+.levelLineH-bottom2{
+  width:37%;
+}
+.levelLineH-bottom3{
+  width:60%;
+}
+.levelLineH-bottom4{
+  width:90%;
+}
+.levelLineV{
+  width:1px;
+  background:#e4e4e4;
+}
+.levelLineV-right{
+  width:1px;
+  height:266px;
+  background:#f5b123;
+}
+.levelLineV-left{
+  width:1px;
+  height:137px;
+  background:#f5b123;
+}
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){
+  .levelLineH{
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+  .levelLineH-top1,.levelLineH-top2,.levelLineH-top3,.levelLineH-top4{
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+  .levelLineH-bottom1,.levelLineH-bottom2,.levelLineH-bottom3,.levelLineH-bottom4{
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+  .levelLineH-center1,.levelLineH-center2,.levelLineH-center3{
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+  .levelLineV,.levelLineV-right,.levelLineV-left{
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+  }
+  .onePixelLine{
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+@media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3){
+  .levelLineH{
+    -webkit-transform: scaleY(0.333333);
+    transform: scaleY(0.333333);
+  }
+  .levelLineH-top1,.levelLineH-top2,.levelLineH-top3,.levelLineH-top4{
+    -webkit-transform: scaleY(0.333333);
+    transform: scaleY(0.333333);
+  }
+  .levelLineH-center1,.levelLineH-center2,.levelLineH-center3{
+    -webkit-transform: scaleY(0.333333);
+    transform: scaleY(0.333333);
+  }
+  .levelLineH-bottom1,.levelLineH-bottom2,.levelLineH-bottom3,.levelLineH-bottom4{
+    -webkit-transform: scaleY(0.333333);
+    transform: scaleY(0.333333);
+  }
+  .levelLineV,.levelLineV-right,.levelLineV-left{
+    -webkit-transform: scaleX(0.333333);
+    transform: scaleX(0.333333);
+  }
+  .onePixelLine{
+    -webkit-transform: scaleY(0.333333);
+    transform: scaleY(0.333333);
+  }
+}
+.levelGrow p{
+  margin:0;
+}
+.setP p{
+  //opacity:0.53;  //@zyr dele
+}
+.currentLevel{
+  // margin-top:-20px !important;
+  padding-top:17px !important;
+  div{
+    //position:absolute;
+    top:-44px;
+    left:-15px;
+    width:62px !important;
+    height:62px !important;
+    border:0 !important;
+    border-radius:30px !important;
+  }
+  canvas{
+    width:62px !important;
+    height:62px !important;
+  }
+  img{
+    width:51px !important;
+    height:51px !important;
+    opacity:1 !important;
+  }
+  @keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-webkit-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-moz-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-o-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-ms-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  .shineStar1{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  .shineStar2{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-delay: 0.1s;//延迟时间
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  .shineStar3{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-delay: 0.2s;//延迟时间
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  p.userName{
+    color:#B90808 !important;
+    opacity:1 !important;
+  }
+  p.mengzhuLevel{
+    color:#B90808 !important;
+  }
+  p.levelUpExp{
+    opacity:1 !important;
+  }
+}
+.comeingLevel{
+  margin-right:-20px;
+}
+// .currentLevelShow1{
+//   margin-left:-10px !important;
+// }
+.currentLevelShow{
+  // padding-top:17px !important;
+  padding-bottom:2px !important;
+  &.grade-item {
+    padding-bottom: 40px!important;
+  }
+  div{
+    // position:absolute;
+    //top:-44px;
+    top: -75px; //add@zyr
+    left:-15px;
+    width:62px !important;
+    height:62px !important;
+    border:0 !important;
+    border-radius:30px !important;
+    background:#EEF4FF !important;
+  }
+  canvas{
+    width:62px !important;
+    height:62px !important;
+  }
+  img{
+    width:50px !important;
+    height:50px !important;
+    opacity:1 !important;
+  }
+  @keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-webkit-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-moz-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-o-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  @-ms-keyframes shineStar {
+    from {
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  .shineStar1{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  .shineStar2{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-delay: 0.1s;//延迟时间
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  .shineStar3{
+    -webkit-animation-name: shineStar; /*动画名称，需要跟@keyframes定义的名称一致*/
+    -webkit-animation-duration: 1s;/*动画持续的时间长*/
+    -webkit-animation-iteration-count: infinite;/*动画循环播放的次数*/
+    -webkit-animation-delay: 0.2s;//延迟时间
+    -webkit-animation-direction: alternate;//播放方向
+  }
+  p.userName{
+    color:#333 !important;
+    opacity:1 !important;
+  }
+  p.mengzhuLevel{
+    color:#B90808 !important;
+  }
+  p.levelUpExp{
+    opacity:1 !important;
+  }
+}
+.currentLevelShow8{
+  margin-left:8px !important;
+}
+
+.currentLevelShow10{
+  margin:0 50px !important;
+}
+.currentLevel11{
+  margin-left:15px !important;
+}
+.currentLevel8{
+  margin-left:8px !important;
+}
+.currentLevel9{
+  div{
+    top:-10px;
+  }
+}
+.currentLevel10{
+  margin:0 50px !important;
+}
+.comeingLevel8{
+  margin-left:-2px !important;
+}
+.passedLevel{
+  // padding-bottom:75px !important;
+  padding-bottom:25px !important;
+  div{
+    border:1px solid #f5b123 !important;
+  }
+  img{
+    opacity:1 !important;
+  }
+  p{
+    opacity:1 !important;
+  }
+}
+// 等级是 军长时，司令的样式
+.leftMargin{
+  margin:0 38px 0 50px !important;
+
+}
+// 等级是 盟主时，司令的样式
+.rightMargin{
+   margin:0 50px 0 38px !important;
+   padding-bottom:40px !important;
+  div{
+    border:1px solid #f5b123 !important;
+  }
+  img{
+    opacity:1 !important;
+  }
+  p{
+    opacity:1 !important;
+  }
+}
+/** daba end**/
+
+/** 合伙人 和 人脉 页面 开始**/
+.checked{
+  opacity:1;
+  font-weight: bold;
+}
+.unChecked{
+  opacity:0.7;
+  font-weight: normal;
+}
+.showTriangle{
+  display:block;
+}
+.unShowTriangle{
+  display: none;
+}
+.onePixelLine{
+  width:100%;
+  height:1px;
+  background: #e4e4e4;
+}
+.heightStyleOne{
+  height:320px !important;
+}
+.heightStyleTwo{
+  height:244px !important;
+}
+/** 合伙人 和 人脉 页面 结束**/
+/** bolang start**/
+.appxyz{
+  height:24px;
+  animation: move 2s linear infinite;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  /*opacity: 0.9;*/
+}
+.apponexyz{
+  z-index: 1000;
+  /*opacity: 0.3;*/
+  animation: move 3s linear infinite;
+}
+.apptwoxyz{
+  z-index: 1000;
+  /*opacity: 0.3;*/
+  animation: move 4s linear infinite;
+}
+@keyframes move{
+ from {
+          background-position: 0 0;
+      }
+      to {
+          background-position: 100% 0;
+      }
+}
+/** bolang end**/
+/** xyz会员竞争力start**/
+.xyzCompete1{
+  opacity: 0.87;
+  font-size: 13px;
+  color: #FFFFFF;
+  letter-spacing: 0px;
+  line-height: 16px;
+  margin-bottom: 4px;
+}
+.xyzCompete2{
+  font-size: 17px;
+  color: #FFFFFF;
+  letter-spacing: 0px;
+  line-height: 18px;
+}
+/** xyz会员竞争力end**/
+
+/** daba 统计页面 start**/
+.personalStat{
+  position:fixed;
+  z-index:130;
+  top:0;
+  width:100%;
+  height:64px;
+  background-image:linear-gradient(0deg, #00b6ff 0%, #2196f3 80%);
+  box-shadow:0px 4px 20px 0px rgba(0,0,0,0.08);
+}
+.contributionCommission{
+  position:fixed;
+  z-index:130;
+  top:0;
+  width:100%;
+  background-image:linear-gradient(0deg, #00b6ff 0%, #2196f3 80%);
+  box-shadow:0px 4px 20px 0px rgba(0,0,0,0.08);
+  height:116px;
+}
+.activeType{
+  font-size:17px;
+  color:#ffffff;
+}
+.freezedType{
+  opacity:0.69;
+  font-size:17px;
+  color:#ffffff;
+}
+.activeConnection{
+  background:#ffffff;
+  height:34px;
+  font-size:14px;
+  color:#2196f3;
+  text-align:center;
+  line-height: 34px;
+}
+.freezedConnection{
+  background:transparent;
+  height:34px;
+  font-size:14px;
+  color:#ffffff;
+  opaciy:0.87;
+  text-align:center;
+  line-height: 34px;
+}
+.heightOne{
+  height:64px;
+}
+.heightTwo{
+  height:116px;
+  margin-bottom:8px;
+}
+.statisticsTable{
+  width:100%;
+  border-collapse: collapse;
+  border:1px solid rgba(238,238,238,0.4);
+  td{
+    border:1px solid rgba(238,238,238,0.4);
+    text-align: center;
+    vertical-align:middle;
+  }
+  .tableTitle{
+  font-size: 14px;
+  height:30px;
+}
+.tdContent td{
+  font-size: 13px;
+  height:48px;
+}
+}
+.activeOption{
+  div{
+    color:#2196F3;
+  }
+  img{
+    display:block;
+  }
+}
+.frezedOption{
+  div{
+    color:#000000;
+  }
+  img{
+    display:none;
+  }
+}
+.personalStatTable{
+  width:100%;
+  border-collapse: collapse;
+  border:1px solid rgba(238,238,238,0.4);
+  td{
+    border:1px solid rgba(238,238,238,0.4);
+    text-align: center;
+    vertical-align:middle;
+  }
+  .firstLine{
+    height:60px;
+    background: #f3f3f3;
+    font-size: 14px;
+  }
+  .secondLine{
+    height:48px;
+    font-size: 13px;
+    
+  }
+  .secondLine td:not(:first-child){
+    color:#f56767;
+  }
+}
+/** daba 统计页面 end**/
+/** 订单详情 非顺逛订单提示信息样式 start**/
+.iosTop{
+  top:64px;
+}
+.androidTop{
+  top:44px;
+}
+/** 订单详情 非顺逛订单提示信息样式 end**/
+
+.iosTopcss{
+  top:72px;
+}
+.androidTopcss{
+  top:52px;
+}
+$selectAllColor:#2979FF;
+$cancelSelectAllColor:#666666;
+.confirmDelete{
+  .popup-body{
+    color:#333333;
+    font-size: 16px;
+  }
+  .popup-buttons .button{
+    color:#999999;
+    font-size: 17px;
+  }
+  .popup-buttons .activated{
+    background: $selectAllColor;
+    color:#ffffff;
+  }
+}
+.selectAll{
+  color:$selectAllColor;
+}
+.cancelSelectAll{
+  color:$cancelSelectAllColor;
+}
+//管理地址页面
+.addressContent{
+  .scroll{
+    height:auto;
+  }
+}
+//市场页面 一像素下边框
+.selectionOnePixelBorder{
+    position:relative;
+    height: 50px;
+    background: #f4f4f4;
+    font-size: 14px;
+    &::after{
+        content: '';
+        width:100%;
+        height:1px;
+        background: #e4e4e4;
+        position:absolute;
+        bottom:0;
+        left:0;
+    }
+}
+@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5) {
+  .selectionOnePixelBorder {
+    &::after {
+      -webkit-transform: scaleY(0.7);
+      transform: scaleY(0.7);
+    }
+  }
+
+}
+@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2) {
+ .selectionOnePixelBorder {
+    &::after {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  }
+
+}
+@media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3) {
+  .selectionOnePixelBorder {
+    &::after {
+      -webkit-transform: scaleY(0.333333);
+      transform: scaleY(0.333333);
+    }
+  }
+
+}
+//市场页 筛选排序 样式
+.selectionUnSelected{
+  background: #ffffff;
+  color: #666666;
+}
+.selectionSelected{
+  background: #2979ff;
+  color: #ffffff;
+}
+.LXCpaddingTop{
+  padding-top: 44px;
+}
+
+.ppp:empty:before {
+  content: attr(placeholder);
+  color: #999;
+  font-size: 18px; }
+
+
+.selectTrue{
+  color: #4fa7ec!important;
+  border-bottom:2px solid #4fa7ec;
+}
+.margin-top100{
+  margin-top:100px !important;
+
+}
+.margin-top60{
+  margin-top:60px !important;
+  
+}
+.margin-top80{
+  margin-top:80px !important;
+
+}
+.margin-top120{
+  margin-top:120px !important;
+  
+}
+.iosTopMargin{
+  margin-top:68px;
+}
+.androidTopMargin{
+  margin-top:48px;
+}
+.bacColor{
+  background-color:#ff9900 !important;
+}
+.bac{
+  background-color:#f3f3f3 !important;
+}
+.topic-bac{
+  background:#0076ff;
+}
+.topic-nobac{
+  background:#999;
+}
+.tabs a:hover{text-decoration:none;}
+.iosHeaderCss{
+  height:64px;
+  padding-top: 20px;
+}
+.otherHeaderCss{
+  height:44px;
+}
+.iosContentCss{
+  top:64px;
+}
+.otherContentCss{
+  top:44px;
+}

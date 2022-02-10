@@ -1,0 +1,101 @@
+<ion-view class="background" view-title="首页" hide-back-button="true" hide-nav-bar="true">
+        <div flex="main:center cross:center box:justify" style="background:#fff;border-bottom:1px solid #F4F4F4;" class="selection_top homePage_top" ng-class="{true:'iosAppFixedTop',false:'normalFixedTop'}[isIosApp]">
+            <div class="address" ng-click="addressTop()"style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+                <img class="newadd" ng-src="{{locationImgUrl}}">
+                <div style="color:#666;">{{region}}</div>
+            </div>
+            <div class="search" flex="cross:center" style="background:#F4F4F4;" ui-sref="goodsSearch({front:1})">
+                <img src="{{imgBaseURL}}img/searchIcon@2x.png">
+                <div >{{hot_word}}</div>
+            </div>
+            <div class="message" flex="main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+                <img class="newmes" ng-src="{{messageImgUrl}}" style="margin-top:0;">
+                <!-- <div style="color:#666;">消息</div> -->
+            </div>
+            </div>
+
+        <div ng-include="'templates/common/scroolBar.html'"></div>
+        <ion-content  lazy-container scrollbar-y="false" overflow-scroll="true" class='cui-tolhide homePageContent' ng-class="{true:'iosAppFixedTopCopyHome',false:'normalFixedTopCopyHome'}[isIosApp]">  
+                <div class="furnishTopPicMake">
+                        <ion-slide-box  delegate-handle="furnish_slider" auto-play="true" does-continue="true">
+                          <ion-slide ng-repeat="imageItem in banner track by $index">
+                            <img class="ele_banner" ng-src="{{imageItem.imageUrl}}" ng-click="bannerClick(imageItem.hyperLinkType,imageItem.hyperLink,imageItem.id)"/>
+                          </ion-slide>
+                        </ion-slide-box>
+                    </div>
+                    <div class="life-nav">
+                        <ul>
+                            <li ng-click="goBranchType()">
+                                <img src="{{imgBaseURL}}img/newvision/nav1.png"/>
+                                <span>家政服务</span>
+                            </li>
+                            <li ng-click="goToEmc()" >
+                                  <img src="{{imgBaseURL}}img/newvision/nav2.png"/>
+                                  <span>售后服务</span>
+                              </li>
+                              <li ng-click='goToLiving()'>
+                                  <img src="{{imgBaseURL}}img/newvision/nav3.png"/>
+                                  <span>云缴费</span>
+                              </li>
+                              <li ng-click="goToManageMoney()">
+                                  <img src="{{imgBaseURL}}img/newvision/nav4.png"/>
+                                  <span>投资</span>
+                              </li>
+                              <li ng-click="goToApplyForCard()">
+                                  <img src="{{imgBaseURL}}img/newvision/nav5.png"/>
+                                  <span>联名卡</span>
+                              </li>
+                              <li ng-click="toApplyForWhite()">
+                                  <img src="{{imgBaseURL}}img/newvision/nav6.png"/>
+                                  <span>顺逛白条</span>
+                              </li>
+                        </ul>
+                    </div>
+                    <div class="life-relaxhome">
+                        <div class="relaxhome-title">
+                            <span><i>轻松</i><em>家</em></span>
+                            <p ui-sref="branchTypeDetail({productCateId:'productCateId=3315'})">更多
+                                <img src="{{imgBaseURL}}img/newvision/more.png" />
+                            </p>
+                            
+                        </div>
+                        <div class="relaxhome-content">
+                              <div ng-repeat="item in relaxList" ng-click="goProductDetail(item.id)">
+                                  <img src="{{item.imageUrl}}">
+                                  <h3>{{item.name}}</h3>
+                                  <p>{{item.price | currency:'￥'}}</p>
+                                  <span ng-if="item.commission!=null&&isLogin">
+                                      <i>赚</i>
+                                      <em>{{item.commission | currency:'￥'}}</em>
+                                  </span>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="life-onlyService">
+                        <div class="relaxhome-title">
+                            <span><i>专享</i><em>服务</em></span>
+                        </div>
+                        <div class="onlyService-content">
+                          <div ng-repeat="item in onlyList" ng-click="goProductDetail(item.id)">
+                            <img src="{{item.imageUrl}}"/>
+                            <h3>{{item.name}}</h3>
+                            <p><span>{{item.price| currency:'￥'}}</span><i ng-if="item.commission!=null&&isLogin">赚</i><em ng-if="item.commission!=null&&isLogin">{{item.commission | currency:'￥'}}</em></p>
+                          </div>
+                              
+          
+                        </div>
+                        <div style='text-align: center;padding-bottom: 10px;'>已经到底了～只能帮你到这里了</div>
+                    </div>    
+        
+          
+    
+        
+          
+        </ion-content>
+        <div ng-include="'templates/common/CommonLoginPopup1.html'"></div>
+        <div ng-include="'templates/common/CommonLoginPopup2.html'"></div>
+      <ion-footer-bar>
+          <div ng-include="'templates/common/Tabs.html'"></div>
+        </ion-footer-bar>
+      </ion-view>
+      

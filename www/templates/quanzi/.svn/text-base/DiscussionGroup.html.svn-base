@@ -1,0 +1,48 @@
+<ion-view view-title="海尔官方微店主培训圈">
+  <ion-content>
+    <div class="row row-wrap padding-10 text-align-c">
+      <div class="col col-20  position-r" ng-repeat="item1 in groupUsers track by $index" ng-if=" $index<27 "><!-- 最多显示27个 -->
+        <div class="sg-chat-avatar-wrap">
+          <img  ng-src="{{item1.imageFile}}" class="sg-group-setting-avatar"/>
+          <div ng-if="item1.userGag == 1" class="sg-jinyan" style="display: inline-block;position: absolute;text-align: center;height: 42px;width: 42px;background-color:#000;opacity: 0.5;border-radius: 4px;z-index:50;" ng-style="jinyanHover">
+            <img ng-src="{{imgBaseURL}}img/quanzi/jinyan.png" style="width: 100%;height: 100%;">
+          </div>
+          <span style="" class="sg-discuss-setting-zhu" ng-if="item1.idCate==1">主</span>
+        </div>
+        <div style="width: 100%;font-size: 12px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">
+         {{item1.nickName}}
+        </div>
+      </div>
+      <div class="col col-20  position-r" ng-click="toGroupAddMember()">
+        <div class="sg-chat-avatar-wrap" style="width: 42px;height: 42px; display: inline-block;border: solid 1px #ddd;border-radius: 4px; position: relative;">
+          <img  ng-src="{{imgBaseURL}}img/quanzi/littleplus.png" style="width: 10px;height:10px;position: relative;top: 10px;" class="sg-group-setting-avatar"/>
+        </div>
+        <div style="width: 100%;font-size: 12px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">
+         <span style="visibility: hidden;"> 添加成员</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class=" text-align-c" style="padding-top: 0px;width: 100%;">
+      <div class="" style="display: inline-block;width: 80px;height: 22px;border-radius: 4px; margin: 0 auto;font-size: 14px;color: #0076fd;border: solid 1px #0076fd;" ng-click="toGroupEditMember();"> 全部成员</div>
+    </div>
+
+    <div style="width:100%;height: 20px;background-color: #ddd;margin-top: 10px;"></div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ng-click="openName();">
+    讨论组名称
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" >{{groupInfo.name}}</span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom position-r" ng-click="getMsgByMun();">
+      群聊邀请确认
+      <img class="float-r  color-text-s" ng-src="{{imgBaseURL}}img/quanzi/toggleon.png" style="width: 40px;margin-right: 8px;" />
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ng-click="queryGroupByMemberId()">
+      录音时长
+      <i class="icon ion-chevron-right float-r margin-right-10"></i>
+      <span class="float-r margin-right-20 color-text-s" >300s</span>
+    </div>
+  </ion-content>
+</ion-view>

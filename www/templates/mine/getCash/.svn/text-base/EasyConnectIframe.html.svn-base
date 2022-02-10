@@ -1,0 +1,8 @@
+<!--我的->绑定快捷通->进入快捷通-->
+<ion-view class="background" view-title="快捷通" cache-view="false">
+  <div class="height-100 position-r">
+    <div class="hide-on-keyboard-open" style="position: fixed;bottom: 5px;width: 100%;height: 40px;opacity:0;" ng-click = "goUpPage()"></div>
+    <iframe src="{{trustSrc(htmlContent)}}" class="width-100 height-100">
+    </iframe>
+  </div>
+</ion-view>

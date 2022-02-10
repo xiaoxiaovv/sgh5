@@ -1,0 +1,70 @@
+<ion-view class="background" hide-nav-bar="true">
+  <ion-header-bar style="top: 0;">
+    <button ng-click="goBack();" class="color-text-l button-clear icon ion-ios-arrow-left"></button>
+    <div class="xg-header">
+      <span  ng-class="{'true':'xg-selected','false':'xg-unselected'}[styleFlag]" ng-click="changeProductType('B',true);">佣金
+      </span>
+      <span  ng-class="{'true':'xg-selected','false':'xg-unselected'}[!styleFlag]" ng-click="changeProductType('A',false);">货款
+      </span>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" class='bg-white'>
+    <div id="shopRevenueChart" style="width: 100%;height: 180px;"></div>
+    <div class="row text-align-c" style='border-bottom: 5px solid #f4f4f4;'>
+      <div class="col">
+        <div class="font-size-18" ng-bind="myTrendOut.sumTrend|currency:'&yen;'"></div>
+        <div class="font-size-12 color-text-s">7天收入</div>
+      </div>
+      <div class="col">
+        <div class="font-size-18" ng-bind="myTrendOut.maxTrend|currency:'&yen;'"></div>
+        <div class="font-size-12 color-text-s">单日最高</div>
+      </div>
+      <div class="col">
+        <div class="font-size-18" ng-bind="myTrendOut.avgTrend|currency:'&yen;'"></div>
+        <div class="font-size-12 color-text-s">日均</div>
+      </div>
+    </div>
+    <div class="padding-top-5 font-size-17">
+      <div class="padding margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom"
+           ui-sref="revenueDetail({'code':'1','title':'预计收益','earningType':earningType})">
+           <img ng-src='{{imgBaseURL}}img/yingshoufive.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        预估收入
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="myInComeOut.expectAmount|currency:'&yen;'"></span>
+      </div>
+      <div class="padding margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom"
+           ui-sref="revenueDetail({'code':'2','title':'可提现','earningType':earningType})">
+           <img ng-src='{{imgBaseURL}}img/yingshoutwo.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        可提现
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="myInComeOut.canAmount|currency:'&yen;'"></span>
+      </div>
+      <div class="padding margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom"
+           ui-sref="revenueDetail({'code':'3','title':'提现中','earningType':earningType})">
+           <img ng-src='{{imgBaseURL}}img/yingshouone.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        提现中
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="myInComeOut.reflectAmount|currency:'&yen;'"></span>
+      </div>
+      <div class="padding margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom"
+           ui-sref="revenueDetail({'code':'4','title':'已提现','earningType':earningType})">
+           <img ng-src='{{imgBaseURL}}img/yingshouthree.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        已提现
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span class="float-r margin-right-20 margin-top-5" style='color:#FF4400' ng-bind="myInComeOut.getAmount|currency:'&yen;'"></span>
+      </div>
+      <div class="padding margin-left-15 padding-left-5 padding-right-5 bg-white border-bottom" ui-sref="financialMoney({whereId:'shopRevenue'})">
+        <img ng-src='{{imgBaseURL}}img/yingshoufour.png' style='width: 20px;height: 20px;transform: translateY(5px);margin-right: 5px;'/>
+        <span>快捷通</span>
+        <i class="icon ion-chevron-right float-r margin-right-10 margin-top-5" style='color: #B3B3B3;'></i>
+        <span ng-if="numFlag" class="float-r margin-right-20 margin-top-5" style='color:#FF4400'>{{messaegBalance}}</span>
+        <span ng-if="!numFlag" class="float-r margin-right-20 margin-top-5" style='color:#666666'>{{messaegBalance}}</span>
+      </div>
+    </div>
+    <div class="sr-withdraw-btn" ng-click="withdraw()" style='font-size: 18px;'>提现</div>
+    <div class="text-align-c margin-top-10 font-size-12"  style="color: #7A87A3;">
+      <span style='border-bottom: 1px solid #7A87A3;font-size: 14px;' ng-click="goHelpDetail()">营收结算规则</span>
+    </div>
+    <div style="height: 20px"></div>
+  </ion-content>
+</ion-view>

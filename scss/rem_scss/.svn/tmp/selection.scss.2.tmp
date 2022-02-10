@@ -1,0 +1,923 @@
+$bgColor:#ffffff;
+@mixin commonTOP($color, $backColor:transparent, $pddingBottom:0px, $paddingTop:10px) {
+  font-size: 17px;
+  background: $backColor;
+  padding-top: $paddingTop;
+  padding-bottom: $pddingBottom;
+  /*no*/
+  color: $color;
+  div:nth-child(1),
+  div:nth-child(3) {
+    width: 22px;
+    height: 2px;
+    background: $color;
+    border-radius: 1px;
+  }
+  div:nth-child(2) {
+    margin: 0 12px;
+  }
+}
+
+@mixin commonBox($paddingBottom:20px) {
+  width: 100%; // height: $height;
+  background: $bgColor;
+  margin-top: 8px;
+  padding-bottom: $paddingBottom;
+}
+
+@mixin commonSlide($imgBoxWidth:27%, $imgWidth:100%, $imgHeight:101px, $titleColor:#333333, $titleFontSize:13px, $contentColor:#FF4400, $contentFontSize:13px) {
+  overflow: auto;
+  margin-top: 15px;
+  padding-left: 10px;
+  &>div {
+    width: $imgBoxWidth;
+    margin-right: 10px;
+    img {
+      width: $imgWidth;
+      height: $imgHeight;
+    }
+    div:nth-child(2) {
+      font-size: $titleFontSize;
+      /*no*/
+      color: $titleColor;
+      @include overflowDeal();
+    }
+    div:nth-child(3) {
+      font-size: 13px;
+      /*no*/
+      color: $contentColor;
+      span:nth-child(2) {
+        font-size: $contentFontSize;
+        /*no*/
+      }
+    }
+    div:nth-child(4) {
+      background: url('http://cdn09.ehaier.com/shunguang/H5/www/img/zhuan@2x.png') center/100% no-repeat;
+      width: 81px;
+      height: 20px;
+      padding: 4px 0 0 15px;
+      text-align: center;
+      color: $bgColor;
+      font-size: 12px;
+      /*no*/
+      span {
+        transform: scale(0.83, 0.83);
+        margin-top: 2px;
+        margin-left: -2px;
+      }
+    }
+  }
+}
+
+@mixin middleSlide($width:100%,
+$margin:11px 0 0 0) {
+  width: $width;
+  height: 138px;
+  margin: $margin;
+  img {
+    width: 100%;
+    height: 138px;
+  }
+}
+
+@mixin overflowDeal() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin seeMore($color) {
+  margin-top: 10px;
+  font-size: 13px;
+  /*no*/
+  color: $color;
+  img {
+    width: 13px;
+    height: 13px;
+    margin-left: 8px;
+    margin-top: 2px;
+  }
+}
+
+@mixin commonOnePixelBorderBottomStyle($scaleNum) {
+  -webkit-transform: scaleY($scaleNum);
+  transform: scaleY($scaleNum);
+}
+
+@mixin onePixelBorderBottom1() {
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio:1.5) {
+    @content;
+  }
+}
+
+@mixin onePixelBorderBottom2() {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio:2) {
+    @content;
+  }
+}
+
+@mixin onePixelBorderBottom3() {
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio:3) {
+    @content;
+  }
+}
+
+.iosAppFixedTop {
+  height: 64px;
+  padding-top: 20px;
+}
+
+.normalFixedTop {
+  height: 44px;
+}
+.iosAppFixedTopCopy {
+  height: 44px;
+  top:64px;
+  // padding-top: 20px;
+}
+
+.normalFixedTopCopy {
+  height: 44px;
+  top: 44px;
+}
+.iosAppFixedTopCopy {
+  height: 44px;
+  top:64px;
+  // padding-top: 20px;
+}
+
+.normalFixedTopCopyHome {
+  top: 88px;
+}
+.iosAppFixedTopCopyHome {
+  top:108px;
+  // padding-top: 20px;
+}
+
+
+.selection_top {
+  width: 100%;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.30), rgba(255, 255, 255, 0.00));
+  position: fixed;
+  left: 0;
+  z-index: 999;
+  .address {
+    padding: 0 10px 0 16px;
+    color: #ffffff;
+    font-size: 15px;
+    /*no*/
+    div {
+      margin-right: 8px;
+      max-width: 78px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .newadd{
+      width:24px;
+      height:24px;
+    }
+    img {
+      width: 16px;
+      height: 9px;
+    }
+  }
+  .search {
+    border-radius: 14px;
+    background: $bgColor;
+    height: 28px;
+    img {
+      width: 13px;
+      height: 13px;
+      margin: 0 8px;
+    }
+    div {
+      font-size: 14px;
+      /*no*/
+      color: #666666;
+    }
+  }
+  .message {
+    margin: 8px 16px 0 10px;
+    img {
+      width: 18px;
+      height: 18px;
+    }
+    div {
+      font-size: 12px;/*no*/
+      color: #ffffff;
+      transform: scale(0.83, 0.83);
+      margin-top: -4px;
+    }
+  }
+
+}
+.homePage_top{
+  .message {
+    width:26px;/*no*/
+    height:44px;
+    margin: 0px 16px 0 10px;
+    position: relative;
+    .newmes{
+      width:24px;
+      height:24px;
+    }
+    img {
+      width: 18px;
+      height: 18px;
+      margin-top:-12px;
+    }
+    div {
+      position: absolute;
+      bottom: 2px;
+      left:0px;
+      font-size: 12px;/*no*/
+      color: #ffffff;
+      transform: scale(0.83, 0.83);
+      margin-top: -4px;
+    }
+  }
+}
+.branchtype-heade{
+  .message{
+    margin: 8px 4px 0 10px;
+  }
+}
+
+.swiper-container-EM-top {
+  width: 100%;
+  height: 204px;
+  position: relative;
+}
+.selection_banner {
+  display: block;
+  width: 100% !important;
+  // height: auto !important;
+  min-height: 120px;
+}
+
+.activity {
+  img {
+    width: 100%;
+    height: 100px;
+  }
+}
+
+.type_entry_box {
+  width: 100%;
+  height: 183px;
+  background: $bgColor;
+  margin:-1px 0;
+  .type_entry {
+    width: 25%;
+    height: 86px;
+    img {
+      width: 40px;
+      height: 40px;
+      //border-radius: 8px;//圆角效果 业务配置图片的时候就把图片上传成圆角的
+    }
+    div:last-child {
+      font-size: 12px;
+      /*no*/
+      color: #666666;
+      margin-top: 10px;
+    }
+  }
+  .new_product {
+    position: relative;
+    .new_tips {
+      width: 32px;
+      text-align: center;
+      height: 17px;
+      line-height: 17px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 12px;
+      /*no*/
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: #FE3824;
+      transform:scale(0.7,0.7);
+    }
+  }
+}
+
+.sg_notice {
+  width: 100%;
+  height: 50px;
+  background: $bgColor;
+  .sg_notice_title {
+    width: 110px;
+    margin-left: 14px;
+    img {
+      width: 110px;
+      height: 22px;
+    }
+  }
+  .sg_notice_content {
+    width: 240px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    /*no*/
+    @include overflowDeal();
+    position: relative;
+    &>.particle {
+      opacity: 0;
+      position: absolute;
+      animation: confetti 3s ease-in 5;
+      &.c1 {
+        background-color: rgba(76, 175, 80, 0.5);
+      }
+      &.c2 {
+        background-color: rgba(156, 39, 176, 0.5);
+      }
+    }
+  }
+}
+.noActiveBorderTop{
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:1px;
+    background: #e4e4e4;
+  }
+}
+
+//礼花绽放效果
+@keyframes confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0%) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(-800%) rotate(270deg);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(2000%) rotate(1440deg);
+  }
+}
+
+.picFour {
+  height:232px;
+  margin: 8px auto 0;
+  padding: 12px 4px;
+  background: $bgColor;
+  img {
+    width: 49%;
+    height:100px;
+  }
+  img:nth-child(even) {
+    float: right;
+  }
+}
+
+.sg_judge {
+  @include commonBox(0px);
+  .judge_top {
+    @include commonTOP(#2979FF)
+  }
+  .judge_more {
+    @include seeMore(#2979FF);
+  }
+  background: #ffffff url('http://cdn09.ehaier.com/shunguang/H5/www/img/gkbg@2x.png') no-repeat left top;
+  background-size: contain;
+  .judge_content {
+    margin-top: 15px;
+    padding:0 10px;
+    &>div {
+      width: 94.5%;
+      border-bottom: 1px solid #e4e4e4;
+      img {
+        height: 100px;
+      }
+      div:nth-child(2) {
+        font-size: 13px;
+        /*no*/
+        color: #333333;
+        margin-bottom: 3px;
+      }
+      div:nth-child(3) {
+        max-width: 143px;
+        @include overflowDeal();
+        font-size: 12px;
+        /*no*/
+        color: #999999;
+        margin-bottom: 6px;
+      }
+    }
+    &>div:nth-child(1) {
+      margin-right: 4px;
+    }
+    &>div:nth-child(2) {
+      margin-left: 4px;
+    }
+  }
+  .judge_footer {
+    &>div {
+      width: 173px;
+      height: 48px;
+      img {
+        width: 26px;
+        height: 26px;
+        border-radius: 100%;
+      }
+      div:nth-child(1)>div:nth-child(2) {
+        font-size: 12px;
+        max-width: 80px;
+        margin-left: 8px;
+        @include overflowDeal();
+        /*no*/
+        color: #666666; // margin: 0 10px 0 8px;
+      }
+      div:nth-child(2) {
+        img {
+          width: 59px;
+          height: 19px;
+          border-radius: 0;
+        }
+        span:nth-child(1) {
+          font-size: 26px;
+          /*no*/
+          margin-top: -4px;
+        }
+      }
+    }
+    &>div:nth-child(1) {
+      margin-right: 4px;
+    }
+    &>div:nth-child(2) {
+      margin-left: 4px;
+    }
+  }
+}
+
+.sg_timeSale {
+  @include commonBox();
+  position:relative;
+  .cuigengduo{
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    color: #ff0000;
+      font-size: 12px;
+      /*no*/
+      div {
+        margin-right: 5px;
+      }
+      img {
+        display:block;
+        width: 13px;
+        height: 13px;
+      }
+  }
+  .timeSale_top {
+    color: #FF0000;
+    font-size: 17px;
+    padding-top: 10px;
+    /*no*/
+    &>div:nth-child(1),
+    &>div:nth-child(3) {
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background: #FF0000;
+    }
+    &>div:nth-child(2) {
+      margin: 0 13px;
+      img {
+        width: 21px;
+        height: 17px;
+        margin-right: 4px;
+      }
+    }
+  }
+  .timeSale_countDown {
+    margin-top: 10px;
+    &>div:nth-child(1) {
+      div {
+        height: 22px;
+        border-radius: 4px;
+        color: #ff0000;
+        font-size: 14px;
+        /*no*/
+        line-height: 22px;
+        text-align: center;
+        margin: 0 6px;
+      }
+      .whynodo{
+        border: 1px solid #999999;/* no */
+        padding:0 3px;
+      }
+      div:nth-child(2){
+        margin:0;
+      }
+      div:nth-child(3),div:nth-child(4),div:nth-child(5){
+        border: 1px solid #999999;/* no */
+        padding:0 3px;
+      }
+      div:nth-child(1){
+        border: 1px solid red;/* no */
+        padding:0 4px;
+      }
+      div:last-child{
+        margin-left:4px;
+      }
+      span {
+        font-size: 14px;
+        /*no*/
+        color: #999999;
+        margin-top:-2px;/* no */
+      }
+    }
+    /* &>div:nth-child(2) {
+      color: #ff0000;
+      font-size: 14px;
+
+      margin-left: 20px;
+      div {
+        margin-right: 10px;
+      }
+      img {
+        width: 13px;
+        height: 13px;
+        margin: 2px 0 0 0;
+      }
+    } */
+  }
+  .timeSale_list {
+    @include commonSlide();
+  }
+}
+
+.fav_recommond {
+  @include commonBox();
+  .fr__top {
+    @include commonTOP(#FF5900,
+    transparent,
+    0px,
+    20px);
+    div:nth-child(2) {
+      img {
+        width: 16px;
+        height: 20px;
+        margin-right: 8px;
+      }
+    }
+  }
+  .fav_pic {
+    width: 100%;
+    margin-top: 26px;
+    .slider {
+      width: 100%;
+      visibility: visible;
+    }
+    img:nth-child(1) {
+      width: 49.6%;
+      height: 267px;
+      float: left;
+    }
+    img:nth-child(2),
+    img:nth-child(3) {
+      width: 49.6%;
+      height: 132px;
+      float: right;
+    }
+    img:nth-child(3) {
+      margin-top: 3px;
+    }
+  }
+}
+
+.topic_feature {
+  @include commonBox();
+  .tf__top {
+    @include commonTOP(#FA8800,
+    transparent,
+    0px,
+    20px);
+  }
+  .tf_middle {
+    @include middleSlide(95%,
+    31px auto 0);
+  }
+  .tf_footer {
+    width: 100%;
+    height: 140px;
+    margin-top: 10px;
+    div {
+      width:32%;
+    }
+    img {
+      height: 140px;
+    }
+   div:nth-child(2) img {
+      margin: 0 3px;
+    }
+  }
+}
+
+.ele_equipment {
+  @include commonBox(0px);
+  .ee__top {
+    @include commonTOP(#FA8800);
+  }
+  .ee_more {
+    @include seeMore(#FA8800);
+  }
+  .ee_middle {
+    @include middleSlide(95%,
+      31px auto 0);
+  }
+  .ee_list {
+    @include commonSlide();
+  }
+}
+
+.sg_somethings {
+  @include commonBox();
+  .ss_top {
+    @include commonTOP(#2979FF);
+  }
+  .ss_list {
+    @include commonSlide(212px,
+    212px,
+    142px,
+    #333333,
+    13px,
+    #999999,
+    12px);
+  }
+  .otherMsg{
+    height: 180px;
+    overflow: hidden;
+  }
+}
+
+.guess_interesting {
+  @include commonBox(6px);
+  .gi_top {
+    @include commonTOP(#666666,
+    #f4f4f4,
+    10px);
+  }
+  .gi_item {
+    background: #f4f4f4;
+    &>div {
+      //width: 46%;
+      //margin: 10px 0 0 10px;
+       border-right: 1px solid #eeeeee;
+       border-bottom: 1px solid #eeeeee;
+      background: #ffffff;
+      padding: 8px;
+      img {
+        width: 80%;
+        margin-left:10%;
+      }
+      &>div:nth-child(2) {
+        font-size: 12px;
+        /*no*/
+        color: #333333;
+        //margin: 15px 0;
+        height: 40px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      &>div:nth-child(3) {
+        //flex-wrap: wrap;
+        overflow: hidden;
+        &>div {
+          width: 50%;
+          float: left;
+        }
+        &>div:nth-child(1) {
+          font-size: 14px;
+          /*no*/
+          color: #FF4400;
+          span:nth-child(2) {
+            font-size: 12px;
+            /*no*/
+          }
+        }
+        &>div:nth-child(2) {
+          &>div:nth-child(1) {
+            width: 18px;
+            height: 18px;
+            border-radius: 9px 9px 0 9px;
+            background: #FF4400;
+            color: #ffffff;
+            line-height: 19px;
+            text-align: center;
+          }
+          &>div:nth-child(2) {
+            font-size: 14px;
+            /*no*/
+            color: #FF4400;
+            span{
+              font-size: 12px;/* no */
+            }
+          }
+        }
+        &>div.notWdHost {
+          font-size: 12px;
+          /*no*/
+          color: #666666;
+          text-align: right;
+        }
+        &>div.wdHost {
+          font-size: 12px;
+          /*no*/
+          color: #666666;
+          text-align: left;
+        }
+      }
+    }
+    &>div:nth-child(even){
+      //margin: 10px 0 0 11px;
+    }
+  }
+}
+
+.EMSearchImg {
+  width: 30px;
+  height: 30px;
+}
+
+.type_container{
+  overflow: hidden;
+  height:44px;
+  .type_box{
+    height:140%;//H5设置为140% APP设置为130%
+    white-space: nowrap;
+    overflow-x: auto;
+    &>div{
+      display: inline-block;
+      height: 44px;
+      padding:0 20px;
+      line-height: 44px;
+      text-align: center;
+      border-right: 1px solid #eeeeee;
+    }
+  }
+}
+.scrollX-container {
+  height: 190px;
+  overflow: hidden;
+  margin-top: 20px;
+  padding-left: 10px;
+  .scrollX-box {
+    //display: -webkit-box;
+    //overflow-x: scroll;
+    //-webkit-overflow-scrolling:touch;
+    height: 110%;//H5设置为110% APP设置为107%
+    white-space: nowrap;
+    overflow-x: auto;
+    & > div {
+      display: inline-block;
+      width: 101px;
+      margin-right: 10px;
+      //max-height:180px;
+      img {
+        width: 101px;
+        height: 101px;
+      }
+      div:nth-child(2) {
+        font-size: 13px;
+        /*no*/
+        color: #333333;
+        @include overflowDeal();
+      }
+      div:nth-child(3) {
+        font-size: 13px;
+        /*no*/
+        color: #FF4400;
+        span:nth-child(2) {
+          font-size: 13px;
+          /*no*/
+        }
+      }
+      div:nth-child(4) {
+        background: url('http://cdn09.ehaier.com/shunguang/H5/www/img/zhuan@2x.png') center/100% no-repeat;
+        width: 81px;
+        height: 20px;
+        padding: 4px 0 0 15px;
+        text-align: center;
+        color: #ffffff;
+        font-size: 12px;
+        /*no*/
+        span {
+          transform: scale(0.83, 0.83);
+          margin-top: 2px;
+          margin-left: -2px;
+        }
+      }
+    }
+  }
+}
+.lcj-like{
+  overflow: hidden;
+  background: #f4f4f4;
+  &>div {
+    width: 46%;
+    margin: 10px 0 0 10px;
+    float: left;
+    //border-left: 1px solid #eeeeee;
+    //border-top: 1px solid #eeeeee;
+    background: #ffffff;
+    padding: 8px;
+    img {
+      width: 80%;
+      margin-left:10%;
+    }
+    &>div:nth-child(2) {
+      font-size: 12px;
+      /*no*/
+      color: #333333;
+      //margin: 15px 0;
+      height: 40px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    &>div:nth-child(3) {
+      //flex-wrap: wrap;
+      overflow: hidden;
+      &>div {
+        width: 50%;
+        float: left;
+      }
+      &>div:nth-child(1) {
+        font-size: 14px;
+        /*no*/
+        color: #FF4400;
+        span:nth-child(2) {
+          font-size: 12px;
+          /*no*/
+        }
+      }
+      &>div:nth-child(2) {
+        &>div:nth-child(1) {
+          width: 18px;
+          height: 18px;
+          border-radius: 9px 9px 0 9px;
+          background: #FF4400;
+          color: #ffffff;
+          line-height: 20px;
+          text-align: center;
+          margin:0 6px 0px 0;
+          padding-bottom:4px;
+        }
+        &>div:nth-child(2) {
+          font-size: 14px;
+          /*no*/
+          color: #FF4400;
+          span{
+            font-size: 12px;/* no */
+          }
+        }
+      }
+      &>div.notWdHost {
+        font-size: 12px;
+        /*no*/
+        color: #666666;
+        text-align: right;
+      }
+      &>div.wdHost {
+        font-size: 12px;
+        /*no*/
+        color: #666666;
+        text-align: left;
+      }
+    }
+  }
+  &>div:nth-child(even){
+    //margin: 10px 0 0 11px;
+  }
+}
+//首页活动图片样式
+.activityImgTop,.activityImgBottom{
+  width:100%;
+  img{
+    display: block;
+    width:100%;
+    max-height:240px;
+  }
+}
+.activityImgTop{
+  margin:-1px 0 0 0;//解决部分手机与顶部轮播产生空隙的问题
+}

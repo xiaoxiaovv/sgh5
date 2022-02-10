@@ -1,0 +1,78 @@
+<ion-view class="background" view-title="店铺数据详情" hide-nav-bar="true">
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">{{titleList[num-1]}}</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"></div>
+  </div>
+  <ion-content scrollbar-y="false"ng-style="paddingtopClasscontent"  delegate-handle="scrollSelection" class='partner-padtop store-team-con' style="background: #fff;">
+   <!--走势图-->
+    <div ng-if='fsfsafa' id="shopRevenueChart" style="width: 100%;height: 224px;"></div>
+   <!--访客来源-->
+   <div flex="box:mean" class="team_product_forms">
+     <!--平台-->
+       <div class="team_product_forms_pic">
+          <div><img ng-src="{{imgBaseURL}}img/ic_logo_dwn.png"></div>
+          <p class="team_product_forms_num" ng-show='!personNum'>访问{{num%2==1?commonVisitDetail.shareUvPT:commonVisitDetail.sharePvPT}}次</p>
+          <p class="team_product_forms_num" ng-show='personNum'>{{num%2==1?commonVisitDetail.shareUvPT:commonVisitDetail.sharePvPT}}人访问</p>
+          <p class="team_product_forms_tool">平台</p>
+       </div>
+     <!--微信-->
+       <div class="team_product_forms_pic">
+         <div><img ng-src="{{imgBaseURL}}img/weixin.png"></div>
+         <p class="team_product_forms_num" ng-show='!personNum'>访问{{num%2==1?commonVisitDetail.shareUvWX:commonVisitDetail.sharePvWX}}次</p>
+         <p class="team_product_forms_num" ng-show='personNum'>{{num%2==1?commonVisitDetail.shareUvWX:commonVisitDetail.sharePvWX}}人访问</p>
+         <p class="team_product_forms_tool">微信</p>
+       </div>
+      <!--微博-->
+       <div class="team_product_forms_pic">
+         <div><img ng-src="{{imgBaseURL}}img/weibo.png"></div>
+         <p class="team_product_forms_num" ng-show='!personNum'>访问{{num%2==1?commonVisitDetail.shareUvWB:commonVisitDetail.sharePvWB}}次</p>
+         <p class="team_product_forms_num" ng-show='personNum'>{{num%2==1?commonVisitDetail.shareUvWB:commonVisitDetail.sharePvWB}}人访问</p>
+         <p class="team_product_forms_tool">微博</p>
+       </div>
+       <!--QQ-->
+       <div class="team_product_forms_pic">
+         <div><img ng-src="{{imgBaseURL}}img/qq.png"></div>
+         <p class="team_product_forms_num" ng-show='!personNum'>访问{{num%2==1?commonVisitDetail.shareUvQQ:commonVisitDetail.sharePvQQ}}次</p>
+         <p class="team_product_forms_num" ng-show='personNum'>{{num%2==1?commonVisitDetail.shareUvQQ:commonVisitDetail.sharePvQQ}}人访问</p>
+         <p class="team_product_forms_tool">QQ</p>
+       </div>
+     </div>
+   <!--访客量-->
+    <div class='store-data'>
+        <div class='week-rank-list'>
+             <div class='rank-head' flex='main:justify cross:center'>
+               <div class='rank-title'>{{commonVisitDetail.statisticDays}}天访客排行榜</div>
+               <div class='rank-time'>排行榜截止到昨天24点</div>
+             </div>
+             <div class='rank-box'>
+               <div class='rank-item' flex='main:justify cross:center' ng-repeat='visitor in commonVisitList' ng-click='setStorage(num, visitor.avatarImageFileId,visitor.nickName,visitor.browseTime,visitor.source,visitor.userId,daysType)'>
+                 <div flex="main:justify cross:center" class="rank-img-box">
+                   <div class="rank-img">
+                     <img ng-src="{{visitor.avatarImageFileId}}" alt="头像">
+                   </div>
+                   <div class="rank-name">{{visitor.nickName}}</div>
+                 </div>
+                 <div flex="main:center cross:center dir:top" class="rank-from">
+                   <div class="from-time">
+                     <span>{{visitor.browseTime}}</span>
+                     <span>浏览</span>
+                   </div>
+                   <div class="from-where">来自<span>{{visitor.source}}</span></div>
+                 </div>
+               </div>
+                <div class='empty-box' ng-show='commonVisitList.length == 0' flex='main:center cross:center dir:top'>
+                  <div class='empty-img'>
+                    <img ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="暂无数据">
+                  </div>
+                  <div>零访客，加油分享吧</div>
+                </div>
+             </div>
+           </div>
+    </div>
+  </ion-content>
+</ion-view>

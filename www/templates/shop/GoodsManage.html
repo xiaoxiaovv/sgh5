@@ -1,0 +1,95 @@
+<ion-view view-title="我的商品">
+  <ion-nav-buttons side="secondary">
+    <button class="button icon ion-search gm-search-btn" ng-click="openSearchModal()"></button>
+    <div class="font-size-14 padding-top-7 gm-address-name">地点</div>
+    <div class="button icon ion-ios-location-outline font-size-24 gm-address-btn"
+         ui-sref="commonLocation({'flag':'MENU_LOCATION'})"></div>
+  </ion-nav-buttons>
+  <div class="row border-top-bottom text-align-c bg-white bar bar-subheader">
+    <div class="col" id="onSale" ng-click="onSale();">在售商品(<span ng-bind="onSaleAmount"></span>)</div>
+    <div class="col" id="offSale" ng-click="offSale();">下架商品(<span ng-bind="offSaleAmount"></span>)</div>
+  </div>
+  <ion-content class="background" scrollbar-y="false">
+    <div class="gm-list-content">
+      <div ng-repeat="item in goodsList">
+        <div class="row margin-top-15 padding-top-bottom-10 bg-white">
+          <img ng-src="{{item.defaultImageUrl}}" alt="商品图片" class="col-25 col-center shop-manage-img"/>
+
+          <div class="col-75 position-r">
+            <div ng-bind="item.productFirstName"></div>
+            <div ng-bind="item.productSecondName" class="goods-introduces font-size-14"></div>
+            <div class="goods-introduces color-text-s" ng-bind="item.productTitle"></div>
+            <div class="font-size-12" style="color: #EF4078">佣金：<span ng-bind="item.commission|currency:'&yen'"></span></div>
+            <div class="position-r">
+              <div class="font-size-12 color-text-s">价格：<span ng-bind="item.saleGuidePrice|currency:'&yen'"></span></div>
+              <div class="goods-final-price color-text-s" ng-if="item.showFinalPrice">微价：<span
+                ng-bind="item.finalPrice|currency:'&yen'"></span></div>
+            </div>
+            <div class="gm-more" ng-click="showBtn($index);" ng-if="!moreOrCheck">...</div>
+            <img class="gm-more" ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="moreOrCheck&&!item.isSelected"
+                 ng-click="selectGoods($index)">
+            <img class="gm-more" ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="moreOrCheck&&item.isSelected"
+                 ng-click="selectGoods($index)">
+          </div>
+        </div>
+        <div class="border-top sm-bottom-btn-on">
+          <span>置顶</span>
+          <span ng-click="soldOut($index)">下架</span>
+          <span ng-click="deleteGoods($index)">删除</span>
+          <span>分享</span>
+        </div>
+        <div class="border-top sm-bottom-btn-off">
+          <span ng-click="putAway($index)">上架</span>
+          <span ng-click="deleteGoods($index)">删除</span>
+          <span>分享</span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar-calm">
+    <div class="row text-align-c" ng-if="!(isShowOnFooter||isShowOffFooter)">
+      <div class="col">添加商品</div>
+      <div class="col" ng-click="batchOperate();">批量操作</div>
+    </div>
+    <div class="gm-hidden-footer-on" ng-if="isShowOnFooter">
+      <div class="footer-item sm-choose-all" ng-click="selectAll()">
+        <div class="icon ion-happy"></div>
+        <div>全选</div>
+      </div>
+      <div class="footer-item" ng-click="soldOutBatch()">
+        <div class="icon ion-happy"></div>
+        <div>下架</div>
+      </div>
+      <div class="footer-item">
+        <div class="icon ion-happy"></div>
+        <div>排序</div>
+      </div>
+      <div class="footer-item">
+        <div class="icon ion-happy"></div>
+        <div>下移</div>
+      </div>
+      <div class="footer-item" ng-click="deleteGoodsBatch()">
+        <div class="icon ion-happy"></div>
+        <div>删除</div>
+      </div>
+    </div>
+    <div class="gm-hidden-footer-off" ng-if="isShowOffFooter">
+      <div class="footer-item sm-choose-all" ng-click="selectAll()">
+        <div class="icon ion-happy"></div>
+        <div>全选</div>
+      </div>
+      <div class="footer-item" ng-click="putAwayBatch()">
+        <div class="icon ion-happy"></div>
+        <div>上架</div>
+      </div>
+      <div class="footer-item">
+        <div class="icon ion-happy"></div>
+        <div>下移</div>
+      </div>
+      <div class="footer-item" ng-click="deleteGoodsBatch()">
+        <div class="icon ion-happy"></div>
+        <div>删除</div>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,188 @@
+<ion-view class="background" hide-nav-bar="true" view-title="我的小店">
+
+  <!-- *********************分享标签－whiteBird start********************* -->
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(1)" ng-if = "hasWechat">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(2)" ng-if = "hasWechat">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(3)" ng-if = "hasQQ">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(4)" ng-if = "hasQQ">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(0)">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+      </div>
+      <div style="text-align: center;width: 24%;display: inline-block" ng-click = "shareToPlatform(5)">
+        <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+        <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+      </div>
+    </div>
+  <!-- *********************分享标签－whiteBird end********************* -->
+  <ion-content scrollbar-y="false">
+    <!-- 店主信息-->
+    <div style="height:25%;background-image:linear-gradient(163deg, #00D2FF 0%, #3A7BD5 100%);padding:20px 0 30px 0;">
+      <div class="padding-0" flex="">
+        <div style="width:30px;height:30px;margin-left:76%;">
+          <img ng-src="{{imgBaseURL}}img/Share white.png" style="width:24px;height:24px;" ng-click="share();" ng-if="isApp">
+        </div>
+        <div style="position:relative;width:30px;height:30px;margin-left:8px;margin-top:2px;" ui-sref="ClassifyMessageCenter" ng-class="{true:'msg-point',false:''}[flagNum]">
+          <img ng-src="{{imgBaseURL}}img/Message white.png" style="width:24px;height:24px;">
+        </div>
+      </div>
+      <div flex="cross:center" style="padding-left:10px;position:relative;">
+        <div style="width:62px;height:62px;position:relative;">
+          <div class="head-l" style="width:62px;height:62px;background:#ffffff;opacity:0.14;border-radius:100%;position:absolute;top:0;left:0;"></div>
+          <div class="head-m" style="width:48px;height:48px;background:#ffffff;opacity:0.34;border-radius:100%;position:absolute;top:7px;left:7px;"></div>
+          <img ng-src="{{avatarImage}}" style="width:42px;height:42px;border-radius:100%;position:absolute;top:10px;left:10px;" ng-click="changeIcon()">
+        </div>
+        <div style="margin-left:12px;">
+          <div style="font-size:18px;color:#ffffff;"><span ng-bind="storeInfo.storeName"></span><span
+                  ng-bind="storeInfo.storeTypeName"></span></div>
+          <!-- <div style="display:flex;justify-content:flex-start;align-items:flex-end;height:20px;">
+            <div style="height:14px;line-height:14px;font-size:10px;color:#F56767;background:#ffffff;padding:0 2px;letter-spacing:-0.25px;border-radius:2px 0 0 2px;transform:scale(0.7)">LV</div>
+            <div style="height:15px;line-height:4px;padding:6px 2px;font-size:14px;color:#F56767;background:#ffffff;margin:0 0 0 -4px;;transform:scale(0.8)">2</div>
+          </div> -->
+          <!-- 之前的等级 -->
+          <!-- <div style="display:flex;justify-content:center;align-items:center;height:18px;border-radius:10px;background:#ffffff;width:44px;transform:scale(0.78);margin-top:4px;margin-left:-4px;">
+            <div style="height:18px;font-size:12px;line-height:18px;color:#F56767;letter-spacing:-0.25px;padding-right:3px;">LV</div>
+            <div style="height:18px;font-size:12px;line-height:18px;color:#F56767;">{{levelName}}</div>
+          </div> -->
+          <!-- 顺逛会员 微店主等级 -->
+          <div flex="cross:center" style="position:relative;margin-top:8px;"
+            ng-click="goMemberCenter()">
+            <div flex="main:center cross:center" style="height:18px;background:#1C6C9F;border:1px solid #0F69A6;border-radius: 8px;margin-right:6px;padding:0 6px;">
+              <img ng-if="userName!='盟主'" ng-src="{{imgBaseURL}}img/Commander{{userCurrentLevelId}}@2x.png" style="width:11px;margin-right:4px;">
+              <img ng-if="userName=='盟主'" ng-src="{{imgBaseURL}}img/Commander mengzhu@2x.png" style="width:11px;margin-right:4px;">
+              <span style="font-size: 12px;color:#ffffff;letter-spacing: 0.32px;line-height: 12px;">{{userName}}</span>
+            </div>
+
+            <img ng-if="storeCreditWithLevel" ng-repeat="item in levelArray track by $index" ng-src={{item}} style="width:11px;">
+          </div>
+        </div>
+        <div flex="main:center cross:center" style="height:24px;position:absolute;right:16px;top:24px;"
+          ui-sref="myStore({storeId:storeId,shareStoreId:''})">
+          <span style="font-size:13px;color:#ffffff;opacity:0.8;">进入店铺</span>
+          <img ng-src="{{imgBaseURL}}img/Arrow list right_white.png" style="width:12px;height:20px;margin-left:2px;margin-bottom:3px;">
+        </div>
+      </div>
+    </div>
+    <!--最新动态-->
+    <div flex="main:center cross:center box:first" style="height:41px;background:#ffffff;">
+      <div flex="main:right cross:center" style="width:26%;">
+        <div style="padding-left:6px;text-align:right;margin-right:10px;">
+          <span style="font-size:15px;color:#000000;line-height:20px;">最新</span>
+          <span style="font-size:15px;color:#F56767;line-height:20px;margin-left:-4px;">动态</span>
+        </div>
+        <!-- <div style="padding-left:17px;">
+          <span style="font-size:15px;color:#000000;line-height:20px;">最新</span>
+          <span style="font-size:15px;color:#F56767;line-height:20px;margin-left:-4px;">动态</span>
+        </div> -->
+        <div>
+          <div style="width:1px;height:24px;background:#E4E4E4;margin:0 auto;transform:scale(0.5,1)"></div>
+        </div>
+
+      </div>
+      <!-- <div style="flex:15;display:flex;padding-right:20px;">
+        <div style="flex:1;font-size:12px;color:#F56767;line-height:13px;">销售分享</div>
+        <div style="flex:3;padding-left:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;color:#000000;line-height:14px;opacity:0.53;">{{msg}}</div>
+      </div> -->
+      <div style="padding-right:20px;padding-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" ui-sref="ClassifyMessageCenter">
+        {{msg}}
+      </div>
+    </div>
+    <!--轮播图-->
+    <!-- <ion-slide-box delegate-handle="shop_slider" does-continue="true" auto-play="true"
+                   class="height-min-100"  style="height: 120px;overflow: hidden;">
+      <ion-slide class="height-min-100" ng-repeat="item in slideImage">
+        <img class="height-min-100" style="width: 100%;height: 140px;" ng-src="{{item.image}}" alt="轮播图"
+             ng-click="slideImageClick($index)"/>
+      </ion-slide>
+
+
+    </ion-slide-box> -->
+    <!-- <ion-slide-box style="margin:2% 0;height:19%;" class="height-min-100" on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true" slide-interval="2000" show-pager="true" pager-click="pageClick(index)" active-slide="model.activeIndex" delegate-handle="delegateHandler">
+      <ion-slide>
+        <div style="width:100%;height:120px;">
+          <img src="img/banner.png" style="width:100%;height:100%;" alt="轮播图">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div style="width:100%;height:120px;">
+          <img src="img/banner.png" style="width:100%;height:100%;">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div style="width:100%;height:120px;">
+          <img src="img/banner.png" style="width:100%;height:100%;">
+        </div>
+      </ion-slide>
+    </ion-slide-box> -->
+    <div style="height:140px;margin:2% 0;">
+      <ion-slide-box delegate-handle="shop_slider" does-continue="true" auto-play="true" class="height-min-100" style="height:100%;overflow: hidden;">
+        <ion-slide class="height-min-100" ng-repeat="item in slideImage" style="background:#f4f4f4;width: 100%;">
+          <img class="height-min-100" style="width: 100%;height:100%;" ng-src="{{item.imageUrl | addImgURLPostfix:750:320}}" alt="轮播图" ng-click="slideImageClick($index)"
+          />
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+    <!--按钮菜单-->
+    <div class="wrap-list-shop" style="border:0;padding-top:15px;background:#ffffff;">
+      <div ng-repeat="item in btnList" class="shop-list-grid" style="width:25%;border:0;padding:0;margin-bottom:15px;">
+        <div ng-click="enter(item.url)">
+          <img width="40px" height="40px" ng-src="{{item.icon}}"/>
+          <div ng-bind="item.name" style="font-size:13px;opacity:0.54;letter-spacing:-0.32px;"></div>
+        </div>
+      </div>
+    </div>
+    <div flex="main:center cross:center" class="text-align-c color-theme border-top-bottom position-r" style="width:96%;height:34px;background:#FFFCFC;border-radius:8px;margin:2% auto;">
+
+      <div flex="main:center cross:center" style="width:50%;" ng-click="goNewHand();">
+        <img ng-src="{{imgBaseURL}}img/Q-A.png" class="sg-shop-xinshou" style="width:16px;height:20px;top:0;margin-right:8px;">
+      <span style="font-size:13px;opacity:0.53;color:#000000;">新手必读</span>
+      </div>
+      <div class="shopOnePixel" style="width:1px;height:20px;background:rgba(0,0,0,0.1);">
+
+    </div>
+      <!-- <div style="width:50%;display:flex;justify-content:center;align-items:center;" ui-sref="taskShare">
+        <img ng-src="img/Task.png" class="sg-shop-xinshou" style="width:16px;height:20px;top:0;margin-right:8px;">
+        <span style="font-size:13px;opacity:0.53;color:#000000;">今日任务</span>
+      </div> -->
+      <div class="container position-r"  style="width:50%;height:34px;" ui-sref="taskShare">
+        <div class="coast">
+          <div class="wave-rel-wrap">
+            <div class="wave"></div>
+      </div>
+        </div>
+        <div class="coast delay">
+          <div class="wave-rel-wrap">
+            <div class="wave delay"></div>
+          </div>
+        </div>
+        <img class=" text-w" ng-src="{{imgBaseURL}}img/Task.png" class="sg-shop-xinshou" style="width:18px;height:18px;">
+        <div class="text text-a">今</div>
+        <div class="text text-v">日</div>
+        <div class="text text-e">任</div>
+        <div class="text text-s">务</div>
+      </div>
+
+    </div>
+    <div style="background:#f4f4f4;height:5px;">
+
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+</ion-view>

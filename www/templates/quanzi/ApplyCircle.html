@@ -1,0 +1,124 @@
+<ion-view view-title="申请创建圈子" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button ng-click="goBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;" id='backgrow'></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <!--<div class="button font-bold font-size-16" style="color: #0277fd" ng-click="applyTopic(applyData)">提交</div>-->
+    </ion-nav-buttons>
+    <ion-content class="bg-background" style="z-index: -2">
+        <div class="width-100 position-r" style="height: 100px;width: 100%">
+            <div style="height: 100px;z-index: -1" class="position-a width-100" ng-if="bigPicUrl">
+                <img src="{{bigPicUrl}}" style="width:100%;height:100%;object-fit: cover;">
+            </div>
+            <div class="inline-block padding-10 text-align-c">
+                <img style="width: 50px;height: 50px;border-radius: 25px;" ng-click="imgPush()"
+                     ng-src="{{imgBaseURL}}img/circleIcon/addPhoto.png" ng-if="!userPicUrl">
+                <img style="width: 50px;height: 50px;border-radius: 25px;" class="position-a" ng-click="imgPush()"
+                     ng-src="{{imgBaseURL}}img/circleIcon/addBlankIcon.png" ng-if="userPicUrl">
+                <img style="width: 50px;height: 50px;border-radius: 25px;" ng-click="imgPush()"
+                     src="{{userPicUrl}}" ng-if="userPicUrl">
+                <div class="width-100 white-space-nowrap overflow-hidden font-size-10"
+                     style="text-overflow: ellipsis;margin-top: -1px">圈子头像
+                </div>
+            </div>
+            <div class="inline-block"></div>
+            <div class="border-radius bg-white font-bold text-center position-a upPhotoBtn" ng-click="imgBigPush()">
+                上传背景图
+            </div>
+        </div>
+        <div class="border-bottom bg-white" style="height: 68px">
+            <div class="font-bold padding-left-10 font-size-12" style="color: #666;padding-top: 13px;">圈子名称</div>
+            <input type="text" class="padding-left-10 padding-right-10 width-100 padding-top-0 font-size-12"
+                   ng-model="applyData.topicName"
+                   style="color: #aaa" maxlength="10" placeholder="不能超过10个字">
+        </div>
+        <div class="border-bottom bg-white" style="height: 80px">
+            <div class="font-bold font-size-12 padding-left-10" style="color: #666;padding-top: 13px;">圈子介绍</div>
+            <textarea class="width-100 padding-left-10 padding-right-10 font-size-12"
+                      style="color: #aaa;resize: none" rows="2" maxlength="30"
+                      placeholder="一句话介绍圈子,不能超过30个字" ng-model="applyData.topicDescription"></textarea>
+        </div>
+        <div class="border-bottom bg-white" style="height: 150px">
+            <div class="font-bold font-size-12 padding-left-10" style="color: #666;padding-top: 13px;">申请理由</div>
+            <!--<div class="position-a margin-left-10 font-size-12" style="color: #aaaaaa">圈子申请理由,不能少于20个字,不能多于300字</div>-->
+            <textarea class="width-100 padding-left-10 padding-right-10 font-size-12 no-resize"
+                      ng-model="applyData.topicReason"
+                      style="color: #aaa;" rows="7" maxlength="300"
+                      placeholder="圈子申请理由,不能少于20个字,不能多于300字"></textarea>
+        </div>
+        <div class="font-bold padding-left-right-10 position-r bg-white font-size-12 vertical-middle"
+             style="color: #666;height: 40px; line-height: 40px;" ng-click="jumpSelect()">
+            添加标签
+          <span style="color: #b6b6b6;font-size: 10px">(不低于三个)</span>
+            <i class="icon ion-chevron-right float-r"></i>
+        </div>
+        <div class="padding-left-right-10 width-100 padding-top-5 padding-bottom-5">
+            <div style="margin:5px 0;border-radius: 16px;padding: 1px 10px;border:1px solid #cccccc;"
+                 ng-click="deleteTags($index)"
+                 class="border inline-block bg-white margin-right-5" ng-repeat="item in addedTags track by $index">
+                <span ng-bind="item.name" class="font-size-12">大家电</span>
+                <i class="icon ion-close-round font-size-12"
+                   style="padding-left: 5px;color: #cccccc"></i>
+            </div>
+            <div style="margin:5px 0;border-radius: 16px;padding: 1px 10px;border:1px solid #cccccc;"
+                 ng-click="deleteFrequentTags($index,item.name)" class="border inline-block bg-white margin-right-5 "
+                 ng-repeat="item in nameStringToObj track by $index">
+                <span ng-bind="item.name" class="font-size-12">大家电</span>
+                <i class="icon ion-close-round font-size-12"
+                   style="padding-left: 5px;color: #cccccc"></i>
+            </div>
+
+        </div>
+        <div ng-if="auditOpinion[0].entry_time">
+            <div class="font-bold padding-left-right-10 padding-top-bottom-5 margin-top--5 bg-white">审批意见</div>
+            <!--审批意见-->
+            <div class="padding-10 bg-white" style="color: #aaaaaa;margin-top: 1px"><!--完全显示的-->
+                <div ng-bind="auditOpinion[0].entry_time">时间</div>
+                <div style="clear: both"></div>
+                <div class="font-size-13" ng-bind="auditOpinion[0].audit_opinion"></div>
+            </div>
+            <div class="padding-10 bg-white margin-top-1 width-100" style="color: #aaaaaa;"
+                 ng-repeat="item in auditOpinion track by $index" ng-click="openStatus($index)" ng-if="$index>0">
+                <div>
+                    <div class="float-l" ng-bind="item.entry_time">时间</div>
+                    <div class="float-l white-space-nowrap overflow-hidden margin-left-5 font-size-13"
+                         style="width:60%;text-overflow:ellipsis;" ng-if="!item.open_status"
+                         ng-bind="item.audit_opinion">
+                        内容内容
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="font-size-13" ng-if="item.open_status" ng-bind="item.audit_opinion"></div>
+            </div>
+        </div>
+
+        <!--保存修改按钮-->
+        <div class="text-center margin-top-20 margin-bottom-20 font-size-12" ng-if="showApplyBtn">
+            <div class="border-radius padding-left-right-5 font-bold inline-block height-line-height-25 margin-left-10"
+                 ng-if="reviewCircleId" ng-click="warnDelete()"
+                 style="border: 1px solid #0076fd;color: #0076fd">删除圈子
+            </div>
+            <!--第一次申请圈子保存-->
+            <div class="border-radius padding-left-right-5 font-bold inline-block height-line-height-25 margin-left-10"
+                 ng-if="!reviewCircleId" ng-click="storageDraft()"
+                 style="border: 1px solid #0076fd;color: #0076fd">保存草稿
+            </div>
+            <div class="border-radius padding-left-right-5 height-line-height-25 font-bold inline-block margin-left-10"
+                 ng-if="reviewCircleId" ng-click="storageDraft()"
+                 style="border: 1px solid #0076fd;color: white;background: #0076fd">保存草稿
+            </div>
+            <div class="border-radius padding-left-right-5 font-bold inline-block height-line-height-25 margin-left-10"
+                 ng-click="applyTopic(applyData)"
+                 style="border: 1px solid #0076fd;color: white;background: #0076fd">提交申请
+            </div>
+        </div>
+    </ion-content>
+    <div class="width-100 height-100" style="background: rgba(0,0,0,0);" ng-if="showApplyTag == 1"></div>
+    <!--轻通知-->
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="draftStorgeSuccess">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>圈子申请保存成功</span>
+        </div>
+    </div>
+</ion-view>

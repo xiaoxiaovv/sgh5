@@ -1,0 +1,24 @@
+<ion-view view-title="直接购买" hide-nav-bar="true">
+  <ion-content scrollbar-y="false">
+    <div style="text-align: center;padding: 22px 0 5px 0;" ng-style="topPlus">
+      <div style="color: #FF4400;font-size: 16px;">恭喜您！注册成功！</div>
+      <img ng-src="{{imgBaseURL}}img/registerSuccess.png" style="width: 30%;margin-top: 10px;">
+    </div>
+    <div style="border: 1px solid #E4E4E4;border-radius: 8px;margin: 0 5%;padding: 16px 14px 0;">
+      <pre style="color: #666;letter-spacing: -1px;font-size: 14px;">      顺逛微店是海尔集团旗下官方社交平台，内部和所有并联节点打通，外部聚微店主和线下店，旨在打造聚焦“诚信生态 共享平台”下的线上店、线下店、微店“三店合一”的社群经济生态平台。</pre>
+      <pre style="color: #666;margin: 10px 0;letter-spacing: -1px;font-size: 14px;">    如果你想开一间顺逛微店，赚取佣金和奖励，请点击“立即开店”，如果您已经拥有顺逛微店，请返回引导页登录即可；如果您不想开店，点击“马上选购”则不会有佣金和收益仅视为顺逛的买家用户</pre>
+      <div style="margin: 10px 0;color: #FF4400;font-size: 14px;">
+        <span style="font-weight: bold;">立即开店</span>
+        <span>成为微店主，赚取丰厚佣金和奖励。</span>
+      </div>
+    </div>
+    <div style="margin: 12% 0 0 0;color: #ffffff;padding: 0 5%;position: relative">
+      <div style="background: #2979FF;box-shadow: 0 3px 6px 0 rgba(41,121,255,0.50);border-radius: 100px;width:132px;height: 44px;color: #fff;line-height: 44px;text-align: center;position: absolute;font-size: 17px;" ng-click="goSelection();$event.preventDefault();">
+        马上选购
+        <span style="position:absolute;top:44px;width:132px;font-size:12px;color:#999;left:0;"ng-click="goToDelete();$event.stopPropagation();">退出登录</span>
+      </div>
+      <div style="background: #FF4400;box-shadow: 0 3px 6px 0 rgba(255,68,0,0.50);border-radius: 100px;width:132px; height: 44px;color: #fff;line-height: 44px;text-align: center;position: absolute;right: 5%;font-size: 17px;" ng-click="goShopApply()">立即开店</div>
+    </div>
+    <div style="width: 100%;height: 80px;"></div>
+  </ion-content>
+</ion-view>

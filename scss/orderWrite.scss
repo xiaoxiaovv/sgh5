@@ -1,0 +1,141 @@
+.orderTop{
+    width:100%;
+    height:4px;
+    margin-top:10px;
+    background:url(http://cdn09.ehaier.com/shunguang/H5/www/img/hengtiao.png);
+}
+.shopInfoList{
+    width:100%;
+    background:#fff;
+    margin-top:8px;
+    padding:2.4% 4.3%;
+    .info-p1{
+        font-size:17px;
+        color:#000;
+        font-weight:100;
+        .info-sp1{
+            color: #FF4400;
+        }
+    }
+    .info-p2{
+        font-size:14px;
+        color:#333;
+    }
+    .info-p3{
+        font-size:14px;
+        color:#999999;
+    }
+    .infoMoney{
+        width:91.5%;
+        height:4.9%;
+        margin-top:15px;
+    .info-p3{
+        font-size:14px;
+        color:#999999;
+        margin-bottom:0;
+         line-height: 20px;
+    }
+    .info-p4{
+        font-size:13px;
+        color:#999999;
+        margin-bottom:0;
+        line-height: 20px;
+    }
+}
+}
+
+.fapiaoInfo{
+    margin-top:10px;
+}
+
+.detailInfo{
+    height:135px;
+    width:100%;
+    padding:2.4% 4.3% 0 4.3%;
+    background:#fff;
+    .detailInfoP1{
+        height:30px;
+        width:100%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom:0;
+        .detailInfoSp{
+            color: #FF4400;
+        }
+    }
+
+}
+.fxsm{
+        height:44px;
+        width:100%;
+        background:#fff;
+        padding:0 1% 0 4.3%;
+        border-top:1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .detailInfoP2{
+            color: #FF4400;
+        }
+    }
+    .supportDeal{
+        width:100%;
+        height:68px;
+        background:#eeeeee;
+        padding:2.4% 4.3% 0 4.3%;
+        display:flex;
+        justify-content: flex-start;
+        .input-check{
+            display:inline-block;
+            width:13px;
+            height:13px;
+            background:#2979FF;
+            margin:4px 3px 0 0;
+        }
+        .supportDeal-p{
+            font-size:12px;
+            color:#666666;
+            .supportDeal-span{
+                color:#1C77BF;
+            }
+        }
+    }
+    
+    .footSubmitAll{
+        width:100%;
+        height:48px;
+        background:#fff;
+        .allMoney{
+            width:43.3%;
+            height:24px;
+            float:left;
+            margin:12px 0 0 4.3%;
+            .allMoney1{
+                font-size: 14px;
+                color:#000;
+                float:left;
+            }
+            .allmoney2{
+                font-size: 17px;
+                color:#FF4400;
+                float:left;
+            }
+        }
+        .subBtn{
+            display:inline-block;
+            width:40.5%;
+            height:48px;
+            background:#2979FF;
+            border:0;          
+            font-size:17px;
+            color:#fff;
+            float:right;
+
+            
+        }
+    }
+.footerBlank{
+    width: 100%;
+    height: 12px;
+}

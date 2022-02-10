@@ -1,0 +1,16 @@
+<!--我的页面->店铺信息->店铺名称-->
+<ion-view class="background" view-title="店铺名">
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="margin-top-20 padding-15 bg-white">
+        <input class="width-60 input-style-name padding-left-5" maxlength="12" ng-model="name.value" value={{name.value}} placeholder="">
+       <!--  <span class="padding-left-5">的顺逛小店</span> -->
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

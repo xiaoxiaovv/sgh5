@@ -1,0 +1,58 @@
+<!--更多感兴趣的人页面by shantao.wang on 2016/12/11-->
+<ion-view class="background" view-title="更多" hide-back-button="true">
+    <!--覆盖标题栏背景色；注释掉回退按钮，手动添加-->
+    <ion-nav-bar></ion-nav-bar>
+    <!--回退按钮-->
+    <ion-nav-buttons side="left">
+        <button ng-click="$ionicGoBack();" class="button-clear icon ion-ios-arrow-left" style="color:#999999;"></button>
+    </ion-nav-buttons>
+
+    <!--内容区域-->
+    <ion-content scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新" refreshing-text="正在刷新" on-refresh="init()"></ion-refresher>
+        <ion-list>
+            <!--你可能感兴趣的人-->
+            <div class="users-head-bar2">
+                <div class="content">
+                    你可能感兴趣的人
+                </div>
+            </div>
+            <ion-item ng-repeat="person in myInterested.interestedList" ng-click="viewHim(person.memberId)" class="item-avatar person-item">
+                <img class="head" src="{{person.img|ImageUserFilter}}" alt="" onerror="this.src='http://cdn09.ehaier.com/shunguang/H5/www/img/quanzi/user.jpg'">
+                <div ng-bind="person.memberName||'XXX'" class="name"></div>
+                <!--<div ng-bind="person.memberName" class="dot-line sign"></div>-->
+                <!--五星等级-->
+              <div style="display: flex;" class="position-a">
+                <div class="grade-start-diamond">
+                  <img ng-if="person.grideName!='盟主'" ng-src="{{imgBaseURL}}img/Commander{{person.gride}}@2x.png" style="width:11px;margin-right:4px;">
+                  <img ng-if="person.grideName=='盟主'" ng-src="{{imgBaseURL}}img/Commander mengzhu@2x.png" style="width:11px;margin-right:4px;">
+                  <span style="font-size: 12px;color:#ffffff;letter-spacing: 0.32px;line-height: 12px;" ng-bind="person.grideName">士兵</span>
+                </div>
+                <div class="inline-block" ng-if="person.storeGride > 0">
+                  <img ngsrc="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 1 && person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/StarLevel@2x.png" width="11px" ng-if="person.storeGride > 2 && person.storeGride<4">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >3 && person.storeGride < 7">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >4 && person.storeGride < 7">
+                  <img ng-src="{{imgBaseURL}}img/DiamondLevel@2x.png" width="11px" ng-if="person.storeGride >5 && person.storeGride < 7">
+                </div>
+              </div>
+
+                <div class="follow-button" ng-class="{true:'no-follow',false:'follow'}[!!person.isFollow]"
+                     ng-bind="person.isFollow?'已关注':'+关注'"
+                     ng-click="$event.stopPropagation();followI(person,!person.isFollow);person.isFollow=!person.isFollow;"></div>
+            </ion-item>
+        </ion-list>
+        <!--<div ng-if="!myInterested.hasMore" class="text-align-c">没有更多了。。。</div>-->
+        <!--上拉刷新-->
+        <ion-infinite-scroll on-infinite="loadData(myInterested)" immediate-check="false"
+                             ng-if="myInterested.hasMore"></ion-infinite-scroll>
+    </ion-content>
+    <!--轻通知-->
+    <div class="width-100" style="position: fixed;bottom: 10px;" ng-if="alreadyFollow">
+        <div class="padding-left-right-25 padding-top-bottom-5 color-white"
+             style="border-radius:15px;background-color: rgba(0,0,0,0.7);display: table;margin-left: auto;margin-right: auto">
+            <span>恭喜你多了一个新朋友</span>
+        </div>
+    </div>
+</ion-view>

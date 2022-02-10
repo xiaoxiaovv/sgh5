@@ -1,0 +1,108 @@
+.sg-login-footer {
+  height:7.5rem;
+  background-image: none;
+  position: relative;
+  top: 30px;
+}
+
+.sg-login-hr {
+  height: 1px;
+}
+
+.sg-register-button {
+  vertical-align: middle;
+}
+
+.sg-register-message {
+  position: absolute;
+  right: 10px;
+  top: 19%;
+  width: 50px;
+  text-align: right;
+  height: 40px;
+  padding: 0;
+}
+
+.paraclass {
+  background-color: #32beff;
+  border-color: transparent;
+  border-radius: 4px;
+  text-align: center;
+  color: $color-white;
+  z-index: 10;
+  position: absolute;
+  right: 10px;
+  top: 22%;
+  padding: 5px 3px;
+}
+
+.unParaclass {
+  position: absolute;
+  right: 10px;
+  top: 22%;
+  z-index: 10;
+  color: $color-text-m;
+  background-color: $color-line;
+  border-color: transparent;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 3px;
+}
+
+.sg-text-indent {
+  text-indent: 2em;
+}
+
+.sg-login-img-height {
+  height: 50px;
+}
+
+.sg-guide-button {
+  position: absolute;
+  bottom: 5%;
+  z-index: 10;
+  button {
+    width: 27%;
+    border-radius: 8px;
+  }
+}
+
+.sg-guide-slide {
+  .slider-pager .slider-pager-page {
+    color: #fff;
+  }
+}
+
+.sg-guide-full {
+  width: 100%;
+  height: 100%;
+}
+
+.sg-identify-code-img {
+  padding: 0;
+  text-align: center;
+  z-index: 10;
+  position: absolute;
+  right: 10px;
+  top: 12%;
+  img {
+    width: 80px;
+    height: 41px;
+  }
+}
+
+.sg-direcct-footer {
+  .col-one {
+    background-color: #f1366e;
+  }
+  .col-two {
+    background-color: #40c2ff;
+  }
+  background-image: none;
+}
+
+.sg-register-img {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}

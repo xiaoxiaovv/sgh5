@@ -1,0 +1,182 @@
+.useExperience{
+  .topDiv{
+    height:100px;
+    background-color: #fff;
+    img{
+      margin: 0 18px 0 22px;
+      width:56px;
+    }
+    span{
+      margin-right:63px;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: 18px;
+    }
+  }
+  .contentDiv{
+    padding: 10px 16px 0;
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0;
+  }
+  .picDiv{
+  padding: 14px 0 0 16px;
+  background-color: #fff;
+  flex-wrap: wrap;
+  img{
+    width:56px;
+    height:56px;
+  }
+  div{
+    margin: 0 12px 14px 0;
+  }
+  .picDivOne{
+    position: relative;
+    border:1px dashed #eee;
+    width:56px;
+    height:56px;
+    .picDivOneL{
+      width:100%;
+      height:100%;
+    }
+    span{
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0;
+    }
+    .imageFrame{
+      opacity:0;
+      width:56px;
+      height:56px;
+      position:absolute;
+      z-index:98;
+      .imageFrame1{
+        position: relative;
+        z-index:99;
+        width:56px;
+        height:56px;
+      }
+    }
+    .picDivOneimg{
+      width:24px;
+      height:24px;
+    }
+  }
+}
+  .shopScore{
+    height:160px;
+    background:#fff;
+    .shopScoreOne{
+      margin: 0 16px;
+      height:40px;
+      border-top:1px solid #eee;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height:40px;
+    }
+    .shopScoreAll{
+      padding:0 16px;
+      height:40px;
+      span{
+        font-size: 14px;
+        letter-spacing: 0;
+        margin-right:4px;
+      }
+      img{
+        width:18px;
+        height:18px;
+        margin-left:16px;
+      }
+    }
+  }
+  .buyerImpression{
+    margin-top:8px;
+    padding:0 16px;
+    background-color:#fff;
+    .impressionText{
+      height:40px;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height:40px;
+    }
+    .impressionList{
+      flex-wrap: wrap;
+      div{
+        border: 1px solid #eee;
+        border-radius: 4px;
+        height:32px;
+        line-height:32px;
+        font-size: 12px;
+        color: #999;
+        letter-spacing: 0;
+        margin: 0 8px 16px 0;
+        padding:0 22px;
+      }
+    }
+  }
+  .byuerCount{
+    background-color: #fff;
+    margin-top:8px;
+    input{
+      height:55px;
+      padding-right:30px;
+    }
+    div{
+      margin:0 16px;
+      height:56px;
+      border-bottom:1px solid #eee;
+    }
+    .byuerCountOne{
+      input{
+        width:100%;
+      }
+    }
+    .byuerCountTwo{
+      img{
+        width:88px;
+        height:26px;
+      }
+    }
+    .byuerCountThe{
+      span{
+        height:30px;
+        line-height: 30px;
+        border: 1px solid #2979FF;
+        border-radius: 100px;
+        width:100px;
+        text-align: center;
+        font-size: 12px;
+        color: #2979FF;
+        letter-spacing: 0;
+      }
+    }
+  }
+  .divBottom{
+    height:102px;
+    .submitButton{
+      height:44px;
+      width:343px;
+      background: #2979FF;
+      box-shadow: 0 1px 2px 0; background:rgba(41,121,255,1);
+      border-radius: 100px;
+      font-size: 17px;
+      color: #fff;
+      text-align:center;
+      line-height:44px;
+    }
+  }
+  .overTimeDiv{
+    text-align: center;
+    img{
+      margin:56px 0 28px 0;
+      height:110px;
+      width:110px;
+    }
+    span{
+      display: block;
+      font-size: 17px;
+      color: #666;
+    }
+  }
+}

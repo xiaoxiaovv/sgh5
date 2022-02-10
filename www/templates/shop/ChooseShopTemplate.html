@@ -1,0 +1,28 @@
+<ion-view class="background" view-title="选择店铺模板">
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme" ng-click="preview()">预览</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="bg-white padding-top-bottom-10 border-top-bottom padding-left">顶部模板样式</div>
+    <div class="cst-template row">
+      <div class="position-r col-50" ng-click="chooseTitleTemplate($index)" ng-repeat="titleItem in titleTemplateArray">
+        <img class="cst-template-img" ng-src="{{titleItem.tempUrl}}"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="cst-top-checkbox" ng-if="titleItem.selected"/>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="cst-top-checkbox" ng-if="!titleItem.selected"/>
+      </div>
+    </div>
+    <div class="bg-white padding-top-bottom-10 border-top-bottom padding-left">商品列表模板样式</div>
+    <div class="cst-template row">
+      <div class="position-r col-50" ng-click="chooseListTemplate($index)" ng-repeat="listItem in listTemplateArray">
+        <img class="cst-template-img" ng-src="{{listItem.tempUrl}}"/>
+        <img ng-src="{{imgBaseURL}}img/ic_select.png" class="cst-list-checkbox" ng-if="listItem.selected"/>
+        <img ng-src="{{imgBaseURL}}img/ic_check.png" class="cst-list-checkbox" ng-if="!listItem.selected"/>
+      </div>
+    </div>
+    <script id="my-preview-modal.html" type="text/ng-template">
+      <div class="shop-preview">
+        <img ng-src="http://www.ehaier.com/mstatic/wd/v2/img/pages/wdHome/tempImg{{previewImgIndex}}.jpg" alt="店铺预览图"/>
+      </div>
+    </script>
+  </ion-content>
+</ion-view>

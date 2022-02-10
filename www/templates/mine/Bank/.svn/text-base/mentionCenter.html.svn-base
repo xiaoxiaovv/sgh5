@@ -1,0 +1,69 @@
+<!--绑定银行卡-->
+<ion-view view-title="提现" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:78px;height:44px;padding-left:16px;" flex="cross:center">
+      <div style="width:34px;height:24px;" flex="cross:center" ng-click="goBack()">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">提现</div>
+    <div style="margin-right:9px;height:44px;padding-right:6px;font-size:17px;color:#999;width:78px;letter-spacing: 0;" flex="main:center cross:center">
+    </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" class="mentionCenterbackground">
+    <div class="mentionCenter">
+      <div flex="cross:center">
+        <span>提现金额</span>
+        <span>{{canGetMount}}</span>
+      </div>
+      <div flex="cross:center">
+        <span>选择提现至:</span>
+      </div>
+      <div ng-if="hasBindYHK&&moneyHundred" class="mentionCenterOne border-bottom" flex="cross:center box:justify">
+        <span>
+          <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[backGroundOrImg.bankNo].img}}.png" alt="logo">
+        </span>
+        <div>
+          <p flex="cross:center">{{backGroundOrImg.bankName}}<img ng-src="{{imgBaseURL}}img/baozhang2.png" alt="baozhang"></p>
+          <p>{{backGroundOrImg.cardNo}}</p>
+        </div>
+        <span ng-click="clickBank(1)">
+          <img ng-if="1==matchValue" ng-src="{{imgBaseURL}}img/Select Reveal b@2x.png" alt="xuanzhong" />
+          <img ng-if="1!=matchValue" ng-src="{{imgBaseURL}}img/Select Reveal – None@2x.png" alt="xuanzhong" />
+        </span>
+      </div>
+      <div ng-if='hasBindKJT' class="mentionCenterOne border-bottom" flex="cross:center box:justify">
+        <span>
+          <img ng-src="{{imgBaseURL}}img/{{backGroundOrPic[88888888].img}}.png" alt="logo">
+        </span>
+        <div>
+          <p flex="cross:center">快捷通<img ng-src="{{imgBaseURL}}img/baozhang2.png" alt="baozhang"></p>
+          <p>{{backGroundOrKjt.memberKjtpayAccount}}</p>
+        </div>
+        <span ng-click="clickBank(0)">
+          <img ng-if="0==matchValue" ng-src="{{imgBaseURL}}img/Select Reveal b@2x.png" alt="xuanzhong" />
+          <img ng-if="0!=matchValue" ng-src="{{imgBaseURL}}img/Select Reveal – None@2x.png" alt="xuanzhong" />
+        </span>
+      </div>
+      <div ng-if="!hasBindYHK && !iso2o" class="bindBankh" flex="cross:center main:center" ui-sref="bindingBankHome">
+        <img ng-src="{{imgBaseURL}}img/join.png" alt="jiahao">
+        <span>添加银行卡</span>
+      </div>
+      <div ng-if="!hasBindKJT" class="bindBankh" flex="cross:center main:center" ng-click="clickBind()">
+        <img ng-src="{{imgBaseURL}}img/join.png" alt="jiahao">
+        <span>添加快捷通</span>
+      </div>
+      <div ng-if="hasBindYHK&&!moneyHundred" style="color:#999;margin: 8px 0 0 16px;">提现到银行卡需金额大于1000元!</div>
+      <div ng-if="hasBindKJT&&!moneyNoone&&(matchValue==0)" style="color:red;margin: 8px 0 0 16px;">提现到快捷通需金额大于1元!</div>
+      <div ng-if='hasBindYHK&&moneyNoone&&moneyHundred&&(matchValue==1)' class="mentionCenterTwo" flex="cross:center main:center" ng-click="mentionCenterBankNow()">
+        下一步
+      </div>
+      <div ng-if='hasBindKJT&&moneyNoone&&(matchValue==0)'  class="mentionCenterTwo" flex="cross:center main:center" ng-click="withdraw()">
+        下一步
+      </div>
+      <div ng-if='!moneyNoone||(!hasBindYHK&&!hasBindKJT)'  class="mentionCenterTwo1" flex="cross:center main:center">
+        下一步
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

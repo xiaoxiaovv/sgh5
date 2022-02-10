@@ -1,0 +1,30 @@
+<ion-view class="background" view-title="账户安全">
+    <ion-nav-bar>
+        <ion-nav-back-button class="color-text-l" ng-click="goBack()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content scrollbar-y="false">
+        <div class="margin-bottom-20">
+        </div>
+        <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ui-sref="myPhoneManage">
+            手机
+            <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+            <span class="float-r margin-right-10">{{accountNumber | encryptPhone}}</span>
+        </div>
+      <!--暂时去掉，以后会加回来ui-sref="changeEmail({'userName':accountMessage,'birthday':accountBirthday,'gender':accountSexValue,'nickName':accountName,'email':accountEmail})"-->
+        <div class="padding padding-left-15 padding-right-15 bg-white border-bottom">
+            邮箱
+            <!--<i class="icon ion-chevron-right float-r margin-right-10"></i>-->
+            <span class="float-r margin-right-20 color-text-s" ng-bind="accountEmail"></span>
+        </div>
+        <div class="padding padding-left-15 padding-right-15 bg-white" ui-sref="changePassword">
+            修改密码
+            <i class="icon ion-chevron-right float-r margin-right-10"></i>
+            <span class="float-r margin-right-20"></span>
+        </div>
+    </ion-content>
+    <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+        <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+        </div>
+    </div>
+</ion-view>

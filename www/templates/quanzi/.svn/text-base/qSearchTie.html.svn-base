@@ -1,0 +1,83 @@
+<ion-view  hide-nav-bar="true"  >
+    <ion-header-bar align-title="center" style="top:0;" class="border-bottom" >
+        <div class="jd-padding-3" ng-click="goBack()" >
+            <i class="ion-ios-arrow-left  jd-font-size-32  text-align-c jd-color-blue"></i>
+        </div>
+        <div ng-class="{'ios-margin-top-22':isIOS}">
+            <form>
+                <input type="text" class="position-a bg-background left-50" placeholder="搜索账号、圈子、话题"
+                       ng-model="input.isinput" id="qSearch" ng-class="{'ios-padding-top-8':isIOS}"
+                       ng-keypress="($event.which === 13)?search($event):0"
+                       style="width: 74%;margin-left: -37%;height: 28px;border-radius: 15px;padding-left: 8%">
+            </form>
+            <i class="icon ion-ios-search position-a font-size-16" style="top: 10px;left: 16%;color: #6a6a6a;" ng-class="{'ios-top-30':isIOS}"></i>
+        </div>
+
+        <div class="jd-search-qu font-size-14 font-bold" style="color: #777;" ng-click="goBack()">
+            <i class=" ">取消</i>
+        </div>
+    </ion-header-bar>
+ <ion-content class="hui-back" scrollbar-y="false" >
+     <div class="margin-top-15" style="width: 100%;" >
+         <div   style="width: 100%;" >
+             <!--话题-->
+             <div class=" hui-back" style="width: 100%;" ng-if="huatilist.length!=0">
+                 <div class="  font-size-12 jd-color-hui-a no-border margin-top-10 bg-white"
+                      style="background-color: #fafafa;height:30px;color: #777;margin-bottom: -5px;">
+                     <div class="float-l" style="width: 5px;height:30px;background-color: #feb40e;"></div>
+                     <div class="padding-top-5">
+                         <i class="margin-left-10">话题</i>
+                     </div>
+                 </div>
+                 <div class=" margin-top-5 bg-white" ng-repeat="item in huatilist">
+                     <div class="story-st">
+                         <div class="story-head" ng-click="gotoothers(item)">
+                          <span>
+                            <img alt="头像" class="user-head" ng-src="{{item.userHead|ImageUserFilter}}">
+                            <span class="user-name" ng-bind-html="item.userName|bluetext:input.isinput">昵称</span>
+                          </span>
+                             <img ng-src="{{imgBaseURL}}img/quanzi/qunzi-hot.png" class="inline width-height-15"
+                                  style="margin-bottom: -3px;" ng-if="item.isTop==1"/>
+                             <span class="create-time" ng-bind="item.createDate">1小时前</span>
+                         </div>
+                         <!--长文贴-->
+                         <div class="story-content" ng-if="item.isShortStory!=0" ng-click="gototiezi(item)">
+                             <img ng-if="item.mainImg" alt="" class="main-img" ng-src="{{item.mainImg}}">
+                             <div class="font"style="height:auto;">
+                                 <div class="story-title dot-block" style="height:20px;" ng-bind-html="item.storyName|bluetext:input.isinput">标题</div>
+                                 <div class="dot-block cont" ng-bind-html="item.storyContentText|bluetext:input.isinput">内容</div>
+                             </div>
+                             <div style="clear:both;"></div>
+                         </div>
+                         <!--短文贴-->
+                         <div class="short-story" ng-if="item.isShortStory==0" ng-click="gototiezi(item)">
+                             <div class="dot-line short-cont" ng-bind-html="item.storyContent|bluetext:input.isinput">标题</div>
+                             <div class="margin-top-5 jd-margin-bottom--5" style="width: 100%">
+                                <img ng-src="{{item.mainImgArray[0]}}" style="object-fit: cover" ng-if="item.mainImgArray[0]" ng-style="screenListThreeWidth"
+                                          style="width:32%;display: inline-block;overflow: hidden;height: auto;max-width: 100%;max-height: 100%">
+                                <img src="{{item.mainImgArray[1]}}" style="object-fit: cover" ng-if="item.mainImgArray[1]" ng-style="screenListThreeWidth"
+                                          style="width:32%;display: inline-block;overflow: hidden;height: auto;max-width: 100%;max-height: 100%;
+                                          margin: 0 -2px 0 -2px;">
+                                <img src="{{item.mainImgArray[2]}}" style="object-fit: cover" ng-if="item.mainImgArray[2]" ng-style="screenListThreeWidth"
+                                          style="width:32%;display: inline-block;overflow: hidden;height: auto;max-width: 100%;max-height: 100%">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="text-align-c padding-top-10 bg-white  font-bold border-top jd-input-more" >
+                     <button class="text-align-c bg-white jd-input-more1"
+                             ng-click="loadData()" ng-if="ismoreshow">
+                         <i class="font-size-14">加载更多</i>
+                     </button>
+                 </div>
+             </div>
+         <!-- 空显示-->
+         <div class="text-align-c font-size-18" style="padding: 34px 20px;" ng-if="huatilist.length==0&&showmore">
+             <img ng-src="{{imgBaseURL}}img/quanzi/quanzi-input-null.png" style="height: 100px;">
+             <div class=" text-align-c " style="color: #777"><p>亲,你的脑容量已超越</p></div>
+             <p  style="color: #777">我们的搜索能力,换个词试试吧~</p>
+         </div>
+     </div>
+   </div>
+ </ion-content>
+</ion-view>

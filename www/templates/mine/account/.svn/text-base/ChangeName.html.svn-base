@@ -1,0 +1,25 @@
+<!--我的页面->账户信息->昵称设置-->
+<ion-view class="background" view-title="昵称">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l"
+                         ng-click="goBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-nav-buttons side="secondary">
+    <button class="button-clear color-text-theme padding padding-right-15" ng-click="doChange()">保存</button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="padding padding-top-5 padding-left-15 padding-bottom-5 bg-white">
+      <form class="white-space-nowrap">
+        <input class="inline width-100 input-style" maxlength="25" ng-model="name.value" placeholder="请输入用户昵称">
+        <input-clear ng-model="name.value"></input-clear>
+      </form>
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

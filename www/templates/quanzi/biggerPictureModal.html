@@ -1,0 +1,21 @@
+<ion-modal-view style="background: black">
+  <!--<ion-scroll  style="" ng-style="scrollHeight" zooming="true" direction="xy" scrollbar-x="false" scrollbar-y="false" min-zoom="1">-->
+  <!--<img ng-src="{{biggerImgUrl}}" on-hold="downLoadPhoto(largeImg)" style="width: 100%" on-tap="hideLarge()">-->
+  <!--</ion-scroll>-->
+
+  <!--<div style="width:100%;display:table-cell;height:100%;text-align:center; vertical-align:middle;background: transparent;-->
+  <!--position: fixed;z-index:10;" on-tap="hideLarge()">-->
+  <!--<i style="display:inline-block; height:100%;vertical-align:middle"></i>-->
+  <!--<img style="width: 99%;vertical-align: middle;margin-left: -1%" ng-src="{{biggerImgUrl}}" err-src=""/>-->
+  <!--</div>-->
+
+  <!--<ion-scroll direction="y" overflow-scroll="true" has-bouncing="false" style="width: 100%;display: flex;justify-content: center;align-items: center;background: transparent;" >-->
+  <ion-content scroll="true">
+    <div style="width: 100%;display: flex;justify-content: center;align-items: center;
+      background: transparent;overflow: scroll" id="biggerPic" ng-style="shortImgHeight">
+      <img ng-src={{biggerImgUrl|ImageFilter}} style="width:100%;" on-hold="downLoadPhoto(biggerImgUrl)" id="imgHeight"
+           on-tap="hideLarge()"/>
+    </div>
+  </ion-content>
+  <!--</ion-scroll>-->
+</ion-modal-view>

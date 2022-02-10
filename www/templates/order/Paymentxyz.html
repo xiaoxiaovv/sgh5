@@ -1,0 +1,107 @@
+<!--模板-->
+<ion-view class="scroll bg-white" view-title="订单支付" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-left" style="font-size: 30px; width: 30px; height: 30px;text-align:center;"
+       ng-click="goList()"></i>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <i style='line-height:34px;font-size:16px;' ng-click="goCart()">订单中心</i>
+  </ion-nav-buttons>
+  <ion-content class="background">
+    <div class="border-bottom bg-white text-align-c" style="padding-top:11px;padding-bottom:14px;">
+      <p class="font-size-13 margin-bottom-12 margin-top-2">请在48小时内完成支付， 逾期订单自动取消</p>
+
+      <p class="font-size-13 margin-bottom-0">应付金额：<span class="text-color-light-red">￥{{price|number:2}}</span></p>
+    </div>
+    <div
+      class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10"
+      ng-click="checkedpay('{{alipaymobile.paymentCode}}')" ng-if='alipaymobiles'>
+      <div style="height:46px;width:46px;" class="margin margin-right-10 col-15"><img
+        style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/zfb.png" alt="支付宝支付"/></div>
+      <div class="col col-center col-85">
+        <span>{{alipaymobile.paymentName}}</span>
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+    </div>
+
+    <div
+      class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10"
+      ng-click="checkedpay('{{wxpay.paymentCode}}')" ng-if="wxpays">
+      <div style="height:46px;width:46px;" class="margin margin-right-10 col-15">
+        <img style="width: 100%;height: 100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/wx.png" alt="微信支付"/>
+      </div>
+      <div class="col col-center col-85">
+        <span>{{wxpay.paymentName}}</span>
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+
+    </div>
+
+    <div
+      class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10"
+      ng-click="checkedpay('{{kjtpay.paymentCode}}')" ng-if='kjtpays'>
+      <div class="margin margin-right-10 col-15" style="height:46px;width:46px;">
+        <img style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/kjt.gif" alt="快捷通支付"/>
+      </div>
+      <div class="col col-center col-85">
+        <span>{{kjtpay.paymentName}}</span>
+        <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        <span class="float-r margin-right-20"></span>
+      </div>
+    </div>
+    <div class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10 fq"
+      ng-click="toPay()" ng-if="showCcb"
+      >
+      <div style="height:46px;width:46px;" class="margin margin-right-10 col-15">
+        <img style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/bankCard.png" alt="信用卡分期"/>
+      </div>
+      <div class="col col-center col-85">
+
+          <!-- <span style="line-height:50px;">建行信用卡分期</span> -->
+          <span>银行卡支付</span>
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+          <!-- <span class="float-r margin-right-20"></span> -->
+          <!-- <span class="font-size-11 xyz" ng-class="isRed?'assertive':''" style="position:absolute;top:10px;">支付金额需大于等于{{priceinit}}元</span> -->
+
+        <!-- <i class="icon ion-chevron-right float-r margin-right-10 arrow" style=""></i> -->
+      </div>
+    </div>
+
+    <div class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10 fq"
+      ng-click="iousPay()" ng-if="showIous"
+      >
+      <div class="margin margin-right-10 col-15" style="height:46px;width:46px;">
+        <img style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{icosImg}}" alt="顺逛白条支付"/>
+      </div>
+      <div class="col col-center col-85">
+        <div style="position:relative;">
+          <span style="position:absolute;top:-10px;">顺逛白条支付</span>
+          <span class="font-size-11 xyz" ng-class="canPayWhiticos?'assertive':''" style="position:absolute;top:10px;">支付金额需大于等于600元</span>
+        </div>
+        <i class="icon ion-chevron-right float-r margin-right-10 arrow" style=""></i>
+      </div>
+    </div>
+    <!-- 花呗分期 -->
+    <div class="padding-left-10 bg-white padding-right-25 border-bottom row margin-top-0 padding-top-10 padding-bottom-10 fq"
+      ng-click="toSpendBai()" ng-if="showCcb"
+      >
+      <div style="height:46px;width:46px;" class="margin margin-right-10 col-15">
+        <img style="height:100%;width:100%;height:46px;width:46px;" ng-src="{{imgBaseURL}}img/huabei.png" alt="花呗分期"/>
+      </div>
+      <div class="col col-center col-85">
+
+          <!-- <span style="line-height:50px;">建行信用卡分期</span> -->
+          <span>花呗分期</span>
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+          <!-- <span class="float-r margin-right-20"></span> -->
+          <!-- <span class="font-size-11 xyz" ng-class="isRed?'assertive':''" style="position:absolute;top:10px;">支付金额需大于等于{{priceinit}}元</span> -->
+
+        <!-- <i class="icon ion-chevron-right float-r margin-right-10 arrow" style=""></i> -->
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

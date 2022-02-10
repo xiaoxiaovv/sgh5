@@ -1,0 +1,29 @@
+<ion-view class="background" view-title="设计案例">
+  <ion-nav-buttons side="right">
+    <button ng-click="openFilterModal()" class="button-clear" style="display: flex;margin-right: 0.213rem;">
+      <span style='color: #666;font-weight: 400;'>筛选</span>
+      <img ng-src="{{imgBaseURL}}img/linshi/fbsx@2x.png" style='width: 16px;transform: translate(1px,8px);'>
+    </button>
+  </ion-nav-buttons>
+  <ion-content scrollbar-y="false" overflow-scroll="true">
+      <div class="homedesignlist" ng-repeat='i in dataList'>
+        <div>
+          <img ng-src="{{i.imageUrl}}" ui-sref='homeDetail({"solutionId":i.id})'/>
+          <div>
+            <div ui-sref='designDetail({"soluteId":i.designerId})'>
+              <img ng-src="{{i.avatar?i.avatar:imgBaseURL+'img/quanzi/user.jpg'}}" err-src="{{imgBaseURL}}img/quanzi/user.jpg"/>
+            </div>
+            <div ui-sref='designDetail({"soluteId":i.designerId})'>{{i.designerName}}</div>
+            <div>{{i.area}}</div>
+          </div>
+        </div>
+        <div>{{i.name}}</div>
+        <div>
+          <div ng-repeat='item in (i.label).split(" ")'>{{item}}</div>
+        </div>
+      </div>
+ <ion-infinite-scroll ng-if="hasmore" on-infinite="loadmore()" distance="1%"></ion-infinite-scroll>
+  </ion-content>
+  
+  
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-modal-view class="filter-modal-view" style='width:73%;right: 0'>
+    <ion-content scrollbar-y="false" class="search-content">
+        <div class="search-c-box">
+            
+            <!--品牌-->
+        <div ng-repeat='item in filtertag' ng-init='outerIndex = $index'>
+            <div class="search-c-title3 cl" style='color:#666;'>
+                <span class="fl">{{item.name}}</span>
+            </div>
+            <div class="brandBox cl">
+                <div class="brandList" style='width:29%;' ng-style="all[outerIndex]==true?{'background-color':'#2979FF','color':'white'}:{}">
+                    <div ng-click='chooseAll($index,item)'>
+                        <span>全部</span>
+                        
+                    </div>
+                </div>
+                <div class="brandList" style='width:29%;' ng-repeat='i in item.labels' ng-style="i.chooseFlag==true?{'background-color':'#2979FF','color':'white'}:{}">
+                    <div ng-click='choosetype(i,item,outerIndex)'>
+                        <span>{{i.name}}</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+          
+        </div>
+    </ion-content>
+    <ion-footer-bar style="text-align: center;">
+        <div ng-click="resetFilter()" style="height: 44px;width: 50%;font-size: 17px;color:#333;line-height: 44px;">重置</div>
+        <div ng-click="filterEnsure()" style="height: 44px;width: 50%;background-color: #2979FF;font-size: 17px;color:#fff;line-height: 44px;">确定</div>
+    </ion-footer-bar>
+</ion-modal-view>

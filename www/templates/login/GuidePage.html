@@ -1,0 +1,28 @@
+<!--引导页-->
+<ion-view hide-nav-bar="true" view-title="引导页">
+  <ion-content scroll="false" scrollbar-y="false">
+    <div class="sg-guide-slide sg-guide-full">
+      <ion-slide-box class="sg-guide-full" does-continue="true">
+        <ion-slide class="text-align-c sg-guide-full">
+          <img  class="sg-guide-full" ng-src="{{imgBaseURL}}img/bg_guide_1.jpg"/>
+        </ion-slide>
+        <ion-slide class="text-align-c">
+          <img class="sg-guide-full" ng-src="{{imgBaseURL}}img/bg_guide_2.jpg"/>
+        </ion-slide>
+        <ion-slide class="text-align-c">
+          <img class="sg-guide-full" ng-src="{{imgBaseURL}}img/bg_guide_3.jpg"/>
+        </ion-slide>
+        <ion-slide class="text-align-c">
+          <img class="sg-guide-full" ng-src="{{imgBaseURL}}img/bg_guide_4.jpg"/>
+        </ion-slide>
+        <ion-slide class="text-align-c">
+          <img class="sg-guide-full" ng-src="{{imgBaseURL}}img/bg_guide_5.jpg"/>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+    <div class="width-100 sg-guide-button" style="text-align: center;">
+      <!--<button style="border:0;background:#5CACEE;float:left;margin-left:14%;" class="padding-top-bottom-5 font-bold color-text-white" ui-sref="login">登录</button>
+      <button style="border:0;background:#5CACEE;float:right;margin-right:14%;" class="padding-top-bottom-5 font-bold color-text-white" ui-sref="register({hasHistory:0})">注册开店</button>-->
+      <button style="border:0;background:#1f6ce1;" class="padding-top-bottom-5 font-bold color-text-white" ui-sref="newHome">立即体验</button>
+    </div>
+</ion-view>

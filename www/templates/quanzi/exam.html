@@ -1,0 +1,127 @@
+<!--shantao.wang on 2016/10/17 Mon-->
+<ion-view class="background" view-title="考试">
+    <ion-nav-bar>
+        <ion-nav-back-button class="color-text-l"
+                             ng-click="$ionicGoBack()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--消息按钮-->
+    <ion-nav-buttons side="right">
+        <div class="text-align-c" style="width:28px;height:28px;margin:3px;border-radius: 50%;">
+            <i class="icon ion-android-search" style="line-height:28px;font-size: 20px;"></i>
+        </div>
+        <div ng-click="show()" ng-class="{'isClickedItem':isDisplay}" class="news-button">
+            <i class="icon ion-more"></i>
+            <span ng-if="ifRed" class="redPoint"></span>
+        </div>
+    </ion-nav-buttons>
+    <!--<ion-header-bar align-title="center">
+        <h2 class="title">考试</h2>
+        <div class="icon ion-ios-arrow-left mystore-back-btn location-back-btn" ng-click="$ionicGoBack()"></div>
+        <div class="button button-light position-a" style="right:35px;width:35px;">
+            <i class="icon ion-android-search"></i>
+        </div>
+        <div class="button button-light position-a" style="right:0;width:35px;">
+            <i class="icon ion-more"></i>
+            <span class="redPoint"></span>
+        </div>
+    </ion-header-bar>-->
+    <!--内容区域-->
+    <ion-content>
+        <div>
+            <!--滚动条：用于选择题目类别-->
+            <ion-scroll direction="x" scrollbar-x="false" zooming="false" class="border-top-bottom">
+                <div class="row padding-0 border-left">
+                    <div class="col text-align-c border-right" style="height:40px;padding:10px;"
+                         ng-repeat="library in Qs track by $index" ng-click="chooseWhich($index)">
+                        <span class="inline-block">
+                            <span class="float-l">分类</span>
+                            <span class="float-l" ng-bind="library.family"></span>
+                        </span>
+                    </div>
+                </div>
+            </ion-scroll>
+            <!--题目区域：3级嵌套repeat遍历所有数据，但只显示选中的类别-->
+            <div ng-repeat="library in Qs track by $index" ng-if="showWhich[$index]" style="padding:15px;">
+                <!--<div>
+                    <span>分类</span>
+                    <span ng-bind="library.family"></span>
+                </div>-->
+                <div ng-repeat="question in library.questions track by $index" each-repeat>
+                    <!--发广播控制器（$scope）之间传参(值，事件）!!-->
+                    <div>
+                        <span ng-bind="$index+1+'.'"></span>
+                        <span ng-bind="question.description"></span>
+                    </div>
+                    <div ng-repeat="option in question.answer track by $index" receive-index
+                         ng-click="option.selected=!option.selected">
+                        <!--<input type="radio" name="第{{name}}题" value="{{answer[$index]}}"/>-->
+                        <img class="float-l" ng-src="{{imgBaseURL}}img/ic_select.png"
+                             style="padding:2px 0;margin-right:8px;width:15px;" ng-if="option.selected"/>
+                        <img class="float-l" ng-src="{{imgBaseURL}}img/ic_check.png"
+                             style="padding:2px 0;margin-right:8px;width:15px;" ng-if="!option.selected"/>
+                        <span ng-bind="optionLetter[$index]"></span>
+                        <span ng-bind="option.text"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--居中的提交按钮-->
+        <div class="text-align-c">
+            <div class="button button-stable button-outline div-btn2">提交</div>
+        </div>
+        <!--消息弹框-->
+        <!--<div class="multiple-items" style="height: 100px;top:0;z-index: 11" ng-if="isDisplay" ng-class="{true:'iOStop'}[isIOS]">
+            <div class="row " style="height: 33px">
+                <div class="col col-20 icon ion-chatbubble-working font-size-20"></div>
+                <div style="padding:5px 15px" ui-sref="qzMessageCenter">消息</div>
+            </div>
+            <div class="row" style="height: 33px">
+                <div class="col col-20 icon ion-android-share font-size-20"></div>
+                <div style="padding:5px 15px">分享</div>
+            </div>
+            <div class="row" style="height: 33px">
+                <div class="col col-20 icon ion-ionic font-size-20"></div>
+                <div style="padding:5px 15px" ui-sref="applyCircle">申请圈子</div>
+            </div>
+            <span class="item-red-point"></span>
+        </div>-->
+    </ion-content>
+    <!--消息弹窗-->
+    <div ng-if="isDisplay" class="pop-news" style="height:120px;">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div ng-click="jumpMsg()" class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div class="float-l pop-news-text">消息</div>
+            <!--消息数量-->
+            <div ng-if="ifRed" class="float-r pop-news-amount">
+                <span ng-bind="messageNum|Num2Filter"></span>
+            </div>
+        </div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">分享</div>
+        </div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ionic position-r" style="left:-1px;"></i></div>
+            <div class="float-l pop-news-text">申请圈子</div>
+        </div>
+        <!--栏目-->
+        <!--  <div class="pop-news-item">
+              <div class="float-l text-align-c pop-news-icon">
+                  <img src="img/circleIcon/top.png"/>
+              </div>
+              <div class="float-l pop-news-text">贴子置顶</div>
+          </div>-->
+    </div>
+    <!--弹窗背景-->
+    <div ng-if="isDisplay" ng-click="disappear()" class="blank-area"></div>
+</ion-view>

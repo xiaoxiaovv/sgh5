@@ -1,0 +1,68 @@
+<!--二级管理-->
+<ion-view view-title="用户详细信息" class="background" hide-nav-bar="true">
+  <div >
+    <!--用户头部 用户详细信息-->
+    <div class="team_user_box"  ng-style="paddingtopClass">
+      <!--head-->
+      <div flex="main:justify cross:center" class="team_user_info_title">
+        <div ng-click="goBack()" ><img ng-src="{{imgBaseURL}}img/connectionBack@2x.png" style="width:9px;height:16px;"></div>
+        <div style="font-size: 17px;color:#ffffff;">用户详细信息</div>
+        <div ui-sref="homePage" style="color: #fff;">
+          首页
+        </div>
+      </div>
+
+      <div flex="main:justify">
+        <!--头像-->
+        <div class="team_user_pic">
+          <img ng-src="{{imgBaseURL}}img/ass_tx.png">
+        </div>
+        <div class="team_user_message" ng-style="teamInfos">
+          <div>
+            <strong style="font-size: 16px;font-weight: 400;">{{name}}</strong>
+          </div>
+          <div style="margin-top: 4px;position: relative;">
+            <span> 手机号：{{mobile}}</span>
+            <!--<span style="padding-left: 4px;">来源于微信</span>-->
+            <span style="width: 24px;height: 24px;position: absolute;right:10px;top: 0px;"><a href="tel:{{mobile}}"><img style="width: 100%;height: 100%;" ng-src="{{imgBaseURL}}img/iphone w@2x.png"></a></span>
+          </div>
+          <div class="team_myTeam" style="width: 100%;margin-top: 4px;">
+            <span  ng-if="isTeamNum==2">属于我的团队</span>
+            <span  ng-if="isTeamNum==1">属于我的合伙人</span>
+            <span ng-if="isTeamNum==0?false:true" style="border: 1px solid #fff;padding: 2px 8px;border-radius: 20px;margin-left: 10px;" ng-click="goBackMsg()">查看详情</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="team_commont_box"></div>
+  <div class="team_user_nav">
+      <div flex="box:mean">
+        <span>商品品类</span>
+        <span>数量</span>
+        <span>价位段</span>
+        <span>购买时间</span>
+      </div>
+  </div>
+  <ion-content scrollbar-y="false" class="user_message_content" >
+
+    <!--用户 基本信息-->
+    <div class="team_user_basics">
+      <div flex="box:mean" style="text-align: center;height: 48px;line-height: 48px;color: #333;" ng-repeat="item in userList track by $index">
+        <span style="margin-left: 0;">{{item.cateName}}</span>
+        <span style="margin-left: 0;">{{item.number}}</span>
+        <span style="margin-left: 0;">{{priceRange(item.price)}}</span>
+        <span style="margin-left: 0;">{{(item.addTime)*1000 | date:'yyyy.MM'}}</span>
+      </div>
+    </div>
+    <!--加载更多-->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+
+    <!--如果没有 占位图-->
+     <div flex="dir:top main:center cross:center" style="margin-top:20px;"  ng-if="userList.length==0">
+       <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+       <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据!</span>
+     </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,171 @@
+<ion-view class="background" view-title="个人主页-设置">
+    <ion-nav-bar>
+        <ion-nav-back-button class="color-text-l"
+                             ng-click="$ionicGoBack()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--消息按钮-->
+    <ion-nav-buttons side="right">
+        <div ng-click="show()" ng-class="{'isClickedItem':isDisplay}" class="news-button">
+            <i class="icon ion-more"></i>
+            <span ng-if="ifRed" class="redPoint"></span>
+        </div>
+    </ion-nav-buttons>
+    <!--  <ion-header-bar align-title="center">
+          <h2 class="title">个人主页-设置</h2>
+          <div class="icon ion-ios-arrow-left mystore-back-btn location-back-btn" ng-click="$ionicGoBack()"></div>
+          <div class="button button-light position-a" style="right:0;width: 35px;">
+              <i class="icon ion-more"></i>
+              <span class="redPoint"></span>
+          </div>
+      </ion-header-bar>-->
+    <!--内容区域-->
+    <ion-content style="padding-top: 10px;">
+        <ion-list>
+            <!--头像-->
+            <ion-item class="item-avatar-right setting-head">
+                头像
+                <img ng-src="{{myInfo.img}}" alt="头像">
+            </ion-item>
+            <!--姓名,星级-->
+            <ion-item>
+                用户姓名
+                <span class="setting-value" ng-bind="myInfo.userName"></span>
+                <!--五颗星等级-->
+                <span class="inline-block float-r">
+                        <img width="20px" class="float-l"
+                             ng-src="{{myInfo.gride>=1?imgBaseURL+'img/ic_eva_unselected.png':imgBaseURL+'img/ic_eva_selected.png'}}">
+                        <img width="20px" class="float-l"
+                             ng-src="{{myInfo.gride>=2?imgBaseURL+'img/ic_eva_unselected.png':imgBaseURL+'img/ic_eva_selected.png'}}">
+                        <img width="20px" class="float-l"
+                             ng-src="{{myInfo.gride>=3?imgBaseURL+'img/ic_eva_unselected.png':imgBaseURL+'img/ic_eva_selected.png'}}">
+                        <img width="20px" class="float-l"
+                             ng-src="{{myInfo.gride>=4?imgBaseURL+'img/ic_eva_unselected.png':imgBaseURL+'img/ic_eva_selected.png'}}">
+                        <img width="20px" class="float-l"
+                             ng-src="{{myInfo.gride>=5?imgBaseURL+'img/ic_eva_unselected.png':imgBaseURL+'img/ic_eva_selected.png'}}">
+                    </span>
+            </ion-item>
+            <!--用户积分-->
+            <ion-item>
+                用户积分
+                <span class="setting-value" ng-bind="myInfo.userPoints"></span>
+                <span ng-click="creditDetails()" class="float-r">明细
+                    <i class="icon ion-chevron-right margin-left-10"></i>
+                </span>
+            </ion-item>
+            <!--积分规则-->
+            <ion-item>
+                积分规则
+                <span ng-click="viewCredit()" class="float-r">查看
+                    <i class="icon ion-chevron-right margin-left-10"></i>
+                </span>
+            </ion-item>
+            <!--用户身份-->
+            <ion-item style="border-bottom: none">
+                用户身份
+                <span class="setting-value" ui-sref="exam" ng-bind="myInfo.userAuth"></span>
+            </ion-item>
+        </ion-list>
+        <div class="padding">
+            <div ng-click="data.isApply=true;" class="apply-btn">申请成为讲师</div>
+        </div>
+        <!--消息弹框-->
+        <!-- <div class="multiple-items" style="height: 100px;top:0;z-index: 11" ng-if="isDisplay" ng-class="{true:'iOStop'}[isIOS]">
+             <div class="row " style="height: 33px">
+                 <div class="col col-20 icon ion-chatbubble-working font-size-20"></div>
+                 <div style="padding:5px 15px" ui-sref="qzMessageCenter">消息</div>
+             </div>
+             <div class="row" style="height: 33px">
+                 <div class="col col-20 icon ion-android-share font-size-20"></div>
+                 <div style="padding:5px 15px">分享</div>
+             </div>
+             <div class="row" style="height: 33px">
+                 <div class="col col-20 icon ion-ionic font-size-20"></div>
+                 <div style="padding:5px 15px" ui-sref="applyCircle">申请圈子</div>
+             </div>
+             <span class="item-red-point"></span>
+         </div>-->
+        <!--float&clear小实验-->
+        <!--<div class="horizontal-center news">
+            <img src="img/ic_add.png" />
+            <p>some text</p>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="" style="border: 1px solid yellow;height:100px;clear: none;">
+            <div style="width: 100px;clear: none;">
+                <i class="icon ion-chatbubble-working"></i>
+                <span>fdsgdfgs</span>
+            </div>
+
+            <div class="line-h-40 float-l" style="padding-left:30%;">
+                <i class="icon ion-android-favorite color-red-sg"></i>
+                <span>fdsgfdsgfdg</span>
+            </div>
+        </div>-->
+    </ion-content>
+    <!--消息弹窗-->
+    <div ng-if="isDisplay" class="pop-news" style="height:120px;">
+        <!--<div class="triangle"></div>-->
+        <!--小箭头-->
+        <div class="top-arrow"></div>
+        <!--栏目-->
+        <div ng-click="jumpMsg()" class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ios-email-outline"></i></div>
+            <div class="float-l pop-news-text">消息</div>
+            <!--消息数量-->
+            <div ng-if="ifRed" class="float-r pop-news-amount">
+                <span ng-bind="messageNum|Num2Filter"></span>
+            </div>
+        </div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-share position-r" style="left:1px;"></i></div>
+            <div class="float-l pop-news-text">分享</div>
+        </div>
+        <!--栏目-->
+        <div class="pop-news-item">
+            <div class="float-l text-align-c pop-news-icon">
+                <i class="icon ion-ionic position-r" style="left:-1px;"></i></div>
+            <div class="float-l pop-news-text">申请圈子</div>
+        </div>
+        <!--栏目-->
+        <!--  <div class="pop-news-item">
+              <div class="float-l text-align-c pop-news-icon">
+                  <img src="img/circleIcon/top.png"/>
+              </div>
+              <div class="float-l pop-news-text">贴子置顶</div>
+          </div>-->
+    </div>
+    <!--弹窗背景-->
+    <div ng-if="isDisplay" ng-click="disappear()" class="blank-area"></div>
+    <!--弹窗背景-->
+    <div ng-if="data.isApply" class="backdrop visible active"></div>
+    <!--申请讲师“弹窗”-->
+    <div ng-if="data.isApply" class="border"
+         style="background-color:#fff;position: fixed;top:30%;width:94%;border-radius:5px;margin: 0 3%;z-index: 11;">
+        <h4 class="text-align-c margin-top-bottom-15">讲师申请</h4>
+        <div class="horizontal-center width-90">
+            <textarea placeholder="讲师自我介绍" title="" cols="30" rows="6"
+                      style="border-radius:5px;" class="border width-100 padding"></textarea>
+            <div class="row padding-0 text-align-c overflow-hidden"
+                 style="border:1px solid #387ef5;border-radius:4px;margin:15px auto;">
+                <div ng-click="data.isApply=false;" class="col col-50 no-select-tab">取消</div>
+                <div ng-click="apply()" class="col col-50 select-tab">确认申请</div>
+            </div>
+            <!--  <div class="overflow-hidden" style="border: 1px solid #387ef5;border-radius: 4px;margin:15px auto;">
+                  <div class="button button-small">取消</div>
+                  <div class="button button-small">确认提交</div>
+              </div>-->
+            <!-- <button ng-click="data.isApply=false;"
+                     class="button button-small button-outline button-stable margin-top-bottom-15 width-40 font-size-14"
+                     style="min-width: 3em;color: red;border-color: red;">取消
+             </button>
+             <button class="button button-small button-outline button-stable margin-top-bottom-15 width-40 float-r font-size-14"
+                     style="min-width:5em;color: blue;border-color: blue;">提交申请
+             </button>-->
+        </div>
+    </div>
+
+</ion-view>

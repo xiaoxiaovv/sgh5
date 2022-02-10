@@ -1,0 +1,34 @@
+<!--我的页面->账户信息->性别设置-->
+<ion-view class="background" view-title="性别">
+  <ion-nav-bar>
+    <ion-nav-back-button class="color-text-l"
+                         ng-click="goBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scrollbar-y="false">
+    <div class="margin-bottom-20">
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ng-click="doSelect(0)">
+      保密
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="sex.value==0"/>
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="sex.value!=0"/>
+      <span class="float-r margin-right-20"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white border-bottom" ng-click="doSelect(1)">
+      男
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="sex.value==1"/>
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="sex.value!=1"/>
+      <span class="float-r margin-right-20"></span>
+    </div>
+    <div class="padding padding-left-15 padding-right-15 bg-white" ng-click="doSelect(2)">
+      女
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_select.png" ng-if="sex.value==2"/>
+      <img class="float-r vertical-middle padding-left-right-5" style="width: 30px;" ng-src="{{imgBaseURL}}img/ic_check.png" ng-if="sex.value!=2"/>
+      <span class="float-r margin-right-20"></span>
+    </div>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

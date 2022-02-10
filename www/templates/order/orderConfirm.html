@@ -1,0 +1,348 @@
+<!--模板-->
+<ion-view class="background"  view-title="填写订单">
+  <!--<div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">-->
+    <!--<div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">-->
+      <!--<div style="height:18px;width:18px;">-->
+        <!--<img style="height:100%;" ng-src="img/Back black@2x.png" alt="" />-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">填写订单</div>-->
+    <!--<div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"></div>-->
+  <!--</div>-->
+  <ion-content scrollbar-y="false">
+    <!--7 是硬装 9是软装-->
+    <div ng-if="orderConfirmMessage.ot == 7" style="width: 100%;height: 40px;line-height: 40px;"><span style="font-size: 14px;color:#666;padding-left: 12px;">温馨提示：购买成功后会发送短信到您的手机</span></div>
+    <!--收货信息-->
+    <div class="bg-white border-bottom" ui-sref="address({'comeFromOrder':'YES'})">
+      <div class="row">
+        <div class="col col-90">
+          <div class="row">
+            <!--收货人-->
+            <div class="col col-50">
+              <span class="font-size-15">收货人：</span>
+              <span class="font-size-15" ng-bind="orderConfirmMessage.coN"></span>
+            </div>
+            <!--电话-->
+            <div class="col col-50 text-align-r">
+              <span class="font-size-15" ng-bind="orderConfirmMessage.mb"></span>
+            </div>
+          </div>
+          <!--收货地址-->
+          <div class="row">
+            <div class="margin-top-10">
+              <i class="icon ion-ios-location-outline"></i>
+              <span class="font-size-12">收货地址：</span>
+              <span class="font-size-12" ng-bind="orderConfirmMessage.rn"></span>
+              <span class="font-size-12" ng-bind="orderConfirmMessage.addr"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-10 position-r text-align-c">
+          <i class="icon ion-chevron-right position-a" style="top: 40%;"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-background" style="height: 10px"></div>
+    <!--商品信息-->
+    <div ng-repeat="product in orderConfirmMessage.ops" class="bg-white">
+      <div class="row padding-left-15" ng-bind="product.osName" ng-if="product.osName">公司</div>
+      <div class="row border-top">
+        <div class="col col-20 text-align-c" style="overflow: hidden;">
+          <img ng-src={{product.image}} style="height: 60px">
+        </div>
+        <div class="col col-80">
+          <div ng-bind="product.proN" class="font-size-11"></div>
+
+          <span ng-bind="product.price | currency :'￥'" class="font-size-11 margin-bottom-0"></span>
+          <span ng-if="product.pma" style="color: #ff0000;padding-left: 20px;font-size: 12px;">下单立减<span ng-bind="product.pma"></span>元</span>
+
+          <div class="padding-top-5 bg-white">
+            <li class="border-top li-no-style"></li>
+          </div>
+          <!-- 规格数量 -->
+          <div style=" height:30px;line-height: 30px;" ng-if="product.an"><span >已选&nbsp;&nbsp;</span><span>{{product.an}}&nbsp;&nbsp;</span></div>
+          <div class="row">
+            <div class="col col-50">
+              ×<span ng-bind="product.num" class="font-size-11"></span>
+            </div>
+            <div class="col col-50">
+              <span class="font-size-11 ">小计：</span>
+
+              <div class="float-r">
+                <div ng-bind="product.price*product.num | currency :'￥'" class="font-size-11"
+                     ng-class="{true:'text-line',false:''}[product.price*product.num != product.opa]"></div>
+                <div ng-if="product.price*product.num != product.opa"
+                     ng-bind="product.opa | currency :'￥'" class="font-size-11"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--软装特权码  -->
+      <div ng-if="privilege=='' && orderConfirmMessage.ot==9" flex style="width: 100%;height: 44px;line-height:44px;background: #fff;margin-top: 4px;position: relative;">
+        <div style="color: #333;font-size: 14px;width: 74px;padding-left: 10px;">特权码</div>
+        <div style="width: 52%;height: 44px;">
+          <input id="privilegeCode" name="privilegeCode" ng-model="privilegeCode" style="width: 100%;height: 100%;" type="text" placeholder="请输入已核销的硬装特权码">
+        </div>
+        <div style="position:absolute;right:6px;top:0;bottom:0;margin:auto;width: 64px;height: 28px;border: 1px solid #FF6026;border-radius: 100px;text-align: center;line-height: 28px;color: #FF6026;font-size: 14px;" ng-click="goWriteOff()">验证</div>
+      </div>
+      <div ng-if="privilege!='' && orderConfirmMessage.ot==9 && isHxCode" flex style="width: 100%;height: 44px;line-height:44px;background: #fff;margin-top: 4px;position: relative;">
+        <div style="color: #333;font-size: 14px;width: 74px;padding-left: 10px;">特权码</div>
+        <div style="width: 52%;height: 44px;font-size: 14px;color: #333;">
+          {{privilege}}
+        </div>
+        <div style="position:absolute;right:6px;top:0;bottom:0;margin:auto;width: 64px;height: 28px;border: 1px solid #eee;border-radius: 100px;text-align: center;line-height: 28px;color: #eee;font-size: 14px;">已验证</div>
+      </div>
+      <div ng-if="privilege!='' && giftList!=[]"  style="width: 100%;height: 10px;background: #eee;"></div>
+      <!--核销完成后的赠品-->
+      <div style="width: 100%;" ng-if="privilege!='' && giftList!=[] && orderConfirmMessage.ot==9">
+        <div flex="main" style="height: 44px;line-height: 44px;justify-content: space-between;font-size: 14px;color: #333;border-bottom: 1px solid #eee;"    ui-sref="choiceOfGifts">
+          <div style="height: 44px;padding-left: 16px;">赠品信息</div>
+          <div style="padding-right: 16px;">
+            <i style="padding-right: 10px;color: #999;">修改</i>
+            <i class="icon ion-chevron-right float-r margin-right-10"></i>
+          </div>
+
+        </div>
+        <ion-scroll direction="x" scrollbar-x="false" style="width: auto;" >
+          <div style="margin-top: 12px; margin-right: 10px;display: -webkit-box;display: -webkit-flex;display: -ms-flex;display: flex;display: -ms-flexbox;">
+            <div ng-repeat="item in giftList track by $index" style="margin-left: 14px;">
+              <div style="width: 100px;height: 100px;">
+                <img style="width: 100%;height: 100%;" ng-src="{{item.i}}">
+                <!--addImgURLPostfix:200:200-->
+              </div>
+              <div style="display:inline-block;width: 100px;font-size: 14px;color: #666;margin-bottom: 10px;">
+                {{item.n}}
+              </div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+      <!--商品优惠券-->
+      <div class="border-top padding-5"
+           ng-click="goUseCouponList({type : 1,productId:product.proId,sku: product.sku,couponId:product.cli})"
+           ng-if="product.osName">
+
+        <div class="row">
+          <span class="col col-50 font-size-13">店铺优惠券</span>
+
+          <div class="col col-25">
+            <!--<span ng-if="product.couponCodeValue != 0"-->
+            <!--ng-bind="product.couponCodeValue"></span>-->
+            <span ng-if="product.ca">
+                  {{product.ca}}元</span>
+          </div>
+          <div class="col col-25">
+            <i class="icon ion-chevron-right float-r margin-right-10"></i>
+          </div>
+        </div>
+      </div>
+
+      <!--卡券   !orderConfirmMessage.isActivity&&product.o2oTypeMapValue==3&&product.couponAmount==0&&orderConfirmMessage.o2oStoreCodeMap[product.productId]-->
+      <div class="padding-5 bg-white border-top-bottom"
+           ng-if="false"
+           ng-click="goCard();">
+        <div class="row">
+          <span class="col col-30">卡券码</span>
+          <input type="text" class="col col-40 border border-radius padding-0 padding-left-10" placeholder="请输入卡券码"
+                 ng-model="searchGoodsName.name">
+
+          <div class="col col-20 padding-0 text-align-c">
+            <div class="width-80 border border-radius padding-5 text-align-c color-text-white"
+                 ng-class="searchButton?'bg-theme':'bg-line'"
+                 style="margin-left: 10%"
+                 ng-click="searchButton?useCard(searchGoodsName.name,product.productId,product.number,orderConfirmMessage.o2oStoreCodeMap[product.productId]):''">
+              兑换
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--卡券兑换后 product.couponAmount!= 0 -->
+      <div ng-if="false" class="row padding-5 padding-left-15 border-top-bottom bg-white">
+        <span class="icon ion-ios-checkmark font-size-24 col col-10 color-theme" ng-if="false"></span>
+        <span class="icon ion-ios-circle-outline font-size-24 col col-10 color-theme" ng-if="false"></span>
+        <span class="col col-20">卡券码</span>
+        <span class="col col-40 padding-left-10 text-align-c"
+              ng-bind="product.couponCode"></span>
+
+        <div class="col col-30 text-align-l">
+          抵值{{product.couponAmount}}元
+        </div>
+      </div>
+      <div class="bg-background" style="height: 10px"></div>
+    </div>
+
+    <!--礼品券码-->
+    <!-- <div class="padding-5 border-top-bottom bg-white"
+         ng-if="orderConfirmMessage.cl"
+         ng-click="goGiftCard();">
+      <div class="row">
+        <span class="col col-30">礼品券码</span>
+        <input type="text" class="col col-40 border border-radius padding-0 padding-left-10" placeholder="请输入礼品券码"
+               ng-model="searchGoodsName.giftName">
+
+        <div class="col col-20 padding-0 text-align-c">
+          <div class="width-80 border border-radius padding-5 text-align-c color-text-white"
+               ng-class="giftSearchButton?'bg-theme':'bg-line'"
+               style="margin-left: 10%"
+               ng-click="useGiftCard(searchGoodsName.giftName)">
+            兑换
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!--礼品券兑换后-->
+    <!-- <div ng-if="orderConfirmMessage.lpq" class="row padding-5 border-top-bottom bg-white padding-left-15">
+      <span class="icon font-size-24 ion-ios-checkmark col col-10 color-theme" ng-if="true"
+            ng-click="cancleGiftCard(orderConfirmMessage.giftCouponCode);"></span>
+      <span class="icon font-size-24 ion-ios-circle-outline col col-10 color-theme"
+            ng-if="orderConfirmMessage.lpq"></span>
+      <span class="col col-30 text-align-c">礼品券码：</span>
+      <span class="col col-60" ng-bind="orderConfirmMessage.lpq"></span>
+    </div> -->
+
+    <!--通用优惠卷-->
+    <div class="bg-white padding-5 border-bottom"
+         ng-click="goUseCouponList({type : 2, couponId:orderConfirmMessage.coId})"
+         ng-if="true">
+      <div class="row">
+        <span class="col col-50 font-size-13">优惠券</span>
+
+        <div class="col col-25">
+          <span ng-if="orderConfirmMessage.coAmt">
+            {{orderConfirmMessage.coAmt}}元</span>
+          <!--<span class="col col-10 padding-right-15 text-align-r"></span>-->
+        </div>
+
+        <div class="col col-25">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+
+    <!--支付方式-->
+    <div class="bg-white padding-5 border-bottom">
+      <div class="row">
+        <div class="col col-100 font-size-12 border-bottom padding-bottom-10">
+          <span>支付方式</span>
+        </div>
+
+        <!--<div class="col col-40 font-size-13 text-align-r"
+             ng-bind="orderConfirmMessage.ordersCommitWrapM.order.paymentName"></div>
+        <div class="col col-10">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>-->
+      </div>
+      <!-- <div ng-if="true" class="row padding-5 padding-left-right-10" ng-click="choosePayType(1)">
+        <span class="col col-90">货到付款</span>
+
+        <div class="col col-10 padding-0">
+          <img ng-if="isOnlinePay[1]" class="padding-top-bottom-5" ng-src="img/ic_select.png" style="width:20px;"/>
+          <img ng-if="!isOnlinePay[1]" class="padding-top-bottom-5" ng-src="img/ic_check.png" style="width:20px;"/>
+        </div>
+      </div> -->
+      <div ng-repeat="payItem in orderConfirmMessage.pays">
+        <div class="row padding-5 padding-left-right-10" ng-click="choosePayType(payItem.name, payItem.code)">
+          <span class="col col-90 col-center">{{payItem.name}}</span>
+
+          <div class="col col-10 padding-0 col-center">
+            <img ng-if="selectedPayType.name == payItem.name" class="padding-top-bottom-5" ng-src="{{imgBaseURL}}img/ic_select.png" style="width:20px;"/>
+            <img ng-if="selectedPayType.name != payItem.name" class="padding-top-bottom-5" ng-src="{{imgBaseURL}}img/ic_check.png" style="width:20px;"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--配送时间选择start-->
+    <div ng-if="orderConfirmMessage.sht">
+      <div class="bg-white padding-5 border-bottom"
+           ng-click="tosendGoodsTime()">
+        <div class="row">
+          <span class="col col-20 font-size-13" style="width: 70px">配送时间</span>
+          <div class="col col-70 font-size-13 text-align-r">
+            <span class="" ng-if="orderConfirmMessage.cd == 0">标准:预计于</span>
+            <span class="" ng-if="orderConfirmMessage.cd ==1">您选择于:</span>
+            <span ng-bind="orderConfirmMessage.dd+'  '+(orderConfirmMessage.dt|| '')+''"></span>
+            <!-- <span class="" ng-if="true">{{orderConfirmMessage.dd+'  '+orderConfirmMessage.dt+'']}}</span> -->
+            <span class="">送达</span>
+          </div>
+          <div class="col col-10">
+            <i class="icon ion-chevron-right float-r margin-right-10"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--配送时间选择 end-->
+
+    <!--发票选择-->
+    <div ng-if="orderConfirmMessage.ot!=7" class="bg-white padding-5 border-bottom"
+         ng-click="toInvoice(orderConfirmMessage.inv.it);">
+      <div class="row">
+        <span class="col col-30 font-size-13">发票信息</span>
+
+        <div class="col col-60 font-size-13 text-align-r"
+             style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"
+             ng-bind="orderConfirmMessage.inv.it==2?'普通发票'+' '+(orderConfirmMessage.inv.iti||''):'增值税专用发票'+' '+(orderConfirmMessage.inv.bc||'')">
+        </div>
+        <div class="col col-10">
+          <i class="icon ion-chevron-right float-r margin-right-10"></i>
+        </div>
+      </div>
+    </div>
+    <!--积分使用相关-->
+    <div ng-if="orderConfirmMessage.bl">
+      <div style="height: 50px;" ng-repeat="item in orderConfirmMessage.bl" ng-if="item.count">
+        <li class="item item-toggle" style="padding:13px 15px 0 15px;">
+          <span ng-if="item.benefitType=='seashell'" style="font-size: 14px;color: #000;margin-right: 33px;position: absolute;">积分</span>
+          <span ng-if="item.benefitType=='insurance'" style="font-size: 14px;color: #000;margin-right: 5px;position: absolute;">金币</span>
+          <span ng-if="item.benefitType=='diamond'" style="font-size: 14px;color: #000;margin-right: 33px;position: absolute;">钻石</span>
+           <span style="display: inline-block;width: 60%;white-space: normal;vertical-align: middle;margin: -4px 0 -10px 67px;font-size: 12px;min-height: 50px;">
+            <span>共<span ng-bind="item.count"></span><span ng-if="item.benefitType=='seashell'">积分</span><span ng-if="(item.benefitType=='diamond')||(item.benefitType=='insurance')">个</span></span>
+            <span>可用<span ng-bind="item.canUsePoint"></span><span ng-if="item.benefitType=='seashell'">积分</span><span ng-if="(item.benefitType=='diamond')||(item.benefitType=='insurance')">个</span></span>
+            <span>抵<span ng-bind="item.pointDiscount|cutTwoFilter"></span>元</span>
+          </span>
+          <label class="toggle toggle-balanced" ng-click="countPoint($index,item.benefitType)" style="top:7px;">
+            <input type="checkbox" ng-checked=pointsChecked[$index] ng-disabled="buttonDisabled[$index]">
+            <div class="track" ng-style="pointsChecked[$index]?switchOn:switchOff">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+      </div>
+    </div>
+    <div style="padding: 16px;background-color: #fff;">
+      <div style="padding: 5px 0"><span>商品金额</span><span style="float: right;color: #EF473A;"><span>￥</span><span ng-bind="orderConfirmMessage.pam |number:2"></span></span></div>
+      <div ng-if="couponsDiscount&&couponsDiscount!=0" style="padding: 5px 0"><span>优惠券</span><span style="float: right;color: #EF473A;"><span>-￥</span><span ng-bind="couponsDiscount|number:2"></span></span></div>
+      <div ng-if="orderConfirmMessage.ipm" style="padding: 5px 0"><span>满减</span><span style="float: right;color: #EF473A;"><span>-￥</span><span ng-bind="orderConfirmMessage.ipm|number:2"></span></span></div>
+      <div ng-if="seashellDiscount&&seashellDiscount!=0" style="padding: 5px 0"><span>积分</span><span style="float: right;color: #EF473A;"><span>-￥</span><span ng-bind="seashellDiscount|number:2"></span></span></div>
+      <div ng-if="diamondDiscount&&diamondDiscount!=0" style="padding: 5px 0"><span>钻石</span><span style="float: right;color: #EF473A;"><span>-￥</span><span ng-bind="diamondDiscount|number:2"></span></span></div>
+      <div ng-if="insuranceDiscount&&insuranceDiscount!=0" style="padding: 5px 0"><span>金币</span><span style="float: right;color: #EF473A;"><span>-￥</span><span ng-bind="insuranceDiscount|number:2"></span></span></div>
+    </div>
+    <div class="bg-background" style="height: 100px"></div>
+  </ion-content>
+  <div class="bar bar-footer row" ng-style="footerSubmit">
+    <div class="col col-75 padding-top-15">
+      <div class="float-l">合计：</div>
+      <div class="float-l" ng-bind="orderConfirmMessage.pam | currency :'￥'"
+           ng-if="orderConfirmMessage.pam > newPrice"
+           ng-class="{true:'text-line',false:''}[orderConfirmMessage.pam!=newPrice]"></div>
+      <div class="float-l margin-left-5"
+           ng-bind="newPrice | currency :'￥'"></div>
+    </div>
+    <button class="button button-assertive col col-25" ng-click="toSubmit(1)">
+      提交订单
+    </button>
+  </div>
+  <ion-footer-bar ng-if="isBuyerForOrder != 0">
+    <div ng-include="'templates/common/Tabs.html'"></div>
+  </ion-footer-bar>
+  <div flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isHasCode">
+    <div class=" authenticationPopup_bg_not">
+      <p style="margin-bottom: 10px;">尚未验证特权码，无法获得家电赠品确定提交订单？</p>
+      <div class="authenticationPopup_bg_two" flex="box:mean" style="border-top: 1px solid #ccc;">
+        <span  ng-click="goBackFill()">返回填写</span>
+        <span style=" border-left: 1px solid #ccc;background: #2464E6;color: #fff;" ng-click="toSubmit(2)">确定</span>
+      </div>
+    </div>
+  </div>
+</ion-view>

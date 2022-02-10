@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<ion-view view-title="选择商品">
+ <ion-tabs class="tabs-top tabs-striped tabs-color-positive">
+     <ion-tab title="我买过的">
+         <ion-view>
+             <ion-content>
+                 <list>
+                     <div class="row">
+                         <div class="col col-10" style="margin-top: 3%">
+                             <input type="checkbox">
+                         </div>
+                         <div class="col col-20">
+                             <img ng-src="{{imgBaseURL}}img/ass_good.png" style="width: 40px;height: 40px">
+                         </div>
+                         <span style="padding: 5%">商品名称</span>
+                     </div>
+                 </list>
+
+                 <ion-infinite-scroll ng-if="true" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+             </ion-content>
+         </ion-view>
+     </ion-tab>
+
+     <ion-tab title="我收藏的">
+         <ion-view>
+             <ion-content>
+                 <list>
+                     <div class="row">
+                         <div class="col col-10" style="margin-top: 3%">
+                             <input type="checkbox">
+                         </div>
+                         <div class="col col-20">
+                             <img ng-src="{{imgBaseURL}}img/ass_good.png" style="width: 40px;height: 40px">
+                         </div>
+                         <span style="padding: 5%">商品名称</span>
+                     </div>
+                 </list>
+             </ion-content>
+         </ion-view>
+     </ion-tab>
+
+     <ion-tab title="商品池">
+         <ion-view>
+             <ion-content>
+                 <div class="search-magnifier">
+                     <span class="icon ion-android-search"></span>
+                     <input type="text" placeholder="搜索" style="display: inline-block;background:#f6f6f6;width:77% ">
+                     <div style="background:#f6f6f6;position: absolute;right: 0px;bottom: 0px;font-size: 15px">搜索</div>
+                 </div>
+                 <list>
+                     <div class="row">
+                         <div class="col col-10" style="margin-top: 3%">
+                             <input type="checkbox">
+                         </div>
+                         <div class="col col-20">
+                             <img ng-src="{{imgBaseURL}}img/ass_good.png" style="width: 40px;height: 40px">
+                         </div>
+                         <span style="padding: 5%">商品名称</span>
+                     </div>
+                 </list>
+             </ion-content>
+         </ion-view>
+     </ion-tab>
+
+
+
+
+ </ion-tabs>
+    <div class="button button-positive" style="position: fixed;bottom: 0px;width: 100%;color: white">添加</div>
+</ion-view>

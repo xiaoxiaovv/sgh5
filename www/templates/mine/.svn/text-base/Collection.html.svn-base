@@ -1,0 +1,80 @@
+<!--我的->我的收藏-->
+<ion-view class="background-fff" view-title="我的收藏" hide-nav-bar="true">
+  <ion-header-bar style="background: rgba(250,250,250,0.9);top:0 !important;">
+    <div style="position: absolute;left: 0;padding: 5px 16px;" ng-click="$ionicGoBack()">
+      <img ng-src="{{imgBaseURL}}img/addressBack@2x.png" style="width:24px;height: 24px;">
+    </div>
+    <div style="position:absolute;top:0;z-index:9;right:90px;left:90px;display: inline-block;height: 43px;min-width: 30px;text-align: center;line-height: 44px;text-overflow: ellipsis;white-space: nowrap;font-size: 17px;">我的收藏</div>
+    <div ng-style="isIOS?{'top':'20px'}:{'top':'0'}" style="position:absolute;right:0;margin: .12rem .3rem 0 .266667rem;">
+        <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+          <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false">
+    <!--顶部类别-->
+    <div class="collection_type">
+      <div ng-click="checkType($index)" ng-repeat="type_item in typeArr track by $index" flex="main:center cross:center">
+        <div class="inner_item">
+          {{type_item}}
+        </div>
+      </div>
+      <div class="verticalLine"></div>
+    </div>
+    <div class="padding text-align-c" ng-if="!items||items.length==0">暂无收藏商品或店铺/场馆</div>
+    <!--收藏的店铺、场馆-->
+    <ion-list ng-if="collectionType=='store'">
+      <ion-item class="collection-site-list"
+                ng-repeat="item in items"
+                ui-sref="SpecialtyVenueHome({regionId:item.collectId,streetId:streetId})">
+          <img ng-src="{{item.pic}}" alt="产品图片" class="site-pic"/>
+          <div flex="main:justify cross:center" class="content">
+            <div>{{item.name}}</div>
+            <div>{{item.collectionNum}}{{item.unit}}粉丝</div>
+          </div>
+        <ion-delete-button class="ion-minus-circled">
+        </ion-delete-button>
+        <ion-option-button class="button-assertive collection-delete-margin" ng-click="delete($index)">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <!--收藏的商品-->
+    <ion-list ng-if="collectionType=='product'">
+      <ion-item class="collection-list-left-right" ng-repeat="item in items"
+                ui-sref="productDetail({productId:item.productId,o2oType:item.o2oType,fromType:item.fromType,storeId:storeId})">
+        <div class="row margin-top--20 collection-list-bottom">
+          <div class="col col-33 col-center text-align-c padding">
+            <img ng-src={{item.defaultImageUrl}} alt="产品图片" class="width-80"/>
+          </div>
+          <div class="text-align-l padding padding-left-0" style="overflow: hidden;">
+            <div class="sg-ms-title font-size-15 font-bold" ng-bind="item.productFirstName"></div>
+            <div class="sg-ms-title font-size-15 font-bold" ng-bind="item.productSecondName"></div>
+            <div class="font-size-12" style="overflow: hidden;white-space:nowrap; text-overflow:ellipsis;"
+                 ng-bind="item.productTitle">
+            </div>
+            <div class="sg-ms-title font-size-12">
+              <!--<span ng-if="item.showFinalPrice" class="padding-right-10">价格：<span ng-bind="item.saleGuidePrice | currency:'&yen;'"></span></span>-->
+              <span><span class="color-text-red">￥<span ng-bind="item.finalPrice"></span></span></span>
+            </div>
+            <div class="font-size-12" ng-if="isApp&&isCommission&&item.commission">
+              赚：<span class="text-color-light-red">￥{{item.commission|cutTwoFilter}}</span>
+            </div>
+            <div class="font-size-12 text-color-light-red" ng-if="isApp&&isCommission&&item.commission==null">佣金计算中</div>
+          </div>
+        </div>
+        <ion-delete-button class="ion-minus-circled">
+        </ion-delete-button>
+        <ion-option-button class="button-assertive collection-delete-margin" ng-click="delete($index)">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="hasmore&&collectionType=='store'" on-infinite="loadMore() " immediate-check="false " distance="1% "></ion-infinite-scroll>
+  </ion-content>
+  <div class="text-align-c width-100 update-style" ng-hide="updateResult">
+    <div class="padding text-align-c width-30 dark-bg color-white update-style-inner" ng-bind="updateContent">
+    </div>
+  </div>
+</ion-view>

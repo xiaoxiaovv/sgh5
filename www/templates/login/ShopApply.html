@@ -1,0 +1,53 @@
+<!--店铺申请-->
+<ion-view view-title="店铺申请" class="background color-text-m" >
+  <ion-content scrollbar-y="false">
+    <div class="bg-white margin-top-20 border-top-bottom padding-left-10">
+      <div class="border-left-right-none padding-left-0 item item-input">
+        <span class="font-size-14 color-text-m">店主姓名</span>
+        <input ng-change="checkChange(applyInfo.ownerName,1)" ng-model="applyInfo.ownerName" class="font-size-14 color-text-m padding-left-right-10" type="text"
+               placeholder="">
+      </div>
+      <div ng-click="addressTop()"
+           class="padding-top-bottom-10 border-left-right-none padding-left-0 item position-r">
+        <span class="font-size-14 color-text-m">所在地区</span>
+        <span class="font-size-14 color-text-m padding-left-right-10" ng-bind="addressName"></span>
+        <i class="icon ion-ios-arrow-forward position-a right-10 top-10 font-size-14"></i>
+      </div>
+      <div class="border-left-right-none padding-left-0 item item-input">
+        <span class="font-size-14 color-text-m">详细地址</span>
+        <input ng-model="applyInfo.address" class="font-size-14 color-text-m padding-left-right-10" type="text"
+               placeholder="">
+      </div>
+      <div class="border-left-right-none padding-left-0 item item-input">
+        <span class="font-size-14 color-text-m">推广码</span>
+        <input ng-model="applyInfo.promotionCode" class="font-size-14 color-text-m padding-left-25 padding-right-10"
+               type="text" placeholder="" ng-if="!promotionCode">
+        <input ng-model="applyInfo.promotionCode" class="font-size-14 color-text-m padding-left-25 padding-right-10"
+               type="text" placeholder="" readonly ng-if="promotionCode">
+      </div>
+    </div>
+    <div class="margin-top-bottom-10 item item-input bg-white padding-left-right-10">
+      <span class="font-size-14 color-text-m">店铺名称</span>
+      <input ng-change="checkChange(applyInfo.storeName,2)" maxlength="12" ng-model="applyInfo.storeName" class="font-size-14 color-text-m padding-left-right-10" type="text"
+             placeholder="请不要使用违禁词">
+      <span class="font-size-14 color-text-m">的顺逛小店</span>
+    </div>
+    <div ui-sref="commonUnion({'flag':'SHOP_APPLY_UNION'})"
+         class="margin-top-bottom-10 bg-white item position-r padding-10">
+      <span class="font-size-14 color-text-m">联盟分类</span>
+      <span ng-bind="selectText" class="font-size-14 color-text-m padding-left-right-10"></span>
+      <i class="icon ion-ios-arrow-forward font-size-14 position-a right-10 top-10"></i>
+    </div>
+    <div ng-if="selectValue == '10'" class="border-left-right-none padding-left-10 item item-input margin-top-10">
+      <span class="font-size-14 color-text-m">上岗证号</span>
+      <input ng-model="applyInfo.hrCode" class="font-size-14 color-text-m padding-left-right-10" type="text"
+             placeholder="">
+    </div>
+    <div class="padding-top padding-left font-size-10 color-text-red" ng-if="showAlert">上岗证编号需要以HR开头，总长度8到20位</div>
+    <div class="padding-left font-size-10 color-text-red" ng-if="showAlertCheck&&selectText=='人人服务（服务兵创业）'">您输入的上岗证号已存在请重新输入！</div>
+    <div class="padding-left font-size-10 color-text-red" ng-if="selectText=='海尔云店'">如果选择海尔云店联盟,开店后不可以修改为其他联盟</div>
+    <div class="padding-left-right-10 margin-top-bottom-10">
+      <button ng-click="shopApplySubmit()" class="sg-feedback-submit width-100 padding-top-bottom-5 color-text-white">我要开店</button>
+    </div>
+  </ion-content>
+</ion-view>

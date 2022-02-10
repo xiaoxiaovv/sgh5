@@ -1,0 +1,46 @@
+.afterOrder-padding-30{
+  padding: 30px;
+  padding-left: 30%;
+}
+.afterOrder-img-heightWidth{
+  height: 50%;width: 50%;
+}
+.afterOrder-padding-left-10{
+  padding-left: 10%;
+}
+.afterOrder-margin-top-30{
+  margin-top: 30%;
+}
+.afterOrder-border-color-blue{
+  border: 1px solid $color-theme;
+}
+.col-35 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 35%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 35%;
+  -ms-flex: 0 0 35%;
+  flex: 0 0 35%;
+  max-width: 35%;
+}
+.sg-text-red{
+  color:#f00;
+}
+
+.payway-grid{
+  display: inline-block;
+  width: 33%;
+  overflow: hidden;
+  text-align: center;
+
+}
+.button-sg-pay{
+  border: solid 1px #ccc;
+  font-size: 70%;
+  margin: 0 6%;
+}
+
+.button-sg-pay-checked{
+  border: solid 1px #00ACFC !important;
+  color: #00ACFC !important;
+}

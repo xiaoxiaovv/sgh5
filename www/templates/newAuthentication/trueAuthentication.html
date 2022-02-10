@@ -1,0 +1,129 @@
+<ion-view class="background trueAuthenticationView" hide-nav-bar="true" view-title="身份证认证">
+
+  <div style="height:44px;background:#fafafa;" ng-style="paddingtopClass" flex="box:justify">
+    <div style="width:34px;height:44px;padding-left:6px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="height:24px;width:24px;">
+        <img style="height:100%;" ng-src="{{imgBaseURL}}img/Back black@2x.png" alt="" />
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">身份证认证</div>
+    <div style="width:44px;height:44px;padding-right:6px;" flex="main:center cross:center"  ng-click="toRules(915,'实名认证服务协议')">说明</div>
+  </div>
+  <ion-content scrollbar-y="false" ng-style="paddingtopClasscontent" >
+    <div class="scroll-view">
+      <!--未认证-->
+      <div  ng-if="!isNotAuthentication||!isWdHost">
+        <!--1.信息提示-->
+        <div class="true_authentication_massage">
+          <div>
+            请尽快完成身份认证，此决定后续佣金发放归属，一旦认证不能更换，身份认证信息必须与注册手机号身份信息一致。
+          </div>
+        </div>
+        <!--2.填写信息-->
+        <div class="trueAuthenticationInfoMsg" style="background: #fff;">
+          <!--2.1 手机号 -->
+          <div flex="main:left" style="margin-left: 14px;line-height: 48px; height: 48px;border-bottom: 1px solid #e4e4e4;">
+            <span style="width: 84px;font-size: 12px;overflow: hidden;">绑定手机号</span>
+            <p  style="color: #999;">{{phoneNumber}}</p>
+          </div>
+          <!--2.2 证件类型-->
+          <div  flex="main:left" style="margin-left: 14px;line-height: 48px; height: 48px;border-bottom: 1px solid #e4e4e4;">
+            <span style="width: 84px;font-size: 12px;">证件类型</span>
+            <p style="color: #999;">身份证</p>
+          </div>
+          <!--<div style="height: 4px;background: #eee;margin-left: 0;width: 100%;"></div>-->
+          <!--2.3姓名-->
+          <div flex="main:left"  style="margin-left: 14px;line-height: 48px; height: 48px;border-bottom: 1px solid #e4e4e4;" >
+            <span style="width: 84px;">姓名</span>
+            <input style="height: 100%;width: 68%;background: #fff;" ng-model="obj.isMyName"  maxlength="20"  type="text" placeholder="填写您的真实姓名"  ng-readonly="isNotAuthentication" ng-style="isOkAuthentication">
+          </div>
+          <!--2.4证件号-->
+          <div  flex="main:left"  style="margin-left: 14px;line-height: 48px; height: 48px;border-bottom: 1px solid #e4e4e4;">
+            <span style="width: 84px;">证件号</span>
+            <input style="height: 100%;width: 68%;background: #fff;"  ng-model="obj.isMyIdNumber"  type="text"  placeholder="填写对应真实名称的身份证号" ng-readonly="isNotAuthentication" ng-style="isOkAuthentication">
+          </div>
+        </div>
+        <!--3.提示-->
+        <div ng-if="isPrompts">
+          <p style="padding-top:8px;padding-left:16px;color: #2979FF;font-size: 12px;">*{{message}}</p>
+        </div>
+        <div ng-if="isMatching">
+          <p style="padding-top:8px;padding-left:16px;color: #999;font-size: 12px;">*{{message}}</p>
+        </div>
+        <!--4.按钮-->
+        <div class="new_authentication_home_btn">
+          <span style="background: #75A8FF;" ng-if="!isMake">确定</span>
+          <span style="background: #2464E6;" ng-if="isMake" ng-click="clickOk()">确定</span>
+        </div>
+      </div>
+
+      <!--已经认证-->
+      <div ng-if="isNotAuthentication && isWdHost">
+        <!--1.信息提示-->
+        <div class="true_authentication_massage">
+          <div>
+            身份认证已完成!
+          </div>
+        </div>
+        <!--2.已完成认证信息-->
+        <div class="new_authentication_info">
+          <!--2.1 手机号 -->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">手机号</span>
+            <p style="font-size: 12px;" class="new_authentication_input">{{phoneNumber}}</p>
+          </div>
+          <!--2.2 证件类型-->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">证件类型</span>
+            <p style="font-size: 12px;" class="new_authentication_input">身份证</p>
+          </div>
+          <!--2.3姓名-->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span style="font-size: 12px;">姓名</span>
+            <p  style="font-size: 12px;" class="new_authentication_input" >{{userName}}</p>
+          </div>
+          <!--2.4证件号-->
+          <div flex="box:mean" style="border-bottom: 1px solid #e4e4e4;">
+            <span  style="font-size: 12px;">证件号</span>
+            <p  style="font-size: 12px;" class="new_authentication_input">{{IDNumber}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+  <!--认证成功弹出框-->
+  <div  flex="cross:center main:center" class="authenticationPopup" ng-if="isPopup">
+    <div class="authenticationPopup_bg">
+      <i class="authenticationPopup_ok">
+        <!--  <img src="img/queren@2x.png" alt="">-->
+      </i>
+      <span>恭喜，身份认证成功！</span>
+    </div>
+  </div>
+  <!--认证错误-->
+  <div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isRetry" style="text-align: center;">
+    <div class=" authenticationPopup_bg_not">
+      <p style="font-size: 13px;">{{message}}</p>
+      <div class="authenticationPopup_bg_not_ok" ng-click="retry()">确定</div>
+    </div>
+  </div>
+  <!--是否继续-->
+  <div  flex="cross:center main:center" class="authenticationPopup authenticationPopupNot" ng-if="isTrueMsg">
+    <div class=" authenticationPopup_bg_not" style="text-align: center;">
+      <p>请确认您的身份信息，一旦认证不能更换。</p>
+      <div class="authenticationPopup_bg_two" flex="box:mean" style="border-top: 1px solid #ccc;">
+        <span style="color: #32BEFF;"  ng-click="IwantETC()">我想想</span>
+        <span style=" border-left: 1px solid #ccc; color: #32BEFF;" ng-click="isSubmit()">提交</span>
+      </div>
+    </div>
+  </div>
+  <!--两分钟无操作-->
+  <!--<div class="authenticationPopup authenticationPopupNot" ng-if="isAgain">-->
+  <!--<div class="is_not_someing">-->
+  <!--<p style="text-align: center;">当前无任何操作，请重新输入！</p>-->
+  <!--<div class="authenticationPopup_bg_not_ok" ng-click="isCloseNoInfo()">确定</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+</ion-view>

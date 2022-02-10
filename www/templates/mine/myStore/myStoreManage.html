@@ -1,0 +1,89 @@
+<!--店铺管理-->
+<ion-view class="background" view-title="店铺管理" hide-nav-bar="true" hide-back-button="true">
+    <ion-content>
+        <!--头部Start-->
+        <div class="myStoreManageTop-s">
+            <img ng-src="{{USER_CACHE_KEY.avatarImageFileId}}" class="Mask-img-05">
+            <div ng-class="{true:'iosTop'}[isIosApp]"></div>
+            <div class="title-text" flex="main:center cross:center box:justify">
+                <div class="arrow-left" ng-click="$ionicGoBack()"><img ng-src="{{imgBaseURL}}img/vipLeftArrow.png"></div>
+                <div class="text-centen">店铺管理</div>
+                <div class="right-tetx" ui-sref="myStore({'storeId':storeId})"><span>店铺预览</span></div>
+            </div>
+            <div class="my-user" flex="main:center cross:center box:first" ng-class="{true:'iosUser'}[isIosApp]">
+                <img class="userimg" ng-src="{{USER_CACHE_KEY.avatarImageFileId}}">
+                <div class="usertext">
+                    <p>{{userName.storeName}}</p>
+                    <span>
+                      <img ng-src="{{imgBaseURL}}img/level-{{userName.level}}-@2x.png">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--头部End-->
+        <!--列表Start-->
+        <ul class="myStoreManageConten">
+            <li class="cl" ui-sref="shopMessage">
+                <img class="ioc-left" ng-src="{{imgBaseURL}}img/Group2-1@2x.png">
+                <span>店铺信息</span>
+                <img class="ioc-right" ng-src="{{imgBaseURL}}img/gengduo1-1@2x.png">
+            </li>
+            <li class="cl" ui-sref="shopRenovate">
+                <img class="ioc-left" ng-src="{{imgBaseURL}}img/Group3-1@2x.png">
+                <span>店铺装修</span>
+                <img class="ioc-right" ng-src="{{imgBaseURL}}img/gengduo1-1@2x.png">
+            </li>
+            <li class="cl" ng-click="openQrcode()">
+                <img class="ioc-left" ng-src="{{imgBaseURL}}img/Group4-1@2x.png">
+                <span>店铺二维码</span>
+                <img class="ioc-right" ng-src="{{imgBaseURL}}img/gengduo1-1@2x.png">
+            </li>
+            <li class="cl" ng-click="share()">
+                <img class="ioc-left" ng-src="{{imgBaseURL}}img/Group5-1@2x.png">
+                <span>分享店铺</span>
+                <img class="ioc-right" ng-src="{{imgBaseURL}}img/gengduo1-1@2x.png">
+            </li>
+        </ul>
+        <!--列表End-->
+    </ion-content>
+    <!-- *********************分享标签－whiteBird start********************* -->
+    <div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare" ng-click="hideblackCover()">
+    </div>
+    <div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+        </div>
+        <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+            <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png" />
+            <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+        </div>
+    </div>
+    <!-- *********************分享标签－whiteBird end********************* -->
+    <!--二维码页面-->
+    <script id="my-qrcode-modal.html" type="text/ng-template">
+        <div class="ms-qrcode">
+            <div class="Qr-code">扫描二维码，分享我的顺逛店铺<img ng-src="{{imgBaseURL}}img/code-btn.png" ng-click="closeModal()" /></div>
+            <img ng-src="{{myStoreInfo.qrcode}}" alt="二维码图片" / style="margin-bottom:15px;">
+            <div class="btn-save-s">
+                <span class="save-btn" ng-click="saveQrCode()">保存二维码</span>
+            </div>
+        </div>
+    </script>
+</ion-view>

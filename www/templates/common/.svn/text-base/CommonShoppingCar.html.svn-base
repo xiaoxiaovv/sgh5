@@ -1,0 +1,6 @@
+<div class="CommonShoppingCar" ui-sref="cart">
+   <div class="CommonShoppingCar_num">
+     <div>{{cartTotalNum}}</div>
+     <div><img style="width: 126%;" src="{{imgBaseURL}}img/ic_shop_cart_gray.png"></div>
+   </div>
+</div>

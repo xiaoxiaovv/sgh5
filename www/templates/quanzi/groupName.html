@@ -1,0 +1,35 @@
+<ion-modal-view style="background: none;height: 100%;width: 100%">
+    <div class="position-r border-radius bg-white padding-20" style="margin-top: 50%;margin-left: auto;margin-right: auto;width: 80%">
+
+        <div class="width-100 padding-bottom-15" style="height: 40px" ng-if="isShowName">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">讨论组名称:</div>
+            <div class="float-l height-100" style="width: 100px;color: #787878;margin-left: 2px">
+
+                <div class="width-100 height-100 text-align-r" style="">
+                    <div class="width-100 height-100 border-radius margin-top-5" style="border: 1px solid #0076fd;padding-left: 2px;padding-right: 2px">
+                        <input type="text" class="padding-0 text-align-r" style="width: 98%;height: 100%" ng-model="confirmData.groupName" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="width-100 padding-bottom-15" style="height: 40px" ng-if="!isShowName">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">录音时长(s):</div>
+            <div class="float-l height-100" style="width: 100px;color: #787878;margin-left: 2px">
+
+                <div class="width-100 height-100 text-align-r" style="">
+                    <div class="width-100 height-100 border-radius margin-top-5" style="border: 1px solid #0076fd;padding-left: 2px;padding-right: 2px">
+                        <input type="text" class="padding-0 text-align-r" style="width: 98%;height: 100%" ng-model="confirmData.groupMax">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="width-100" style="height: 40px">
+            <div class="padding-5 float-l text-align-r" style="width: 50%;color: #787878">
+                <div class="padding-top-bottom-5 padding-left-right-10 text-center border-radius float-r" style="color: #fe605c;border: 1px solid #fe605c;width: 80px" ng-click="upDateGroup()">确认</div>
+            </div>
+            <div class="padding-5 float-r text-align-r" style="width: 50%;color: #787878">
+                <div class="padding-top-bottom-5 padding-left-right-10 text-center border border-radius" style="color: #9a9a9a;width: 80px" ng-click="closeName()">取消</div>
+            </div>
+        </div>
+    </div>
+</ion-modal-view>

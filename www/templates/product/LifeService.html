@@ -1,0 +1,23 @@
+<!--生活服务-->
+<ion-view class="background" view-title="生活服务">
+<!--  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-left" style="font-size: 30px; width: 30px; height: 30px;text-align:center;"
+       ng-click="goBack()"></i>
+  </ion-nav-buttons> -->
+  <ion-content scrollbar-y="false">
+    <div class="moreTop" style='height:3.5rem;'>
+      <div style='display:none;'></div>
+      <div flex="" >
+        
+        <div flex="dir:top main:right cross:center" class="type_entry" ng-click="goToEMC()">
+          <img ng-src="{{imgBaseUrl}}img/ic-jiadian@2x.png">
+          <div>家电服务</div>
+        </div>
+        <div flex="dir:top main:right cross:center" class="type_entry" ng-click="goToLivingCost()">
+          <img ng-src="{{imgBaseUrl}}img/ic-shenghuo@2x.png">
+          <div>充值缴费</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

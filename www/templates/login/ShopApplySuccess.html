@@ -1,0 +1,28 @@
+<!--开店申请成功-->
+<ion-view view-title="开店申请" hide-nav-bar="true">
+  <div style="height: 44px; background: rgb(250, 250, 250); padding-top: 0px;" flex="box:justify" ng-style="paddingtopClass">
+    <div style="width:34px;height:44px;padding-left:16px;" flex="main:center cross:center" ng-click="goBack()">
+      <div style="width:24px;height:24px;">
+      </div>
+    </div>
+    <div style="height:44px;font-size: 17px;letter-spacing: -0.41px;text-align:center;line-height:44px;">开店申请</div>
+    <div style="width:34px;height:44px;padding-right:6px;" flex="main:center cross:center" ng-click="">
+      <div style="width:24px;height:24px;">
+      </div>
+    </div>
+  </div>
+  <ion-content class="padding-10 ShopApplaySuccess" ng-style="paddingtopClasscontent">
+    <div style='height:0rem;padding-top: 0.3rem;margin-top: -1.06rem;display:none;'>
+      <img ng-src="{{imgBaseURL}}img/ShopApplySuccess@2x.png">
+    </div>
+    <div flex="main:center">恭喜开店成功!</div>
+    <div>您是第<span>{{memberCount}}</span>位进入顺逛的小主。请联系你的推荐人，开启你的顺逛之旅!</div>
+    <div>
+      <img ng-src="{{imgBaseURL}}img/ehaierWd.jpg" alt="二维码图片">
+    </div>
+    <div style="text-align:center;">关注微信公众号：“顺逛微店”，<br/>享一手资讯，拿幸运好礼！</div>
+    <div ng-click="isOrNoGoHomePage()"><span>立即体验</span></div>
+    <!--<div ng-if="!isNotAuthentication&&!isNewUser" ng-click="goToAuthentication()"><span>实名认证</span></div>-->
+    <div ng-if="isNewUser" ng-click="setPassword()"><span>设置密码</span></div>
+  </ion-content>
+</ion-view>

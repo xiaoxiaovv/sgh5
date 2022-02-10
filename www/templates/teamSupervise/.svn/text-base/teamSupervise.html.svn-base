@@ -1,0 +1,250 @@
+<ion-view view-title="团队管理" hide-nav-bar="true">
+  <!-- *********************分享标签－whiteBird start********************* -->
+<div style="z-index: 99;position: absolute;width: 100%;height: 100%;background: black;opacity: 0.3" ng-if="showShare"
+     ng-click="hideblackCover()">
+</div>
+<div style="z-index: 100;position: absolute;width: 100%;bottom: 0px;left: 0px;background: white;" ng-if="showShare">
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(1)" ng-if="hasWechat">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weixin.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">微信</div>
+  </div>
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(2)" ng-if="hasWechat">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_friend.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">朋友圈</div>
+  </div>
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(3)" ng-if="hasQQ">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_qq.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">QQ</div>
+  </div>
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(4)" ng-if="hasQQ">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_zone.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">QQ空间</div>
+  </div>
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(0)">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_weibo.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">微博</div>
+  </div>
+  <div style="text-align: center;width: 24%;display: inline-block" ng-click="shareToPlatform(5)">
+    <img style="padding: 15px;padding-bottom: 0px;width: 75%" ng-src="{{imgBaseURL}}img/btn_link.png"/>
+
+    <div style=" font-size: 12px;padding-bottom: 5px">复制链接</div>
+  </div>
+</div>
+<!-- *********************分享标签－whiteBird end********************* -->
+  <div id='thisHeader' style='z-index: 9999;'>
+    <!--头部-->
+    <div class="team_supervise"  ng-style="paddingtopClass" >
+      <!--头部-->
+      <div style="line-height: 2.4;" flex="main:justify">
+        <span>
+          <img ng-src="{{imgBaseURL}}img/ic_back_white.png" style="width:24px;margin:6px 0 0 16px;" ng-click="goBack()">
+        </span>
+        <span style="font-size: 16px;margin-right:-0.8rem;">团队管理</span>
+        <div style="width:71px">
+          <span ui-sref="userSearch({'selectedIndex':selectedIndex})">
+            <img style="width:24px;margin:6px 16px 0 0;" ng-src="{{imgBaseURL}}img/Search w@2x.png" alt="搜索">
+          </span>
+          <div style="position:absolute;right:0;top:0;line-height:1.6;margin: .03rem .3rem 0 .266667rem;">
+            <div class="message" style="width: 26px;height: 44px;position: relative;" flex="dir:top main:center cross:center" ui-sref="ClassifyMessageCenter" ng-class="  {true:'msg-point',false:''}[flagNum]">
+              <img style="width:0.48rem;height:0.48rem;margin-top: -.32rem;" class="message_img" ng-src="{{messageImgUrl}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--头像-->
+      <div class="new_authentication_massage width-100" >
+        <!--1.1头像-->
+        <div class="new_authentication_pic">
+          <div>
+            <img ng-src="{{productList.owner.avatarImageFileId}}" alt="头像"  >
+          </div>
+          <span ng-if="productList.owner.teamLevelName=='微店主'?false:true" class="team_level" style="overflow: hidden;">
+             {{Reps(productList.owner.teamLevelName)}}
+          </span>
+        </div>
+        <!--1.2字段-->
+        <div class="team_userName team_userInfo_a1" ng-click="goMemberCenter()">
+          <span class="store_name_title"  style="line-height: 14px;">{{productList.owner.storeName}}</span>
+          <div style="display: inline-block;">
+            <span style="border: 1px solid #fff;border-radius: 2px;margin: 0 4px;">
+                <i style="background: #fff;color: #2979FF;padding: 0 2px;">
+                  <img ng-src="{{imgBaseURL}}img/v-b@2x.png" style="z-index: 999;width: 7px;height: 8px;"> {{productList.owner.levelOrder}}
+                </i>
+                <em style="background: #2979FF;color: #fff;padding: 0 4px;">{{productList.owner.levelName}}</em>
+            </span>
+          <span class="team_team_isAuthenticated" ng-if="productList.owner.isAuthenticated" style="padding: 1px 0;">
+             <i><img style="margin-left: 2px;width: 12px;height: 12px;" ng-src="{{imgBaseURL}}img/icon-rz@2x.png"></i>
+            <em>认证</em>
+          </span>
+          </div>
+
+        </div>
+        <div class=" team_myCode" style="left: 0;right: 0;bottom:22px;" ng-click="share()">
+          <span class="team_myCode_pic" ><img ng-src="{{imgBaseURL}}img/share b@2x.png"></span>
+          <span class="team_myCode_code" >我的推广码:{{productList.owner.promotionCode}}</span>
+        </div>
+      </div>
+    </div>
+    <div class='my_referee' ng-click="lookreferee()" ng-if='hasparent'>
+      <div class='my_refereecont' flex='main:center'>
+        我的推荐人 : {{myheader.realName}}
+        <img ng-src="{{imgBaseURL}}img/goShop@2x.png" width="20" height="20">
+      </div>
+    </div>
+    <!--导航-->
+    <div style="background-color: #fff;z-index: 9999;">
+      <!--1级导航-->
+      <div class="team_nav_one" flex="box:mean">
+        <div class="team_add select-button default"
+             ng-if="isFindTab"
+             ng-class="{ 0:'select-button default'}[selectedIndex]"
+             ng-click="teamTab(0)">
+          合伙人({{productList.owner.subLevelNum || 0}})
+        </div>
+        <div class="team_team"
+             ng-class="{1: 'select-button default'}[selectedIndex]"
+             ng-click="teamTab(1)">
+          团队({{productList.owner.teamSize || 0}})
+        </div>
+        <div class="team_user"
+             ng-class="{2: 'select-button default'}[selectedIndex]"
+             ng-click="teamTab(2)">
+          用户({{usersNumber || 0}})
+        </div>
+      </div>
+      <!--2级导航 合伙人 团队-->
+      <div ng-if="isTeam" class="team_nav" flex="main:justify" style='position: relative;z-index: 9999;'>
+            <span style="position: relative;" ng-click="teamClickFun(0)" ng-class="{ 0:'team_nav_default'}[sortInd]">
+              开店时间
+                <img ng-src="{{arrowState[sortsIndex]}}" style="width: 8px; height: 14px;position: absolute;right: 0;top: 7px;">
+            </span>
+            <span ng-click="teamTrueAttestation(1)" ng-class="{ 1:'team_nav_default'}[sortInd]" >实名认证</span>
+            <span ng-click="teamLevel(2)" ng-class="{ 2:'team_nav_default'}[sortInd]">盟主舵主</span>
+            <span ng-click="teamActive(3)" ng-class="{ 3:'team_nav_default'}[sortInd]">本月活跃</span>
+      </div>
+      <!--2级导航 用户-->
+      <div ng-if="isUser" class="team_nav" flex="main:justify" style='position: relative;z-index: 9999;'>
+          <span ng-click="userClickFun(0)" ng-class="{ 0:'team_nav_default'}[sortNum]"  style="margin-left: 20px;">微店主</span>
+          <span ng-click="userNumber(1)" ng-class="{ 1:'team_nav_default'}[sortNum]">商品数量</span>
+          <span ng-click="userTime(2)" ng-class="{ 2:'team_nav_default'}[sortNum]"  style="margin-right: 20px;position: relative;">
+            最近一次购买时间
+            <img ng-src="{{arrowState[sortsIndex]}}" style="width: 8px; height: 14px;position: absolute;right: 0;top: 7px;">
+          </span>
+      </div>
+     </div>
+  </div>
+  <ion-content scrollbar-y="false" ng-class="(hasparent)?'team_supervise_content':'team_supervise_content1'" style='z-index:99;'>
+    <!--内容-->
+    <div style="background: #fff;z-index: 99">
+                <!--合伙人 内容-->
+                <div ng-if="!isTeamInfo">
+                  <!--认证 未认证 人数-->
+                  <div ng-if="sortInd==1?true:false" style="height: 34px;line-height: 34px;color: #999;font-size: 14px;">
+                    <span style="padding-left: 22px;" ng-click="Authenticated(0)" ng-class="{ 0:'team_nav_default'}[isAuthenticated]" >未认证:{{productList.unAuthenticatedNum || 0}}</span>
+                    <span style="padding-left: 26px;" ng-click="Authenticated(1)" ng-class="{ 1:'team_nav_default'}[isAuthenticated]">已认证:{{productList.authenticatedNum || 0}}</span>
+                  </div>
+                  <div ng-if="sortInd==3?true:false" style="height: 34px;line-height: 34px;color: #999;font-size: 14px;">
+                    <span style="padding-left: 22px;" ng-click="isActive(0)" ng-class="{ 0:'team_nav_default'}[isActiveNum]" >未活跃:{{productList.unActiveNum || 0}}</span>
+                    <span style="padding-left: 26px;" ng-click="isActive(1)" ng-class="{ 1:'team_nav_default'}[isActiveNum]" >活跃:{{productList.activeNum || 0}}</span>
+                  </div>
+                  <!--内容-->
+                  <div class="team_user_msg">
+                    <dl style="border-bottom: 1px solid #e4e4e4;" flex="box:first" ng-repeat="item in childrenList track by $index" ui-sref="teamMessage({'memberId':item.memberId,'type':info})" >
+                      <dt>
+                          <div style="position: relative;display: inline-block;margin: 16px 16px 32px 0;">
+                                 <span class="team_userPic">
+                                   <img style="width: 100%;height: 100%;" ng-src="{{item.avatarImageFileId}}">
+                                 </span>
+                                  <span  ng-if="item.teamLevelName=='微店主'?false:true"  class="team_level" style="overflow: hidden;">
+                                         {{Reps(item.teamLevelName)}}
+                                   </span>
+                          </div>
+                      </dt>
+                      <dd>
+                            <!--标题-->
+                            <div class="team_user_title">
+                                  <strong style="margin-right: 6px; " class="store_name">{{item.storeName}}</strong>
+                                  <span class="team_team_level">
+                                    <i style="padding: 1px;">
+                                    <img ng-src="{{imgBaseURL}}img/V@2x.png" style="width: 7px;height: 8px;"> {{item.levelOrder}}
+                                    </i>
+                                    <em style="padding: 0 4px;">{{item.levelName}}</em>
+                                  </span>
+                                  <span class="team_team_isAuthenticated" ng-if="item.isAuthenticated">
+                                     <i><img style="margin-left: 2px;margin-top: 2px;" ng-src="{{imgBaseURL}}img/icon-rz@2x.png"></i>
+                                     <em>认证</em>
+                                  </span>
+                            </div>
+                            <!--活跃 人数-->
+                            <div class="team_user_active">
+                              <span>本月活跃: {{item.isActive==true?'是':'否'}}</span>
+                              <span>合伙人: {{item.subLevelNum}}</span>
+                              <span>团队: {{item.teamSize}}</span>
+                            </div>
+                            <!--时间-->
+                            <p style="color: #999;margin-top: 6px;">开店时间:{{timeFun(item.startTime)}}</p>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+                <!--用户 内容-->
+                <div ng-if="isUserShow">
+                  <div class="team_user_msg">
+                    <dl style="border-bottom: 1px solid #e4e4e4;" flex="box:first" ng-repeat="item in rowsList track by $index" ui-sref="userMessage({'memberId':item.memberId,'name':item.userName,'mobile':item.mobile,'isTeamNum':item.isTeamNum})" >
+                      <dt>
+                          <div  style="position: relative;display: inline-block;margin: 16px 16px 32px 0;">
+                               <span class="team_userPic">
+                                 <img style="width: 100%;height: 100%;" ng-src="{{item.avatarImageFileId}}">
+                               </span>
+                          </div>
+                      </dt>
+                      <dd>
+                            <!--标题-->
+                            <div class="team_user_title">
+                              <strong style="margin-right: 6px;" class="store_name">{{item.userName}}</strong>
+                              <!--<span class="team_team_level">-->
+                                <!--<i>V10</i>-->
+                                <!--<em>{{item.level}}</em>-->
+                              <!--</span>-->
+                              <span class="team_team_level" ng-if="item.levelOrder>0?true:false">
+                                    <i style="padding: 1px;">
+                                    <img ng-src="{{imgBaseURL}}img/V@2x.png" style="width: 7px;height: 8px;"> {{item.levelOrder}}
+                                    </i>
+                                    <em style="padding: 0 4px;">{{item.level}}</em>
+                              </span>
+                              <span class="team_team_isAuthenticated" ng-if="item.isAuthenticated">
+                                 <i><img style="margin-left: 2px;" ng-src="{{imgBaseURL}}img/icon-rz@2x.png"></i>
+                                 <em>认证</em>
+                              </span>
+                            </div>
+                            <!--活跃 人数-->
+                            <div class="team_user_active">
+                              <span>商品数量: {{item.purchasedNum}} 件</span>
+                            </div>
+                            <!--时间-->
+                            <p style="color: #999;margin-top: 6px;">最近一次购买时间：{{timeFun(item.recentBuyingTime)}}</p>
+                      </dd>
+                    </dl>
+                  </div>
+               </div>
+            </div>
+    <!--加载更多-->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    <!--如果没有 占位图-->
+    <div flex="dir:top main:center cross:center"  ng-if="!isTeamInfo && childrenList.length==0">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据!</span>
+    </div>
+    <div flex="dir:top main:center cross:center" ng-if="isUserShow && rowsList.length==0">
+      <img style="width:200px;" ng-src="{{imgBaseURL}}img/Coupon@2x.png" alt="" />
+      <span style="opacity: 0.53;font-size: 16px;color: rgba(0,0,0,0.54);line-height: 20px;">暂无数据!</span>
+    </div>
+
+  </ion-content>
+
+</ion-view>
